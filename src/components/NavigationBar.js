@@ -13,7 +13,7 @@ class NavigationBar extends Component {
     const { isAuthenticated } = this.props.auth;
 
     const userLinks = (
-      <ul className="nav navbar-nav navbar-right">
+      <ul className="nav navbar-nav navbar-right">       
        <li><a href="#" onClick={this.logout.bind(this)}>Logout</a></li>       
       </ul>        
     );
@@ -25,16 +25,22 @@ class NavigationBar extends Component {
       </ul>    
     );
 
+/*    const userMenuLinks = (
+      <ul className="nav navbar-nav navbar-left">      
+       <li><Link to="/samples">Samples</Link></li>
+      </ul>    
+    );
+*/
     return (      
       	<nav className="navbar navbar-default">
       		<div className="container-fluid">
       			
       			<div className="navbar-header">
-      				<Link to="/" className="navbar-brand">LAB Calculator</Link>
-      			</div>
+      				<Link to="/" className="navbar-brand">LAB Calculator</Link>      			 
+            </div>
       			
-      			<div className="collapse navbar-collapse">
-      			 { isAuthenticated ? userLinks : guestLinks } 
+      			<div className="collapse navbar-collapse">      			 
+             { isAuthenticated ? userLinks : guestLinks }              
             </div>
       		
       		</div>

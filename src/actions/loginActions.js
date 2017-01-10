@@ -19,8 +19,9 @@ export function setCurrentUser(user){
 }
 
 export function userLoginRequest(userData){
+	
 	return dispatch => {
-		
+	
 		const transformData = {			
 			email: userData.email_username,
 			pass: userData.password
@@ -32,4 +33,5 @@ export function userLoginRequest(userData){
 			dispatch(setCurrentUser( jwtDecode(res.data.token) ));
 		});				
 	}
+
 }

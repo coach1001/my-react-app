@@ -3,6 +3,12 @@ import classnames from 'classnames';
 
 class FlashMessage extends Component {
 	
+	componentDidMount(){		
+		setTimeout( () => {
+			this.props.deleteFlashMessage(this.props.message.id);
+		}, this.props.message.timeout);
+	}
+
 	constructor(props){
 		super(props);
 		this.onClick = this.onClick.bind(this);

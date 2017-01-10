@@ -69,7 +69,8 @@ class LoginForm extends Component {
 
 						this.props.addFlashMessage({
 							type : 'success',
-							text : 'You have logged in successfully. Welcome!'
+							text : 'You have logged in successfully. Welcome!',
+							timeout: 3000
 						});
 
 						this.context.router.push('/');										

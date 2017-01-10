@@ -8,6 +8,7 @@ import rootReducer from './rootReducer';
 import jwtDecode from 'jwt-decode';
 import setAuthorizationToken from './utils/setAuthorizationToken';
 import { setCurrentUser } from './actions/loginActions';
+import createLogger from 'redux-logger';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/css/yeti.css';
@@ -15,10 +16,12 @@ import './index.css';
 
 import routes from './routes';
 
+const loggerMiddleware = createLogger();
+
 const store = createStore(
 	rootReducer,
 	compose(
-		applyMiddleware(thunk),
+		applyMiddleware(thunk, loggerMiddleware), 
 		window.devToolsExtension ? window.devToolsExtension() : f => f
 	) 
 );
