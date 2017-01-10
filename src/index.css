@@ -1,0 +1,26 @@
+.container-fluid{
+	padding: 5px;	
+}
+.control-label{
+  font-size: 18px;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+/**{
+  border-radius: 0px !important; 
+}*/
+@font-face {
+  font-family: 'OpenSans';
+  /*src: url("OpenSans-Light.ttf");*/
+  src: url("Arcon-Regular.otf");
+}
+
+*{
+  font-family: 'OpenSans';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
