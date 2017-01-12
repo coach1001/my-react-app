@@ -24,3 +24,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
+
+label{
+  font-size : 18px;
+}

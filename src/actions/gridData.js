@@ -17,7 +17,7 @@ export function receiveGrids(grids){
 
 function fetchGridRequest(table){		
 		if(isEmpty(table.params)){
-			return axios.get(`/${table.name}`, { headers : {'xgridname' : table.name} } );	
+			return axios.get(`/${table.name}`, { headers : {'xgridname' : table.name } } );	
 		}	else{			
 			let paramString='?';		
 			table.params.map( (param) => {
@@ -40,7 +40,7 @@ export function fetchGrids(tables){
 
 		return axios.all(requestPromises).then((responses) => { 
 			let grids=[];
-			console.log(responses);
+			
 			responses.map( (response) => {
 				let grid = { name : response.config.headers.xgridname, data: response.data, count: response.data.length };										
 				return grids.push(grid);
