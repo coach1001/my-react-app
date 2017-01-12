@@ -22,6 +22,51 @@ function fetchCascadeSelectView(view, index){
 	}
 }
 
+export function parseCascadeReponses(responses){
+	let cascadeSelect = {}
+	cascadeSelect.selectedValues = [];
+	cascadeSelect.dataArray = [];
+	cascadeSelect.selectedValue = null;			
+
+	responses.map( (response, index ) => {												
+  	let option_ = {};
+		option_.options= [];
+
+		let selectIndex = response.config.headers.xviewindex;
+		let selectName = response.config.headers.xviewname;
+		option_.placeholder = selectName[0].toUpperCase() + selectName.substring(1);
+		option_.field = selectName;
+
+		response.data.map( (option) =>{					
+			option_.options.push(option);
+			return option;
+  	})
+		
+		cascadeSelect.dataArray[selectIndex] = option_;	
+		
+		return response;
+	});
+	return cascadeSelect;	
+}
+
+export function fetchSelectsNoDispatch(views){			
+	return dispatch => {		
+		let requestPromises= [];
+
+		dispatch(requestCascadeSelect());
+
+		views.map ( (view , index) => {
+			return requestPromises.push(fetchCascadeSelectView(view, index));
+		});
+			
+		return axios.all(requestPromises);//.then( (responses) => { 								
+			//dispatch(receiveCascadeSelect(parseCascadeReponses(responses)));
+		//}).catch( (err) => {
+			//console.log(err);
+		//});
+	}
+}
+
 export function fetchSelects(views){			
 	return dispatch => {		
 		let requestPromises= [];
@@ -32,34 +77,10 @@ export function fetchSelects(views){
 			return requestPromises.push(fetchCascadeSelectView(view, index));
 		});
 			
-		return axios.all(requestPromises).then((responses) => { 
-			let cascadeSelect = {}
-			cascadeSelect.selectedValues = [];
-			cascadeSelect.dataArray = [];
-			cascadeSelect.selectedValue = null;			
-						
-			responses.map( (response, index ) => {												
-				let option_ = {};
-				option_.options= [];
-
-				let selectIndex = response.config.headers.xviewindex;
-				let selectName = response.config.headers.xviewname;
-
-				option_.placeholder = selectName[0].toUpperCase() + selectName.substring(1);
-				option_.field = selectName;
-
-				response.data.map( (option) =>{					
-					option_.options.push(option);
-					return option;
-				})
-				cascadeSelect.dataArray[selectIndex] = option_;	
-				return response;
-			});
-
-			dispatch(receiveCascadeSelect(cascadeSelect));
-
+		return axios.all(requestPromises).then( (responses) => { 								
+			dispatch(receiveCascadeSelect(parseCascadeReponses(responses)));
 		}).catch( (err) => {
-				console.log(err);
+			console.log(err);
 		});
 	}
 }

@@ -10,6 +10,7 @@ class NavigationBar extends Component {
   }
 
   render() {
+    
     const { isAuthenticated } = this.props.auth;
 
     const userLinks = (
@@ -25,13 +26,6 @@ class NavigationBar extends Component {
        <li><Link to="/login">Login</Link></li>
       </ul>    
     );
-
-/*    const userMenuLinks = (
-      <ul className="nav navbar-nav navbar-left">      
-       <li><Link to="/samples">Samples</Link></li>
-      </ul>    
-    );
-*/
     return (      
       	<nav className="navbar navbar-default">
       		<div className="container-fluid">

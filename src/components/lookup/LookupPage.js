@@ -1,40 +1,34 @@
 import React from 'react';
-import { fetchGrids } from '../../actions/gridData';
-import { fetchSelects } from '../../actions/cascadeSelect';
 import CascadeSelect from '../common/CascadeSelect';
+import GridForm from '../common/GridForm';
+import { CASCADE_DATA_LOCATION_CITY } from '../common/constants/constants';
 import { connect } from 'react-redux';
-
-//import SingleSelect from '../common/SingleSelect';
 
 
 class LookupPage extends React.Component {
 
-  componentWillMount(){
-  	this.props.fetchGrids([
-        { name: 'provinces' },
-        { name: 'cities'  },
-        { name: 'suburbs' }       
-    ]);
-
-    this.props.fetchSelects([
-        { name: 'provinces', value: 'id', display: 'name'},
-        { name: 'cities', value: 'id', display: 'name', filter: 'province'},
-        { name: 'suburbs', value: 'id', display: 'name', filter: 'city'}   
-    ]);
+	onClick(e){
+		this.setState(Object.assign({},this.state,{value:100}));
+	}
+	
+	componentWillMount(){	
+		this.setState(Object.assign({},this.state,{value:100}));
+	}
+  
+  onChange(value){
+  	this.setState(Object.assign({},this.state,{value:value}));
   }
 
-  render() {
-    return (
-      <div>
-      	<h1>Look up Tables</h1>        
-    	  <CascadeSelect />
-      </div>
-    );
+  render() {  		  					  
+      return (        
+        <div>        	
+         	 
+          <button className="btn btn-default" onClick={this.onClick.bind(this)}>Reset Selected Value</button>
+        	<CascadeSelect data={CASCADE_DATA_LOCATION_CITY} selectedValue={this.state.value} onChange={this.onChange.bind(this)} />                        
+        	<GridForm />
+        </div>
+    );          
   }
 }
 
-LookupPage.propTypes = {
-	fetchGrids : React.PropTypes.func.isRequired
-}
-
-export default connect(null, { fetchGrids, fetchSelects })(LookupPage); 
+export default connect(null,{ })(LookupPage); 

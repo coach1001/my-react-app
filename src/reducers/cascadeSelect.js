@@ -1,28 +1,24 @@
 import { RECEIVE_CASCADE_SELECT, REQUEST_CASCADE_SELECT } from '../actions/types'
 
 const initialState = {
-	isFetching: false,
+	isFetching: false,	
 	error: null,
 	select: {},
 	noData: true
 }
 
-export default ( state = initialState, action = {}) => {
+export default ( state = initialState, action = {}) => {	
 	switch(action.type){
 		
 		case REQUEST_CASCADE_SELECT: 
-			return Object({},state,{
-				isFetching : true				
-			});
+			return Object.assign({},state,{ isFecting:true })
 
 		case RECEIVE_CASCADE_SELECT:
-			let oState={};
-			oState.select = {};
-			oState.select = Object.assign({},action.select);
-			oState.isFetching = false;
-			console.log(oState);
-			return oState;
+			return Object.assign({},state,{
+				isFetching : false,
+				select: action.select
+			});
 		
-		default : return state;
+		default: return state;
 	}	
 }

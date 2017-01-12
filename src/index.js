@@ -8,7 +8,7 @@ import rootReducer from './rootReducer';
 import jwtDecode from 'jwt-decode';
 import setAuthorizationToken from './utils/setAuthorizationToken';
 import { setCurrentUser } from './actions/loginActions';
-import createLogger from 'redux-logger';
+//import createLogger from 'redux-logger';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/css/yeti.css';
@@ -16,12 +16,16 @@ import './index.css';
 
 import routes from './routes';
 
-const loggerMiddleware = createLogger();
+//const loggerMiddleware = createLogger();
+// eslint-disable-next-line
+String.prototype.capitalize = function(){
+  return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); } );
+};
 
-const store = createStore(
+export const store = createStore(
 	rootReducer,
 	compose(
-		applyMiddleware(thunk, loggerMiddleware), 
+		applyMiddleware(thunk),//, loggerMiddleware), 
 		window.devToolsExtension ? window.devToolsExtension() : f => f
 	) 
 );

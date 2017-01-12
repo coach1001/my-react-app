@@ -1,123 +1,133 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchSelectsNoDispatch, parseCascadeReponses } from '../../actions/cascadeSelect';
+import isEmpty from 'lodash/isEmpty';
 
 class CascadeSelect extends Component {
-  constructor(props){
-  	super(props);
-  	this.state = {
-  		select : {  			  		
-  			selectedValues: [],
-  			selectedValue: null,
-  			dataArray: [  				
-  				{  					
-  						placeholder: 'Province',
-  						field: 'province',
-  						options: [
-  							{ value: 1, display: 'Gauteng'},
-  							{ value: 2, display: 'Western Cape'},
-  							{ value: 3, display: 'Limpopo'}
-  						]
-  				},
-  				{
-  						placeholder: 'City',
-  						field: 'city',  						
-  						options: [
-  						
-  							{ value: 1, display: 'Pretoria', filter: 1 },
-  							{ value: 2, display: 'Johannesburg', filter: 1 },  						
-  						
-  							{ value: 3, display: 'Cape Town', filter: 2 },
-  							{ value: 4, display: 'Stellenbosch', filter: 2 },
+  
+  componentWillMount(){    
+    this.setState( Object.assign({},this.state,{ data : {} } ) );    
 
-  							{ value: 5, display: 'Polokwane', filter: 3}
-  						]
-  				},
-  				{
-  						placeholder: 'Suburb',
-  						field: 'suburb',  						
-  						options: [
-  						
-  							{ value: 1, display: 'Pretoria Gardens', filter: 1},
-  							{	value: 2, display: 'Brooklyn', filter: 1},
-  							{ value: 3, display: 'Eersterust', filter: 1},
-
-  							{ value: 4, display: 'Soweto', filter: 2},
-  							{ value: 5, display: 'Braamfontein', filter: 2},
-  							{ value: 6, display: 'Fordsburg', filter: 2},
-	 							{	value: 7, display: 'Sandton', filter: 2},
-
-								{ value: 8, display: 'Botriver', filter: 3},
-  							{ value: 9, display: 'Micthels Plain', filter: 3},
-  						  						
-								{ value: 10, display: 'Stellenbosch University', filter: 4}  						  						  						
-  						]
-  				}
-  			]
-  		}
-  	}
-  	this.onChange = this.onChange.bind(this);
+    this.props.fetchSelectsNoDispatch(this.props.data).then( (responses) => {      
+      const data = parseCascadeReponses(responses);
+      if(this.props.selectedValue){
+        data.selectedValue = this.props.selectedValue;
+      }                       
+      this.setState ( Object.assign({},this.state,{data} ));                  
+    });  
   }
-
+  
+  componentWillReceiveProps(nextProps){              
+    const oState = this.state;
+    
+    if(this.state.data.selectedValue !== nextProps.selectedValue){      
+      oState.data.selectedValues = [];
+      oState.data.selectedValue = nextProps.selectedValue;
+      this.setState ( Object.assign({},this.state,oState ));
+    }else{
+      oState.data.selectedValues = [];
+      this.setState ( Object.assign({},this.state,oState ));    
+    }
+  }
+  
   onChange(e){
   	e.preventDefault();
-  	let oState = this.state;
-  	let hasUpdated = false;
+  	
+    const oState = this.state;
+  	const selectCount = oState.data.dataArray.length;
+    let hasUpdated = false;
+        
+    for(let i = 0; i < selectCount ; i++){  		  	
+        
+        if(hasUpdated){
+          oState.data.selectedValues[i] = 0;
+        }
 
-  	for(var i = 0; i < this.state.select.dataArray.length; i++){  		
-  		if(hasUpdated){
-  			oState.select.selectedValues[i] = 0;
-  		}
-  		if(e.target.id === this.state.select.dataArray[i].field){  			
-  			oState.select.selectedValues[i] = parseInt(e.target.value,10);  			  		  			  			
-  			hasUpdated = true;
-  		}  		
-  	}
+       if(e.target.id === oState.data.dataArray[i].field){                  
+    
+        if( i === selectCount - 1 ){          
+          oState.data.selectedValue = parseInt(e.target.value,10);
+          oState.data.selectedValues = [];
+          this.props.onChange(oState.data.selectedValue);          
+        }else{
+          oState.data.selectedValues[i] = parseInt(e.target.value,10);
+          hasUpdated = true;
+          oState.data.selectedValue = null;
+        }            
+      }	        		          
+    }     
   	this.setState( Object({},this.state,oState));
   }
 
-  getSelects(){
-  	const select = this.state.select;  	
-  	let selectsDivs = []
+  getSelects(selectedValue){      	  
+      const select = this.state.data;           
+      const selectCount = this.state.data.dataArray.length - 1;
+      let selectsDivs = [];
 
-  	selectsDivs.push(select.dataArray.map( (dataRow, index, array) => {
-  		 return	<div className="form-group">
-  				<label htmlFor={dataRow.field}>Select {dataRow.placeholder}</label>
-  				<select className="form-control" id={dataRow.field} onChange={this.onChange} value={select.selectedValues[index]}>  					
-  					<option value="" >Choose {dataRow.placeholder}</option>
-  					
-  					{  							  					
-  						index === 0 ? dataRow.options.map( (option, index_, array_) => {							
-  							return <option key={index_} value={option.value}>{option.display}</option> }
-  						) : 
-  							dataRow.options.filter( (el) => {  							  							
-  							if(el.filter === select.selectedValues[index - 1]){  								
-  								return el;		
-  							}else {
-  								return null;
-  							}
+      if(select.selectedValue){       
+        select.selectedValues.splice(selectCount,0,select.selectedValue);        
+        if(selectCount){          
+          for(let i=selectCount;i >= 0;i--){
+            if(i !== selectCount){
+              let optionsCount = select.dataArray[i+1].options.length;               
+              for(let j=0;j<optionsCount;j++){
+                if(select.dataArray[i+1].options[j].value === select.selectedValues[0]){
+                  select.selectedValues.unshift(select.dataArray[i+1].options[j].filter);
+                  break;
+                }
+              }
+            }            
+          }
+        }      
+      }
 
-  						}).map( (option, index_, array_) => {
-  							return <option key={index_} value={option.value}>{option.display}</option> 
-  						})
+      selectsDivs.push(select.dataArray.map( (dataRow, index, array) => {
+         return <div className="form-group">         
+            <label htmlFor={dataRow.field}>Select {dataRow.placeholder}</label>
+            <select className="form-control" id={dataRow.field} onChange={this.onChange.bind(this)} value={select.selectedValues[index]}>            
+              <option value="" >Choose {dataRow.placeholder}...</option>
+              
+              {                           
+                index === 0 ? dataRow.options.map( (option, index_, array_) => {              
+                  return <option key={index_} value={option.value}>{option.display.toLowerCase().capitalize()}</option> }
+                ) : 
+                  dataRow.options.filter( (el) => {                               
+                  if(el.filter === select.selectedValues[index - 1]){                 
+                    return el;    
+                  }else {
+                    return null;
+                  }
 
-  					}  	
+                }).map( (option, index_, array_) => {
+                  return <option key={index_} value={option.value}>{option.display.toLowerCase().capitalize()}</option> 
+                })
+              }   
 
-  				</select>
-				</div>					  		
-  	}));
-  	  	
-  	return selectsDivs;
+            </select>
+          </div>
+      }));      
+      return selectsDivs;    
   }
   
-  render() {
-    
-    const selects = this.getSelects();
-    
-    return (
-    	<div>
-   			{selects}
-   		</div>	
-    );
+  render() {        
+    if(!isEmpty(this.state.data)){
+      const selects = this.getSelects(this.props.selectedValue);     
+      return (
+        <div>          
+          {selects}
+        </div>  
+      );
+    }else{
+      return null;
+    }    
   }
 }
 
-export default CascadeSelect;
+CascadeSelect.propTypes = {
+  data : React.PropTypes.array.isRequired,
+  fetchSelectsNoDispatch : React.PropTypes.func.isRequired,
+  parseCascadeReponses : React.PropTypes.func.isRequired,  
+  onChange: React.PropTypes.func.isRequired
+}
+
+export default connect(null,{ data : [], selectedValue : null , parseCascadeReponses, fetchSelectsNoDispatch , onChange : null })(CascadeSelect);
