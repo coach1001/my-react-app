@@ -9,6 +9,6 @@ export function userSignupRequest(userData){
 			pass: userData.password
 		};
 		
-		return axios.post('/rpc/signup', transformData);
+		return axios.post('http://localhost:3002/rpc/signup', transformData);
 	}
 }

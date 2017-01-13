@@ -79,7 +79,11 @@ class LoginForm extends Component {
 				 	if(error.response.status === 403){				 		
 				 		errors.loginError = 'Invalid Credentials';	
 				 		this.setState( { errors: errors, isLoading: false });										 		
+				 	}else if(error.response.status === 500){				 		
+				 		errors.loginError = 'Authentication server not available';	
+				 		this.setState( { errors: errors, isLoading: false });										 		
 				 	}
+
 
 				});			
 		}else{

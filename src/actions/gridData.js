@@ -17,13 +17,13 @@ export function receiveGrids(grids){
 
 function fetchGridRequest(table){		
 		if(isEmpty(table.params)){
-			return axios.get(`/${table.name}`, { headers : {'xgridname' : table.name } } );	
+			return axios.get(`http://localhost:3002/${table.name}`, { headers : {'xgridname' : table.name } } );	
 		}	else{			
 			let paramString='?';		
 			table.params.map( (param) => {
 				return paramString += `${param.column}=${param.operator}.${param.value}&`;			
 			});			
-			return axios.get(`/${table.name}${paramString}`,{ headers : {'xgridname' : table.name} } );		
+			return axios.get(`http://localhost:3002/${table.name}${paramString}`,{ headers : {'xgridname' : table.name} } );		
 		}
 
 }

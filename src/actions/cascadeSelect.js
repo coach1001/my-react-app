@@ -16,9 +16,9 @@ export function receiveCascadeSelect(select){
 
 function fetchCascadeSelectView(view, index){
 	if(view.filter){		
-		return axios.get(`/${view.table}?select=value:${view.value},display:${view.display},filter:${view.filter}`, { headers : {'xviewname' : view.name , 'xviewindex' : index } } );	
+		return axios.get(`http://localhost:3002/${view.table}?select=value:${view.value},display:${view.display},filter:${view.filter}`, { headers : {'xviewname' : view.name , 'xviewindex' : index } } );	
 	}else{
-		return axios.get(`/${view.table}?select=value:${view.value},display:${view.display}`, { headers : {'xviewname' : view.name , 'xviewindex' : index } } );	
+		return axios.get(`http://localhost:3002/${view.table}?select=value:${view.value},display:${view.display}`, { headers : {'xviewname' : view.name , 'xviewindex' : index } } );	
 	}
 }
 

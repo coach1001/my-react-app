@@ -27,7 +27,7 @@ export function userLoginRequest(userData){
 			pass: userData.password
 		};
 
-		return axios.post('/rpc/login', transformData).then( (res) => {			
+		return axios.post('http://127.0.0.1:3002/rpc/login', transformData).then( (res) => {			
 			localStorage.setItem('jwtToken', res.data.token);
 			setAuthorizationToken(res.data.token);						
 			dispatch(setCurrentUser( jwtDecode(res.data.token) ));
