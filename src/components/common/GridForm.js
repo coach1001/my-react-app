@@ -26,8 +26,7 @@ class GridForm extends React.Component {
         let rowSpan = 1;
         let colSpan = 1;
         
-          for(let spanIndex=0; spanIndex < table.spans.length; spanIndex++){
-            console.log(rowIndex,colIndex);
+          for(let spanIndex=0; spanIndex < table.spans.length; spanIndex++){            
 
             if(table.spans[spanIndex].posCol === colIndex && table.spans[spanIndex].posRow === rowIndex){              
               rowSpan = table.spans[spanIndex].rowSpan;
@@ -39,8 +38,6 @@ class GridForm extends React.Component {
       }
       tableObject.grid.push(colCells);
     }
-    console.log(tableObject);
-    
     return (
         <table className="table table-bordered">  
           <tbody>

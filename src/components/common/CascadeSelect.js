@@ -31,13 +31,13 @@ class CascadeSelect extends Component {
   }
   
   onChange(e){
-  	e.preventDefault();
-  	
+    e.preventDefault();
+    
     const oState = this.state;
-  	const selectCount = oState.data.dataArray.length;
+    const selectCount = oState.data.dataArray.length;
     let hasUpdated = false;
         
-    for(let i = 0; i < selectCount ; i++){  		  	
+    for(let i = 0; i < selectCount ; i++){          
         
         if(hasUpdated){
           oState.data.selectedValues[i] = 0;
@@ -54,12 +54,12 @@ class CascadeSelect extends Component {
           hasUpdated = true;
           oState.data.selectedValue = null;
         }            
-      }	        		          
+      }                       
     }     
-  	this.setState( Object({},this.state,oState));
+    this.setState( Object({},this.state,oState));
   }
 
-  getSelects(selectedValue){      	  
+  getSelects(selectedValue){          
       const select = this.state.data;           
       const selectCount = this.state.data.dataArray.length - 1;
       let selectsDivs = [];
@@ -69,7 +69,9 @@ class CascadeSelect extends Component {
         if(selectCount){          
           for(let i=selectCount;i >= 0;i--){
             if(i !== selectCount){
-              let optionsCount = select.dataArray[i+1].options.length;               
+
+              let optionsCount = select.dataArray[i+1].options.length;              
+
               for(let j=0;j<optionsCount;j++){
                 if(select.dataArray[i+1].options[j].value === select.selectedValues[0]){
                   select.selectedValues.unshift(select.dataArray[i+1].options[j].filter);
@@ -83,13 +85,12 @@ class CascadeSelect extends Component {
 
       selectsDivs.push(select.dataArray.map( (dataRow, index, array) => {
          return <div className="form-group">         
-            <label htmlFor={dataRow.field}>Select {dataRow.placeholder}</label>
-            <select className="form-control" id={dataRow.field} onChange={this.onChange.bind(this)} value={select.selectedValues[index]}>            
-              <option value="" >Choose {dataRow.placeholder}...</option>
-              
+            <label htmlFor={dataRow.field}>Select {dataRow.placeholder}</label>            
+            <select className="form-control" id={dataRow.field} name={dataRow.field} onChange={this.onChange.bind(this)} value={select.selectedValues[index]}>            
+              <option value="" >Choose {dataRow.placeholder}...</option>              
               {                           
                 index === 0 ? dataRow.options.map( (option, index_, array_) => {              
-                  return <option key={index_} value={option.value}>{option.display.toLowerCase().capitalize()}</option> }
+                  return <option key={index_} value={option.value}>{option.label.toLowerCase().capitalize()}</option> }
                 ) : 
                   dataRow.options.filter( (el) => {                               
                   if(el.filter === select.selectedValues[index - 1]){                 
@@ -99,11 +100,10 @@ class CascadeSelect extends Component {
                   }
 
                 }).map( (option, index_, array_) => {
-                  return <option key={index_} value={option.value}>{option.display.toLowerCase().capitalize()}</option> 
+                  return <option key={index_} value={option.value}>{option.label.toLowerCase().capitalize()}</option> 
                 })
               }   
-
-            </select>
+            </select>            
           </div>
       }));      
       return selectsDivs;    
