@@ -5,16 +5,22 @@ import isEmpty from 'lodash/isEmpty';
 
 class CascadeSelect extends Component {
   
-  componentWillMount(){    
+  componentWillMount(){ 
+
     this.setState( Object.assign({},this.state,{ data : {} } ) );    
 
     this.props.fetchSelectsNoDispatch(this.props.data).then( (responses) => {      
+      
+      
       const data = parseCascadeReponses(responses);
       if(this.props.selectedValue){
         data.selectedValue = this.props.selectedValue;
       }                       
+      
+      
       this.setState ( Object.assign({},this.state,{data} ));                  
     });  
+  
   }
   
   componentWillReceiveProps(nextProps){              

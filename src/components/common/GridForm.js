@@ -45,7 +45,7 @@ class GridForm extends React.Component {
               tableObject.grid.map( ( rowsObj, rowIndex ) => 
               <tr key={rowIndex}>
               {
-                rowsObj.map( (cellObj, cellIndex ) => <td key={cellIndex} rowSpan={cellObj.rowSpan} colSpan={cellObj.colSpan}>Blah Blah Blah</td>)
+                rowsObj.map( (cellObj, cellIndex ) => <td key={cellIndex} rowSpan={cellObj.rowSpan} colSpan={cellObj.colSpan} className="table-style">Blah Blah Blah</td>)
                 
               }  
               </tr>              

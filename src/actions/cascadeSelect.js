@@ -59,11 +59,7 @@ export function fetchSelectsNoDispatch(views){
 			return requestPromises.push(fetchCascadeSelectView(view, index));
 		});
 			
-		return axios.all(requestPromises);//.then( (responses) => { 								
-			//dispatch(receiveCascadeSelect(parseCascadeReponses(responses)));
-		//}).catch( (err) => {
-			//console.log(err);
-		//});
+		return axios.all(requestPromises);		
 	}
 }
 

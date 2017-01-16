@@ -9,9 +9,11 @@ class App extends Component {
       <div className="container-fluid">
         <NavigationBar />
         <FlashMessagesList />
-        <div className="container">
+      
+        <div className="container-fluid">
         	{this.props.children}
         </div>	
+      
       </div>
     );
   }

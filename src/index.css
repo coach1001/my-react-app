@@ -291,7 +291,43 @@ td.rdtYear:hover {
    padding: 0 !important;
    margin: 0 !important;
 }
-.select-editable { position:relative; background-color:white; border:solid grey 1px;  width:120px; height:18px; }
-.select-editable select { position:absolute; top:0px; left:0px; font-size:14px; border:none; width:120px; margin:0; }
-.select-editable input { position:absolute; top:0px; left:0px; width:100px; padding:1px; font-size:12px; border:none; }
-.select-editable select:focus, .select-editable input:focus { outline:none; }
+
+
+.page {
+  position: relative !important;
+  height: 29.7cm !important;
+  width: 21cm !important;
+  display: block !important;  
+  page-break-after: auto !important;
+  /*margin-top: -40px;*/
+  /*margin: 50px;*/
+  /*overflow: hidden;*/
+}
+
+.page-landscape {
+  position: relative !important;
+  width: 29.7cm !important;
+  height: 21cm !important;
+  display: block !important;  
+  page-break-after: auto !important;
+  margin-top: -40px;
+  /*margin: 50px;*/
+  /*overflow: hidden;*/
+}
+@media print {
+  .page {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.table-style{
+  background-color: red !important;
+}
+
+
+.vertical-text {
+  transform: rotate(90deg);
+  transform-origin: left top 0;
+}
