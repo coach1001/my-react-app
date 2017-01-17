@@ -27,7 +27,6 @@ class LookupPage extends React.Component {
   }
   
   componentDidMount(){
-    this.forceUpdate();
   }
   onClick(e){
     e.preventDefault();
@@ -62,14 +61,14 @@ class LookupPage extends React.Component {
       });
 
       return (
-        <div>
+        <div style={{backgroundColor:'grey'}}>
+
             <div>
               <button className="btn btn-lg btn-primary btn-block hidden-print" onClick={this.onClick.bind(this)} >Print</button>            
               <br className="hidden-print" ></br><br className="hidden-print"></br>
             </div>
         
                 <div className="page-landscape">        
-                     <GridForm />
 
                      <VictoryChart scale={ { x: 'log', y: 'linear' }}>
                       <VictoryAxis label="Sieve Sizes" tickValues={labels} style={stylex} tickLabelComponent={<VictoryLabel dy={-1.5}/>}
@@ -96,7 +95,6 @@ class LookupPage extends React.Component {
                       />
                       <VictoryArea data={data} interpolation='basis' style={line} />                
                     </VictoryChart>
-              
               </div>
 
         </div>        

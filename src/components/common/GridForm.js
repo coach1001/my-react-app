@@ -1,69 +1,38 @@
 import React from 'react';
-
+import { TEST, SIEVE_ANALYSIS } from './constants/gridConstants';
 
 class GridForm extends React.Component {
   
   componentWillMount(){
-    this.setState(Object.assign({},this.state,{      
-      cols: 2,
-      rows: 5,
-      spans: [
-        { colSpan: 1, rowSpan:2, posCol: 0, posRow: 4},
-        { colSpan: 2, rowSpan:1, posCol: 0, posRow: 0}        
-      ]      
-    }));
+   
   }
 
   drawTable(){
-    const table = this.state;
-    let tableObject = {};
+    const table = SIEVE_ANALYSIS;
     
-    tableObject.grid = [];   
-
-    for(let rowIndex=0;rowIndex<table.rows;rowIndex++){            
-      let colCells = [];
-      for(let colIndex=0;colIndex<table.cols;colIndex++){
-        let rowSpan = 1;
-        let colSpan = 1;
-        
-          for(let spanIndex=0; spanIndex < table.spans.length; spanIndex++){            
-
-            if(table.spans[spanIndex].posCol === colIndex && table.spans[spanIndex].posRow === rowIndex){              
-              rowSpan = table.spans[spanIndex].rowSpan;
-              colSpan = table.spans[spanIndex].colSpan;               
-            }
-          }
-
-          colCells.push({ posRow: rowIndex, posCol: colIndex, rowSpan: rowSpan, colSpan: colSpan });        
-      }
-      tableObject.grid.push(colCells);
-    }
-    return (
-        <table className="table table-bordered">  
-          <tbody>
-          {       
-              tableObject.grid.map( ( rowsObj, rowIndex ) => 
-              <tr key={rowIndex}>
+    return <table className="table table-bordered">
+              <tbody>
               {
-                rowsObj.map( (cellObj, cellIndex ) => <td key={cellIndex} rowSpan={cellObj.rowSpan} colSpan={cellObj.colSpan} className="table-style">Blah Blah Blah</td>)
-                
-              }  
-              </tr>              
-            )
-          }
-          </tbody>
-        </table>
-      )
+                table.map( (tr, trIndex) =>
+                  <tr key={trIndex} style={tr.style}>
+                  {
+                    tr.td.map( (td, tdIndex) =>
+                       <td key={tdIndex} colSpan={td.colSpan} rowSpan={td.rowSpan} style={td.style}>{td.value}</td> 
+                    )
+                  }
+                  </tr>
+                )
+              }
+              </tbody>
+           </table>      
+    
   }
 
-  render() {  		  					  
-      const grid = this.drawTable();
-      return (        
-        <div>
-          <h1>Grid Form</h1>
-          {grid}        	
-        </div>
-    );          
+  render() {                          
+      
+      const grid = (this.drawTable());
+      
+      return <div>{grid}</div>                   
   }
 }
 
