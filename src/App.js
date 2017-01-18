@@ -8,12 +8,8 @@ class App extends Component {
     return (
       <div className="container-fluid">
         <NavigationBar />
-        <FlashMessagesList />
-      
-
-        	{this.props.children}
-        
-      
+        <FlashMessagesList />      
+        	{this.props.children}              
       </div>
     );
   }

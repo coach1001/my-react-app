@@ -9,15 +9,17 @@ class GridForm extends React.Component {
 
   drawTable(){
     const table = SIEVE_ANALYSIS;
+    console.log(table);
     
-    return <table className="table table-bordered">
+    return <table className="table-bordered" width="100%">
               <tbody>
               {
                 table.map( (tr, trIndex) =>
                   <tr key={trIndex} style={tr.style}>
                   {
                     tr.td.map( (td, tdIndex) =>
-                       <td key={tdIndex} colSpan={td.colSpan} rowSpan={td.rowSpan} style={td.style}>{td.value}</td> 
+                       <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} 
+                       width={td.width} style={td.style}>{td.value}</td> 
                     )
                   }
                   </tr>

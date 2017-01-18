@@ -333,6 +333,6 @@ vertical-text {
 }
 
 table {
-    table-layout: fixed;
-    word-wrap: break-word;
+    /*table-layout: fixed;*/
+    /*word-wrap: break-word;*/
 }
