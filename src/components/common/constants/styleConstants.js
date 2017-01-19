@@ -1,0 +1,1 @@
+export const TABLE_HEADER = { backgroundColor : 'red', color : 'white', textAlign : 'center', fontSize: '1.5em'};

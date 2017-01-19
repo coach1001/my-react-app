@@ -4,7 +4,7 @@ import GridForm from '../common/GridForm';
 //import { CASCADE_DATA_LOCATION_CITY, CASCADE_DATA_LOCATION_PROVINCE, CASCADE_DATA_LOCATION_SUBURB } from '../common/constants/constants';
 import { connect } from 'react-redux';
 //import Datetime from 'react-datetime';
-import { VictoryArea, VictoryLabel, VictoryChart, VictoryBar, VictoryAxis, VictoryLine } from 'victory';
+import { VictoryArea, VictoryLabel, VictoryChart, VictoryAxis } from 'victory';
 
 
 const data = [

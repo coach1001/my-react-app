@@ -1,5 +1,5 @@
 import React from 'react';
-import { TEST, SIEVE_ANALYSIS } from './constants/gridConstants';
+import { SIEVE_ANALYSIS } from './constants/gridConstants';
 
 class GridForm extends React.Component {
   
@@ -9,8 +9,7 @@ class GridForm extends React.Component {
 
   drawTable(){
     const table = SIEVE_ANALYSIS;
-    console.log(table);
-    
+
     return <table className="table-bordered" width="100%">
               <tbody>
               {

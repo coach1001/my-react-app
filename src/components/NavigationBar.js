@@ -2,22 +2,63 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { logout } from '../actions/loginActions';
+import { fetchMethodsRequest } from '../actions/methods';
+import classnames from 'classnames';
 
 class NavigationBar extends Component {
   logout(e){
     e.preventDefault();
     this.props.logout();
   }
+  
+  componentWillMount(){    
+   this.setState({
+      methodsDropdown:false
+   })
+    this.props.fetchMethodsRequest();    
+  }
+  
+  onClick(e){
+    e.preventDefault();    
+    this.setState({
+      [e.target.name] : !this.state[e.target.name]
+    })    
+  }
 
-  render() {
-    
-    const { isAuthenticated } = this.props.auth;
-
+  render() {    
+    const { isAuthenticated } = this.props.auth;    
+    const { methods } = this.props.methods;
     const userLinks = (
-      <ul className="nav navbar-nav navbar-right">       
-       <li><Link to="/lookup">Lookup Tables</Link></li>
-       <li><a href="#" onClick={this.logout.bind(this)}>Logout</a></li>              
-      </ul>        
+      <div>  
+      <ul className="nav navbar-nav">
+      <li className={classnames("dropdown",{"open":this.state.methodsDropdown} )}>
+                <a href="#" name="methodsDropdown" onClick={this.onClick.bind(this)} className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Methods <span className="caret"></span></a>
+                <ul className="dropdown-menu">
+     
+                  {methods.map( (method,index) => {
+                    return <li key={index}><a href="#" name="methodsDropdown" onClick={this.onClick.bind(this)}>{method.name}</a></li>  
+                  })}
+                </ul>
+              </li>
+        </ul>
+          
+          { /*<li className={classnames( "dropdown", { "open": this.state.methodsDropdown })}> 
+          <li className="dropdown open">
+            <a name="methodsDropdown" className="dropdown-toggle" data-toggle="dropdown" onClick={this.onClick.bind(this)} href="#">Methods<span className="caret"></span>
+              <ul className="dropdown-menu">
+                <li><a href="#">Test</a></li>
+              </ul>
+            </a>
+          </li>
+        </ul>*/}
+
+        
+        <ul className="nav navbar-nav navbar-right">       
+         <li><Link to="/lookup">Lookup Tables</Link></li>
+         <li><a href="#" onClick={this.logout.bind(this)}>Logout</a></li>              
+        </ul>        
+      
+      </div>
     );
 
     const guestLinks = (
@@ -46,13 +87,15 @@ class NavigationBar extends Component {
 
 NavigationBar.propTypes = {
   auth: React.PropTypes.object.isRequired,
-  logout: React.PropTypes.func.isRequired
+  logout: React.PropTypes.func.isRequired,
+  fetchMethodsRequest: React.PropTypes.func.isRequired
 }
 
 function mapStateToProps(state){
   return {
-    auth: state.auth    
+    auth: state.auth,
+    methods: state.methods
   }
 }
 
-export default connect(mapStateToProps, { logout })(NavigationBar);
+export default connect(mapStateToProps, { logout, fetchMethodsRequest })(NavigationBar);
