@@ -31,8 +31,9 @@ class NavigationBar extends Component {
     const userLinks = (
       <div>  
       <ul className="nav navbar-nav">
+      <li><Link to="/samplesRegistry">Samples Registry</Link></li>
       <li className={classnames("dropdown",{"open":this.state.methodsDropdown} )}>
-                <a href="#" name="methodsDropdown" onClick={this.onClick.bind(this)} className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Methods <span className="caret"></span></a>
+                <a href="#" name="methodsDropdown" onClick={this.onClick.bind(this)} className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Input Forms<span className="caret"></span></a>
                 <ul className="dropdown-menu">
      
                   {methods.map( (method,index) => {
@@ -41,18 +42,7 @@ class NavigationBar extends Component {
                 </ul>
               </li>
         </ul>
-          
-          { /*<li className={classnames( "dropdown", { "open": this.state.methodsDropdown })}> 
-          <li className="dropdown open">
-            <a name="methodsDropdown" className="dropdown-toggle" data-toggle="dropdown" onClick={this.onClick.bind(this)} href="#">Methods<span className="caret"></span>
-              <ul className="dropdown-menu">
-                <li><a href="#">Test</a></li>
-              </ul>
-            </a>
-          </li>
-        </ul>*/}
-
-        
+                  
         <ul className="nav navbar-nav navbar-right">       
          <li><Link to="/lookup">Lookup Tables</Link></li>
          <li><a href="#" onClick={this.logout.bind(this)}>Logout</a></li>              

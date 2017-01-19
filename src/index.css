@@ -332,7 +332,19 @@ vertical-text {
   transform-origin: left top 0;
 }
 
-table {
-    /*table-layout: fixed;*/
-    /*word-wrap: break-word;*/
+.nav {
+  font-size: 18px !important;
+}
+
+.navbar-brand {
+  font-size: 20px !important;
+}
+
+.dropdown-menu > li > a {
+  font-size: 14px !important;  
+}
+
+input[type="checkbox"]{
+  background-color: white;
+  transform:scale(2, 2);
 }

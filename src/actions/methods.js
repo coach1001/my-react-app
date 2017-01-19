@@ -16,7 +16,7 @@ export function receiveMethods(methods){
 
 export function fetchMethodsRequest(){				
 	return dispatch =>{
-		requestMethods();
+		dispatch(requestMethods());
 		return axios.get('http://localhost:3002/methods').then( (res) => {			
 			dispatch(receiveMethods(res.data));
 		}).catch( (err) =>{
