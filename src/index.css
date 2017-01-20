@@ -322,10 +322,9 @@ td.rdtYear:hover {
   }  
 }
 
-.table-style{
-  background-color: red !important;
+td{
+  font-size:16px;
 }
-
 
 vertical-text {
   transform: rotate(90deg);

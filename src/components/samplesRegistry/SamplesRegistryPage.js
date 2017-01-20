@@ -6,22 +6,23 @@ import { DataTable } from '../common/DataTable';
   
 class SamplesRegistryPage extends Component {
   componentWillMount(){  	
-    this.props.fetchTables(['samples','value_definitions','methods' ])
+    this.props.fetchTables(['samples'])
   }
   render() {        
     return (    	
-    	<div className="container">
-    		{/*      	      	
-      	 this.props.tablesData.isFetching ? <div> : null
-        */}
+    <div className="row">
+      <div className="col-md-1"></div>
+      <div className="col-md-10">
         {
           !this.props.tablesData.isFetching ?  
           <div>          
-            <DataTable tableName={'value_definitions'} tablesData={this.props.tablesData}/>
+            <DataTable tableName={'samples'} tablesData={this.props.tablesData}/>
           </div>
           : null
         }
       </div>    	
+      <div className="col-md-1"></div>
+    </div> 
     );
   }
 }

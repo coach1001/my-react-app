@@ -1,11 +1,41 @@
-let cellNoRotate = {
+
+const cellNoRotate = {
 	padding: '5px',
 	textAlign: 'center'
 }
 
-let cellRotate = {	
+const cellRotate = {	
   transform: 'rotate(-90deg)',  
   textAlign: 'center'
+}
+
+const largeSectionHeader = {
+	tr:{
+		textAlign: 'center',
+		backgroundColor: '#4f4f4f',
+		color: 'white'	
+	},
+	
+	td: {
+		fontSize: '30px',
+		padding: '10px',
+	}
+}
+
+const largeLabel = {
+	tr:{
+		textAlign: 'right',	
+	},	
+	td : {
+		fontSize: '25px',
+		padding: '10px'		
+	},
+	input: {
+		textAlign: 'left',
+		fontSize: '25px',
+		padding: '10px',		
+		width: '100%',
+	}
 }
 
 export const SIEVE_ANALYSIS = [
@@ -56,4 +86,22 @@ export const SIEVE_ANALYSIS = [
 			{ value: '<0.425 and >0.075 mm', style: cellNoRotate },
 		]
 	},
+]
+
+export const FREE_FALLING_OBJECT_VELOCITY = [
+	{	style: largeSectionHeader.tr , td: [{ value: 'Inputs', colSpan:2, style: largeSectionHeader.td }] },
+
+	{	style: largeLabel.tr , td:[
+		{ value: 'Time', width: '50%', style: largeLabel.td},
+		{ width: '50%', isInput: true, type: 'number', style: largeLabel.input}] },
+
+	{	style: largeLabel.tr , td:[
+		{ value: 'Initial Velocity', width: '50%', style: largeLabel.td },
+		{ width: '50%', isInput: true, type: 'number', style: largeLabel.input} ]},
+
+	{ style: largeSectionHeader.tr , td:[{ value: 'Calculations', colSpan:2, style: largeSectionHeader.td }]	},
+
+	{	style: largeLabel.tr, td:[
+		{ value: 'Final Velocity', width: '50%', style: largeLabel.td},
+		{ width: '50%', isInput: true, isCalculated: true, type: 'number', style: largeLabel.input}] },
 ]

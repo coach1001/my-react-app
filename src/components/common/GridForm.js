@@ -1,5 +1,5 @@
 import React from 'react';
-import { SIEVE_ANALYSIS } from './constants/gridConstants';
+import { SIEVE_ANALYSIS, FREE_FALLING_OBJECT_VELOCITY } from './constants/gridFormConstants';
 
 class GridForm extends React.Component {
   
@@ -8,7 +8,7 @@ class GridForm extends React.Component {
   }
 
   drawTable(){
-    const table = SIEVE_ANALYSIS;
+    const table = FREE_FALLING_OBJECT_VELOCITY;
 
     return <table className="table-bordered" width="100%">
               <tbody>
@@ -17,8 +17,14 @@ class GridForm extends React.Component {
                   <tr key={trIndex} style={tr.style}>
                   {
                     tr.td.map( (td, tdIndex) =>
-                       <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} 
-                       width={td.width} style={td.style}>{td.value}</td> 
+                      {
+                       return !td.isInput ? <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>{td.value}</td> :
+                       <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>
+                       {
+                        td.isCalculated ? <input type='number' disabled className='form-control' style= {td.style}/> : <input type='number' className='form-control' style={td.style}/>
+                       }                        
+                       </td>
+                      } 
                     )
                   }
                   </tr>

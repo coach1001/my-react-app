@@ -61,11 +61,10 @@ export class DataTable extends Component {
                           return <td key={index_}>{row[obj]}</td>
                         }
                       }else if(typeof row[obj] === 'boolean'){
-                        return <CheckBox key={index_} value={row[obj]}/>                                                                                                                
+                        return <CheckBox key={index_} value={row[obj]} />                                                                                                                
                       }else{
                         return <td key={index_}>{row[obj]}</td>
-                      }
-                      
+                      }                      
                     }                                            
                   )
                 }
