@@ -4,7 +4,7 @@ import { fetchSamplesRequest } from '../../actions/samples';
 import { fetchTable, fetchTables } from '../../actions/tablesData';
 import { DataTable } from '../common/DataTable';
   
-class SamplesRegistryPage extends Component {
+class SampleList extends Component {
   componentWillMount(){  	
     this.props.fetchTables(['samples'])
   }
@@ -15,7 +15,8 @@ class SamplesRegistryPage extends Component {
       <div className="col-md-10">
         {
           !this.props.tablesData.isFetching ?  
-          <div>          
+          <div>
+            <h3>Samples Registry</h3><br></br>          
             <DataTable tableName={'samples'} tablesData={this.props.tablesData}/>
           </div>
           : null
@@ -27,7 +28,7 @@ class SamplesRegistryPage extends Component {
   }
 }
 
-SamplesRegistryPage.propTypes = {
+SampleList.propTypes = {
 	fetchSamplesRequest : React.PropTypes.func.isRequired,
   fetchTable : React.PropTypes.func.isRequired,
   fetchTables : React.PropTypes.func.isRequired
@@ -39,4 +40,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, { fetchSamplesRequest, fetchTable, fetchTables })(SamplesRegistryPage);
+export default connect(mapStateToProps, { fetchSamplesRequest, fetchTable, fetchTables })(SampleList);

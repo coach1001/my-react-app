@@ -4,14 +4,26 @@ import App from './App';
 import Greeting from './components/Greeting';
 import SignupPage from './components/signup/SignupPage';
 import LoginPage from './components/login/LoginPage';
-import SamplesRegistryPage from './components/samplesRegistry/SamplesRegistryPage';
+
+import SamplePage from './components/samples/SamplePage';
+import SampleList from './components/samples/SampleList';
+import SampleEditCreate from './components/samples/SampleEditCreate';
+
+
 import LookupPage from './components/lookup/LookupPage';
+
 export default (
 	<Route path="/" component={App}>
 		<IndexRoute component={Greeting} />
 		<Route path="signup" component={SignupPage} />
-		<Route path="login" component={LoginPage} />
-		<Route path="samplesRegistry" component={SamplesRegistryPage} />
+		<Route path="login" component={LoginPage} />					
 		<Route path="lookup" component={LookupPage} />
+		
+		<Route path="samples" component={SamplePage}>
+			<IndexRoute component={SampleList} />
+			<Route path=":sampleId" component={SampleEditCreate}/>
+		</Route>
+
+		
 	</Route>
 )	

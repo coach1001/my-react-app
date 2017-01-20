@@ -40,7 +40,7 @@ CREATE OR REPLACE FUNCTION log_insert()
 $BODY$
   BEGIN
     NEW.created_at = NOW();
-    NEW.created_by = basic_auth.current_email();
+    NEW.created_by = basic_auth.current_user_id();
     RETURN NEW;
   END;
 $BODY$
@@ -54,7 +54,7 @@ CREATE OR REPLACE FUNCTION log_update()
 $BODY$
   BEGIN
     NEW.updated_at = NOW();
-    NEW.updated_by = basic_auth.current_email();
+    NEW.updated_by = basic_auth.current_user_id();
     RETURN NEW;
   END;
 $BODY$

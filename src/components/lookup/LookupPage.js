@@ -68,22 +68,9 @@ class LookupPage extends React.Component {
               <br className="hidden-print" ></br><br className="hidden-print"></br>
             </div>
         
-                <div className="page-landscape">        
+                <div className="page">        
                      <GridForm />
 
-                     <VictoryChart scale={ { x: 'log', y: 'linear' }}>
-                      <VictoryAxis label="Sieve Sizes" tickValues={labels} style={stylex} tickLabelComponent={<VictoryLabel dy={-1.5}/>}
-                      axisLabelComponent={<VictoryLabel dy={1.2}/>}
-                      tickFormat={ (tick) =>{
-                        return `${tick} mm`;
-                      }} />
-                      <VictoryAxis label="Percentage Passing" dependentAxis style={styley} tickFormat={ (tick) =>{return `${tick}%`;}}
-                        tickLabelComponent={<VictoryLabel dx={9} />}
-                        axisLabelComponent={<VictoryLabel dy={-0.5}/>}
-                      />
-                      <VictoryArea data={data} interpolation='basis' style={line} />                
-                    </VictoryChart>
-              
                     <VictoryChart scale={ { x: 'log', y: 'linear' }}>
                       <VictoryAxis label="Sieve Sizes" tickValues={labels} style={stylex} tickLabelComponent={<VictoryLabel dy={-1.5}/>}
                       axisLabelComponent={<VictoryLabel dy={1.2}/>}

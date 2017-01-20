@@ -294,8 +294,8 @@ td.rdtYear:hover {
 
 .page {
   position: relative !important;
-  height: 29.7cm !important;
-  width: 21cm !important;
+  height: 28cm !important;
+  width: 20cm !important;
   display: block !important;  
   page-break-after: auto !important;
   margin: 0 auto;
@@ -303,7 +303,7 @@ td.rdtYear:hover {
 
 .page-landscape {
   position: relative !important;
-  width: 29.7cm !important;
+  width: 28cm !important;
   height: 20cm !important;
   display: block !important;  
   page-break-after: auto !important;
@@ -343,7 +343,13 @@ vertical-text {
   font-size: 14px !important;  
 }
 
-input[type="checkbox"]{
-  background-color: white;
-  transform:scale(2, 2);
+@media print {
+  .table td,
+  .table th {
+    background-color: inherit !important;
+  }
+}
+
+.list-group-item{
+  font-size: 16px;
 }

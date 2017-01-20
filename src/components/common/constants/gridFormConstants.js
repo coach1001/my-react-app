@@ -17,7 +17,7 @@ const largeSectionHeader = {
 	},
 	
 	td: {
-		fontSize: '30px',
+		fontSize: '22px',
 		padding: '10px',
 	}
 }
@@ -27,12 +27,12 @@ const largeLabel = {
 		textAlign: 'right',	
 	},	
 	td : {
-		fontSize: '25px',
+		fontSize: '18px',
 		padding: '10px'		
 	},
 	input: {
 		textAlign: 'left',
-		fontSize: '25px',
+		fontSize: '18px',
 		padding: '10px',		
 		width: '100%',
 	}

@@ -32,7 +32,8 @@ export class DataTable extends Component {
 
   onClick(row,e){
     e.preventDefault();
-    console.log(row);
+    const newRoute = `${this.context.router.getCurrentLocation().pathname}/${row.id}`;    
+    this.context.router.push(newRoute);    
   }
 
   render() {        
@@ -81,7 +82,11 @@ export class DataTable extends Component {
 
 DataTable.propTypes = {
 	tableName : React.PropTypes.string.isRequired,
-  tablesData: React.PropTypes.object.isRequired
+  tablesData: React.PropTypes.object.isRequired,  
+}
+
+DataTable.contextTypes = {
+  router: React.PropTypes.object.isRequired
 }
 
 export default DataTable;

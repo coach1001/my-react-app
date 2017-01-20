@@ -21,7 +21,7 @@ class GridForm extends React.Component {
                        return !td.isInput ? <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>{td.value}</td> :
                        <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>
                        {
-                        td.isCalculated ? <input type='number' disabled className='form-control' style= {td.style}/> : <input type='number' className='form-control' style={td.style}/>
+                        td.isCalculated ? <input type='number' disabled className='form-control' style={td.style}/> : <input type='number' className='form-control' style={td.style}/>
                        }                        
                        </td>
                       } 
