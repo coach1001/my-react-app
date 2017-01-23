@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchSamplesRequest } from '../../actions/samples';
-import { fetchTable, fetchTables } from '../../actions/tablesData';
+import { fetchTables } from '../../actions/tablesData';
 import { DataTable } from '../common/DataTable';
   
 class SampleList extends Component {
   componentWillMount(){  	
-    this.props.fetchTables(['samples'])
+    this.props.fetchTables(['samples']);
   }
   render() {        
     return (    	
@@ -28,9 +27,7 @@ class SampleList extends Component {
   }
 }
 
-SampleList.propTypes = {
-	fetchSamplesRequest : React.PropTypes.func.isRequired,
-  fetchTable : React.PropTypes.func.isRequired,
+SampleList.propTypes = {	
   fetchTables : React.PropTypes.func.isRequired
 }
 
@@ -40,4 +37,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, { fetchSamplesRequest, fetchTable, fetchTables })(SampleList);
+export default connect(mapStateToProps, { fetchTables })(SampleList);

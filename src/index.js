@@ -22,6 +22,12 @@ String.prototype.capitalize = function(){
   return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); } );
 };
 
+// eslint-disable-next-line
+String.prototype.replaceAll = function(search, replacement){
+  var target = this;
+  return target.replace( new RegExp(search,'g'), replacement);
+};
+
 export const store = createStore(
 	rootReducer,
 	compose(

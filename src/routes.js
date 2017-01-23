@@ -10,6 +10,10 @@ import SampleList from './components/samples/SampleList';
 import SampleEditCreate from './components/samples/SampleEditCreate';
 
 
+import SampleSelectionPage from './components/sampleSelection/SampleSelectionPage';
+import SampleSelectionList from './components/sampleSelection/SampleSelectionList';
+import SampleForm from './components/sampleSelection/SampleForm';
+
 import LookupPage from './components/lookup/LookupPage';
 
 export default (
@@ -24,6 +28,10 @@ export default (
 			<Route path=":sampleId" component={SampleEditCreate}/>
 		</Route>
 
+		<Route path="sampleSelection" component={SampleSelectionPage}>
+			<Route path=":formId/:sampleId" component={SampleForm}/>		
+			<Route path=":formId" component={SampleSelectionList}/>			
+		</Route>
 		
 	</Route>
 )	

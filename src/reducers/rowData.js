@@ -1,8 +1,8 @@
-import { REQUEST_TABLES, RECEIVE_TABLES } from '../actions/types';
+import { REQUEST_ROW, RECEIVE_ROW} from '../actions/types';
 
 const initialState = {
 	isFetching: true,
-	tables: []
+	entities: []
 }
 
 export default (state = initialState, action = {}) => {
@@ -10,12 +10,12 @@ export default (state = initialState, action = {}) => {
 		
 	switch(action.type){
 		
-		case REQUEST_TABLES:					
+		case REQUEST_ROW:					
 			return Object.assign({},state,{
 				isFetching: true			
 			});
 		
-		case RECEIVE_TABLES:						
+		case RECEIVE_ROW:						
 			const tables = action.tableDataArray;						
 			tables.map( (table, tableIndex) =>{				
 		
@@ -37,9 +37,7 @@ export default (state = initialState, action = {}) => {
 					oState.tables.push(table);
 				}		
 				return table;		
-			});
-
-			
+			});			
 			oState.isFetching = false;
 			return Object.assign({},state,oState);		
 		

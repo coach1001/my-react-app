@@ -22,7 +22,7 @@ CREATE TABLE public.variables(
 	is_constant boolean NOT NULL DEFAULT false,
 	is_calculated boolean NOT NULL DEFAULT false,
 	is_percentage boolean NOT NULL DEFAULT false,
-	variable_type varchar(50) NOT NULL DEFAULT number,
+	variable_type varchar(50) NOT NULL DEFAULT 'number',
 	name varchar(50) NOT NULL,
 	default_value double precision NOT NULL DEFAULT 0.0,
 	formula text,

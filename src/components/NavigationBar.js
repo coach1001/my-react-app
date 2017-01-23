@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { logout } from '../actions/loginActions';
-import { fetchMethodsRequest } from '../actions/methods';
 import classnames from 'classnames';
 
 class NavigationBar extends Component {
@@ -11,23 +10,28 @@ class NavigationBar extends Component {
     this.props.logout();
   }
   
-  componentWillMount(){    
+  componentWillMount(){       
    this.setState({
-      methodsDropdown:false
-   })
-    this.props.fetchMethodsRequest();    
+      methodsDropdown:false,      
+   })     
   }
   
   onClick(e){
     e.preventDefault();    
     this.setState({
       [e.target.name] : !this.state[e.target.name]
-    })    
+    });
+    if(e.target.id){
+      this.context.router.push(`/sampleSelection/${e.target.id}`);      
+    }else{
+    
+    }
+          
   }
 
   render() {    
-    const { isAuthenticated } = this.props.auth;    
-    const { methods } = this.props.methods;
+    const { isAuthenticated } = this.props.auth;
+                
     const userLinks = (
       <div>  
       <ul className="nav navbar-nav">
@@ -36,8 +40,8 @@ class NavigationBar extends Component {
                 <a href="#" name="methodsDropdown" onClick={this.onClick.bind(this)} className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Input Forms<span className="caret"></span></a>
                 <ul className="dropdown-menu">
      
-                  {methods.map( (method,index) => {
-                    return <li key={index}><a href="#" name="methodsDropdown" onClick={this.onClick.bind(this)}>{method.name}</a></li>  
+                  {this.props.inputForms.map( (method,index) => {
+                    return <li key={index}><a href="#" name="methodsDropdown" id={method.id} onClick={this.onClick.bind(this)}>{method.name}</a></li>  
                   })}
                 </ul>
               </li>
@@ -78,14 +82,20 @@ class NavigationBar extends Component {
 NavigationBar.propTypes = {
   auth: React.PropTypes.object.isRequired,
   logout: React.PropTypes.func.isRequired,
-  fetchMethodsRequest: React.PropTypes.func.isRequired
+  inputForms: React.PropTypes.array,    
 }
 
 function mapStateToProps(state){
   return {
-    auth: state.auth,
-    methods: state.methods
+    auth: state.auth,        
   }
 }
 
-export default connect(mapStateToProps, { logout, fetchMethodsRequest })(NavigationBar);
+NavigationBar.contextTypes = {
+  router: React.PropTypes.object.isRequired
+}
+
+
+export default connect(mapStateToProps, { logout, inputForms: [] })(NavigationBar);
+
+

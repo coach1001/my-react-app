@@ -41,7 +41,7 @@ export class DataTable extends Component {
 
     return (
       !isNull(this.state) ? 
-      <table className="table table-bordered">
+      <table className="table table-bordered"  style={ {maxHeight: '70vh'} }>
         <tbody>
           <tr style={ {backgroundColor: '#333333', color : 'white'} }>
             {
