@@ -58,7 +58,19 @@ export function fetchTables(tables){
 			let tables = parseTablesResponses(responses);
 			dispatch(receiveTables(tables));			
 		}).catch( (err) => {
-
+			
 		});
 	}
+}
+
+export function sendRow(table,data,method){
+	let axiosConfig = {
+		method : method,
+		url: `http://localhost:3002/${table}`,
+		data : data, 			
+		headers: {
+			'xtable': table.split("?")[0]
+		}
+	};
+	return axios(axiosConfig);		
 }

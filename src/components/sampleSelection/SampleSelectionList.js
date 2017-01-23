@@ -5,9 +5,10 @@ import { DataTable } from '../common/DataTable';
 import find from 'lodash/find';
 
 class SampleSelectionList extends Component {
-  componentWillMount(){  	
+  componentWillMount(){    
     this.props.fetchTables([`sample_forms?form_id=eq.${this.context.router.params.formId}`,`forms?id=eq.${this.context.router.params.formId}`]);
   }
+  
   render() {          
     const forms = find(this.props.tablesData.tables,{ tableName: 'forms'});    
     
