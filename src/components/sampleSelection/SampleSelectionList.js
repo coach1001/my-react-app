@@ -6,12 +6,19 @@ import find from 'lodash/find';
 
 class SampleSelectionList extends Component {
   componentWillMount(){    
+    this.props.tablesData.isFetching = true;
     this.props.fetchTables([`sample_forms?form_id=eq.${this.context.router.params.formId}`,`forms?id=eq.${this.context.router.params.formId}`]);
+  }
+
+  componentWillUpdate(nextProps){    
+    if(nextProps.params.formId !== this.props.params.formId){
+      this.props.tablesData.isFetching = true;
+      this.props.fetchTables([`sample_forms?form_id=eq.${this.context.router.params.formId}`,`forms?id=eq.${this.context.router.params.formId}`]);                    
+    }
   }
   
   render() {          
-    const forms = find(this.props.tablesData.tables,{ tableName: 'forms'});    
-    
+    const forms = find(this.props.tablesData.tables,{ tableName: 'forms'});        
     return (    	
     <div className="row">
       <div className="col-md-1"></div>

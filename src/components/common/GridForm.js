@@ -9,19 +9,21 @@ class GridForm extends React.Component {
     const title = this.props.scopeData.data[0].form_name;
     const sample_number = this.props.scopeData.data[0].sample_identifier;
     
+    this.parseInput(this.props);
+
     this.setState({
       scopeData: this.props.scopeData,
       title: title,
       sample_number: sample_number,    
-    })        
-  }
+    })
 
+  }
 
   drawTable(){
     const formName = this.props.scopeData.data[0].form_name.replaceAll(' ','_').toUpperCase();
     const data = this.state.scopeData.data;
     const table = FORMS_DATA[formName];    
-
+    
     table.map( (row, rI) => {
       row.td.map( (col, cI) => {        
         data.map( (d, dI) =>{
@@ -34,11 +36,12 @@ class GridForm extends React.Component {
       })
       return row;
     })
-    
+
     return <div>
-  <button className="hidden-print btn btn-lg btn-default" onClick={this.goBack.bind(this)}>Back</button>
-    <h3 style={{textAlign:'center'}}>Sample - {this.state.sample_number} </h3>
+  <button className="hidden-print btn btn-lg btn-default btn-block" onClick={this.goBack.bind(this)}>Back</button>
+    <h3 style={{textAlign:'center'}}>{this.state.sample_number} </h3>
     <h4 style={{textAlign:'center'}}>{this.state.title}</h4>
+    <br/>
 
     <table className="table-bordered" width="100%">
               
@@ -52,7 +55,7 @@ class GridForm extends React.Component {
                        return !td.isInput ? <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>{td.value}</td> :
                        <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>
                        {
-                        td.isCalculated ? <input id={td.scopeVariable} onChange={this.onChange.bind(this)} type='number' value={td.value} readOnly className='form-control' style={td.style}/> : <input id={td.scopeVariable} onChange={this.onChange.bind(this)} value={td.value} type='number' className='form-control' style={td.style}/>
+                        td.isCalculated ? <input  id={td.scopeVariable} onChange={this.onChange.bind(this)} type='number' value={td.value} readOnly className='form-control' style={td.style}/> : <input id={td.scopeVariable} onChange={this.onChange.bind(this)} value={td.value} type='number' className='form-control' style={td.style}/>
                        }                        
                        </td>
                       } 
@@ -72,52 +75,67 @@ class GridForm extends React.Component {
     this.context.router.goBack();
   }
 
-  saveData(oState){
-    console.log(oState);
+  saveData(oState){    
+    
+    console.log(oState.scopeData.data);
 
-    oState.scopeData.data.map( (row) => {      
+    oState.scopeData.data.map( (row, rI) => {      
       if(row.id && row.type !== 'constant'){
         
         sendRow(`sample_has_values?id=eq.${row.id}`,{value: row.value},'patch');
-
+        
       }else if(row.type !== 'constant'){
 
         sendRow(`sample_has_values`,{          
           sample: row.sample_id,
           variable: row.variable_id,
           value: row.value
-        },'post');
+        },'post').then( (res) =>{          
+          row.id = res.data.id;
+        });
 
       }
       return row;
-    })
+    })    
     this.setState(oState);
   }
 
-  CalculateAndSave(e){
-    e.preventDefault();
-    const oState = this.state;
+  parseInput(oState){
+    let scope = {};    
 
-    let scope = {};
-    
-    this.state.scopeData.data.map( (d) => {
-      scope[d.token] = parseFloat(d.value,10).toFixed(2);
+    oState.scopeData.data.map( (d) => {      
+      try{        
+        scope[d.token] = parseFloat(d.value,10).toFixed(2);
+        if(isNaN(scope[d.token])){
+          scope[d.token] = 0;
+        }
+      }catch(err){
+        scope[d.token] = 0;
+      }      
       return d;
-    });
-
-    this.state.scopeData.data.map ( (d) =>{
+    });    
+    oState.scopeData.data.map ( (d) =>{      
       if(d.type === 'calculation'){
-        scope[d.token]=math.eval(d.formula,scope).toFixed(2);        
-      }
+        try{
+          scope[d.token]=math.eval(d.formula,scope).toFixed(2);                
+        }catch(err){
+          scope[d.token]= 0;                
+        }        
+      }      
       return d;
-    });
+    });    
 
     oState.scopeData.data.map( (d,index)=>{      
       oState.scopeData.data[index].value = scope[d.token];
       return d;
-    });
-
+    });        
     this.saveData(oState);
+  }
+  
+  CalculateAndSave(e){
+    e.preventDefault();
+    const oState = this.state;
+    this.parseInput(oState);        
   }
 
   onChange(e){

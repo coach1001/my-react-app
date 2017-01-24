@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-import { createStore, applyMiddleware, compose } from 'redux';
-import rootReducer from './rootReducer';
+import { store }  from './store';
+
 import jwtDecode from 'jwt-decode';
 import setAuthorizationToken from './utils/setAuthorizationToken';
 import { setCurrentUser } from './actions/loginActions';
@@ -28,13 +27,6 @@ String.prototype.replaceAll = function(search, replacement){
   return target.replace( new RegExp(search,'g'), replacement);
 };
 
-export const store = createStore(
-	rootReducer,
-	compose(
-		applyMiddleware(thunk),//, loggerMiddleware), 
-		window.devToolsExtension ? window.devToolsExtension() : f => f
-	) 
-);
 
 if(localStorage.jwtToken){
 	setAuthorizationToken(localStorage.jwtToken);

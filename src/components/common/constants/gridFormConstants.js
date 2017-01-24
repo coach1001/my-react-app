@@ -68,3 +68,27 @@ export const OBJECT_FALLING_UNDER_GRAVITY = [
 		{ value: 'Final Velocity', width: '50%', style: STYLES.LARGE_LABEL.td},
 		{ width: '50%', isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'd'}] },
 ]
+
+export const TEST_FORM = [
+	{	style: STYLES.LARGE_SECTION_HEADER.tr , td: [{ value: 'Inputs', colSpan:2, style: STYLES.LARGE_SECTION_HEADER.td }] },
+
+	{	style: STYLES.LARGE_LABEL.tr , td:[
+		{ value: 'Time', width: '50%', style: STYLES.LARGE_LABEL.td},
+		{ width: '50%', isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'b'} ]},
+
+	{	style: STYLES.LARGE_LABEL.tr , td:[
+		{ value: 'Initial Velocity', width: '50%', style: STYLES.LARGE_LABEL.td },
+		{ width: '50%', isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'c'} ]},
+
+	{ style: STYLES.LARGE_SECTION_HEADER.tr , td:[{ value: 'Calculations', colSpan:2, style: STYLES.LARGE_SECTION_HEADER.td }]	},
+
+	{	style: STYLES.LARGE_LABEL.tr, td:[
+		{ value: 'Final Velocity', width: '50%', style: STYLES.LARGE_LABEL.td},
+		{ width: '50%', isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'd'}] },
+
+	{	style: STYLES.LARGE_LABEL.tr, td:[
+		{ value: 'Final Velocity', width: '50%', style: STYLES.LARGE_LABEL.td},
+		{ width: '50%', isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'e'}] },
+]
+
+

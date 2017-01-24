@@ -4,10 +4,12 @@ import { fetchTables } from '../../actions/tablesData';
 import { DataTable } from '../common/DataTable';
   
 class SampleList extends Component {
-  componentWillMount(){  	
+  componentWillMount(){
+    this.props.tablesData.isFetching = true;    	
     this.props.fetchTables(['samples']);
   }
-  render() {        
+  render() {    
+
     return (    	
     <div className="row">
       <div className="col-md-1"></div>
@@ -15,7 +17,7 @@ class SampleList extends Component {
         {
           !this.props.tablesData.isFetching ?  
           <div>
-            <h3>Samples Registry</h3><br></br>          
+            <h3>Sample Registry</h3><br></br>          
             <DataTable tableName={'samples'} tablesData={this.props.tablesData}/>
           </div>
           : null

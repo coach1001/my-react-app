@@ -35,7 +35,7 @@ class NavigationBar extends Component {
     const userLinks = (
       <div>  
       <ul className="nav navbar-nav">
-      <li><Link to="/samples">Samples Registry</Link></li>
+      <li><Link to="/samples">Sample Register</Link></li>
       <li className={classnames("dropdown",{"open":this.state.methodsDropdown} )}>
                 <a href="#" name="methodsDropdown" onClick={this.onClick.bind(this)} className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Input Forms<span className="caret"></span></a>
                 <ul className="dropdown-menu">

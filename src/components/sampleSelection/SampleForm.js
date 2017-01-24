@@ -6,10 +6,12 @@ import GridForm from '../common/GridForm';
 
 class SampleForm extends Component {
   componentWillMount(){  	    
+    this.props.tablesData.isFetching = true;
+    this.props.fetchTables([`sample_values?form_id=eq.${this.context.router.params.formId}&sample_id=eq.${this.context.router.params.sampleId}`]);                
   }
 
   componentDidMount(){
-    this.props.fetchTables([`sample_values?form_id=eq.${this.context.router.params.formId}&sample_id=eq.${this.context.router.params.sampleId}`]);                
+    
   }
   
   render() {
@@ -26,7 +28,7 @@ class SampleForm extends Component {
       <div className="col-md-2"></div>
       <div className="col-md-8">
         {
-          scopeData ?  
+          !this.props.tablesData.isFetching ?  
           <GridForm scopeData={scopeData} />
           : null
         }

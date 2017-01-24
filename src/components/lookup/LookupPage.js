@@ -1,6 +1,5 @@
 import React from 'react';
 //import CascadeSelect from '../common/CascadeSelect';
-import GridForm from '../common/GridForm';
 //import { CASCADE_DATA_LOCATION_CITY, CASCADE_DATA_LOCATION_PROVINCE, CASCADE_DATA_LOCATION_SUBURB } from '../common/constants/constants';
 import { connect } from 'react-redux';
 //import Datetime from 'react-datetime';
@@ -69,7 +68,7 @@ class LookupPage extends React.Component {
             </div>
         
                 <div className="page">        
-                     <GridForm />
+                     
 
                     <VictoryChart scale={ { x: 'log', y: 'linear' }}>
                       <VictoryAxis label="Sieve Sizes" tickValues={labels} style={stylex} tickLabelComponent={<VictoryLabel dy={-1.5}/>}

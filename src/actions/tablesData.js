@@ -28,10 +28,8 @@ function fetchTableRequest(table, method){
 }
 
 export function fetchTablesNoDispatch(tables){			
-	return dispatch => {
-				
-		let requestPromises= [];		
-		
+	return dispatch => {				
+		let requestPromises= [];				
 		tables.map( (table) =>{
 			requestPromises.push(fetchTableRequest(table,'get'));
 			requestPromises.push(fetchTableRequest(table,'options'));
@@ -42,10 +40,11 @@ export function fetchTablesNoDispatch(tables){
 }
 
 export function fetchTables(tables){			
+	
 
 	return dispatch => {
-		dispatch(requestTables());	
-		
+		dispatch(requestTables());
+
 		let requestPromises= [];		
 		
 		tables.map( (table) =>{
@@ -69,8 +68,13 @@ export function sendRow(table,data,method){
 		url: `http://localhost:3002/${table}`,
 		data : data, 			
 		headers: {
-			'xtable': table.split("?")[0]
+			'xtable': table.split("?")[0],
+			'Prefer': 'return=representation'
 		}
 	};
 	return axios(axiosConfig);		
+}
+
+export function rec_calcDependancies(formId, sampleId){
+ 	
 }

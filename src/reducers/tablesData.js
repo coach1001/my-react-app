@@ -1,7 +1,7 @@
 import { REQUEST_TABLES, RECEIVE_TABLES } from '../actions/types';
 
 const initialState = {
-	isFetching: true,
+	isFetching: false,
 	tables: []
 }
 
