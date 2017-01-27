@@ -5,25 +5,19 @@ import { sendRow } from '../../actions/tablesData';
 
 class GridForm extends React.Component {
   
-  componentWillMount(){    
-    const title = this.props.scopeData.data[0].form_name;
-    const sample_number = this.props.scopeData.data[0].sample_identifier;
-    
-    this.parseInput(this.props);
-
+  componentWillMount(){            
     this.setState({
       scopeData: this.props.scopeData,
-      title: title,
-      sample_number: sample_number,    
     })
 
   }
 
   drawTable(){
-    const formName = this.props.scopeData.data[0].form_name.replaceAll(' ','_').toUpperCase();
+    const formName = this.props.form.name.replaceAll(' ','_').toUpperCase();    
     const data = this.state.scopeData.data;
-    const table = FORMS_DATA[formName];    
-    
+    //const table = FORMS_DATA[formName];    
+    const table = FORMS_DATA['TEST_2'];
+
     table.map( (row, rI) => {
       row.td.map( (col, cI) => {        
         data.map( (d, dI) =>{
@@ -38,37 +32,45 @@ class GridForm extends React.Component {
     })
 
     return <div>
-  <button className="hidden-print btn btn-lg btn-default btn-block" onClick={this.goBack.bind(this)}>Back</button>
-    <h3 style={{textAlign:'center'}}>{this.state.sample_number} </h3>
-    <h4 style={{textAlign:'center'}}>{this.state.title}</h4>
-    <br/>
-
-    <table className="table-bordered" width="100%">
-              
+  <button className="hidden-print btn btn-lg btn-info" onClick={this.goBack.bind(this)}>Back</button>
+    <br/><br/>
+    <div className="table-bordered" style={{ padding: "15px"}}>  
+    <h2 style={{textAlign:'center'}}><strong>{this.props.form.name}</strong></h2>
+    <h4 style={{textAlign:'center'}}>{this.props.sample.identifier} </h4>
+    
+    <br/>          
+            <table className="table-bordered fixed" width="100%">              
               <tbody>
-              {
-                table.map( (tr, trIndex) =>
-                  <tr key={trIndex} style={tr.style}>
-                  {
-                    tr.td.map( (td, tdIndex) =>
+              {                                  
+                           
+                  table.map( (tr, trIndex) =>                
+                      
+                      
+                      <tr key={trIndex} style={tr.style}>
                       {
-                       return !td.isInput ? <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>{td.value}</td> :
-                       <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>
-                       {
-                        td.isCalculated ? <input  id={td.scopeVariable} onChange={this.onChange.bind(this)} type='number' value={td.value} readOnly className='form-control' style={td.style}/> : <input id={td.scopeVariable} onChange={this.onChange.bind(this)} value={td.value} type='number' className='form-control' style={td.style}/>
-                       }                        
-                       </td>
-                      } 
-                    )
-                  }
-                  </tr>
-                )
+                        tr.td.map( (td, tdIndex) =>
+                          {
+                           return !td.isInput ? <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>{td.value}</td> :
+                           <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>
+                           {
+                            td.isCalculated ? <input  id={td.scopeVariable} onChange={this.onChange.bind(this)} type='number' value={td.value} readOnly className='form-control' style={td.style}/> : <input id={td.scopeVariable} onChange={this.onChange.bind(this)} value={td.value} type='number' className='form-control' style={td.style}/>
+                           }                        
+                           </td>
+                          } 
+                        )
+                      }
+                      </tr>
+             
+                  )              
               }
               </tbody>
            </table>  
-           <br/>    
-           <button className="hidden-print btn-block btn btn-lg btn-primary" onClick={this.CalculateAndSave.bind(this)}>Calculate and Save</button>
            </div>
+           <br/>    
+           
+           <button className="hidden-print btn-block btn btn-lg btn-success" onClick={this.CalculateAndSave.bind(this)}>Calculate and Save</button>
+          
+    </div>
   }
   
   goBack(){
@@ -76,9 +78,7 @@ class GridForm extends React.Component {
   }
 
   saveData(oState){    
-    
-    console.log(oState.scopeData.data);
-
+        
     oState.scopeData.data.map( (row, rI) => {      
       if(row.id && row.type !== 'constant'){
         
@@ -161,13 +161,14 @@ class GridForm extends React.Component {
 
   }  
   render() {                          
-      return <div> {this.props.scopeData ? this.drawTable() : null} </div>                    
+      return <div> {this.state.scopeData ? this.drawTable() : null} </div>                    
   }
 }
 
 GridForm.propTypes = {
-  scopeData: React.PropTypes.object,
-  postRow: React.PropTypes.func,  
+  scopeData: React.PropTypes.object.isRequired,
+  form: React.PropTypes.object.isRequired,
+  sample: React.PropTypes.object.isRequired,  
 }
 
 GridForm.contextTypes = {

@@ -18,7 +18,7 @@ export function receiveTables(tableDataArray){
 function fetchTableRequest(table, method){		
 		let axiosConfig = {
 			method : method,
-			url: `http://localhost:3002/${table}`,			
+			url: `http://localhost:3003/${table}`,			
 			headers: {
 				'xtable': table.split("?")[0]
 			}
@@ -65,7 +65,7 @@ export function fetchTables(tables){
 export function sendRow(table,data,method){
 	let axiosConfig = {
 		method : method,
-		url: `http://localhost:3002/${table}`,
+		url: `http://localhost:3003/${table}`,
 		data : data, 			
 		headers: {
 			'xtable': table.split("?")[0],
@@ -73,8 +73,4 @@ export function sendRow(table,data,method){
 		}
 	};
 	return axios(axiosConfig);		
-}
-
-export function rec_calcDependancies(formId, sampleId){
- 	
 }

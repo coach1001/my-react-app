@@ -5,23 +5,37 @@ import find from 'lodash/find';
 import GridForm from '../common/GridForm';
 
 class SampleForm extends Component {
+  
   componentWillMount(){  	    
     this.props.tablesData.isFetching = true;
-    this.props.fetchTables([`sample_values?form_id=eq.${this.context.router.params.formId}&sample_id=eq.${this.context.router.params.sampleId}`]);                
+    
+  /*  this.props.fetchTables([
+      `sample_values?form_id=eq.${this.context.router.params.formId}&sample_id=eq.${this.context.router.params.sampleId}`,
+      `forms?id=eq.${this.context.router.params.formId}`,
+      `samples?id=eq.${this.context.router.params.sampleId}`]);                
+  */
+    this.props.fetchTables([
+      `sample_values_distinct?sample_id=eq.${this.context.router.params.sampleId}`,
+      `forms?id=eq.${this.context.router.params.formId}`,
+      `samples?id=eq.${this.context.router.params.sampleId}`]);                
+  
   }
 
   componentDidMount(){
     
   }
   
-  render() {
-
+  render() {    
     let scopeData = null;
-    
-    if(!this.props.tablesData.isFetching){
-      scopeData = find(this.props.tablesData.tables,{ tableName: 'sample_values' });
-    }
+    let forms = null;    
+    let samples = null;
 
+
+    if(!this.props.tablesData.isFetching){
+      scopeData = find(this.props.tablesData.tables,{ tableName: 'sample_values_distinct' });
+      forms = find(this.props.tablesData.tables,{ tableName: 'forms' });
+      samples = find(this.props.tablesData.tables,{ tableName: 'samples' });
+    }
     
     return (    	
     <div className="row">
@@ -29,7 +43,7 @@ class SampleForm extends Component {
       <div className="col-md-8">
         {
           !this.props.tablesData.isFetching ?  
-          <GridForm scopeData={scopeData} />
+          <GridForm scopeData={scopeData} form={forms.data[0]} sample={samples.data[0]}/>
           : null
         }
       </div>    	

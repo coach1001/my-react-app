@@ -91,4 +91,65 @@ export const TEST_FORM = [
 		{ width: '50%', isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'e'}] },
 ]
 
+export const TEST_2 = [
+{td:[	{width:"10%", value:"11", rowSpan: 7},
+			{width:"40%", value:"12", rowSpan: 5},
+			{width:"20%", value:"13"},
+			{width:"20%", value:"14"},
+			{width:"20%", value:"15"}]},
 
+{td:[ {value:"21"},
+			{value:"22"},
+			{value:"23"}]},
+
+{td:[ {value:"31"},
+			{value:"32"},
+			{value:"33"}]},
+
+{td:[ {value:"41"},
+			{value:"42"},
+			{value:"43"}]},
+
+{td:[ {value:"51"},
+			{value:"52"},
+			{value:"53"}]},
+
+{td:[ {value:"61"},
+			{value:"62"},
+			{value:"63"},
+			{value:"64"}]},
+
+{td:[ {value:"71"},
+			{value:"72"},
+			{value:"73"},
+			{value:"74"}]},
+
+{td:[	{value:"81", rowSpan: 4},
+			{value:"82", rowSpan: 4},
+			{value:"83"},
+			{value:"84"},
+			{value:"85"}]},
+
+{td:[ {value:"91"},
+			{value:"92"},
+			{value:"93"}]},
+
+{td:[ {value:"10 1"},
+			{value:"10 2"},
+			{value:"10 3"}]},
+
+{td:[ {value:"11 1"},
+			{value:"11 2"},
+			{value:"11 3"}]},
+
+{td:[	{value:"12 1", rowSpan: 3},
+			{value:"12 2", rowSpan: 3},
+			{value:"12 3"},
+			{value:"12 4"},
+			{value:"12 5"}]},
+
+{td:[ {value:"13 1"},
+			{value:"13 2"}]},
+
+{td:[ {value:"14 1"}]},
+]

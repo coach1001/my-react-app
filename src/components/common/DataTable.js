@@ -43,9 +43,9 @@ export class DataTable extends Component {
       !isNull(this.state) ? 
       <table className="table table-bordered"  style={ {maxHeight: '70vh'} }>
         <tbody>
-          <tr style={ {backgroundColor: '#333333', color : 'white'} }>
+          <tr className="bg-primary">
             {
-              this.state.columns.map ( (column, index)=> <td key={index}>{column.name.replace('_',' ').capitalize() }</td>)
+              this.state.columns.map ( (column, index)=> <td key={index}><strong>{column.name.replace('_',' ').capitalize() }</strong></td>)
             }          
           </tr>
           {

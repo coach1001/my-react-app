@@ -20,7 +20,7 @@ export function fetchRowNoDispatch(table,id){
 		
 		let axiosConfig = {
 			method : get,
-			url: `http://localhost:3002/${table}?select=*&id=eq.${id}`,			
+			url: `http://localhost:3003/${table}?select=*&id=eq.${id}`,			
 			headers: {
 				'xtable': table
 			}
@@ -35,7 +35,7 @@ export function fetchRow(table,id){
 
 		let axiosConfig = {
 			method : get,
-			url: `http://localhost:3002/${table}?select=*&id=eq.${id}`,			
+			url: `http://localhost:3003/${table}?select=*&id=eq.${id}`,			
 			headers: {
 				'xtable': table
 			}

@@ -13,8 +13,9 @@ export const CELL_ROTATE = {
 export const LARGE_SECTION_HEADER = {
 	tr:{
 		textAlign: 'center',
-		backgroundColor: '#4f4f4f',
-		color: 'white'	
+		backgroundColor: '#9f9f9f',
+		color: '#1f1f1f',
+		fontWeight: 'bold'	
 	},
 	
 	td: {
