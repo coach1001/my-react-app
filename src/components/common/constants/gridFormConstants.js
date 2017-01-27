@@ -92,11 +92,12 @@ export const TEST_FORM = [
 ]
 
 export const TEST_2 = [
-{td:[	{width:"10%", value:"11", rowSpan: 7},
-			{width:"40%", value:"12", rowSpan: 5},
-			{width:"20%", value:"13"},
-			{width:"20%", value:"14"},
-			{width:"20%", value:"15"}]},
+
+{td:[	{width:"10%", value:"11", rowSpan: 7, style: STYLES.LARGE_SECTION_HEADER.tr},
+			{width:"40%", value:"12", rowSpan: 5, style: STYLES.LARGE_SECTION_HEADER.tr},
+			{width:"20%", value:"13", style: STYLES.LARGE_SECTION_HEADER.tr},
+			{width:"20%", value:"14", style: STYLES.LARGE_SECTION_HEADER.tr},
+			{width:"20%", value:"15", style: STYLES.LARGE_SECTION_HEADER.tr}]},
 
 {td:[ {value:"21"},
 			{value:"22"},
@@ -124,8 +125,8 @@ export const TEST_2 = [
 			{value:"73"},
 			{value:"74"}]},
 
-{td:[	{value:"81", rowSpan: 4},
-			{value:"82", rowSpan: 4},
+{td:[	{value:"81", rowSpan: 4, style: STYLES.LARGE_SECTION_HEADER.tr},
+			{value:"82", rowSpan: 4, style: STYLES.LARGE_SECTION_HEADER.tr},
 			{value:"83"},
 			{value:"84"},
 			{value:"85"}]},
@@ -142,8 +143,8 @@ export const TEST_2 = [
 			{value:"11 2"},
 			{value:"11 3"}]},
 
-{td:[	{value:"12 1", rowSpan: 3},
-			{value:"12 2", rowSpan: 3},
+{td:[	{value:"12 1", rowSpan: 3, style: STYLES.LARGE_SECTION_HEADER.tr},
+			{value:"12 2", rowSpan: 3, style: STYLES.LARGE_SECTION_HEADER.tr},
 			{value:"12 3"},
 			{value:"12 4"},
 			{value:"12 5"}]},
@@ -152,4 +153,5 @@ export const TEST_2 = [
 			{value:"13 2"}]},
 
 {td:[ {value:"14 1"}]},
+
 ]

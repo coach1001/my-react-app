@@ -34,12 +34,12 @@ class GridForm extends React.Component {
     return <div>
   <button className="hidden-print btn btn-lg btn-info" onClick={this.goBack.bind(this)}>Back</button>
     <br/><br/>
-    <div className="table-bordered" style={{ padding: "15px"}}>  
+    <div className="table-bordered" style={{ padding: "15px" ,overflowY: "scroll", height:"70vh"}}>  
     <h2 style={{textAlign:'center'}}><strong>{this.props.form.name}</strong></h2>
     <h4 style={{textAlign:'center'}}>{this.props.sample.identifier} </h4>
     
     <br/>          
-            <table className="table-bordered fixed" width="100%">              
+            <table className="table-bordered fixed" width="95%" >              
               <tbody>
               {                                  
                            

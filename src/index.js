@@ -10,7 +10,7 @@ import { setCurrentUser } from './actions/loginActions';
 //import createLogger from 'redux-logger';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
-import '../node_modules/bootstrap/dist/css/yeti.css';
+/*import '../node_modules/bootstrap/dist/css/yeti.css';*/
 import './index.css';
 
 import routes from './routes';
