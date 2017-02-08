@@ -45,12 +45,12 @@ export function fetchSample(id){
 	}
 }
 
-export function updateCreateSample(data,id){
+export function updateCreateSample(data){
 	let param = '';	
 	let method='POST';
 	
-	if(id){
-		param = `?id=eq.${id}`
+	if(data.id){
+		param = `?id=eq.${data.id}`
 		method = 'PATCH';
 	}
 

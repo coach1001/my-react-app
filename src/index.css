@@ -357,3 +357,7 @@ vertical-text {
 table.fixed{
   table-layout: fixed;
 }
+
+input[type=radio], input[type=checkbox] {
+    height: 1.1em; width: 1.1em;          
+}

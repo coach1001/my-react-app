@@ -16,9 +16,10 @@ class SampleList extends Component {
   render() {        
     return (          
     <div className="container">      
-      <h2>Samples</h2>
+      <h2>Samples <button className="btn btn-lg btn-primary pull-right">Add Sample</button></h2>
+      <br/>
       <BootstrapTable data={ this.props.samples.samples } striped hover options={ { onRowClick : this.rowClick.bind(this) } }>
-        <TableHeaderColumn dataField='id' width='10%' isKey>Sample ID</TableHeaderColumn>
+        <TableHeaderColumn dataField='id' width='10%' isKey hidden>Sample ID</TableHeaderColumn>
         <TableHeaderColumn dataField='sample' width='25%' filter={ { type: 'RegexFilter', delay: 100 } } >Sample Number</TableHeaderColumn>
         <TableHeaderColumn dataField='sample_set' width='25%' >Sample Set</TableHeaderColumn>
         <TableHeaderColumn dataField='latitude'>Latitude</TableHeaderColumn>

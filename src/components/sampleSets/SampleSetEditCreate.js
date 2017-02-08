@@ -7,12 +7,12 @@ class SampleSetEditCreate extends Component {
 
   componentWillMount(){    
   	this.props.fetchSampleSet(this.props.params.sampleSetId);
+    
   }
 
   componentWillUpdate(nextProps){    
     const cP = this.props;
-    const nP = nextProps;
-    console.log(cP.sampleSets.isFetching,nP.sampleSets.isFetching);
+    const nP = nextProps;    
     if(!nP.sampleSets.isFetching && cP.sampleSets.isFetching !== nP.sampleSets.isFetching){      
       this.setState(nP.sampleSets.sampleSet);
     }
