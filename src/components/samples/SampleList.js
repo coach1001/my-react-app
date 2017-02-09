@@ -13,10 +13,14 @@ class SampleList extends Component {
     this.context.router.push(`${this.context.router.location.pathname}/${row.id}`);    
   }
 
+  addSample(){
+    this.context.router.push(`${this.context.router.location.pathname}/new`); 
+  }
+
   render() {        
     return (          
     <div className="container">      
-      <h2>Samples <button className="btn btn-lg btn-primary pull-right">Add Sample</button></h2>
+      <h2>Samples <button className="btn btn-lg btn-primary pull-right" onClick={this.addSample.bind(this)}>Add Sample</button></h2>
       <br/>
       <BootstrapTable data={ this.props.samples.samples } striped hover options={ { onRowClick : this.rowClick.bind(this) } }>
         <TableHeaderColumn dataField='id' width='10%' isKey hidden>Sample ID</TableHeaderColumn>

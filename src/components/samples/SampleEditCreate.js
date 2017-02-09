@@ -4,17 +4,22 @@ import { fetchSample } from '../../actions/samples';
 import { fetchSampleMethods } from '../../actions/sampleMethods';
 import { fetchSampleSets } from '../../actions/sampleSets';
 import { FaArrowCircleLeft } from 'react-icons/lib/fa/';
-import TextFieldGroup from '../../components/common/TextFieldGroup';
 import Datetime from 'react-datetime';
+import Confirm from 'react-confirm-bootstrap';
+
 
 class SampleEditCreate extends Component {
 
   componentWillMount(){    
     this.setState( {sample: {}, sampleMethods: [], sampleSets: []});
-
-    this.props.fetchSample(this.props.params.sampleId);
-    this.props.fetchSampleMethods(this.props.params.sampleId);
-    this.props.fetchSampleSets();        
+    if(this.props.params.sampleId){
+      this.props.fetchSample(this.props.params.sampleId);
+      this.props.fetchSampleMethods(this.props.params.sampleId);
+      this.props.fetchSampleSets();        
+    }else{
+      this.props.fetchSampleMethods(0);
+      this.props.fetchSampleSets();        
+    }      
   }
 
   componentWillUpdate(nextProps){    
@@ -55,42 +60,74 @@ class SampleEditCreate extends Component {
     this.setState(oState);
   }
 
+  onConfirm(){
+    alert('confirmed');
+  }
+
   render() {    
-    return (
+    console.log(this.props.params)
+    return (    
       <div>           
             <div className="container">                  
-              <span onClick={this.goBack.bind(this)} style={{fontSize: '2em', cursor: 'pointer'}}><FaArrowCircleLeft className="text-info" size="2em"/><button className="btn btn-lg btn-primary pull-right">Save</button></span><br/><br/>              
+              <span style={{fontSize: '2em', cursor: 'pointer'}}>
+                <FaArrowCircleLeft  onClick={this.goBack.bind(this)}  className="text-info" size="2em"/>
+                <Confirm onConfirm={this.onConfirm} body="Are you sure you want to Delete this Sample?" confirmText="Confirm Delete" title="Delete Sample">
+                  <button className="btn btn-lg btn-danger pull-right">Delete</button>
+                </Confirm>  
+                <span className="pull-right">&nbsp;</span>
+                <Confirm onConfirm={this.onConfirm} confirmBSStyle='primary' body="Are you sure you want to Save this Sample?" confirmText="Confirm Save" title="Save Sample">
+                  <button className="btn btn-lg btn-primary pull-right">Save</button>
+                </Confirm>
+
+              </span>              
               
               {
-                Object.keys(this.state.sample).length > 0  ?
+                Object.keys(this.state.sample).length > 0 || Object.keys(this.props.params).length === 0 ?
                 <div className="panel panel-default">
                   <div className="panel-heading">
                     <div style={{fontWeight: 'bold'}} className="panel-title">Sample Details</div>
                   </div>
-                  <div className="panel-body">                    
-                    <form>
-                      
+                  <div className="panel-body">                                             
+                    <div className="row">
+                      <div className="col-md-6">
                         <div className="input-group">
                           <span className="input-group-addon">Sample Number</span>
                           <input onChange={this.onChangeSample.bind(this)} value={this.state.sample.sample || ''} name="sample" type="text" className="form-control" placeholder="Sample Number"/>
-                          <span className="input-group-addon">Sample Set</span>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="input-group">
+                          <span className="input-group-addon">Sample Set</span>                          
                           <select onChange={this.onChangeSample.bind(this)}  value={this.state.sample.sample_set || 0} name="sample_set" className="form-control" placeholder="Sample Set">
                           {
                             this.state.sampleSets.map( (set, index) => {
                               return <option key={index} value={set.id} >{set.sample_set}</option>
                             })
                           }
-                          </select>                          
-                        </div><br/>
+                          </select>
+                        </div>  
+                      </div>                                              
+                    </div>                    
+                    <div className="row"><br/>
+                      <div className="col-md-4">
                         <div className="input-group">
-                        <span className="input-group-addon">Latitude</span>
+                          <span className="input-group-addon">Latitude</span>  
                           <input onChange={this.onChangeSample.bind(this)} value={this.state.sample.latitude || 0.0} name="latitude" type="number" className="form-control" placeholder=""/>
+                        </div>
+                      </div>
+                      <div className="col-md-4">
+                        <div className="input-group">
                           <span className="input-group-addon">Longitude</span>
                           <input onChange={this.onChangeSample.bind(this)} value={this.state.sample.longitude || 0.0} name="longitude" type="number" className="form-control" placeholder=""/>
+                        </div>
+                      </div>
+                      <div className="col-md-4">
+                        <div className="input-group">
                           <span className="input-group-addon">Date</span>
                           <Datetime onChange={this.onChangeSample.bind(this)} value={this.state.sample.created_on} defaultValue={new Date()}/>
                         </div>
-                    </form>                      
+                      </div>                        
+                    </div>                                                                                            
                   </div>
                 </div>       
                 : null
