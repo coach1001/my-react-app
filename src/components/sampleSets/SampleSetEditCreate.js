@@ -77,7 +77,7 @@ class SampleSetEditCreate extends Component {
     }
   }
 
-  onChangeSampleSet(e){
+  onChangeSampleSet(e){    
     if(e._isAMomentObject){
       const oState = this.state;
       oState.sampleSet.created_on = e;      
@@ -118,7 +118,7 @@ class SampleSetEditCreate extends Component {
                   <div className="col-md-6">
                     <div className="input-group">
                       <span className="input-group-addon">Set Number</span>
-                      <input onChange={this.onChangeSampleSet.bind(this)} value={this.state.sampleSet.sample_set || ''} name="sample" type="text" className="form-control" placeholder="Sample Number"/>                      
+                      <input onChange={this.onChangeSampleSet.bind(this)} value={this.state.sampleSet.sample_set || ''} name="sample_set" type="text" className="form-control" placeholder="Sample Number"/>                      
                     </div>
                   </div>
 

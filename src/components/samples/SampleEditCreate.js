@@ -43,13 +43,11 @@ class SampleEditCreate extends Component {
       }else{
         
         nP.samples.sample.created_on = moment();  
-      }      
-
+      }            
       this.setState({ sample: nP.samples.sample});
     }
     
-    if(!nP.sampleMethods.isFetching && cP.sampleMethods.isFetching !== nP.sampleMethods.isFetching){            
-      console.log('Fetched Sample Methods');
+    if(!nP.sampleMethods.isFetching && cP.sampleMethods.isFetching !== nP.sampleMethods.isFetching){                  
       nP.sampleMethods.sampleMethods.map( (method,index) => {
         if(method.id){
           method.exists = true;          
@@ -58,9 +56,8 @@ class SampleEditCreate extends Component {
         }
         return method;
       })      
-      this.setState({ sampleMethods: nP.sampleMethods.sampleMethods});
-    }
-  
+      this.setState({ sampleMethods: nP.sampleMethods.sampleMethods});      
+    }  
   }
 
   goBack(e){
@@ -86,7 +83,8 @@ class SampleEditCreate extends Component {
     }
   }
 
-  saveSample(e){    
+  saveSample(e){        
+
     let oState = this.state;      
     if(oState.sample.sample_set === ' '){
       oState.sample.sample_set = null;
@@ -132,8 +130,14 @@ class SampleEditCreate extends Component {
     })
   }
 
-  editSampleMethod(e){    
-    this.saveSample();
+  editSampleMethod(method){                
+   console.log(method);
+   const oState = this.state;
+
+   this.props.updateSampleMethods(oState.sampleMethods, oState.sample.id).then( (res)=>{
+      this.props.fetchSampleMethods(oState.sample.id);
+      notify.show('Sample  Methods Saved Successfully','success',2000);                
+    });
   }
 
   onChangeFilter(e){
@@ -245,7 +249,7 @@ class SampleEditCreate extends Component {
                       
                     return  <div key={index}>                                                    
                               <div className="checkbox">                                
-                                <Confirm onConfirm={this.editSampleMethod.bind(this)} confirmBSStyle='primary' body="To Enter Method Data you have to Save the Sample?" confirmText="Confirm Save and Continue" title="Method Data">
+                                <Confirm onConfirm={this.editSampleMethod.bind(this,method)} confirmBSStyle='primary' body="To Enter Method Data you have to Save the Sample Methods?" confirmText="Confirm Save and Continue" title="Method Data">
                                   <button className="btn btn-primary" disabled={!method.exists}>Enter Data</button>
                                 </Confirm>    
                                 &nbsp;&nbsp;

@@ -26,7 +26,7 @@ class SampleSetList extends Component {
     return (    	    
     <div className="container">      
       <h2>Samples Sets<button className="btn btn-lg btn-primary pull-right" onClick={this.addSampleSet.bind(this)}>Add Sample Set</button></h2><br/>
-      <BootstrapTable data={ this.props.sampleSets.sampleSets } striped hover options={ { onRowClick : this.rowClick.bind(this) } } >
+      <BootstrapTable tableStyle={{height: "70vh"}} data={ this.props.sampleSets.sampleSets } striped hover options={ { onRowClick : this.rowClick.bind(this) } } >
         <TableHeaderColumn dataField='id' isKey width='10%' hidden>Set ID</TableHeaderColumn>
         <TableHeaderColumn dataField='sample_set' dataSort={ true } width='44%' filter={ { type: 'RegexFilter', delay: 100 } }>Set Identifier</TableHeaderColumn>
         <TableHeaderColumn dataField='created_on' dataSort={ true } width='23%' dataFormat={ this.dateFormatter } filter={{type: 'DateFilter'}}>Created On</TableHeaderColumn>

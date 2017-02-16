@@ -15,7 +15,7 @@ class GridForm extends React.Component {
   drawTable(){
     const formName = this.props.form.name.replaceAll(' ','_').toUpperCase();    
     const data = this.state.scopeData.data;
-    //const table = FORMS_DATA[formName];    
+    /*const table = FORMS_DATA[formName];    */
     const table = FORMS_DATA['TEST_2'];
 
     table.map( (row, rI) => {
@@ -34,12 +34,13 @@ class GridForm extends React.Component {
     return <div>
   <button className="hidden-print btn btn-lg btn-info" onClick={this.goBack.bind(this)}>Back</button>
     <br/><br/>
+    {/*<div className="table-bordered" style={{ padding: "15px" ,overflowY: "scroll", height:"70vh"}}>  */}
     <div className="table-bordered" style={{ padding: "15px" ,overflowY: "scroll", height:"70vh"}}>  
     <h2 style={{textAlign:'center'}}><strong>{this.props.form.name}</strong></h2>
     <h4 style={{textAlign:'center'}}>{this.props.sample.identifier} </h4>
     
     <br/>          
-            <table className="table-bordered fixed" width="95%" >              
+            <table className="table-bordered fixed" width="100%" >              
               <tbody>
               {                                  
                            

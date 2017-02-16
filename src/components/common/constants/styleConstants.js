@@ -27,6 +27,9 @@ export const LARGE_SECTION_HEADER = {
 export const LARGE_LABEL = {
 	tr:{
 		textAlign: 'right',	
+	},
+	c:{
+		textAlign: 'center',	
 	},	
 	td : {
 		fontSize: '18px',
@@ -37,5 +40,16 @@ export const LARGE_LABEL = {
 		fontSize: '18px',
 		padding: '10px',		
 		width: '100%',
+	}
+}
+
+export const LARGE_SECTION_HEADER_NB = {
+	tr:{
+		textAlign: 'center',				
+	},
+	
+	td: {
+		fontSize: '22px',
+		padding: '10px',
 	}
 }
