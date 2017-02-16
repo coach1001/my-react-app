@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Validator from 'validator';
 import isEmpty from 'lodash/isEmpty';
 import TextFieldGroup from '../common/TextFieldGroup';
+import {notify} from 'react-notify-toast';
 
 function validateInput(data){
 	let errors = {};
@@ -80,10 +81,7 @@ class SignupForm extends Component {
 			this.setState( { errors: errors, isLoading: false });	
 			this.props.userSignupRequest(this.state).then(
 				() => {
-						this.props.addFlashMessage({
-							type : 'success',
-							text : 'You have signed up successfully. Welcome!'
-						})
+						notify.show('You have signed up successfully. Welcome!','success',3000);						
 						this.context.router.push('/');
 				}).catch((error) => {
 				 	

@@ -4,6 +4,7 @@ import isEmpty from 'lodash/isEmpty';
 import TextFieldGroup from '../common/TextFieldGroup';
 import { connect } from 'react-redux';
 import { addFlashMessage } from '../../actions/flashMessages';
+import {notify} from 'react-notify-toast';
 
 function validateInput(data){
 	let errors = {};
@@ -66,13 +67,8 @@ class LoginForm extends Component {
 			this.setState( { errors: errors, isLoading: false });	
 			this.props.userLoginRequest(this.state).then(
 				(res) => {				
-
-						this.props.addFlashMessage({
-							type : 'success',
-							text : 'You have logged in successfully. Welcome!',
-							timeout: 3000
-						});
-
+						notify.show('You have logged in successfully. Welcome!','success',3000);
+						
 						this.context.router.push('/');										
 				}).catch((error) => {				 	
 				 	

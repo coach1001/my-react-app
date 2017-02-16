@@ -4,8 +4,9 @@ import NavigationBar from './components/NavigationBar'
 import FlashMessagesList from './components/flash/FlashMessagesList'
 import { fetchTablesNoDispatch } from './actions/tablesData';
 import { connect } from 'react-redux';
-/*import find from 'lodash/find';*/
+
 import parseTablesResponses from './utils/parseTablesResponses';
+import Notifications from 'react-notify-toast';
 
 class App extends Component {
 	
@@ -16,9 +17,13 @@ class App extends Component {
   render() {  	
     return (
       <div className="container-fluid">
-         <NavigationBar/>
-        <FlashMessagesList />      
+         <NavigationBar/> 
+          
+        <FlashMessagesList />
+             
         	{this.props.children}              
+        
+        <Notifications/>
       </div>
     );
   }

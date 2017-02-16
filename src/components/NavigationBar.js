@@ -26,7 +26,8 @@ class NavigationBar extends Component {
       <ul className="nav navbar-nav">
       
         <li><Link to="/sampleSets">Sample Sets</Link></li>
-        <li><Link to="/samples">Sample Register</Link></li>
+        <li><Link to="/samples">Samples</Link></li>
+        <li><Link to="/samples">Print Outs</Link></li>
       
       
         </ul>

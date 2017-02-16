@@ -47,21 +47,29 @@ export function fetchSample(id){
 
 export function updateCreateSample(data){
 	let param = '';	
-	let method='POST';
-	
-	if(data.id){
-		param = `?id=eq.${data.id}`
-		method = 'PATCH';
-	}
+	let method='POST';	
 
-	let axiosConfig = {
-		method : method,
-		url: `${API_URL}/samples${param}`,
-		data : data, 			
-		headers: {			
-			'Prefer': 'return=representation'
+	return dispatch => {
+		if(data.id){
+			param = `?id=eq.${data.id}`
+			method = 'PATCH';
 		}
-	};
-
-	return axios(axiosConfig);		
+		
+		let axiosConfig = {
+			method : method,
+			url: `${API_URL}/samples${param}`,
+			data : data, 			
+			headers: {			
+				'Prefer': 'return=representation'
+			}
+		};
+		return axios(axiosConfig);		
+	}
 }
+
+export function deleteSample(id){
+	return dispatch =>{
+		return axios.delete(`${API_URL}/samples?id=eq.${id}`);
+	}
+}
+

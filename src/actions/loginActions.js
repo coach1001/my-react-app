@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {SET_CURRENT_USER} from './types';
+import {SET_CURRENT_USER, API_URL} from './types';
 import setAuthorizationToken from '../utils/setAuthorizationToken';
 import jwtDecode from 'jwt-decode';
 
@@ -27,7 +27,7 @@ export function userLoginRequest(userData){
 			pass: userData.password
 		};
 
-		return axios.post('http://127.0.0.1:3003/rpc/login', transformData).then( (res) => {			
+		return axios.post(`${API_URL}/rpc/login`, transformData).then( (res) => {			
 			localStorage.setItem('jwtToken', res.data.token);
 			setAuthorizationToken(res.data.token);						
 			dispatch(setCurrentUser( jwtDecode(res.data.token) ));

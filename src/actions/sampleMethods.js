@@ -23,23 +23,34 @@ export function fetchSampleMethods(sample_id){
 	}
 }
 
-export function updateCreateSampleMethods(data){
-	/*
-	let param = '';	
-	let method = 'POST';
+export function updateSampleMethods(data, sample_id){
+			
+	return dispatch => {		
 
-	if(data.id){
-		param = `?id=eq.${data.id}`;
-		method = 'PATCH';
-	}	
-	
-	let axiosConfig = {
-		method : method,
-		url: `${API_URL}/sample_sets${param}`,
-		data : data, 			
-		headers: {			
-			'Prefer': 'return=representation'
-		}
-	};
-	return axios(axiosConfig);*/		
+		let requestPromises= [];		
+
+		data.map( (method)=>{
+							
+			if (method.id && !method.exists){	
+
+				delete method.exists;
+				requestPromises.push(axios.delete(`${API_URL}/sample_has_methods?id=eq.${method.id}`));
+			
+			}else if (method.id === null && method.exists){				
+				
+				delete method.exists;
+
+				requestPromises.push(axios.post(`${API_URL}/sample_has_methods`,{method: method.method_id, sample: sample_id}));
+			
+			}
+			return method;
+		});
+
+		return axios.all(requestPromises).then((responses) => { 										
+			
+		}).catch( (err) => {
+		
+		});
+	}
+
 }

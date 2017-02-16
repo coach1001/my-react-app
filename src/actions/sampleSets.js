@@ -47,21 +47,28 @@ export function fetchSampleSet(id){
 
 export function updateCreateSampleSet(data){
 	let param = '';	
-	let method = 'POST';
+	let method='POST';	
 
-	if(data.id){
-		param = `?id=eq.${data.id}`;
-		method = 'PATCH';
-	}	
-	
-	let axiosConfig = {
-		method : method,
-		url: `${API_URL}/sample_sets${param}`,
-		data : data, 			
-		headers: {			
-			'Prefer': 'return=representation'
+	return dispatch => {
+		if(data.id){
+			param = `?id=eq.${data.id}`
+			method = 'PATCH';
 		}
-	};
+		
+		let axiosConfig = {
+			method : method,
+			url: `${API_URL}/sample_sets${param}`,
+			data : data, 			
+			headers: {			
+				'Prefer': 'return=representation'
+			}
+		};
+		return axios(axiosConfig);		
+	}	
+}
 
-	return axios(axiosConfig);		
+export function deleteSampleSet(id){
+	return dispatch =>{
+		return axios.delete(`${API_URL}/sample_sets?id=eq.${id}`);
+	}
 }

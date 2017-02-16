@@ -5,13 +5,16 @@ import { Provider } from 'react-redux';
 import { store }  from './store';
 import jwtDecode from 'jwt-decode';
 import setAuthorizationToken from './utils/setAuthorizationToken';
+
 import { setCurrentUser } from './actions/loginActions';
 //import createLogger from 'redux-logger';
 
+
+import './utils/axiosInterceptors';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/react-bootstrap-table/dist/react-bootstrap-table.min.css';
-/*import '../node_modules/bootstrap/dist/css/yeti.css';*/
 import './index.css';
+import '../node_modules/animate.css/animate.css';
 
 import routes from './routes';
 

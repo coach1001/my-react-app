@@ -22,7 +22,7 @@ class FlashMessage extends Component {
 		const { type, text} = this.props.message;
 
 		return (	
-			<div className={ classnames('alert','container', {
+			<div style={ { zIndex: 999} } className={ classnames('alert','container', {
 				'alert-success' : type === 'success',
 				'alert-danger' : type === 'error'				
 			})}>

@@ -21,6 +21,7 @@ export default (
 
 		<Route path="sampleSets" component={SampleSetPage}>
 			<IndexRoute component={SampleSetList} />
+			<Route path="new" component={SampleSetEditCreate}/>
 			<Route path=":sampleSetId" component={SampleSetEditCreate}/>
 		</Route>
 
