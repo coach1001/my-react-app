@@ -5,72 +5,76 @@ export const methods = [
 	{
 		code: 'A1',
 		grid: [
-			{td:[	{width:"5%", value:"A", rowSpan: 6, style: STYLES.LARGE_SECTION_HEADER.tr},
-						{width:"39%", value:"DETERMINATION OF AGGREGATE GREATER THAN 19mm IN TOTAL SAMPLE", rowSpan: 4, style: STYLES.LARGE_SECTION_HEADER.tr},
-						{width:"14%", value:"SIEVE SIZE (mm)", style: STYLES.LARGE_SECTION_HEADER.tr},
-						{width:"14%", value:"MASS RETAINED (grams)", style: STYLES.LARGE_SECTION_HEADER.tr},
-						{width:"14%", value:"PERCENTAGE RETAINED (%)", style: STYLES.LARGE_SECTION_HEADER.tr},
-						{width:"14%", value:"PERCENTAGE PASSED (%)", style: STYLES.LARGE_SECTION_HEADER.tr}]},
+			{td:[	{width:"5%", label:"A", rowSpan: 6, style: STYLES.LARGE_SECTION_HEADER.tr},
+						{width:"39%", label:"DETERMINATION OF AGGREGATE GREATER THAN 19mm IN TOTAL SAMPLE", rowSpan: 4, style: STYLES.LARGE_SECTION_HEADER.tr},
+						{width:"14%", label:"SIEVE SIZE (mm)", style: STYLES.LARGE_SECTION_HEADER.tr},
+						{width:"14%", label:"MASS RETAINED (grams)", style: STYLES.LARGE_SECTION_HEADER.tr},
+						{width:"14%", label:"PERCENTAGE RETAINED (%)", style: STYLES.LARGE_SECTION_HEADER.tr},
+						{width:"14%", label:"PERCENTAGE PASSED (%)", style: STYLES.LARGE_SECTION_HEADER.tr}]},
 
-			{td:[ {value:"63.0", style: STYLES.LARGE_LABEL.c},
-						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
-						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
+			{td:[ {label:"63.0", style: STYLES.LARGE_LABEL.c},
+						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'gr_mr3' },
+						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input,scopeVariable: 'gr_pr3'},
 						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
-			{td:[ {value:"53.0", style: STYLES.LARGE_LABEL.c},
-						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
-						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
+			
+			{td:[ {label:"53.0", style: STYLES.LARGE_LABEL.c},
+						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'gr_mr4'},
+						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input,scopeVariable:'gr_pr4'},
 						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
-			{td:[ {value:"37.5", style: STYLES.LARGE_LABEL.c},
-						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
-						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
+			
+			{td:[ {label:"37.5", style: STYLES.LARGE_LABEL.c},
+						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'gr_mr5'},
+						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input,scopeVariable:'gr_pr5'},
 						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
-			{td:[ {value:"MASS OF TOTAL SAMPLE (grams)", style: STYLES.LARGE_SECTION_HEADER_NB.tr},
-						{value:"26.5", style: STYLES.LARGE_LABEL.c},
-						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
-						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
+			
+			{td:[ {label:"MASS OF TOTAL SAMPLE (grams)", style: STYLES.LARGE_SECTION_HEADER_NB.tr},
+						{label:"26.5", style: STYLES.LARGE_LABEL.c},
+						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'gr_mr6'},
+						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input,scopeVariable:'gr_pr6'},
 						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
-			{td:[ {isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
-						{value:"19.0", style: STYLES.LARGE_LABEL.c},
-						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
-						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
+			
+			{td:[ {isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'gr_dm' },
+						{label:"19.0", style: STYLES.LARGE_LABEL.c},
+						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'gr_mr7'},
+						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input,scopeVariable:'gr_pr7'},
 						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
 
-			{td:[	{value:"B", rowSpan: 4, style: STYLES.LARGE_SECTION_HEADER.tr},
-						{value:"DETERMINATION OF FRACTIONS BETWEEN -19mm AND +0.425mm SCREENS", rowSpan: 4, style: STYLES.LARGE_SECTION_HEADER.tr},
-						{value:"13.2", style: STYLES.LARGE_LABEL.c},
-						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
-						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
+			
+			{td:[	{label:"B", rowSpan: 4, style: STYLES.LARGE_SECTION_HEADER.tr},
+						{label:"DETERMINATION OF FRACTIONS BETWEEN -19mm AND +0.425mm SCREENS", rowSpan: 4, style: STYLES.LARGE_SECTION_HEADER.tr},
+						{label:"13.2", style: STYLES.LARGE_LABEL.c},
+						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'gr_mr8'},
+						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input,scopeVariable:'gr_pr8'},
 						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},			
 						]},
 
-			{td:[ {value:"4.75", style: STYLES.LARGE_LABEL.c},
-						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
-						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
+			{td:[ {label:"4.75", style: STYLES.LARGE_LABEL.c},
+						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'gr_mr9'},
+						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input,scopeVariable:'gr_pr9'},
 						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
 
-			{td:[ {value:"2.00", style: STYLES.LARGE_LABEL.c},
-						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
-						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
+			{td:[ 
+						{label:"2.00", style: STYLES.LARGE_LABEL.c},
+						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'gr_mr10'},
+						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input,scopeVariable:'gr_pr10'},
 						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
 
-			{td:[ {value:"-0.425", style: STYLES.LARGE_LABEL.c},
-						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
-						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
+			{td:[ 
+						{label:"0.425", style: STYLES.LARGE_LABEL.c},
+						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'gr_mr11'},
+						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input,scopeVariable:'gr_pr11'},
 						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
 
-			{td:[	{value:"C", rowSpan: 3, style: STYLES.LARGE_SECTION_HEADER.tr},
-						{value:"", rowSpan: 3, style: STYLES.LARGE_SECTION_HEADER.tr},
-						{value:"0.075", style: STYLES.LARGE_LABEL.c},
-						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
-						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
+			{td:[	{label:"C", rowSpan: 3, style: STYLES.LARGE_SECTION_HEADER.tr},
+						{label:"", rowSpan: 3, style: STYLES.LARGE_SECTION_HEADER.tr},
+						{label:"<0.425", style: STYLES.LARGE_LABEL.c},
+						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'gr_mp_tot'},
+						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'gr_pr_total'},
 						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
 
-			{td:[ {value:"0.075", style: STYLES.LARGE_LABEL.c},
-						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
-						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
 
-			{td:[ {value:"TOTAL", style: STYLES.LARGE_LABEL.c},
-						{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
+			{td:[ {label:"TOTAL", style: STYLES.LARGE_LABEL.c},
+						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'gr_dm_calc'},]},
 
 		]
 	}
@@ -80,156 +84,157 @@ export const SIEVE_ANALYSIS = [
 	{
 		style: { fontSize: 14 },
 		td: [
-			{ value: '', colSpan: 3 , style: STYLES.CELL_NO_ROTATE },
-			{ value: 'SIEVE ANALYSIS', colSpan: 10, style: STYLES.CELL_NO_ROTATE },
-			{ value: 'SOIL MORTAR ANALYSIS', colSpan: 3, style: STYLES.CELL_NO_ROTATE },
-			{ value: 'ATTERBURG CONSTANTS', colSpan: 3, style: STYLES.CELL_NO_ROTATE },
+			{ label: '', colSpan: 3 , style: STYLES.CELL_NO_ROTATE },
+			{ label: 'SIEVE ANALYSIS', colSpan: 10, style: STYLES.CELL_NO_ROTATE },
+			{ label: 'SOIL MORTAR ANALYSIS', colSpan: 3, style: STYLES.CELL_NO_ROTATE },
+			{ label: 'ATTERBURG CONSTANTS', colSpan: 3, style: STYLES.CELL_NO_ROTATE },
 		]
 	},
 	{
 		style: { fontSize : 10 },
 		td: [
-			{ value: 'SAMPLE NO.', rowSpan: 3, width: '20%', style: STYLES.CELL_NO_ROTATE },
-			{ value: 'DISTANCE (km)', rowSpan: 3, width: '5%', style: STYLES.CELL_NO_ROTATE },
-			{ value: 'DEPTH (mm)', rowSpan: 3, width: '5%', style: STYLES.CELL_NO_ROTATE },
-			{ value: 'PERCENTAGE BY MASS PASSING SIEVES', colSpan: 10, style: STYLES.CELL_NO_ROTATE},
-			{ value: 'SAND', colSpan: 2, style: STYLES.CELL_NO_ROTATE },
-			{ value: 'MATERIAL <0.075 mm', rowSpan: 3, width: '5%', style: STYLES.CELL_ROTATE },
-			{ value: 'LIQUID LIMIT', rowSpan: 3, width: '5%', style: STYLES.CELL_ROTATE, height: '120px' },
-			{ value: 'PLASTICITY INDEX', rowSpan: 3, width: '5%', style: STYLES.CELL_ROTATE },
-			{ value: 'LINEAR SHRINKAGE', rowSpan: 3, width: '5%', style: STYLES.CELL_ROTATE },
+			{ label: 'SAMPLE NO.', rowSpan: 3, width: '20%', style: STYLES.CELL_NO_ROTATE },
+			{ label: 'DISTANCE (km)', rowSpan: 3, width: '5%', style: STYLES.CELL_NO_ROTATE },
+			{ label: 'DEPTH (mm)', rowSpan: 3, width: '5%', style: STYLES.CELL_NO_ROTATE },
+			{ label: 'PERCENTAGE BY MASS PASSING SIEVES', colSpan: 10, style: STYLES.CELL_NO_ROTATE},
+			{ label: 'SAND', colSpan: 2, style: STYLES.CELL_NO_ROTATE },
+			{ label: 'MATERIAL <0.075 mm', rowSpan: 3, width: '5%', style: STYLES.CELL_ROTATE },
+			{ label: 'LIQUID LIMIT', rowSpan: 3, width: '5%', style: STYLES.CELL_ROTATE, height: '120px' },
+			{ label: 'PLASTICITY INDEX', rowSpan: 3, width: '5%', style: STYLES.CELL_ROTATE },
+			{ label: 'LINEAR SHRINKAGE', rowSpan: 3, width: '5%', style: STYLES.CELL_ROTATE },
 		]
 	},
 	{
 		style: { fontSize : 10 },
 		td: [
-			{ value: '75.0 mm', rowSpan: 2, width: '3%', style: STYLES.CELL_NO_ROTATE },
-			{ value: '53.0 mm', rowSpan: 2, width: '3%', style: STYLES.CELL_NO_ROTATE },
-			{ value: '37.5 mm', rowSpan: 2, width: '3%', style: STYLES.CELL_NO_ROTATE },
-			{ value: '26.5 mm', rowSpan: 2, width: '3%', style: STYLES.CELL_NO_ROTATE },
-			{ value: '19.0 mm', rowSpan: 2, width: '3%', style: STYLES.CELL_NO_ROTATE },
-			{ value: '13.2 mm', rowSpan: 2, width: '3%', style: STYLES.CELL_NO_ROTATE },
-			{ value: '4.75 mm', rowSpan: 2, width: '3%', style: STYLES.CELL_NO_ROTATE },
-			{ value: '2.0 mm', rowSpan: 2, width: '3%', style: STYLES.CELL_NO_ROTATE },
-			{ value: '0.425 mm', rowSpan: 2, width: '3%', style: STYLES.CELL_NO_ROTATE },
-			{ value: '0.075 mm', rowSpan: 2, width: '3%', style: STYLES.CELL_NO_ROTATE },
-			{ value: 'COARSE', width: '10%', style: STYLES.CELL_NO_ROTATE },
-			{ value: 'FINE', width: '10%', style: STYLES.CELL_NO_ROTATE },
+			{ label: '75.0 mm', rowSpan: 2, width: '3%', style: STYLES.CELL_NO_ROTATE },
+			{ label: '53.0 mm', rowSpan: 2, width: '3%', style: STYLES.CELL_NO_ROTATE },
+			{ label: '37.5 mm', rowSpan: 2, width: '3%', style: STYLES.CELL_NO_ROTATE },
+			{ label: '26.5 mm', rowSpan: 2, width: '3%', style: STYLES.CELL_NO_ROTATE },
+			{ label: '19.0 mm', rowSpan: 2, width: '3%', style: STYLES.CELL_NO_ROTATE },
+			{ label: '13.2 mm', rowSpan: 2, width: '3%', style: STYLES.CELL_NO_ROTATE },
+			{ label: '4.75 mm', rowSpan: 2, width: '3%', style: STYLES.CELL_NO_ROTATE },
+			{ label: '2.0 mm', rowSpan: 2, width: '3%', style: STYLES.CELL_NO_ROTATE },
+			{ label: '0.425 mm', rowSpan: 2, width: '3%', style: STYLES.CELL_NO_ROTATE },
+			{ label: '0.075 mm', rowSpan: 2, width: '3%', style: STYLES.CELL_NO_ROTATE },
+			{ label: 'COARSE', width: '10%', style: STYLES.CELL_NO_ROTATE },
+			{ label: 'FINE', width: '10%', style: STYLES.CELL_NO_ROTATE },
 		]
 	},
 	{
 		style: { fontSize: 10 },
 		td: [
-			{ value: '<2.0 mm and >0.425 mm', style: STYLES.CELL_NO_ROTATE },
-			{ value: '<0.425 and >0.075 mm', style: STYLES.CELL_NO_ROTATE },
+			{ label: '<2.0 mm and >0.425 mm', style: STYLES.CELL_NO_ROTATE },
+			{ label: '<0.425 and >0.075 mm', style: STYLES.CELL_NO_ROTATE },
 		]
 	},
 ]
+
 export const OBJECT_FALLING_UNDER_GRAVITY = [
-	{	style: STYLES.LARGE_SECTION_HEADER.tr , td: [{ value: 'Inputs', colSpan:2, style: STYLES.LARGE_SECTION_HEADER.td }] },
+	{	style: STYLES.LARGE_SECTION_HEADER.tr , td: [{ label: 'Inputs', colSpan:2, style: STYLES.LARGE_SECTION_HEADER.td }] },
 
 	{	style: STYLES.LARGE_LABEL.tr , td:[
-		{ value: 'Time', width: '50%', style: STYLES.LARGE_LABEL.td},
+		{ label: 'Time', width: '50%', style: STYLES.LARGE_LABEL.td},
 		{ width: '50%', isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'b'} ]},
 
 	{	style: STYLES.LARGE_LABEL.tr , td:[
-		{ value: 'Initial Velocity', width: '50%', style: STYLES.LARGE_LABEL.td },
+		{ label: 'Initial Velocity', width: '50%', style: STYLES.LARGE_LABEL.td },
 		{ width: '50%', isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'c'} ]},
 
-	{ style: STYLES.LARGE_SECTION_HEADER.tr , td:[{ value: 'Calculations', colSpan:2, style: STYLES.LARGE_SECTION_HEADER.td }]	},
+	{ style: STYLES.LARGE_SECTION_HEADER.tr , td:[{ label: 'Calculations', colSpan:2, style: STYLES.LARGE_SECTION_HEADER.td }]	},
 
 	{	style: STYLES.LARGE_LABEL.tr, td:[
-		{ value: 'Final Velocity', width: '50%', style: STYLES.LARGE_LABEL.td},
+		{ label: 'Final Velocity', width: '50%', style: STYLES.LARGE_LABEL.td},
 		{ width: '50%', isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'd'}] },
 ]
 export const TEST_FORM = [
-	{	style: STYLES.LARGE_SECTION_HEADER.tr , td: [{ value: 'Inputs', colSpan:2, style: STYLES.LARGE_SECTION_HEADER.td }] },
+	{	style: STYLES.LARGE_SECTION_HEADER.tr , td: [{ label: 'Inputs', colSpan:2, style: STYLES.LARGE_SECTION_HEADER.td }] },
 
 	{	style: STYLES.LARGE_LABEL.tr , td:[
-		{ value: 'Time', width: '50%', style: STYLES.LARGE_LABEL.td},
+		{ label: 'Time', width: '50%', style: STYLES.LARGE_LABEL.td},
 		{ width: '50%', isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'b'} ]},
 
 	{	style: STYLES.LARGE_LABEL.tr , td:[
-		{ value: 'Initial Velocity', width: '50%', style: STYLES.LARGE_LABEL.td },
+		{ label: 'Initial Velocity', width: '50%', style: STYLES.LARGE_LABEL.td },
 		{ width: '50%', isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'c'} ]},
 
-	{ style: STYLES.LARGE_SECTION_HEADER.tr , td:[{ value: 'Calculations', colSpan:2, style: STYLES.LARGE_SECTION_HEADER.td }]	},
+	{ style: STYLES.LARGE_SECTION_HEADER.tr , td:[{ label: 'Calculations', colSpan:2, style: STYLES.LARGE_SECTION_HEADER.td }]	},
 
 	{	style: STYLES.LARGE_LABEL.tr, td:[
-		{ value: 'Final Velocity', width: '50%', style: STYLES.LARGE_LABEL.td},
+		{ label: 'Final Velocity', width: '50%', style: STYLES.LARGE_LABEL.td},
 		{ width: '50%', isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'd'}] },
 
 	{	style: STYLES.LARGE_LABEL.tr, td:[
-		{ value: 'Final Velocity', width: '50%', style: STYLES.LARGE_LABEL.td},
+		{ label: 'Final Velocity', width: '50%', style: STYLES.LARGE_LABEL.td},
 		{ width: '50%', isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'e'}] },
 ]
 export const TEST_2 = [
 
-	{td:[	{width:"5%", value:"A", rowSpan: 6, style: STYLES.LARGE_SECTION_HEADER.tr},
-				{width:"39%", value:"DETERMINATION OF AGGREGATE GREATER THAN 19mm IN TOTAL SAMPLE", rowSpan: 4, style: STYLES.LARGE_SECTION_HEADER.tr},
-				{width:"14%", value:"SIEVE SIZE (mm)", style: STYLES.LARGE_SECTION_HEADER.tr},
-				{width:"14%", value:"MASS RETAINED (grams)", style: STYLES.LARGE_SECTION_HEADER.tr},
-				{width:"14%", value:"PERCENTAGE RETAINED (%)", style: STYLES.LARGE_SECTION_HEADER.tr},
-				{width:"14%", value:"PERCENTAGE PASSED (%)", style: STYLES.LARGE_SECTION_HEADER.tr}]},
+	{td:[	{width:"5%", label:"A", rowSpan: 6, style: STYLES.LARGE_SECTION_HEADER.tr},
+				{width:"39%", label:"DETERMINATION OF AGGREGATE GREATER THAN 19mm IN TOTAL SAMPLE", rowSpan: 4, style: STYLES.LARGE_SECTION_HEADER.tr},
+				{width:"14%", label:"SIEVE SIZE (mm)", style: STYLES.LARGE_SECTION_HEADER.tr},
+				{width:"14%", label:"MASS RETAINED (grams)", style: STYLES.LARGE_SECTION_HEADER.tr},
+				{width:"14%", label:"PERCENTAGE RETAINED (%)", style: STYLES.LARGE_SECTION_HEADER.tr},
+				{width:"14%", label:"PERCENTAGE PASSED (%)", style: STYLES.LARGE_SECTION_HEADER.tr}]},
 
-	{td:[ {value:"63.0", style: STYLES.LARGE_LABEL.c},
+	{td:[ {label:"63.0", style: STYLES.LARGE_LABEL.c},
 				{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
-	{td:[ {value:"53.0", style: STYLES.LARGE_LABEL.c},
+	{td:[ {label:"53.0", style: STYLES.LARGE_LABEL.c},
 				{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
-	{td:[ {value:"37.5", style: STYLES.LARGE_LABEL.c},
+	{td:[ {label:"37.5", style: STYLES.LARGE_LABEL.c},
 				{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
-	{td:[ {value:"MASS OF TOTAL SAMPLE (grams)", style: STYLES.LARGE_SECTION_HEADER_NB.tr},
-				{value:"26.5", style: STYLES.LARGE_LABEL.c},
+	{td:[ {label:"MASS OF TOTAL SAMPLE (grams)", style: STYLES.LARGE_SECTION_HEADER_NB.tr},
+				{label:"26.5", style: STYLES.LARGE_LABEL.c},
 				{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
 	{td:[ {isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
-				{value:"19.0", style: STYLES.LARGE_LABEL.c},
+				{label:"19.0", style: STYLES.LARGE_LABEL.c},
 				{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
 
-	{td:[	{value:"B", rowSpan: 4, style: STYLES.LARGE_SECTION_HEADER.tr},
-				{value:"DETERMINATION OF FRACTIONS BETWEEN -19mm AND +0.425mm SCREENS", rowSpan: 4, style: STYLES.LARGE_SECTION_HEADER.tr},
-				{value:"13.2", style: STYLES.LARGE_LABEL.c},
+	{td:[	{label:"B", rowSpan: 4, style: STYLES.LARGE_SECTION_HEADER.tr},
+				{label:"DETERMINATION OF FRACTIONS BETWEEN -19mm AND +0.425mm SCREENS", rowSpan: 4, style: STYLES.LARGE_SECTION_HEADER.tr},
+				{label:"13.2", style: STYLES.LARGE_LABEL.c},
 				{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				
 				]},
 
-	{td:[ {value:"4.75", style: STYLES.LARGE_LABEL.c},
+	{td:[ {label:"4.75", style: STYLES.LARGE_LABEL.c},
 				{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
 
-	{td:[ {value:"2.00", style: STYLES.LARGE_LABEL.c},
+	{td:[ {label:"2.00", style: STYLES.LARGE_LABEL.c},
 				{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
 
-	{td:[ {value:"-0.425", style: STYLES.LARGE_LABEL.c},
+	{td:[ {label:"-0.425", style: STYLES.LARGE_LABEL.c},
 				{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
 
-	{td:[	{value:"C", rowSpan: 3, style: STYLES.LARGE_SECTION_HEADER.tr},
-				{value:"", rowSpan: 3, style: STYLES.LARGE_SECTION_HEADER.tr},
-				{value:"0.075", style: STYLES.LARGE_LABEL.c},
+	{td:[	{label:"C", rowSpan: 3, style: STYLES.LARGE_SECTION_HEADER.tr},
+				{label:"", rowSpan: 3, style: STYLES.LARGE_SECTION_HEADER.tr},
+				{label:"0.075", style: STYLES.LARGE_LABEL.c},
 				{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
 
-	{td:[ {value:"0.075", style: STYLES.LARGE_LABEL.c},
+	{td:[ {label:"0.075", style: STYLES.LARGE_LABEL.c},
 				{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},
 				{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
 
-	{td:[ {value:"TOTAL", style: STYLES.LARGE_LABEL.c},
+	{td:[ {label:"TOTAL", style: STYLES.LARGE_LABEL.c},
 				{isInput: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
 ]

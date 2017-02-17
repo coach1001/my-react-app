@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 
-class MethodPage extends Component {
+class MethodEditPage extends Component {
   render() {
     return (
-      <div>        
+      <div>      	      
         {this.props.children}              
       </div>
     );
   }
 }
 
-export default MethodPage;
+export default MethodEditPage;
+
+

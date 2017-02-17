@@ -9,11 +9,6 @@ class SampleForm extends Component {
   componentWillMount(){  	    
     this.props.tablesData.isFetching = true;
     
-  /*  this.props.fetchTables([
-      `sample_values?form_id=eq.${this.context.router.params.formId}&sample_id=eq.${this.context.router.params.sampleId}`,
-      `forms?id=eq.${this.context.router.params.formId}`,
-      `samples?id=eq.${this.context.router.params.sampleId}`]);                
-  */
     this.props.fetchTables([
       `sample_values_distinct?sample_id=eq.${this.context.router.params.sampleId}`,
       `forms?id=eq.${this.context.router.params.formId}`,

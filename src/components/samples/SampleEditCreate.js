@@ -107,8 +107,7 @@ class SampleEditCreate extends Component {
           this.props.fetchSampleMethods(oState.sample.id);
         });
 
-        this.setState(oState);
-
+        this.setState(oState);        
       }, (res)=>{
         notify.show('Server Error, Contact Administrator','error',2000);
             
@@ -120,7 +119,6 @@ class SampleEditCreate extends Component {
   }
 
   deleteSample(e){    
-
     this.props.deleteSample(this.state.sample.id).then( (res) => {        
         notify.show(`Sample Number ${this.state.sample.sample} successfully deleted`,'warning',2000);
         this.context.router.goBack();
@@ -130,13 +128,13 @@ class SampleEditCreate extends Component {
     })
   }
 
-  editSampleMethod(method){                
-   console.log(method);
+  editSampleMethod(method){                   
    const oState = this.state;
 
    this.props.updateSampleMethods(oState.sampleMethods, oState.sample.id).then( (res)=>{
       this.props.fetchSampleMethods(oState.sample.id);
       notify.show('Sample  Methods Saved Successfully','success',2000);                
+      this.context.router.push(`/sampleMethod/${oState.sample.id}&${method.method_code}&${method.id}`);
     });
   }
 
