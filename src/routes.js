@@ -17,8 +17,6 @@ import SampleEditCreate from './components/samples/SampleEditCreate';
 import MethodEditPage from './components/methodEdit/MethodEditPage';
 import MethodEdit from './components/methodEdit/MethodEdit';
 
-
-
 export default (
 	<Route path="/" component={App}>
 		<IndexRoute component={Greeting} />
@@ -38,7 +36,7 @@ export default (
 		</Route>
 		
 		<Route path="sampleMethod" component={MethodEditPage}>						
-			<Route path=":sampleId&:methodCode&:methodId" component={MethodEdit}/>			
+			<Route path=":sampleId/:methodCode/:methodId" component={MethodEdit}/>			*
 		</Route>
 
 	</Route>

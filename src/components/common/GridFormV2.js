@@ -2,6 +2,8 @@ import React from 'react';
 import {methods} from './constants/gridFormConstants';
 import math from 'mathjs';
 import { sendRow } from '../../actions/tablesData';
+import { fetchSampleMethod, updateSampleMethod } from '../../actions/sampleMethods';
+import Confirm from 'react-confirm-bootstrap';
 
 class GridForm extends React.Component {
   
@@ -21,7 +23,14 @@ class GridForm extends React.Component {
       scopeData: this.props.scopeData,
       table : table,
       method: method,
+      sampleMethod: this.props.sampleMethod,
     })    
+  }
+
+  onChangeComplete(e){
+    let oState = this.state;
+    oState.sampleMethod.completed = !oState.sampleMethod.completed;
+    this.setState(oState);
   }
 
   drawTable(){    
@@ -41,8 +50,10 @@ class GridForm extends React.Component {
     })
         
     return <div>
-  
-    <br/><br/>    
+    <label style={{fontSize: '1.3em', fontWeight:'normal'}}><input name="completed" type="checkbox" onChange={this.onChangeComplete.bind(this)} checked={this.state.sampleMethod.completed} />&nbsp;Completed</label>                                
+    <button className="hidden-print btn-block btn btn-lg btn-success" onClick={this.CalculateAndSave.bind(this)}>Calculate and Save</button>            
+    <br/>
+
     <div className="table-bordered" style={{ padding: "10px"}}>  
     
     <br/>          
@@ -61,7 +72,10 @@ class GridForm extends React.Component {
                            <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>
                            {
                             td.isCalculated ? 
-                            <input  id={td.scopeVariable} onChange={this.onChange.bind(this)} step="0.01" type='number' value={td.value} readOnly className='form-control' style={td.style}/> : 
+
+                              <input  id={td.scopeVariable} onChange={this.onChange.bind(this)} step="0.01" type='number' value={td.value} readOnly className='form-control' style={td.style}/> :
+
+
                             <input id={td.scopeVariable} onChange={this.onChange.bind(this)} step="0.01" value={td.value} type='number' className='form-control' style={td.style}/>
                            }                        
                            </td>
@@ -77,7 +91,7 @@ class GridForm extends React.Component {
            </div>
            <br/>    
            
-           <button className="hidden-print btn-block btn btn-lg btn-success" onClick={this.CalculateAndSave.bind(this)}>Calculate and Save</button>
+           
           
     </div>    
   }
@@ -86,16 +100,17 @@ class GridForm extends React.Component {
     this.context.router.goBack();
   }
 
-  saveData(oState){    
-        
+  saveData(oState){            
     oState.scopeData.map( (row, rI) => {      
       
       if(row.id && row.input_type !== 'constant'){        
-        sendRow(`sample_has_variables?id=eq.${row.id}`,{value: row.value},'patch');
-        
+        if(row.ignoreUpdate){}
+        else{
+          sendRow(`sample_has_variables?id=eq.${row.id}`,{value: row.value},'patch');  
+        }              
       }else if(row.type !== 'constant'){
 
-        sendRow(`sample_has_variables`,{          
+        sendRow('sample_has_variables',{          
           sample: this.props.sampleId,
           variable: row.variable_id,
           value: row.value
@@ -107,17 +122,16 @@ class GridForm extends React.Component {
       return row;
     }) 
 
+    sendRow(`sample_has_methods?id=eq.${this.state.sampleMethod.id}`,{completed: this.state.sampleMethod.completed},'patch');
     this.setState(oState);
   }
 
   parseInput(oState){
-    let scope = {};    
-
-    
+    let scope = {};        
     oState.scopeData.map( (d) => {          
         if(d.input_type === 'in'){
             try{        
-              scope[d.symbol] = parseFloat(d.value,10);
+              scope[d.symbol] = Math.round(parseFloat(d.value,10)*100)/100;
               if(isNaN(scope[d.symbol])){
                 scope[d.symbol] = 0;
               }
@@ -127,12 +141,11 @@ class GridForm extends React.Component {
         }
       return d;
     });
-    
-    console.log(scope);
+        
     oState.scopeData.map ( (d) =>{      
       if(d.input_type === 'calc'){
         try{        
-          scope[d.symbol]=math.eval(d.formula,scope);               
+          scope[d.symbol]=Math.round(math.eval(d.formula,scope)*100)/100;               
         }catch(err){
 
           console.log(d.symbol,'error',err);
@@ -153,9 +166,16 @@ class GridForm extends React.Component {
       return d;
     });    
 
-    oState.scopeData.map( (d,index)=>{      
-      oState.scopeData[index].value = scope[d.symbol];
+    oState.scopeData.map( (d,index)=>{            
+      if(oState.scopeData[index].value === scope[d.symbol]){
+        oState.scopeData[index].ignoreUpdate = true;        
+      }else{
+        oState.scopeData[index].ignoreUpdate = false;        
+      }
+      
+      oState.scopeData[index].value = scope[d.symbol];            
       return d;
+    
     });        
     this.saveData(oState);
   }
@@ -182,11 +202,10 @@ class GridForm extends React.Component {
     });
 
     scopeData_ = this.state.scopeData[index];
-    scopeData_.value = e.target.value;
-    
+    scopeData_.value = Math.round(e.target.value*100)/100;    
+
     oState.scopeData[index] = scopeData_;
     this.setState(oState);
-
   }
   render() {                          
       return <div> 
@@ -198,7 +217,8 @@ class GridForm extends React.Component {
 GridForm.propTypes = {
   scopeData: React.PropTypes.array.isRequired,
   methodCode: React.PropTypes.string.isRequired,
-  sampleId: React.PropTypes.number.isRequired,  
+  sampleId: React.PropTypes.number.isRequired,
+  sampleMethod: React.PropTypes.object.isRequired,  
 }
 
 GridForm.contextTypes = {

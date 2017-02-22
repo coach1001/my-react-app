@@ -61,8 +61,8 @@ class SampleEditCreate extends Component {
   }
 
   goBack(e){
-    e.preventDefault();
-    this.context.router.goBack();
+    e.preventDefault();    
+    this.context.router.push('/samples');
   }
 
   onChangeMethods(index,e){        
@@ -100,7 +100,8 @@ class SampleEditCreate extends Component {
         notify.show('Sample Saved Successfully','success',2000);        
         
         if(res.data.id){          
-         oState.sample.id = res.data.id;        
+         oState.sample.id = res.data.id;
+         this.context.router.push(`samples/${res.data.id}`);        
         }
         
         this.props.updateSampleMethods(oState.sampleMethods, oState.sample.id).then( (res)=>{
@@ -131,10 +132,20 @@ class SampleEditCreate extends Component {
   editSampleMethod(method){                   
    const oState = this.state;
 
-   this.props.updateSampleMethods(oState.sampleMethods, oState.sample.id).then( (res)=>{
-      this.props.fetchSampleMethods(oState.sample.id);
-      notify.show('Sample  Methods Saved Successfully','success',2000);                
-      this.context.router.push(`/sampleMethod/${oState.sample.id}&${method.method_code}&${method.id}`);
+   this.props.updateSampleMethods(oState.sampleMethods, oState.sample.id).then( (res)=>{            
+      
+      this.props.fetchSampleMethods(oState.sample.id).then((res_)=>{
+        notify.show('Sample Methods Saved Successfully','success',2000);
+        
+         let sample_method_id=null;
+         res_.data.map((element)=>{
+            if( element.method === method.method_id && element.sample === oState.sample.id){
+              sample_method_id = element.id
+            }
+            return element;
+         });
+        this.context.router.push(`/sampleMethod/${oState.sample.id}/${method.method_code}/${sample_method_id}`);        
+      })            
     });
   }
 
@@ -252,7 +263,7 @@ class SampleEditCreate extends Component {
                                 </Confirm>    
                                 &nbsp;&nbsp;
                                 <label style={{fontSize: '1.1em'}}><input disabled={this.state.sample.id ? false : true} type="checkbox" onChange={this.onChangeMethods.bind(this,index)} checked={method.exists} />&nbsp;{method.label}: {method.description} </label>                                
-                                
+                                <label style={{fontSize: '1.1em'}} className="pull-right"><input disabled={true} type="checkbox" checked={method.completed} />Completed</label>
                               </div>
                             </div>
                     })                    

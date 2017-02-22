@@ -1,8 +1,9 @@
-import { RECEIVE_SAMPLE_METHODS, REQUEST_SAMPLE_METHODS } from '../actions/types';
+import { RECEIVE_SAMPLE_METHODS, REQUEST_SAMPLE_METHODS,RECEIVE_SAMPLE_METHOD, REQUEST_SAMPLE_METHOD } from '../actions/types';
 
 const initialState = {
 	isFetching: false,
-	sampleMethods: [],	
+	sampleMethods: [],
+	sampleMethod: {}	
 }
 
 export default (state = initialState, action = {}) => {										
@@ -13,6 +14,13 @@ export default (state = initialState, action = {}) => {
 
 		case RECEIVE_SAMPLE_METHODS:									
 			return Object.assign({},state,{isFetching: false, sampleMethods : action.sampleMethods});
+
+		case REQUEST_SAMPLE_METHOD:					
+			return Object.assign({},state,{isFetching: true, sampleMethod: {} });
+
+		case RECEIVE_SAMPLE_METHOD:									
+			return Object.assign({},state,{isFetching: false, sampleMethod : action.sampleMethod});
+
 				
 		default: return state;
 	}
