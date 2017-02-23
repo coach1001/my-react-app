@@ -72,7 +72,6 @@ export const methods = [
 						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'gr_pr_total'},
 						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input},]},
 
-
 			{td:[ {label:"TOTAL", style: STYLES.LARGE_LABEL.c},
 						{isInput: true, isCalculated: true, type: 'number', style: STYLES.LARGE_LABEL.input, scopeVariable: 'gr_dm_calc'},]},
 
