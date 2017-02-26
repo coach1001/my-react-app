@@ -101,7 +101,7 @@ class SampleEditCreate extends Component {
         
         if(res.data.id){          
          oState.sample.id = res.data.id;
-         this.context.router.push(`samples/${res.data.id}`);        
+         this.context.router.push(`${res.data.id}`);        
         }
         
         this.props.updateSampleMethods(oState.sampleMethods, oState.sample.id).then( (res)=>{

@@ -18,12 +18,14 @@ class GridForm extends React.Component {
     
     const method = methods[index];        
     const table = method.grid;
-    
+    const colLayout = method.colLayout;
+
     this.setState({
       scopeData: this.props.scopeData,
       table : table,
       method: method,
       sampleMethod: this.props.sampleMethod,
+      colLayout: colLayout,
     })    
   }
 
@@ -36,11 +38,24 @@ class GridForm extends React.Component {
   drawTable(){    
     const data = this.state.scopeData;    
     const table = this.state.table;    
+    const col = this.state.colLayout;
+
     table.map( (row, rI) => {
       row.td.map( (col, cI) => {        
         data.map( (d, dI) =>{
           if(d.symbol === col.scopeVariable){
-            table[rI].td[cI].value = d.value ? d.value : 0;                      
+   
+            if(d.unit === 'string'){
+              table[rI].td[cI].value_string = d.value_string ? d.value_string : ( d.default_value ? d.default_value : '');  
+            }else{
+              table[rI].td[cI].value = d.value ? d.value : ( d.default_value ? d.default_value : undefined);  
+            }
+            
+            table[rI].td[cI].unit = d.unit ? d.unit : undefined;
+            table[rI].td[cI].min = d.minimum ? d.minimum : undefined;
+            table[rI].td[cI].max = d.maximum ? d.maximum : undefined;            
+            table[rI].td[cI].step = d.step ? d.step : 0.01;
+            table[rI].td[cI].type = d.input_type ? d.input_type : undefined;
           }
           return d;
         })
@@ -50,50 +65,53 @@ class GridForm extends React.Component {
     })
         
     return <div>
-    <label style={{fontSize: '1.3em', fontWeight:'normal'}}><input name="completed" type="checkbox" onChange={this.onChangeComplete.bind(this)} checked={this.state.sampleMethod.completed} />&nbsp;Completed</label>                                
-    <button className="hidden-print btn-block btn btn-lg btn-success" onClick={this.CalculateAndSave.bind(this)}>Calculate and Save</button>            
-    <br/>
-
-    <div className="table-bordered" style={{ padding: "10px"}}>  
-    
-    <br/>          
+     <div className="input-group checkbox">
+      <label style={{fontSize: '1.3em', fontWeight:'normal'}}><input name="completed" type="checkbox" onChange={this.onChangeComplete.bind(this)} checked={this.state.sampleMethod.completed} />&nbsp;Completed</label>                                
+      </div>    
             <table className="table-bordered fixed" width="100%" >              
+              <colgroup>
+                {
+                  col.map( (c,i) => { return <col key={i} span={c.span} style={{width: c.width}}></col>} )                
+                }               
+              </colgroup>
               <tbody>
               {                                  
                            
-                  table.map( (tr, trIndex) =>                
-                      
-                      
+                  table.map( (tr, trIndex) =>                                                          
                       <tr key={trIndex} style={tr.style}>
                       {
                         tr.td.map( (td, tdIndex) =>
                           {
-                           return !td.isInput ? <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>{td.label}</td> :
+                           return !td.isVal ? <td key={tdIndex}  colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>{td.label}</td> :
                            <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>
                            {
-                            td.isCalculated ? 
-
-                              <input  id={td.scopeVariable} onChange={this.onChange.bind(this)} step="0.01" type='number' value={td.value} readOnly className='form-control' style={td.style}/> :
-
-
-                            <input id={td.scopeVariable} onChange={this.onChange.bind(this)} step="0.01" value={td.value} type='number' className='form-control' style={td.style}/>
+                            td.type === 'calc' ? 
+                              <div className="input-group">
+                                <input  id={td.scopeVariable} onChange={this.onChange.bind(this)}  step={td.step} type='number' value={td.value} readOnly className='form-control' style={td.style}/>
+                                <span className="input-group-addon">
+                                  {td.unit}
+                                </span>
+                              </div>
+                              :                                                                                      
+                                td.unit === 'string' ?
+                                  <input id={td.scopeVariable} onChange={this.onChangeString.bind(this)} value={td.value_string} type='text' className='form-control' style={td.style}/>
+                                  : <div className="input-group"><input id={td.scopeVariable} onChange={this.onChange.bind(this)} min={td.min} max={td.max} step={td.step} value={td.value} type='number' className='form-control' style={td.style}/><span className="input-group-addon">{td.unit}</span></div>                                  
                            }                        
                            </td>
                           } 
                         )
                       }
-                      </tr>
-             
+                      </tr>             
                   )              
               }
               </tbody>
            </table>  
-           </div>
-           <br/>    
-           
-           
-          
-    </div>    
+           <br/>
+
+            <Confirm onConfirm={this.CalculateAndSave.bind(this)} body="Are you sure you want to Save Data?" confirmBSStyle='primary' confirmText="Confirm Save" title="Save Method Data">  
+              <button className="hidden-print btn-block btn btn-lg btn-success">Calculate and Save</button>            
+            </Confirm>
+           </div>   
   }
   
   goBack(){
@@ -104,86 +122,101 @@ class GridForm extends React.Component {
     oState.scopeData.map( (row, rI) => {      
       
       if(row.id && row.input_type !== 'constant'){        
-        if(row.ignoreUpdate){}
-        else{
-          sendRow(`sample_has_variables?id=eq.${row.id}`,{value: row.value},'patch');  
-        }              
+        if(row.unit === 'string'){
+          sendRow(`sample_has_variables?id=eq.${row.id}`,{value_string: row.value_string},'patch');    
+        }else{
+          sendRow(`sample_has_variables?id=eq.${row.id}`,{value: row.value},'patch');        
+        }                      
       }else if(row.type !== 'constant'){
-
-        sendRow('sample_has_variables',{          
-          sample: this.props.sampleId,
-          variable: row.variable_id,
-          value: row.value
-        },'post').then( (res) =>{          
-          row.id = res.data.id;
-        });
-
-      }
-      return row;
-    }) 
-
+        if(row.unit === 'string'){
+          sendRow('sample_has_variables',{sample: this.props.sampleId,variable: row.variable_id,value_string: row.value_string},'post').then( (res) =>{row.id = res.data.id;});        
+        }else{          
+          sendRow('sample_has_variables',{sample: this.props.sampleId,variable: row.variable_id,value: row.value},'post').then( (res) =>{row.id = res.data.id;});
+        }                
+      }      
+      return row;    
+    })     
     sendRow(`sample_has_methods?id=eq.${this.state.sampleMethod.id}`,{completed: this.state.sampleMethod.completed},'patch');
     this.setState(oState);
   }
 
   parseInput(oState){
     let scope = {};        
+    
     oState.scopeData.map( (d) => {          
-        if(d.input_type === 'in'){
+        if(d.unit !== 'string'){
+          let round = d.step*10000;
+          if(round){}else{ round = 100; }
+          if(d.input_type === 'in'){
             try{        
-              scope[d.symbol] = Math.round(parseFloat(d.value,10)*100)/100;
-              if(isNaN(scope[d.symbol])){
-                scope[d.symbol] = 0;
-              }
-            }catch(err){
-              scope[d.symbol] = 0;
-            }      
-        }
-      return d;
-    });
-        
+                scope[d.symbol] = Math.round(parseFloat(d.value,10)*round)/round;
+                if(isNaN(scope[d.symbol])){                
+                  scope[d.symbol] = ( d.default_value ? d.default_value : 0);
+                }
+              }catch(err){
+                scope[d.symbol] = ( d.default_value ? d.default_value : 0);
+              }      
+            }
+          }
+          else{
+            scope[d.symbol] = d.value;
+          }
+      return d;    
+    });    
+
     oState.scopeData.map ( (d) =>{      
-      if(d.input_type === 'calc'){
-        try{        
-          scope[d.symbol]=Math.round(math.eval(d.formula,scope)*100)/100;               
-        }catch(err){
+      let round = d.step*10000;
+      if(d.unit !== 'string'){      
+       
+        if(round){}else{ round = 100; }
+        
+        if(d.input_type === 'calc'){                
+          try{        
+            scope[d.symbol]=Math.round(math.eval(d.formula,scope)*round)/round;               
+          }catch(err){                     
+           scope[d.symbol] = ( d.default_value ? d.default_value : 0);
+          }        
+        }      
+        
+        if(isFinite(scope[d.symbol])){
+        }else{        
+          scope[d.symbol] = ( d.default_value ? d.default_value : 0);
+        }
 
-          console.log(d.symbol,'error',err);
-          scope[d.symbol]= 0;                
-        }        
-      }      
-      
-      if(isFinite(scope[d.symbol])){
-
-      }else{
-        scope[d.symbol] = 0;
+        if(isNaN(scope[d.symbol])){        
+          scope[d.symbol] = ( d.default_value ? d.default_value : 0);
+        }
       }
-      if(isNaN(scope[d.symbol])){
-        scope[d.symbol] = 0;
-      }
 
-      
       return d;
     });    
 
-    oState.scopeData.map( (d,index)=>{            
-      if(oState.scopeData[index].value === scope[d.symbol]){
-        oState.scopeData[index].ignoreUpdate = true;        
-      }else{
-        oState.scopeData[index].ignoreUpdate = false;        
-      }
-      
-      oState.scopeData[index].value = scope[d.symbol];            
+    oState.scopeData.map( (d,index)=>{      
+      oState.scopeData[index].value = scope[d.symbol];
       return d;
+    });
     
-    });        
     this.saveData(oState);
   }
   
-  CalculateAndSave(e){
-    e.preventDefault();
-    const oState = this.state;
+  CalculateAndSave(e){    
+    let oState = this.state;
     this.parseInput(oState);        
+  }
+  
+  onChangeString(e){
+    e.preventDefault();
+    let oState = this.state;        
+    
+    oState.scopeData.map( (d, index_) =>{
+      if(e.target.id === d.symbol ){
+        oState.scopeData[index_].value_string = e.target.value;               
+        console.log(oState.scopeData[index_].symbol,oState.scopeData[index_].value_string);
+      }
+      return d;
+    });
+    
+    this.setState(oState); 
   }
 
   onChange(e){
@@ -193,20 +226,22 @@ class GridForm extends React.Component {
     let index=0;
     let scopeData_ = {};
     
-
     this.state.scopeData.map( (d, index_) =>{
       if(e.target.id === d.symbol ){
         index = index_;
       }
       return d;
     });
-
+    let round = this.state.scopeData[index].step*10000;
+    
+    if(round){}else{ round = 100; }
     scopeData_ = this.state.scopeData[index];
-    scopeData_.value = Math.round(e.target.value*100)/100;    
+    scopeData_.value = Math.round(e.target.value*100)/100;        
 
     oState.scopeData[index] = scopeData_;
     this.setState(oState);
   }
+
   render() {                          
       return <div> 
       {this.state.scopeData ? this.drawTable() : null} 

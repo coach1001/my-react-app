@@ -129,7 +129,8 @@ class GridForm extends React.Component {
     oState.scopeData.data.map( (d,index)=>{      
       oState.scopeData.data[index].value = scope[d.token];
       return d;
-    });        
+    });
+            
     this.saveData(oState);
   }
   

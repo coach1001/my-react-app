@@ -22,11 +22,12 @@ class MethodEdit extends Component {
     return <div className="container">
       <span style={{fontSize: '2em', cursor: 'pointer'}}>
       <FaArrowCircleLeft  onClick={this.goBack.bind(this)}  className="text-info" size="2em"/>
+      &nbsp;{this.props.sample.sample} - Method {this.props.params.methodCode}
       </span>        
       {this.props.sampleVariables.length > 0 && Object.keys(this.props.sampleMethod).length > 0 && Object.keys(this.props.sample).length > 0 ?        
         <div>
-          <h2 style={{marginTop: '0'}}>Data Entry</h2>
-          <h4>{this.props.sample.sample} - Method {this.props.params.methodCode} </h4>
+          {/*<h2 style={{marginTop: '0'}}>Data Entry</h2>*/}
+          <h4> </h4>
           <GridForm style={{width: '90vh'}} sampleMethod={this.props.sampleMethod} scopeData={this.props.sampleVariables} sampleId={parseInt(this.props.params.sampleId,10)} methodCode={this.props.params.methodCode}/> 
         </div>
         : null}

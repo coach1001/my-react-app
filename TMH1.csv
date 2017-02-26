@@ -1,303 +1,393 @@
-"symbol","label","description","unit","input_type","formula","calculation_order"
-"gr_co","Created On",,"datetime","na",,
-"gr_cb","Created By",,"number","na",,
-"gr_cho","Checked On",,"datetime","na",,
-"gr_chb","Checked By",,"number","na",,
-"gr_ao","Approved On",,"datetime","na",,
-"gr_ab","Approved By",,"number","na",,
-"gr_dm","Dry Mass","sample mass","grams","in",,
-"gr_is","Initial Sieve","< 0.425 mm","grams","in",,
-"gr_wa","Washed","< 0.425 mm","grams","in",,
-"gr_fi","Final","< 0.425 mm","grams","in",,
-"gr_mr1","Mass Retained 1","105 mm","grams","in",,
-"gr_mr2","Mass Retained 2","75 mm","grams","in",,
-"gr_mr3","Mass Retained 3","63 mm","grams","in",,
-"gr_mr4","Mass Retained 4","53 mm","grams","in",,
-"gr_mr5","Mass Retained 5","37.5 mm","grams","in",,
-"gr_mr6","Mass Retained 6","26.5 mm","grams","in",,
-"gr_mr7","Mass Retained 7","19 mm","grams","in",,
-"gr_mr8","Mass Retained 8","13.2 mm","grams","in",,
-"gr_mr9","Mass Retained 9","4.75 mm","grams","in",,
-"gr_mr10","Mass Retained 10","2.0 mm","grams","in",,
-"gr_mr11","Mass Retained 11","0.425 mm","grams","in",,
-"gr_mp_tot","Mass Passing Total","< 0.425 mm","grams","calc","gr_is+gr_wa+gr_fi",101
-"gr_dm_calc","Dry Mass Calculated","sample mass","grams","calc","gr_mr1+gr_mr+gr_mr3+gr_mr4+gr_mr5+gr_mr6+gr_mr7+gr_mr8+gr_mr9+gr_m10+gr_m11+gr_mp_tot",102
-"gr_pr1","Percentage Retained 1","105 mm","%","calc","(gr_mr1/gr_dm_calc)*100",103
-"gr_pr2","Percentage Retained 2","75 mm","%","calc","(gr_mr2/gr_dm_calc)*100",104
-"gr_pr3","Percentage Retained 3","63 mm","%","calc","(gr_mr3/gr_dm_calc)*100",105
-"gr_pr4","Percentage Retained 4","53 mm","%","calc","(gr_mr4/gr_dm_calc)*100",106
-"gr_pr5","Percentage Retained 5","37.5 mm","%","calc","(gr_mr5/gr_dm_calc)*100",107
-"gr_pr6","Percentage Retained 6","26.5 mm","%","calc","(gr_mr6/gr_dm_calc)*100",108
-"gr_pr7","Percentage Retained 7","19 mm","%","calc","(gr_mr7/gr_dm_calc)*100",109
-"gr_pr8","Percentage Retained 8","13.2 mm","%","calc","(gr_mr8/gr_dm_calc)*100",110
-"gr_pr9","Percentage Retained 9","4.75 mm","%","calc","(gr_mr9/gr_dm_calc)*100",111
-"gr_pr10","Percentage Retained 10","2.0 mm","%","calc","(gr_mr10/gr_dm_calc)*100",112
-"gr_pr11","Percentage Retained 11","0.425 mm","%","calc","(gr_mr11/gr_dm_calc)*100",113
-"gr_pr_total","Percentage Retained Total","< 0.425 mm","%","calc","(gr_mp_tot/gr_dm_calc)*100",114
-"gr_cpp1","Cumulative Percentage Passing 1","105 mm","%","calc","100-gr_pr1",115
-"gr_cpp2","Cumulative Percentage Passing 2","75 mm","%","calc","gr_cpp1-gr_pr2",116
-"gr_cpp3","Cumulative Percentage Passing 3","63 mm","%","calc","gr_cpp2-gr_pr3",117
-"gr_cpp4","Cumulative Percentage Passing 4","53 mm","%","calc","gr_cpp3-gr_pr4",118
-"gr_cpp5","Cumulative Percentage Passing 5","37.5 mm","%","calc","gr_cpp4-gr_pr5",119
-"gr_cpp6","Cumulative Percentage Passing 6","26.5 mm","%","calc","gr_cpp5-gr_pr6",120
-"gr_cpp7","Cumulative Percentage Passing 7","19 mm","%","calc","gr_cpp6-gr_pr7",121
-"gr_cpp8","Cumulative Percentage Passing 8","13.2 mm","%","calc","gr_cpp7-gr_pr8",122
-"gr_cpp9","Cumulative Percentage Passing 9","4.75 mm","%","calc","gr_cpp8-gr_pr9",123
-"gr_cpp10","Cumulative Percentage Passing 10","2.0 mm","%","calc","gr_cpp9-gr_pr10",124
-"gr_cpp11","Cumulative Percentage Passing 11","0.425 mm","%","calc","gr_cpp10-gr_pr11",125
-"ll_co","Created On",,"datetime","na",,
-"ll_cb","Created By",,"number","na",,
-"ll_cho","Checked On",,"datetime","na",,
-"ll_chb","Checked By",,"number","na",,
-"ll_ao","Approved On",,"datetime","na",,
-"ll_ab","Approved By",,"number","na",,
-"ll_nop","Number of Points",,"number","in",,
-"ll_pn1","Pan Number",,"number","in",,
-"ll_bl1","blows",,"number","in",,
-"ll_wm1","Wet Mass",,"grams","in",,
-"ll_dm1","Dry Mass",,"grams","in",,
-"ll_pm1","Pan Mass",,"grams","in",,
-"ll_ll1","Liquid Limit",,"%","calc","((100*(ll_wm1-ll_dm1))/(ll_dm1-ll_pm1))*( (ll_bl1/25)^0.12)",200
-"ll_pn2","Pan Number",,"number","in",,
-"ll_bl2","blows",,"number","in",,
-"ll_wm2","Wet Mass",,"grams","in",,
-"ll_dm2","Dry Mass",,"grams","in",,
-"ll_pm2","Pan Mass",,"grams","in",,
-"ll_ll2","Liquid Limit",,"%","calc","((100*(ll_wm2-ll_dm2))/(ll_dm2-ll_pm2))*( (ll_bl2/25)^0.12)",201
-"ll_pn3","Pan Number",,"number","in",,
-"ll_bl3","blows",,"number","in",,
-"ll_wm3","Wet Mass",,"grams","in",,
-"ll_dm3","Dry Mass",,"grams","in",,
-"ll_pm3","Pan Mass",,"grams","in",,
-"ll_ll3","Liquid Limit",,"%","calc","((100*(ll_wm3-ll_dm3))/(ll_dm3-ll_pm3))*( (ll_bl3/25)^0.12)",202
-"ll_avg","Liquid Limit Average",,"%","calc","(ll_ll1+ll_ll2+ll_ll3)/ll_nop",203
-"pl_co","Created On",,"datetime","na",,
-"pl_cb","Created By",,"number","na",,
-"pl_cho","Checked On",,"datetime","na",,
-"pl_chb","Checked By",,"number","na",,
-"pl_ao","Approved On",,"datetime","na",,
-"pl_ab","Approved By",,"number","na",,
-"pl_nop","Number of Points",,"number","in",,
-"pl_pn1","Pan Number",,"number","in",,
-"pl_wm1","Wet Mass",,"grams","in",,
-"pl_dm1","Dry Mass",,"grams","in",,
-"pl_pm1","Pan Mass",,"grams","in",,
-"pl_pl1","Plastic Limit",,"%","calc","((100*(pl_wm1-pl_dm1))/(pl_dm1-pl_pm1))",300
-"pl_pn2","Pan Number",,"number","in",,
-"pl_wm2","Wet Mass",,"grams","in",,
-"pl_dm2","Dry Mass",,"grams","in",,
-"pl_pm2","Pan Mass",,"grams","in",,
-"pl_pl2","Plastic Limit",,"%","calc","((100*(pl_wm2-pl_dm2))/(pl_dm-pl_pm2))",301
-"pl_pn3","Pan Number",,"number","in",,
-"pl_wm3","Wet Mass",,"grams","in",,
-"pl_dm3","Dry Mass",,"grams","in",,
-"pl_pm3","Pan Mass",,"grams","in",,
-"pl_pl3","Plastic Limit",,"%","calc","((100*(pl_wm3-pl_dm3))/(pl_dm-pl_pm3))",302
-"pl_avg","Plastic Limit Average",,"%","calc","(pl_pl1+pl_pl2+pl_pl3)/pl_nop",303
-"pl_pi","Plasticity Index",,"index","calc","ll_avg-pl_avg",304
-"ls_co","Created On",,"datetime","na",,
-"ls_cb","Created By",,"number","na",,
-"ls_cho","Checked On",,"datetime","na",,
-"ls_chb","Checked By",,"number","na",,
-"ls_ao","Approved On",,"datetime","na",,
-"ls_ab","Approved By",,"number","na",,
-"ls_tn","Trough Number",,"number","in",,
-"ls_bl","Blows",,"number","in",,
-"ls_ls","Linear Shrinkage",,"mm","in",,
-"ls_pls","Percentage Linear Shrinkage",,"%","calc","( (150-ls_ls)*(100/150) )*( 0.8/(1-0.008*ls_bl))",400
-"sm_co","Created On",,"datetime","na",,
-"sm_cb","Created By",,"number","na",,
-"sm_cho","Checked On",,"datetime","na",,
-"sm_chb","Checked By",,"number","na",,
-"sm_ao","Approved On",,"datetime","na",,
-"sm_ab","Approved By",,"number","na",,
-"sm_ism","Initial Sample Mass",,"grams","in",,
-"sm_mr10","Mass Retained","0.075 mm","grams","in",,
-"sm_pr10","Percentage Retained","0.075 mm","%","calc","(sm_mr10/sm_ism)*100",500
-"sm_pp10","Percentage Passing","0.075 mm","%","calc","gr_pr_tot*((sm_ism-sm_mr10)/sm_ism)",501
-"sm_fcs","Fraction Coarse Sand","Soil Mortar","%","calc","gr_cpp9-gr_pr10",502
-"sm_ffs","Fraction Fine Sand","Soil Mortar","%","calc","gr_cpp10-gr_pr11",503
-"sm_fm","Fraction","0.075 mm","%","calc","sm_pp10",504
-"sm_pcs","Percentage Coarse Sand","Soil Mortar","%","calc","(sm_fcs*100)/(sm_fcs+sm_ffs+sm_fm)",505
-"sm_pfs","Percentage Fine Sand","Soil Mortar","%","calc","(sm_ffs*100)/(sm_fcs+sm_ffs+sm_fm)",506
-"sm_pfm","Percentage","0.075 mm","%","calc","(sm_fm*100)/(sm_fcs+sm_ffs+sm_fm)",507
-"hd_co","Created On",,"datetime","na",,
-"hd_cb","Created By",,"number","na",,
-"hd_cho","Checked On",,"datetime","na",,
-"hd_chb","Checked By",,"number","na",,
-"hd_ao","Approved On",,"datetime","na",,
-"hd_ab","Approved By",,"number","na",,
-"hd_im","Input Mass",,"grams","in",,
-"hd_tmp1","Temperature Before",,"celcius","in",,
-"hd_18","Reading ","18 seconds",,"in",,
-"hd_40","Reading ","40 seconds",,"in",,
-"hd_tmp2","Temperature After",,"celcius","in",,
-"hd_3600","Reading ","3600 seconds",,"in",,
-"hd_c18","Corrected Reading ","18 seconds",,"calc","(hd_18*0.358-7.162)",600
-"hd_c40","Corrected Reading ","40 seconds",,"calc","(hd_40*0.358-7.162)",601
-"hd_c3600","Corrected Reading ","3600 seconds",,"calc","(hd_3600*0.358-7.162)",607
-"mdd_co","Created On",,"datetime","na",,
-"mdd_cb","Created By",,"number","na",,
-"mdd_cho","Checked On",,"datetime","na",,
-"mdd_chb","Checked By",,"number","na",,
-"mdd_ao","Approved On",,"datetime","na",,
-"mdd_ab","Approved By",,"number","na",,
-"mdd_sm1","Sample Mass",,"grams","in",,
-"mdd_pa1","Percentage Added",,"%","in",,
-"mdd_wa1","Water Added",,"ml","in",,
-"mdd_mn1","Mould Number",,"number","in",,
-"mdd_mm1","Mould Mass",,"grams","in",,
-"mdd_mv1","Mould Volume",,"ml^3","in",,
-"mdd_mwm1","Mould Plus Wet Mass",,"grams","in",,
-"mdd_wd1","Wet Density",,"kg/m^3","calc","((mdd_mwm1-mdd_mm1)/mdd_mv1)*1000",700
-"mdd_edd1","Estimated Dry Density",,"kg/m^3","calc","(mdd_wd1/(1+(mdd_pa1/100)))",701
-"mdd_pn1","Pan Number",,"number","in",,
-"mdd_pwmp1","Pan Wet Mass Plus Pan",,"grams","in",,
-"mdd_pdmp1","Pan Dry Mass Plus Pan",,"grams","in",,
-"mdd_pm1","Pan Mass",,"grams","in",,
-"mdd_amc1","Actual Moisture Content",,"%","calc","((mdd_pwmp1-mdd_pdmp1)*100)/(mdd_pdmp1-mdd_pm1)",703
-"mdd_add1","Actual Dry Density",,"kg/m^3","calc","(mdd_wd1/(1+(mdd_amc1/100)))",704
-"mdd_hm1","Hydroscopic Moisture",,"%","calc","mdd_amc1-mdd_pa1",705
-"mdd_sm2","Sample Mass",,"grams","in",,
-"mdd_pa2","Percentage Added",,"%","in",,
-"mdd_wa2","Water Added",,"ml","in",,
-"mdd_mn2","Mould Number",,"number","in",,
-"mdd_mm2","Mould Mass",,"grams","in",,
-"mdd_mv2","Mould Volume",,"ml^3","in",,
-"mdd_mwm2","Mould Plus Wet Mass",,"grams","in",,
-"mdd_wd2","Wet Density",,"kg/m^3","calc","((mdd_mwm2-mdd_mm2)/mdd_mv2)*1000",706
-"mdd_edd2","Estimated Dry Density",,"kg/m^3","calc","(mdd_wd2/(2+(mdd_pa2/100)))",707
-"mdd_pn2","Pan Number",,"number","in",,
-"mdd_pwmp2","Pan Wet Mass Plus Pan",,"grams","in",,
-"mdd_pdmp2","Pan Dry Mass Plus Pan",,"grams","in",,
-"mdd_pm2","Pan Mass",,"grams","in",,
-"mdd_amc2","Actual Moisture Content",,"%","calc","((mdd_pwmp2-mdd_pdmp2)*100)/(mdd_pdmp2-mdd_pm2)",708
-"mdd_add2","Actual Dry Density",,"kg/m^3","calc","(mdd_wd2/(2+(mdd_amc2/100)))",709
-"mdd_hm2","Hydroscopic Moisture",,"%","calc","mdd_amc2-mdd_pa2",710
-"mdd_sm3","Sample Mass",,"grams","in",,
-"mdd_pa3","Percentage Added",,"%","in",,
-"mdd_wa3","Water Added",,"ml","in",,
-"mdd_mn3","Mould Number",,"number","in",,
-"mdd_mm3","Mould Mass",,"grams","in",,
-"mdd_mv3","Mould Volume",,"ml^3","in",,
-"mdd_mwm3","Mould Plus Wet Mass",,"grams","in",,
-"mdd_wd3","Wet Density",,"kg/m^3","calc","((mdd_mwm3-mdd_mm3)/mdd_mv3)*1000",711
-"mdd_edd3","Estimated Dry Density",,"kg/m^3","calc","(mdd_wd3/(3+(mdd_pa3/100)))",712
-"mdd_pn3","Pan Number",,"number","in",,
-"mdd_pwmp3","Pan Wet Mass Plus Pan",,"grams","in",,
-"mdd_pdmp3","Pan Dry Mass Plus Pan",,"grams","in",,
-"mdd_pm3","Pan Mass",,"grams","in",,
-"mdd_amc3","Actual Moisture Content",,"%","calc","((mdd_pwmp3-mdd_pdmp3)*100)/(mdd_pdmp3-mdd_pm3)",713
-"mdd_add3","Actual Dry Density",,"kg/m^3","calc","(mdd_wd3/(3+(mdd_amc3/100)))",714
-"mdd_hm3","Hydroscopic Moisture",,"%","calc","mdd_amc3-mdd_pa3",715
-"mdd_sm4","Sample Mass",,"grams","in",,
-"mdd_pa4","Percentage Added",,"%","in",,
-"mdd_wa4","Water Added",,"ml","in",,
-"mdd_mn4","Mould Number",,"number","in",,
-"mdd_mm4","Mould Mass",,"grams","in",,
-"mdd_mv4","Mould Volume",,"ml^3","in",,
-"mdd_mwm4","Mould Plus Wet Mass",,"grams","in",,
-"mdd_wd4","Wet Density",,"kg/m^3","calc","((mdd_mwm4-mdd_mm4)/mdd_mv4)*1000",716
-"mdd_edd4","Estimated Dry Density",,"kg/m^3","calc","(mdd_wd4/(4+(mdd_pa4/100)))",717
-"mdd_pn4","Pan Number",,"number","in",,
-"mdd_pwmp4","Pan Wet Mass Plus Pan",,"grams","in",,
-"mdd_pdmp4","Pan Dry Mass Plus Pan",,"grams","in",,
-"mdd_pm4","Pan Mass",,"grams","in",,
-"mdd_amc4","Actual Moisture Content",,"%","calc","((mdd_pwmp4-mdd_pdmp4)*100)/(mdd_pdmp4-mdd_pm4)",718
-"mdd_add4","Actual Dry Density",,"kg/m^3","calc","(mdd_wd4/(4+(mdd_amc4/100)))",719
-"mdd_hm4","Hydroscopic Moisture",,"%","calc","mdd_amc4-mdd_pa4",720
-"mdd_sm5","Sample Mass",,"grams","in",,
-"mdd_pa5","Percentage Added",,"%","in",,
-"mdd_wa5","Water Added",,"ml","in",,
-"mdd_mn5","Mould Number",,"number","in",,
-"mdd_mm5","Mould Mass",,"grams","in",,
-"mdd_mv5","Mould Volume",,"ml^3","in",,
-"mdd_mwm5","Mould Plus Wet Mass",,"grams","in",,
-"mdd_wd5","Wet Density",,"kg/m^3","calc","((mdd_mwm5-mdd_mm5)/mdd_mv5)*1000",721
-"mdd_edd5","Estimated Dry Density",,"kg/m^3","calc","(mdd_wd5/(5+(mdd_pa5/100)))",722
-"mdd_pn5","Pan Number",,"number","in",,
-"mdd_pwmp5","Pan Wet Mass Plus Pan",,"grams","in",,
-"mdd_pdmp5","Pan Dry Mass Plus Pan",,"grams","in",,
-"mdd_pm5","Pan Mass",,"grams","in",,
-"mdd_amc5","Actual Moisture Content",,"%","calc","((mdd_pwmp5-mdd_pdmp5)*100)/(mdd_pdmp5-mdd_pm5)",722
-"mdd_add5","Actual Dry Density",,"kg/m^3","calc","(mdd_wd5/(5+(mdd_amc5/100)))",723
-"mdd_hm5","Hydroscopic Moisture",,"%","calc","mdd_amc5-mdd_pa5",724
-"cbr_co","Created On",,"datetime","na",,
-"cbr_cb","Created By",,"number","na",,
-"cbr_cho","Checked On",,"datetime","na",,
-"cbr_chb","Checked By",,"number","na",,
-"cbr_ao","Approved On",,"datetime","na",,
-"cbr_ab","Approved By",,"number","na",,
-"mdd_mdd","Maximum Dry Density",,"kg/m^3","in",,
-"mdd_omc","Optimum Moisture Content",,"%","in",,
-"cbr_nop","Number Of Pans",,"number","in",,
-"cbr_pn_1","Pan Number",,"number","in",,
-"cbr_idmp1","Initial Dry Mass Plus Pan",,"grams","in",,
-"cbr_fdmp1","Final Dry Mass Plus Pan",,"grams","in",,
-"cbr_mp1","Mass Pan",,"grams","in",,
-"cbr_mch1","Moisture Content Hygro",,"%","calc","((cbr_idmp1-cbr_fdmp1)*100)/(cbr_fdmp1-cbr_mp1)",800
-"cbr_pn_2","Pan Number",,"number","in",,
-"cbr_idmp2","Initial Dry Mass Plus Pan",,"grams","in",,
-"cbr_fdmp2","Final Dry Mass Plus Pan",,"grams","in",,
-"cbr_mp2","Mass Pan",,"grams","in",,
-"cbr_mch2","Moisture Content Hygro",,"%","calc","((cbr_idmp2-cbr_fdmp2)*100)/(cbr_fdmp2-cbr_mp2)",801
-"cbr_pn_3","Pan Number",,"number","in",,
-"cbr_idmp3","Initial Dry Mass Plus Pan",,"grams","in",,
-"cbr_fdmp3","Final Dry Mass Plus Pan",,"grams","in",,
-"cbr_mp3","Mass Pan",,"grams","in",,
-"cbr_mch3","Moisture Content Hygro",,"%","calc","((cbr_idmp3-cbr_fdmp3)*100)/(cbr_fdmp3-cbr_mp3)",802
-"cbr_mcha","Moisture Content Hygro Average",,"%","calc","(cbr_mch1+cbr_mch2+cbr_mch3)/cbr_nop",803
-"cbr_sm1","Sample Mass",,"grams","in",,
-"cbr_pa1","Percentage Added",,"%","calc","((mdd_omc-cbr_mcha)*cbr_sm1)/(100+cbr_mcha)",804
-"cbr_wa1","Water Added",,"ml","in",,
-"cbr_mn1","Mould Number",,"number","in",,
-"cbr_mm1","Mould Mass",,"grams","in",,
-"cbr_mv1","Mould Volume",,"ml^3","in",,
-"cbr_mwm1","Mould Plus Wet Mass",,"grams","in",,
-"cbr_wd1","Wet Density",,"kg/m^3","calc","((cbr_mwm1-cbr_mm1)/cbr_mv1)*1000",805
-"cbr_edd1","Estimated Dry Density",,"kg/m^3","calc","(cbr_wd1/(1+(cbr_pa1/100)))",806
-"cbr_pn1","Pan Number",,"number","in",,
-"cbr_pwmp1","Pan Wet Mass Plus Pan",,"grams","in",,
-"cbr_pdmp1","Pan Dry Mass Plus Pan",,"grams","in",,
-"cbr_pm1","Pan Mass",,"grams","in",,
-"cbr_amc1","Actual Moisture Content",,"%","calc","((cbr_pwmp1-cbr_pdmp1)*100)/(cbr_pdmp1-cbr_pm1)",807
-"cbr_add1","Actual Dry Density",,"kg/m^3","calc","(cbr_wd1/(1+(cbr_amc1/100)))",808
-"cbr_mmx1","Mod Maximum",,"%","calc","(cbr_add1*100)/mdd_mdd",
-"cbr_hm1","Hydroscopic Moisture",,"%","calc","cbr_amc1-cbr_pa1",809
-"cbr_sm2","Sample Mass",,"grams","in",,
-"cbr_pa2","Percentage Added",,"%","calc","((mdd_omc-cbr_mcha)*cbr_sm2)/(100+cbr_mcha)",
-"cbr_wa2","Water Added",,"ml","in",,
-"cbr_mn2","Mould Number",,"number","in",,
-"cbr_mm2","Mould Mass",,"grams","in",,
-"cbr_mv2","Mould Volume",,"ml^3","in",,
-"cbr_mwm2","Mould Plus Wet Mass",,"grams","in",,
-"cbr_wd2","Wet Density",,"kg/m^3","calc","((cbr_mwm2-cbr_mm2)/cbr_mv2)*1000",810
-"cbr_edd2","Estimated Dry Density",,"kg/m^3","calc","(cbr_wd2/(2+(cbr_pa2/100)))",811
-"cbr_pn2","Pan Number",,"number","in",,
-"cbr_pwmp2","Pan Wet Mass Plus Pan",,"grams","in",,
-"cbr_pdmp2","Pan Dry Mass Plus Pan",,"grams","in",,
-"cbr_pm2","Pan Mass",,"grams","in",,
-"cbr_amc2","Actual Moisture Content",,"%","calc","((cbr_pwmp2-cbr_pdmp2)*100)/(cbr_pdmp2-cbr_pm2)",812
-"cbr_add2","Actual Dry Density",,"kg/m^3","calc","(cbr_wd2/(2+(cbr_amc2/100)))",813
-"cbr_imx1","Int Maximum",,"%","calc","(cbr_add2*100)/mdd_mdd",814
-"cbr_hm2","Hydroscopic Moisture",,"%","calc","cbr_amc2-cbr_pa2",815
-"cbr_sm3","Sample Mass",,"grams","in",,
-"cbr_pa3","Percentage Added",,"%","calc","((mdd_omc-cbr_mcha)*cbr_sm3)/(100+cbr_mcha)",816
-"cbr_wa3","Water Added",,"ml","in",,
-"cbr_mn3","Mould Number",,"number","in",,
-"cbr_mm3","Mould Mass",,"grams","in",,
-"cbr_mv3","Mould Volume",,"ml^3","in",,
-"cbr_mwm3","Mould Plus Wet Mass",,"grams","in",,
-"cbr_wd3","Wet Density",,"kg/m^3","calc","((cbr_mwm3-cbr_mm3)/cbr_mv3)*1000",817
-"cbr_edd3","Estimated Dry Density",,"kg/m^3","calc","(cbr_wd3/(3+(cbr_pa3/100)))",818
-"cbr_pn3","Pan Number",,"number","in",,
-"cbr_pwmp3","Pan Wet Mass Plus Pan",,"grams","in",,
-"cbr_pdmp3","Pan Dry Mass Plus Pan",,"grams","in",,
-"cbr_pm3","Pan Mass",,"grams","in",,
-"cbr_amc3","Actual Moisture Content",,"%","calc","((cbr_pwmp3-cbr_pdmp3)*100)/(cbr_pdmp3-cbr_pm3)",819
-"cbr_add3","Actual Dry Density",,"kg/m^3","calc","(cbr_wd3/(3+(cbr_amc3/100)))",820
-"cbr_pmx1","Proc Maximum",,"%","calc","(cbr_add3*100)/mdd_mdd",821
-"cbr_hm3","Hydroscopic Moisture",,"%","calc","cbr_amc3-cbr_pa3",822
-"cbr_si","Swell Initial Reading",,"mm","in",,
-"cbr_sf","Swell Final Reading",,"mm","in",,
-"cbr_ps","Percentage Swelll",,"%","calc","((cbr_sf-si)*100)/127",823
+symbol,label,description,unit,input_type,default_value,minimum,maximum,formula,calculation_order,step
+gr_co,Created On,,datetime,na,,,,,,1
+gr_cb,Created By,,number,na,,,,,,1
+gr_cho,Checked On,,datetime,na,,,,,,1
+gr_chb,Checked By,,number,na,,,,,,1
+gr_ao,Approved On,,datetime,na,,,,,,1
+gr_ab,Approved By,,number,na,,,,,,1
+gr_tsm,Total Sample Mass,,grams,in,,,,,,
+gr_tp19,Total Passing 19mm Sieve,,grams,in,,,,,,
+gr_rfp19,Riffled Fraction Passing 19mm Sieve,,grams,in,,,,,,
+gr_rf,Reduction factor,,factor,calc,1,1,10,gr_rfp19/gr_tp19,101,
+gr_dm,Dry Mass,sample mass,grams,in,,,,,,
+gr_is,Initial Sieve,< 0.425 mm,grams,in,,,,,,
+gr_wa,Washed,< 0.425 mm,grams,in,,,,,,
+gr_fi,Final,< 0.425 mm,grams,in,,,,,,
+gr_mr1,Mass Retained 1,105 mm,grams,in,,,,,,
+gr_mr2,Mass Retained 2,75 mm,grams,in,,,,,,
+gr_mr3,Mass Retained 3,63 mm,grams,in,,,,,,
+gr_mr4,Mass Retained 4,53 mm,grams,in,,,,,,
+gr_mr5,Mass Retained 5,37.5 mm,grams,in,,,,,,
+gr_mr6,Mass Retained 6,26.5 mm,grams,in,,,,,,
+gr_mr7,Mass Retained 7,19 mm,grams,in,,,,,,
+gr_mr1r,Mass Retained 1 Reduced,105 mm,grams,calc,,,,gr_mr1*gr_rf,102,
+gr_mr2r,Mass Retained 2  Reduced,75 mm,grams,calc,,,,gr_mr2*gr_rf,103,
+gr_mr3r,Mass Retained 3  Reduced,63 mm,grams,calc,,,,gr_mr3*gr_rf,104,
+gr_mr4r,Mass Retained 4 Reduced,53 mm,grams,calc,,,,gr_mr4*gr_rf,105,
+gr_mr5r,Mass Retained 5 Reduced,37.5 mm,grams,calc,,,,gr_mr5*gr_rf,106,
+gr_mr6r,Mass Retained 6  Reduced,26.5 mm,grams,calc,,,,gr_mr6*gr_rf,107,
+gr_mr7r,Mass Retained 7  Reduced,19 mm,grams,calc,,,,gr_mr7*gr_rf,108,
+gr_mr8,Mass Retained 8,13.2 mm,grams,in,,,,,,
+gr_mr9,Mass Retained 9,4.75 mm,grams,in,,,,,,
+gr_mr10,Mass Retained 10,2.0 mm,grams,in,,,,,,
+gr_mr11,Mass Retained 11,0.425 mm,grams,in,,,,,,
+gr_mp_tot,Mass Passing Total,< 0.425 mm,grams,calc,,,,gr_is+gr_wa+gr_fi,109,
+gr_dm_calc,Dry Mass Calculated,sample mass,grams,calc,,,,gr_mr1r+gr_mr2r+gr_mr3r+gr_mr4r+gr_mr5r+gr_mr6r+gr_mr7r+gr_mr8+gr_mr9+gr_m10+gr_m11+gr_mp_tot,110,
+gr_pr1,Percentage Retained 1,105 mm,%,calc,,,,(gr_mr1r/gr_dm_calc)*100,111,
+gr_pr2,Percentage Retained 2,75 mm,%,calc,,,,(gr_mr2r/gr_dm_calc)*100,112,
+gr_pr3,Percentage Retained 3,63 mm,%,calc,,,,(gr_mr3r/gr_dm_calc)*100,113,
+gr_pr4,Percentage Retained 4,53 mm,%,calc,,,,(gr_mr4r/gr_dm_calc)*100,114,
+gr_pr5,Percentage Retained 5,37.5 mm,%,calc,,,,(gr_mr5r/gr_dm_calc)*100,115,
+gr_pr6,Percentage Retained 6,26.5 mm,%,calc,,,,(gr_mr6r/gr_dm_calc)*100,116,
+gr_pr7,Percentage Retained 7,19 mm,%,calc,,,,(gr_mr7r/gr_dm_calc)*100,117,
+gr_pr8,Percentage Retained 8,13.2 mm,%,calc,,,,(gr_mr8/gr_dm_calc)*100,118,
+gr_pr9,Percentage Retained 9,4.75 mm,%,calc,,,,(gr_mr9/gr_dm_calc)*100,119,
+gr_pr10,Percentage Retained 10,2.0 mm,%,calc,,,,(gr_mr10/gr_dm_calc)*100,120,
+gr_pr11,Percentage Retained 11,0.425 mm,%,calc,,,,(gr_mr11/gr_dm_calc)*100,121,
+gr_pr_total,Percentage Retained Total,< 0.425 mm,%,calc,,,,(gr_mp_tot/gr_dm_calc)*100,122,
+gr_cpp1,Cumulative Percentage Passing 1,105 mm,%,calc,,,,100-gr_pr1,123,
+gr_cpp2,Cumulative Percentage Passing 2,75 mm,%,calc,,,,gr_cpp1-gr_pr2,124,
+gr_cpp3,Cumulative Percentage Passing 3,63 mm,%,calc,,,,gr_cpp2-gr_pr3,125,
+gr_cpp4,Cumulative Percentage Passing 4,53 mm,%,calc,,,,gr_cpp3-gr_pr4,126,
+gr_cpp5,Cumulative Percentage Passing 5,37.5 mm,%,calc,,,,gr_cpp4-gr_pr5,127,
+gr_cpp6,Cumulative Percentage Passing 6,26.5 mm,%,calc,,,,gr_cpp5-gr_pr6,128,
+gr_cpp7,Cumulative Percentage Passing 7,19 mm,%,calc,,,,gr_cpp6-gr_pr7,129,
+gr_cpp8,Cumulative Percentage Passing 8,13.2 mm,%,calc,,,,gr_cpp7-gr_pr8,130,
+gr_cpp9,Cumulative Percentage Passing 9,4.75 mm,%,calc,,,,gr_cpp8-gr_pr9,131,
+gr_cpp10,Cumulative Percentage Passing 10,2.0 mm,%,calc,,,,gr_cpp9-gr_pr10,132,
+gr_cpp11,Cumulative Percentage Passing 11,0.425 mm,%,calc,,,,gr_cpp10-gr_pr11,133,
+ll_co,Created On,,datetime,na,,,,,,1
+ll_cb,Created By,,number,na,,,,,,1
+ll_cho,Checked On,,datetime,na,,,,,,1
+ll_chb,Checked By,,number,na,,,,,,1
+ll_ao,Approved On,,datetime,na,,,,,,1
+ll_ab,Approved By,,number,na,,,,,,1
+ll_nop,Number of Points,,number,in,1,1,3,,,1
+ll_pn1,Pan Number,,string,in,,,,,,
+ll_bl1,Blows,,number,in,0,,,,,1
+ll_wm1,Wet Mass,,grams,in,,,,,,
+ll_dm1,Dry Mass,,grams,in,,,,,,
+ll_pm1,Pan Mass,,grams,in,,,,,,
+ll_ll1,Liquid Limit,,%,calc,,,,((100*(ll_wm1-ll_dm1))/(ll_dm1-ll_pm1))*( (ll_bl1/25)^0.12),200,
+ll_pn2,Pan Number,,string,in,,,,,,
+ll_bl2,Blows,,number,in,0,,,,,1
+ll_wm2,Wet Mass,,grams,in,,,,,,
+ll_dm2,Dry Mass,,grams,in,,,,,,
+ll_pm2,Pan Mass,,grams,in,,,,,,
+ll_ll2,Liquid Limit,,%,calc,,,,((100*(ll_wm2-ll_dm2))/(ll_dm2-ll_pm2))*( (ll_bl2/25)^0.12),201,
+ll_pn3,Pan Number,,string,in,,,,,,
+ll_bl3,Blows,,number,in,0,,,,,1
+ll_wm3,Wet Mass,,grams,in,,,,,,
+ll_dm3,Dry Mass,,grams,in,,,,,,
+ll_pm3,Pan Mass,,grams,in,,,,,,
+ll_ll3,Liquid Limit,,%,calc,,,,((100*(ll_wm3-ll_dm3))/(ll_dm3-ll_pm3))*( (ll_bl3/25)^0.12),202,
+ll_avg,Liquid Limit Average,,%,calc,,,,(ll_ll1+ll_ll2+ll_ll3)/ll_nop,203,
+pl_co,Created On,,datetime,na,,,,,,1
+pl_cb,Created By,,number,na,,,,,,1
+pl_cho,Checked On,,datetime,na,,,,,,1
+pl_chb,Checked By,,number,na,,,,,,1
+pl_ao,Approved On,,datetime,na,,,,,,1
+pl_ab,Approved By,,number,na,,,,,,1
+pl_nop,Number of Points,,number,in,1,1,3,,,1
+pl_pn1,Pan Number,,string,in,,,,,,
+pl_wm1,Wet Mass,,grams,in,,,,,,0.01
+pl_dm1,Dry Mass,,grams,in,,,,,,0.01
+pl_pm1,Pan Mass,,grams,in,,,,,,0.01
+pl_pl1,Plastic Limit,,%,calc,,,,((100*(pl_wm1-pl_dm1))/(pl_dm1-pl_pm1)),300,0.01
+pl_pn2,Pan Number,,string,in,,,,,,
+pl_wm2,Wet Mass,,grams,in,,,,,,0.01
+pl_dm2,Dry Mass,,grams,in,,,,,,0.01
+pl_pm2,Pan Mass,,grams,in,,,,,,0.01
+pl_pl2,Plastic Limit,,%,calc,,,,((100*(pl_wm2-pl_dm2))/(pl_dm-pl_pm2)),301,0.01
+pl_pn3,Pan Number,,string,in,,,,,,
+pl_wm3,Wet Mass,,grams,in,,,,,,0.01
+pl_dm3,Dry Mass,,grams,in,,,,,,0.01
+pl_pm3,Pan Mass,,grams,in,,,,,,0.01
+pl_pl3,Plastic Limit,,%,calc,,,,((100*(pl_wm3-pl_dm3))/(pl_dm-pl_pm3)),302,0.01
+pl_avg,Plastic Limit Average,,%,calc,,,,(pl_pl1+pl_pl2+pl_pl3)/pl_nop,303,0.01
+pl_pi,Plasticity Index,,index,calc,,,,ll_avg-pl_avg,304,0.01
+ls_co,Created On,,datetime,na,,,,,,1
+ls_cb,Created By,,number,na,,,,,,1
+ls_cho,Checked On,,datetime,na,,,,,,1
+ls_chb,Checked By,,number,na,,,,,,1
+ls_ao,Approved On,,datetime,na,,,,,,1
+ls_ab,Approved By,,number,na,,,,,,1
+ls_tn,Trough Number,,string,in,,,,,,
+ls_bl,Blows,,number,in,0,,,,,1
+ls_ls,Linear Shrinkage,,mm,in,,,,,,0.01
+ls_pls,Percentage Linear Shrinkage,,%,calc,,,,( (150-ls_ls)*(100/150) )*( 0.8/(1-0.008*ls_bl)),400,0.01
+sm_co,Created On,,datetime,na,,,,,,1
+sm_cb,Created By,,number,na,,,,,,1
+sm_cho,Checked On,,datetime,na,,,,,,1
+sm_chb,Checked By,,number,na,,,,,,1
+sm_ao,Approved On,,datetime,na,,,,,,1
+sm_ab,Approved By,,number,na,,,,,,1
+sm_ism,Initial Sample Mass,,grams,in,100,1,,,,1
+sm_mr10,Mass Retained,0.075 mm,grams,in,,,,,,
+sm_pr10,Percentage Retained,0.075 mm,%,calc,,,,(sm_mr10/sm_ism)*100,500,
+sm_pp10,Percentage Passing,0.075 mm,%,calc,,,,gr_pr_tot*((sm_ism-sm_mr10)/sm_ism),501,
+sm_fcs,Fraction Coarse Sand,Soil Mortar,%,calc,,,,gr_cpp9-gr_pr10,502,
+sm_ffs,Fraction Fine Sand,Soil Mortar,%,calc,,,,gr_cpp10-gr_pr11,503,
+sm_fm,Fraction,0.075 mm,%,calc,,,,sm_pp10,504,
+sm_pcs,Percentage Coarse Sand,Soil Mortar,%,calc,,,,(sm_fcs*100)/(sm_fcs+sm_ffs+sm_fm),505,
+sm_pfs,Percentage Fine Sand,Soil Mortar,%,calc,,,,(sm_ffs*100)/(sm_fcs+sm_ffs+sm_fm),506,
+sm_pfm,Percentage,0.075 mm,%,calc,,,,(sm_fm*100)/(sm_fcs+sm_ffs+sm_fm),507,
+hd_co,Created On,,datetime,na,,,,,,1
+hd_cb,Created By,,number,na,,,,,,1
+hd_cho,Checked On,,datetime,na,,,,,,1
+hd_chb,Checked By,,number,na,,,,,,1
+hd_ao,Approved On,,datetime,na,,,,,,1
+hd_ab,Approved By,,number,na,,,,,,1
+hd_im,Input Mass,,grams,in,,,,,,
+hd_tmp1,Temperature Before,,celcius,in,,,,,,
+hd_18,Reading,18 seconds,,in,,,,,,
+hd_40,Reading,40 seconds,,in,,,,,,
+hd_tmp2,Temperature After,,celcius,in,,,,,,
+hd_3600,Reading,3600 seconds,,in,,,,,,
+hd_c18,Corrected Reading,18 seconds,,calc,,,,(hd_18*0.358-7.162),600,
+hd_c40,Corrected Reading,40 seconds,,calc,,,,(hd_40*0.358-7.162),601,
+hd_c3600,Corrected Reading,3600 seconds,,calc,,,,(hd_3600*0.358-7.162),607,
+mdd_co,Created On,,datetime,na,,,,,,1
+mdd_cb,Created By,,number,na,,,,,,1
+mdd_cho,Checked On,,datetime,na,,,,,,1
+mdd_chb,Checked By,,number,na,,,,,,1
+mdd_ao,Approved On,,datetime,na,,,,,,1
+mdd_ab,Approved By,,number,na,,,,,,1
+mdd_mdd,Maximum Dry Density,,kg/m^3,in,,,,,,
+mdd_omc,Optimum Moisture Content,,%,in,,,,,,
+mdd_sm1,Sample Mass,,grams,in,,,,,,
+mdd_pa1,Percentage Added,,%,in,,,,,,
+mdd_wa1,Water Added,,ml,in,,,,,,
+mdd_mn1,Mould Number,,number,in,,,,,,
+mdd_mm1,Mould Mass,,grams,in,,,,,,
+mdd_mv1,Mould Volume,,ml^3,in,,,,,,
+mdd_mwm1,Mould Plus Wet Mass,,grams,in,,,,,,
+mdd_wd1,Wet Density,,kg/m^3,calc,,,,((mdd_mwm1-mdd_mm1)/mdd_mv1)*1000,700,
+mdd_edd1,Estimated Dry Density,,kg/m^3,calc,,,,(mdd_wd1/(1+(mdd_pa1/100))),701,
+mdd_pn1,Pan Number,,number,in,,,,,,
+mdd_pwmp1,Pan Wet Mass Plus Pan,,grams,in,,,,,,
+mdd_pdmp1,Pan Dry Mass Plus Pan,,grams,in,,,,,,
+mdd_pm1,Pan Mass,,grams,in,,,,,,
+mdd_amc1,Actual Moisture Content,,%,calc,,,,((mdd_pwmp1-mdd_pdmp1)*100)/(mdd_pdmp1-mdd_pm1),703,
+mdd_add1,Actual Dry Density,,kg/m^3,calc,,,,(mdd_wd1/(1+(mdd_amc1/100))),704,
+mdd_hm1,Hydroscopic Moisture,,%,calc,,,,mdd_amc1-mdd_pa1,705,
+mdd_sm2,Sample Mass,,grams,in,,,,,,
+mdd_pa2,Percentage Added,,%,in,,,,,,
+mdd_wa2,Water Added,,ml,in,,,,,,
+mdd_mn2,Mould Number,,number,in,,,,,,
+mdd_mm2,Mould Mass,,grams,in,,,,,,
+mdd_mv2,Mould Volume,,ml^3,in,,,,,,
+mdd_mwm2,Mould Plus Wet Mass,,grams,in,,,,,,
+mdd_wd2,Wet Density,,kg/m^3,calc,,,,((mdd_mwm2-mdd_mm2)/mdd_mv2)*1000,706,
+mdd_edd2,Estimated Dry Density,,kg/m^3,calc,,,,(mdd_wd2/(2+(mdd_pa2/100))),707,
+mdd_pn2,Pan Number,,number,in,,,,,,
+mdd_pwmp2,Pan Wet Mass Plus Pan,,grams,in,,,,,,
+mdd_pdmp2,Pan Dry Mass Plus Pan,,grams,in,,,,,,
+mdd_pm2,Pan Mass,,grams,in,,,,,,
+mdd_amc2,Actual Moisture Content,,%,calc,,,,((mdd_pwmp2-mdd_pdmp2)*100)/(mdd_pdmp2-mdd_pm2),708,
+mdd_add2,Actual Dry Density,,kg/m^3,calc,,,,(mdd_wd2/(2+(mdd_amc2/100))),709,
+mdd_hm2,Hydroscopic Moisture,,%,calc,,,,mdd_amc2-mdd_pa2,710,
+mdd_sm3,Sample Mass,,grams,in,,,,,,
+mdd_pa3,Percentage Added,,%,in,,,,,,
+mdd_wa3,Water Added,,ml,in,,,,,,
+mdd_mn3,Mould Number,,number,in,,,,,,
+mdd_mm3,Mould Mass,,grams,in,,,,,,
+mdd_mv3,Mould Volume,,ml^3,in,,,,,,
+mdd_mwm3,Mould Plus Wet Mass,,grams,in,,,,,,
+mdd_wd3,Wet Density,,kg/m^3,calc,,,,((mdd_mwm3-mdd_mm3)/mdd_mv3)*1000,711,
+mdd_edd3,Estimated Dry Density,,kg/m^3,calc,,,,(mdd_wd3/(3+(mdd_pa3/100))),712,
+mdd_pn3,Pan Number,,number,in,,,,,,
+mdd_pwmp3,Pan Wet Mass Plus Pan,,grams,in,,,,,,
+mdd_pdmp3,Pan Dry Mass Plus Pan,,grams,in,,,,,,
+mdd_pm3,Pan Mass,,grams,in,,,,,,
+mdd_amc3,Actual Moisture Content,,%,calc,,,,((mdd_pwmp3-mdd_pdmp3)*100)/(mdd_pdmp3-mdd_pm3),713,
+mdd_add3,Actual Dry Density,,kg/m^3,calc,,,,(mdd_wd3/(3+(mdd_amc3/100))),714,
+mdd_hm3,Hydroscopic Moisture,,%,calc,,,,mdd_amc3-mdd_pa3,715,
+mdd_sm4,Sample Mass,,grams,in,,,,,,
+mdd_pa4,Percentage Added,,%,in,,,,,,
+mdd_wa4,Water Added,,ml,in,,,,,,
+mdd_mn4,Mould Number,,number,in,,,,,,
+mdd_mm4,Mould Mass,,grams,in,,,,,,
+mdd_mv4,Mould Volume,,ml^3,in,,,,,,
+mdd_mwm4,Mould Plus Wet Mass,,grams,in,,,,,,
+mdd_wd4,Wet Density,,kg/m^3,calc,,,,((mdd_mwm4-mdd_mm4)/mdd_mv4)*1000,716,
+mdd_edd4,Estimated Dry Density,,kg/m^3,calc,,,,(mdd_wd4/(4+(mdd_pa4/100))),717,
+mdd_pn4,Pan Number,,number,in,,,,,,
+mdd_pwmp4,Pan Wet Mass Plus Pan,,grams,in,,,,,,
+mdd_pdmp4,Pan Dry Mass Plus Pan,,grams,in,,,,,,
+mdd_pm4,Pan Mass,,grams,in,,,,,,
+mdd_amc4,Actual Moisture Content,,%,calc,,,,((mdd_pwmp4-mdd_pdmp4)*100)/(mdd_pdmp4-mdd_pm4),718,
+mdd_add4,Actual Dry Density,,kg/m^3,calc,,,,(mdd_wd4/(4+(mdd_amc4/100))),719,
+mdd_hm4,Hydroscopic Moisture,,%,calc,,,,mdd_amc4-mdd_pa4,720,
+mdd_sm5,Sample Mass,,grams,in,,,,,,
+mdd_pa5,Percentage Added,,%,in,,,,,,
+mdd_wa5,Water Added,,ml,in,,,,,,
+mdd_mn5,Mould Number,,number,in,,,,,,
+mdd_mm5,Mould Mass,,grams,in,,,,,,
+mdd_mv5,Mould Volume,,ml^3,in,,,,,,
+mdd_mwm5,Mould Plus Wet Mass,,grams,in,,,,,,
+mdd_wd5,Wet Density,,kg/m^3,calc,,,,((mdd_mwm5-mdd_mm5)/mdd_mv5)*1000,721,
+mdd_edd5,Estimated Dry Density,,kg/m^3,calc,,,,(mdd_wd5/(5+(mdd_pa5/100))),722,
+mdd_pn5,Pan Number,,number,in,,,,,,
+mdd_pwmp5,Pan Wet Mass Plus Pan,,grams,in,,,,,,
+mdd_pdmp5,Pan Dry Mass Plus Pan,,grams,in,,,,,,
+mdd_pm5,Pan Mass,,grams,in,,,,,,
+mdd_amc5,Actual Moisture Content,,%,calc,,,,((mdd_pwmp5-mdd_pdmp5)*100)/(mdd_pdmp5-mdd_pm5),722,
+mdd_add5,Actual Dry Density,,kg/m^3,calc,,,,(mdd_wd5/(5+(mdd_amc5/100))),723,
+mdd_hm5,Hydroscopic Moisture,,%,calc,,,,mdd_amc5-mdd_pa5,724,
+cbr_co,Created On,,datetime,na,,,,,,1
+cbr_cb,Created By,,number,na,,,,,,1
+cbr_cho,Checked On,,datetime,na,,,,,,1
+cbr_chb,Checked By,,number,na,,,,,,1
+cbr_ao,Approved On,,datetime,na,,,,,,1
+cbr_ab,Approved By,,number,na,,,,,,1
+cbr_mdd,Maximum Dry Density,,kg/m^3,in,,,,,,0.01
+cbr_omc,Optimum Moisture Content,,%,in,,,,,,0.01
+cbr_nop,Number Of Pans,,number,in,1,1,3,,,1
+cbr_pn1,Pan Number,,string,in,,,,,,
+cbr_idmp1,Initial Dry Mass Plus Pan,,grams,in,,,,,,
+cbr_fdmp1,Final Dry Mass Plus Pan,,grams,in,,,,,,
+cbr_mp1,Mass Pan,,grams,in,,,,,,
+cbr_mch1,Moisture Content Hygro,,%,calc,,,,((cbr_idmp1-cbr_fdmp1)*100)/(cbr_fdmp1-cbr_mp1),800,
+cbr_pn2,Pan Number,,string,in,,,,,,
+cbr_idmp2,Initial Dry Mass Plus Pan,,grams,in,,,,,,
+cbr_fdmp2,Final Dry Mass Plus Pan,,grams,in,,,,,,
+cbr_mp2,Mass Pan,,grams,in,,,,,,
+cbr_mch2,Moisture Content Hygro,,%,calc,,,,((cbr_idmp2-cbr_fdmp2)*100)/(cbr_fdmp2-cbr_mp2),801,
+cbr_pn3,Pan Number,,string,in,,,,,,
+cbr_idmp3,Initial Dry Mass Plus Pan,,grams,in,,,,,,
+cbr_fdmp3,Final Dry Mass Plus Pan,,grams,in,,,,,,
+cbr_mp3,Mass Pan,,grams,in,,,,,,
+cbr_mch3,Moisture Content Hygro,,%,calc,,,,((cbr_idmp3-cbr_fdmp3)*100)/(cbr_fdmp3-cbr_mp3),802,
+cbr_mcha,Moisture Content Hygro Average,,%,calc,,,,(cbr_mch1+cbr_mch2+cbr_mch3)/cbr_nop,803,
+cbr_sm1,Sample Mass,,grams,in,,,,,,
+cbr_pa1,Percentage Added,,%,calc,,,,((mdd_omc-cbr_mcha)*cbr_sm1)/(100+cbr_mcha),804,
+cbr_wa1,Water Added,,ml,in,,,,,,
+cbr_mn1,Mould Number,,string,in,,,,,,
+cbr_mm1,Mould Mass,,grams,in,,,,,,
+cbr_mv1,Mould Volume,,ml^3,in,,,,,,
+cbr_mwm1,Mould Plus Wet Mass,,grams,in,,,,,,
+cbr_wd1,Wet Density,,kg/m^3,calc,,,,((cbr_mwm1-cbr_mm1)/cbr_mv1)*1000,805,
+cbr_edd1,Estimated Dry Density,,kg/m^3,calc,,,,(cbr_wd1/(1+(cbr_pa1/100))),806,
+cbr_pn1n,Pan Number,,string,in,,,,,,
+cbr_pwmp1,Pan Wet Mass Plus Pan,,grams,in,,,,,,
+cbr_pdmp1,Pan Dry Mass Plus Pan,,grams,in,,,,,,
+cbr_pm1,Pan Mass,,grams,in,,,,,,
+cbr_amc1,Actual Moisture Content,,%,calc,,,,((cbr_pwmp1-cbr_pdmp1)*100)/(cbr_pdmp1-cbr_pm1),807,
+cbr_add1,Actual Dry Density,,kg/m^3,calc,,,,(cbr_wd1/(1+(cbr_amc1/100))),808,
+cbr_mmx1,Mod Maximum,,%,calc,,,,(cbr_add1*100)/mdd_mdd,,
+cbr_hm1,Hydroscopic Moisture,,%,calc,,,,cbr_amc1-cbr_pa1,809,
+cbr_si1,Swell Initial Reading,,mm,in,,,,,,
+cbr_sf1,Swell Final Reading,,mm,in,,,,,,
+cbr_ps1,Percentage Swelll,,%,calc,,,,((cbr_sf2-cbr_si2)*100)/127,810,
+cbr_sm2,Sample Mass,,grams,in,,,,,,
+cbr_pa2,Percentage Added,,%,calc,,,,((mdd_omc-cbr_mcha)*cbr_sm2)/(100+cbr_mcha),811,
+cbr_wa2,Water Added,,ml,in,,,,,,
+cbr_mn2,Mould Number,,string,in,,,,,,
+cbr_mm2,Mould Mass,,grams,in,,,,,,
+cbr_mv2,Mould Volume,,ml^3,in,,,,,,
+cbr_mwm2,Mould Plus Wet Mass,,grams,in,,,,,,
+cbr_wd2,Wet Density,,kg/m^3,calc,,,,((cbr_mwm2-cbr_mm2)/cbr_mv2)*1000,812,
+cbr_edd2,Estimated Dry Density,,kg/m^3,calc,,,,(cbr_wd2/(2+(cbr_pa2/100))),813,
+cbr_pn2n,Pan Number,,string,in,,,,,,
+cbr_pwmp2,Pan Wet Mass Plus Pan,,grams,in,,,,,,
+cbr_pdmp2,Pan Dry Mass Plus Pan,,grams,in,,,,,,
+cbr_pm2,Pan Mass,,grams,in,,,,,,
+cbr_amc2,Actual Moisture Content,,%,calc,,,,((cbr_pwmp2-cbr_pdmp2)*100)/(cbr_pdmp2-cbr_pm2),814,
+cbr_add2,Actual Dry Density,,kg/m^3,calc,,,,(cbr_wd2/(2+(cbr_amc2/100))),815,
+cbr_imx1,Intermediate Maximum,,%,calc,,,,(cbr_add2*100)/mdd_mdd,816,
+cbr_hm2,Hydroscopic Moisture,,%,calc,,,,cbr_amc2-cbr_pa2,817,
+cbr_si2,Swell Initial Reading,,mm,in,,,,,,
+cbr_sf2,Swell Final Reading,,mm,in,,,,,,
+cbr_ps2,Percentage Swelll,,%,calc,,,,((cbr_sf2-cbr_si2)*100)/127,818,
+cbr_sm3,Sample Mass,,grams,in,,,,,,
+cbr_pa3,Percentage Added,,%,calc,,,,((mdd_omc-cbr_mcha)*cbr_sm3)/(100+cbr_mcha),819,
+cbr_wa3,Water Added,,ml,in,,,,,,
+cbr_mn3,Mould Number,,string,in,,,,,,
+cbr_mm3,Mould Mass,,grams,in,,,,,,
+cbr_mv3,Mould Volume,,ml^3,in,,,,,,
+cbr_mwm3,Mould Plus Wet Mass,,grams,in,,,,,,
+cbr_wd3,Wet Density,,kg/m^3,calc,,,,((cbr_mwm3-cbr_mm3)/cbr_mv3)*1000,820,
+cbr_edd3,Estimated Dry Density,,kg/m^3,calc,,,,(cbr_wd3/(3+(cbr_pa3/100))),821,
+cbr_pn3n,Pan Number,,string,in,,,,,,
+cbr_pwmp3,Pan Wet Mass Plus Pan,,grams,in,,,,,,
+cbr_pdmp3,Pan Dry Mass Plus Pan,,grams,in,,,,,,
+cbr_pm3,Pan Mass,,grams,in,,,,,,
+cbr_amc3,Actual Moisture Content,,%,calc,,,,((cbr_pwmp3-cbr_pdmp3)*100)/(cbr_pdmp3-cbr_pm3),822,
+cbr_add3,Actual Dry Density,,kg/m^3,calc,,,,(cbr_wd3/(3+(cbr_amc3/100))),823,
+cbr_pmx1,Proc Maximum,,%,calc,,,,(cbr_add3*100)/mdd_mdd,824,
+cbr_hm3,Hydroscopic Moisture,,%,calc,,,,cbr_amc3-cbr_pa3,825,
+cbr_si3,Swell Initial Reading,,mm,in,,,,,,
+cbr_sf3,Swell Final Reading,,mm,in,,,,,,
+cbr_ps3,Percentage Swelll,,%,calc,,,,((cbr_sf3-cbr_si3)*100)/127,826,
+rsc_co,Created On,,datetime,na,,,,,,1
+rsc_cb,Created By,,number,na,,,,,,1
+rsc_cho,Checked On,,datetime,na,,,,,,1
+rsc_chb,Checked By,,number,na,,,,,,1
+rsc_ao,Approved On,,datetime,na,,,,,,1
+rsc_ab,Approved By,,number,na,,,,,,1
+rsc_nos,Number of Method Samples,,number,in,1,1,3,,,1
+rsc_st1,Start Time,,Time,in,,,,,,1
+rsc_ft1,Finish Time,,Time,in,,,,,,1
+rsc_ct1,Curing Time,,Time,calc,,,,rsc_ft1-rsc_st1,1301,1
+rsc_mkn1,Maximum Load,,kN,in,,,,,,
+rsc_st2,Start Time,,Time,in,,,,,,1
+rsc_ft2,Finish Time,,Time,in,,,,,,1
+rsc_ct2,Curing Time,,Time,calc,,,,rsc_ft2-rsc_st2,1302,1
+rsc_mkn2,Maximum Load,,kN,in,,,,,,
+rsc_st3,Start Time,,Time,in,,,,,,1
+rsc_ft3,Finish Time,,Time,in,,,,,,1
+rsc_ct3,Curing Time,,Time,calc,,,,rsc_ft3-rsc_st3,1303,1
+rsc_mkn3,Maximum Load,,kN,in,,,,,,
+rsc_aml,Average Maximum Load,,kN,calc,,,,(rsc_mkn1+rsc_mkn2+rsc_mkn3)/rsc_nos,1304,
+ucs_co,Created On,,datetime,na,,,,,,1
+ucs_cb,Created By,,number,na,,,,,,1
+ucs_cho,Checked On,,datetime,na,,,,,,1
+ucs_chb,Checked By,,number,na,,,,,,1
+ucs_ao,Approved On,,datetime,na,,,,,,1
+ucs_ab,Approved By,,number,na,,,,,,1
+ucs_nos,Number of UCS Samples,,number,in,1,1,3,,,1
+ucs_mkn1,Maximum Load,,kN,in,,,,,,
+ucs_mkpa1,Unconfined Compression Strength,,kPa,calc,,,,ucs_mkn1/0.01824,1401,
+ucs_mkn2,Maximum Load,,kN,in,,,,,,
+ucs_mkpa2,Unconfined Compression Strength,,kPa,calc,,,,ucs_mkn2/0.01824,1402,
+ucs_mkn3,Maximum Load,,kN,in,,,,,,
+ucs_mkpa3,Unconfined Compression Strength,,kPa,calc,,,,ucs_mkn3/0.01824,1403,
+ucs_mkpaa,Average UCS,,kPa,calc,,,,(ucs_mkpa1+ucs_mkpa2+ucs_mkpa3)/ucs_nos,1404,
+its_co,Created On,,datetime,na,,,,,,1
+its_cb,Created By,,number,na,,,,,,1
+its_cho,Checked On,,datetime,na,,,,,,1
+its_chb,Checked By,,number,na,,,,,,1
+its_ao,Approved On,,datetime,na,,,,,,1
+its_ab,Approved By,,number,na,,,,,,1
+its_nos,Number of ITS Samples,,number,in,1,1,3,,,1
+its_mkn1,Maximum Load,,kN,in,,,,,,
+its_mkpa1,Indirect Tensile Strength,,kPa,calc,,,,(2*its_mkn1)/0.06080,1601,
+its_mkn2,Maximum Load,,kN,in,,,,,,
+its_mkpa2,Unconfined Compression Strength,,kPa,calc,,,,(2*its_mkn2)/0.06080,1602,
+its_mkn3,Maximum Load,,kN,in,,,,,,
+its_mkpa3,Unconfined Compression Strength,,kPa,calc,,,,(2*its_mkn3)/0.06080,1603,
+its_mkpaa,Average ITS,,kPa,calc,,,,(its_mkpa1+its_mkpa2+its_mkpa3)/its_nos,1604,
+mcs_co,Created On,,datetime,na,,,,,,1
+mcs_cb,Created By,,number,na,,,,,,1
+mcs_cho,Checked On,,datetime,na,,,,,,1
+mcs_chb,Checked By,,number,na,,,,,,1
+mcs_ao,Approved On,,datetime,na,,,,,,1
+mcs_ab,Approved By,,number,na,,,,,,1
+mcs_nop,Number of Method Samples,,number,in,1,1,3,,,1
+mcs_pn1,Pan Number,,string,in,,,,,,
+mcs_wm1,Wet Mass,,grams,in,,,,,,
+mcs_dm1,Dry Mass,,grams,in,,,,,,
+mcs_pm1,Pan Mass,,grams,in,,,,,,
+mcs_mcs1,Moisture Content of Soil,,%,calc,,,,((100*(mcs_wm1-mcs_dm1))/(mcs_dm1-mcs_pm1)),1701,
+mcs_pn2,Pan Number,,string,in,,,,,,
+mcs_wm2,Wet Mass,,grams,in,,,,,,
+mcs_dm2,Dry Mass,,grams,in,,,,,,
+mcs_pm2,Pan Mass,,grams,in,,,,,,
+mcs_mcs2,Moisture Content of Soil,,%,calc,,,,((100*(mcs_wm2-mcs_dm2))/(mcs_dm2-mcs_pm2)),1702,
+mcs_pn3,Pan Number,,string,in,,,,,,
+mcs_wm3,Wet Mass,,grams,in,,,,,,
+mcs_dm3,Dry Mass,,grams,in,,,,,,
+mcs_pm3,Pan Mass,,grams,in,,,,,,
+mcs_mcs3,Moisture Content of Soil,,%,calc,,,,((100*(mcs_wm3-mcs_dm3))/(mcs_dm3-mcs_pm3)),1703,
+mcs_avg,Average Moisture Content of Soil,,%,calc,,,,(mcs_mcs1+mcs_mcs2+mcs_mcs3)/mcs_nop,1704,

@@ -26,20 +26,29 @@ export const LARGE_SECTION_HEADER = {
 
 export const LARGE_LABEL = {
 	tr:{
+		fontSize: '14px',
 		textAlign: 'right',	
+		padding: '2px',
+		color: 'white',
+		backgroundColor: '#31708f'
 	},
 	c:{
 		textAlign: 'center',	
+		padding: '2px',
+		fontSize: '14px',
+		height: '39px',
+		color: 'white',
+		backgroundColor: '#31708f'
 	},	
 	td : {
-		fontSize: '18px',
-		padding: '10px'		
+		fontSize: '14px',
+		padding: '2px'		
 	},
 	input: {
 		textAlign: 'left',
-		fontSize: '18px',
-		padding: '10px',		
-		width: '100%',
+		fontSize: '14px',
+		padding: '2px',
+		width: '100%'	,			
 	}
 }
 
