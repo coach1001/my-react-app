@@ -9,7 +9,7 @@ export const CELL_ROTATE = {
   transform: 'rotate(-90deg)',  
   textAlign: 'center'
 }
-
+//2332
 export const LARGE_SECTION_HEADER = {
 	tr:{
 		textAlign: 'center',
@@ -28,27 +28,31 @@ export const LARGE_LABEL = {
 	tr:{
 		fontSize: '14px',
 		textAlign: 'right',	
-		padding: '2px',
+		padding: '3px',
 		color: 'white',
-		backgroundColor: '#31708f'
+		backgroundColor: '#31708f',
+		height: '28px',
 	},
 	c:{
 		textAlign: 'center',	
-		padding: '2px',
+		padding: '3px',
 		fontSize: '14px',
-		height: '39px',
+		//height: '39px',
+		height: '28px',
 		color: 'white',
 		backgroundColor: '#31708f'
 	},	
 	td : {
 		fontSize: '14px',
-		padding: '2px'		
+		padding: '3px',
+		height: '28px',		
 	},
-	input: {
+	input: {		
 		textAlign: 'left',
 		fontSize: '14px',
 		padding: '2px',
-		width: '100%'	,			
+		width: '100%'	,
+		height: '28px',
 	}
 }
 

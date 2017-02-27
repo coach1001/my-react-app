@@ -2,7 +2,198 @@ import * as STYLES from './styleConstants';
 
 
 export const methods = [
-	{
+	{//A8
+		code: 'A8',
+		colLayout: [
+			{span: 1, width:'40%'},
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'}, 
+		],
+
+		grid: [
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Maximum Dry Density"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mdd'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Optimum Moisture Content"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_omc'},
+			]},
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.c},				
+				{style: STYLES.LARGE_LABEL.c, label: "1"},
+				{style: STYLES.LARGE_LABEL.c, label: "2"},
+				{style: STYLES.LARGE_LABEL.c, label: "3"},
+			]},
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Number"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pn1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pn2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pn3'},
+			]},					
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Initial Dry Mass Plus Pan"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_idmp1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_idmp2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_idmp3'},
+			]},					
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Final Dry Mass Plus Pan"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_fdmp1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_fdmp2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_fdmp3'},
+			]},					
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mass Pan"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mp1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mp2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mp3'},
+			]},					
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Moisture Content Hygro"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mch1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mch2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mch3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Average Moisture Content Hygro"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mcha'},
+			]},					
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.c},				
+				{style: STYLES.LARGE_LABEL.c, label: "Modified AASHTO"},
+				{style: STYLES.LARGE_LABEL.c, label: "Intermediate"},
+				{style: STYLES.LARGE_LABEL.c, label: "Proctor"},
+			]},
+					
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Sample Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_sm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_sm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_sm3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Percentage Added"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pa1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pa2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pa3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Water Added"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_wa1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_wa2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_wa3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mould Number"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mn1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mn2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mn3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mould Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mm3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mould Volume"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mv1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mv2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mv3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mould Plus Wet Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mwm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mwm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mwm3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Wet Density"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_wd1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_wd2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_wd3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Estimated Dry Density"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_edd1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_edd2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_edd3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Number"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pn1n'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pn2n'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pn3n'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Wet Mass Plus Pan"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pwmp1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pwmp2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pwmp3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Dry Mass Plus Pan"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pdmp1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pdmp2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pdmp3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pm3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Actual Moisture Content"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_sm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_sm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_sm3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Actual Dry Density"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_amc1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_amc2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_amc3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "% Compaction"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mmx1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_imx1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pmx1'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Hydroscopic Moisture"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_hm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_hm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_hm3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Swell Initial Reading"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_si1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_si2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_si3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Swell Final Reading"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_sf1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_sf2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_sf3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Percentage Swell"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_ps1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_ps2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_ps3'},				
+			]},
+		
+		]
+	},//A8
+
+	{//A7
 		code: 'A7',
 		colLayout:[
 			{ span:1,  width: "25%"},
@@ -149,8 +340,12 @@ export const methods = [
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_hm4'},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_hm5'},
 			]},												
+			{td: [
+				{style: STYLES.LARGE_LABEL.c, colSpan:6, label: "Graph"},
+			]},												
+
 		]
-	},
+	},//A7
 
 	{//A6
 		code: 'A6',

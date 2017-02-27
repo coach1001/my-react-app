@@ -4,6 +4,7 @@ import math from 'mathjs';
 import { sendRow } from '../../actions/tablesData';
 import { fetchSampleMethod, updateSampleMethod } from '../../actions/sampleMethods';
 import Confirm from 'react-confirm-bootstrap';
+/*import TeX from 'react-formula-beautifier';*/
 
 class GridForm extends React.Component {
   
@@ -68,6 +69,7 @@ class GridForm extends React.Component {
      <div className="input-group checkbox">
       <label style={{fontSize: '1.3em', fontWeight:'normal'}}><input name="completed" type="checkbox" onChange={this.onChangeComplete.bind(this)} checked={this.state.sampleMethod.completed} />&nbsp;Completed</label>                                
       </div>    
+
             <table className="table-bordered fixed" width="100%" >              
               <colgroup>
                 {
@@ -79,28 +81,32 @@ class GridForm extends React.Component {
                            
                   table.map( (tr, trIndex) =>                                                          
                       <tr key={trIndex} style={tr.style}>
+                      
                       {
                         tr.td.map( (td, tdIndex) =>
                           {
                            return !td.isVal ? <td key={tdIndex}  colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>{td.label}</td> :
                            <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>
+                           <div className="avoid">
                            {
                             td.type === 'calc' ? 
                               <div className="input-group">
                                 <input  id={td.scopeVariable} onChange={this.onChange.bind(this)}  step={td.step} type='number' value={td.value} readOnly className='form-control' style={td.style}/>
-                                <span className="input-group-addon">
-                                  {td.unit}
+                                <span className="input-group-addon">                                                                    
+                                  <td style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} />
                                 </span>
                               </div>
                               :                                                                                      
                                 td.unit === 'string' ?
                                   <input id={td.scopeVariable} onChange={this.onChangeString.bind(this)} value={td.value_string} type='text' className='form-control' style={td.style}/>
-                                  : <div className="input-group"><input id={td.scopeVariable} onChange={this.onChange.bind(this)} min={td.min} max={td.max} step={td.step} value={td.value} type='number' className='form-control' style={td.style}/><span className="input-group-addon">{td.unit}</span></div>                                  
+                                  : <div className="input-group"><input id={td.scopeVariable} onChange={this.onChange.bind(this)} min={td.min} max={td.max} step={td.step} value={td.value} type='number' className='form-control' style={td.style}/><span className="input-group-addon"><td style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} /></span></div>                                  
                            }                        
+                           </div>
                            </td>
                           } 
                         )
                       }
+                      
                       </tr>             
                   )              
               }

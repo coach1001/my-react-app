@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-//import { fetchGrids } from '../actions/gridData';
 import { fetchSelects } from '../actions/cascadeSelect';
 import { connect } from 'react-redux';
-/*import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';*/
+
 class Greetings extends Component {
   
   render() {

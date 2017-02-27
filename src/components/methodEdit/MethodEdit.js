@@ -21,7 +21,7 @@ class MethodEdit extends Component {
   render() {    
     return <div className="container">
       <span style={{fontSize: '2em', cursor: 'pointer'}}>
-      <FaArrowCircleLeft  onClick={this.goBack.bind(this)}  className="text-info" size="2em"/>
+      <FaArrowCircleLeft  onClick={this.goBack.bind(this)}  className="text-info hidden-print" size="2em"/>
       &nbsp;{this.props.sample.sample} - Method {this.props.params.methodCode}
       </span>        
       {this.props.sampleVariables.length > 0 && Object.keys(this.props.sampleMethod).length > 0 && Object.keys(this.props.sample).length > 0 ?        
