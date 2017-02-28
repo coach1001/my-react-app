@@ -9,24 +9,34 @@ import { fetchSample } from '../../actions/samples';
 class MethodEdit extends Component {
   
   componentWillMount(){     	    
+    
     this.props.fetchSampleVariables(this.props.params.sampleId);
     this.props.fetchSampleMethod(this.props.params.methodId);
-    this.props.fetchSample(this.props.params.sampleId);
+    this.props.fetchSample(this.props.params.sampleId);    
+    
   }
 
   goBack(){
     this.context.router.goBack();      
   }
   
+  printWindow(){
+    window.print()
+  }
+
   render() {    
     return <div className="container-print">
       <span style={{fontSize: '2em', cursor: 'pointer'}}>
       <FaArrowCircleLeft  onClick={this.goBack.bind(this)}  className="text-info hidden-print" size="2em"/>
-      &nbsp;{this.props.sample.sample} - Method {this.props.params.methodCode}
+      &nbsp;{this.props.sample.sample} - {this.props.sampleMethod.label}
       </span>        
+      <button onClick={this.printWindow.bind(this)} className="pull-right btn btn-lg btn-primary hidden-print">Print</button>
       {this.props.sampleVariables.length > 0 && Object.keys(this.props.sampleMethod).length > 0 && Object.keys(this.props.sample).length > 0 ?        
         <div>                    
-          <GridForm style={{width: '90vh'}} sampleMethod={this.props.sampleMethod} scopeData={this.props.sampleVariables} sampleId={parseInt(this.props.params.sampleId,10)} methodCode={this.props.params.methodCode}/> 
+          {                         
+            <GridForm empty={this.props.params.empty ? true : false} style={{width: '90vh'}} sampleMethod={this.props.sampleMethod} scopeData={this.props.sampleVariables} sampleId={parseInt(this.props.params.sampleId,10)} methodCode={this.props.params.methodCode}/> 
+          }
+          
         </div>
         : null}
     </div>    

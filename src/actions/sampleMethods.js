@@ -40,7 +40,7 @@ export function fetchSampleMethods(sample_id){
 export function fetchSampleMethod(sample_method_id){
 	return dispatch => {
 		dispatch(requestSampleMethod());		
-		return axios.get(`${API_URL}/sample_has_methods?id=eq.${sample_method_id}`).then( (res) => {
+		return axios.get(`${API_URL}/sample_methods?id=eq.${sample_method_id}`).then( (res) => {
 			dispatch(receiveSampleMethod(res.data[0]));
 			return res;
 		});

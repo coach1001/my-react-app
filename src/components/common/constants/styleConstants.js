@@ -28,14 +28,14 @@ export const LARGE_LABEL = {
 	tr:{
 		fontSize: '14px',
 		textAlign: 'right',	
-		padding: '3px',
+		padding: '2px',
 		color: 'white',
 		backgroundColor: '#31708f',
 		height: '28px',
 	},
 	c:{
 		textAlign: 'center',	
-		padding: '3px',
+		padding: '2px',
 		fontSize: '14px',
 		//height: '39px',
 		height: '28px',
@@ -44,7 +44,7 @@ export const LARGE_LABEL = {
 	},	
 	td : {
 		fontSize: '14px',
-		padding: '3px',
+		padding: '2px',
 		height: '28px',		
 	},
 	input: {		

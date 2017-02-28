@@ -7,6 +7,7 @@ import Confirm from 'react-confirm-bootstrap';
 import Datetime from 'react-datetime';
 import moment from 'moment';
 /*import TeX from 'react-formula-beautifier';*/
+import { VictoryArea, VictoryLabel, VictoryChart, VictoryAxis } from 'victory';
 
 class GridForm extends React.Component {
   
@@ -18,19 +19,27 @@ class GridForm extends React.Component {
         return null;
       }
     });
-    
-    const method = methods[index];        
+    const hasGrid = methods[index].hasGrid; 
+    const method = methods[index];
+    const graph = methods[index].graph;
+
     const table = method.grid;
-    const colLayout = method.colLayout;
+    const colLayout = method.colLayout;    
+    let oScopeData = JSON.parse(JSON.stringify(this.props.scopeData));
 
     this.setState({
+      oScopeData: oScopeData,
       scopeData: this.props.scopeData,
       table : table,
       method: method,
       sampleMethod: this.props.sampleMethod,
       colLayout: colLayout,
-    })    
+      hasGrid: hasGrid,
+      graph: graph,
+    })            
   }
+
+
 
   onChangeComplete(e){
     let oState = this.state;
@@ -38,10 +47,154 @@ class GridForm extends React.Component {
     this.setState(oState);
   }
 
-  drawTable(){    
+  drawTable(){  
+      
+      const data1 = [
+        {x:0,y:0},
+        {x:10,y:10},
+        {x:20,y:20},
+        {x:30,y:30},
+        {x:40,y:40},
+        {x:50,y:50},
+        {x:60,y:60},
+        {x:70,y:70},
+        {x:80,y:80},
+        {x:90,y:90},
+        {x:100,y:100},
+
+      ];
+
+      let labels = [1 ,
+2 ,
+3 ,
+4 ,
+5 ,
+6 ,
+7 ,
+8 ,
+9 ,
+10  ,
+11  ,
+12  ,
+13  ,
+14  ,
+15  ,
+16  ,
+17  ,
+18  ,
+19  ,
+20  ,
+21  ,
+22  ,
+23  ,
+24  ,
+25  ,
+26  ,
+27  ,
+28  ,
+29  ,
+30  ,
+31  ,
+32  ,
+33  ,
+34  ,
+35  ,
+36  ,
+37  ,
+38  ,
+39  ,
+40  ,
+41  ,
+42  ,
+43  ,
+44  ,
+45  ,
+46  ,
+47  ,
+48  ,
+49  ,
+50  ,
+51  ,
+52  ,
+53  ,
+54  ,
+55  ,
+56  ,
+57  ,
+58  ,
+59  ,
+60  ,
+61  ,
+62  ,
+63  ,
+64  ,
+65  ,
+66  ,
+67  ,
+68  ,
+69  ,
+70  ,
+71  ,
+72  ,
+73  ,
+74  ,
+75  ,
+76  ,
+77  ,
+78  ,
+79  ,
+80  ,
+81  ,
+82  ,
+83  ,
+84  ,
+85  ,
+86  ,
+87  ,
+88  ,
+89  ,
+90  ,
+91  ,
+92  ,
+93  ,
+94  ,
+95  ,
+96  ,
+97  ,
+98  ,
+99  ,
+100 
+];
+      
+      let stylex = {
+        tickLabels: { fontSize: 4,  writingMode: 'tb', textAnchor: 'start' }, 
+        grid: {stroke: 'lightgrey'},            
+        axisLabel: {fontSize: 6},
+        ticks: {stroke: "grey"}
+      };
+
+      let styley = {
+        tickLabels: { fontSize: 4}, 
+        grid: {stroke: 'lightgrey'},        
+        axisLabel: {fontSize: 6},
+        ticks: {stroke: "grey"}
+      };
+      
+      let line = {
+        data: {
+          fill: "limegreen", opacity: 0.5, strokeWidth: 1, stroke: 'darkgreen'          
+        }
+      }      
+
+      //data1.map( (point) => {
+      //  labels.push(point.x)
+      //  return point;
+      //});
+
     const data = this.state.scopeData;    
     const table = this.state.table;    
     const col = this.state.colLayout;
+    const em = this.props.empty;
 
     table.map( (row, rI) => {
       row.td.map( (col, cI) => {        
@@ -68,10 +221,12 @@ class GridForm extends React.Component {
     })
         
     return <div>
-     <div className="input-group checkbox">
-      <label style={{fontSize: '1.3em', fontWeight:'normal'}}><input name="completed" type="checkbox" onChange={this.onChangeComplete.bind(this)} checked={this.state.sampleMethod.completed} />&nbsp;Completed</label>                                
-      </div>    
-
+      {
+        em ? null :
+        <div className="input-group checkbox">     
+          <label style={{fontSize: '1.3em', fontWeight:'normal'}}><input name="completed" type="checkbox" onChange={this.onChangeComplete.bind(this)} checked={this.state.sampleMethod.completed} />&nbsp;Completed</label>                                
+        </div>    
+      }
             <table className="table-bordered fixed" width="100%" >              
               <colgroup>
                 {
@@ -94,26 +249,26 @@ class GridForm extends React.Component {
                             td.type === 'calc' ?                                                                                                                                                        
                                 
                                 (td.unit === 'datetime' ?                                  
-                                  <Datetime id={td.scopeVariable} inputProps={{disabled: true}} timeFormat="HH:mm" dateFormat={false} onChange={this.onChangeTime.bind(this)} value={moment.utc(td.value)} />                                                                                                
+                                  <Datetime utc={true} id={td.scopeVariable} inputProps={{disabled: true}}  timeFormat="HH:mm:ss" dateFormat={false} value={em ? '' : Math.floor(td.value)} />                                                                                                
                                 
                                 :
                                   <div className="input-group">
-                                  <input  id={td.scopeVariable} onChange={this.onChange.bind(this)}  step={td.step} type='number' value={td.value} readOnly className='form-control' style={td.style}/>                                                              
+                                  <input  id={td.scopeVariable} onChange={this.onChange.bind(this)}  step={td.step} type='number' value={em ? '' : td.value} readOnly className='form-control' style={td.style}/>                                                              
                                   <span className="input-group-addon">                                                                    
-                                    <td style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} />
+                                    <div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} />
                                   </span>
                                   </div>)                              
                                                                                                                             
                             :                  
                                
                                 td.unit === 'string' ?                                
-                                 <input id={td.scopeVariable} onChange={this.onChangeString.bind(this)} value={td.value_string} type='text' className='form-control' style={td.style}/>                                
+                                 <input id={td.scopeVariable} onChange={this.onChangeString.bind(this)} value={em ? '' : td.value_string} type='text' className='form-control' style={td.style}/>                                
                                 : 
                                 
                                   td.unit === 'datetime' ?                                                                        
-                                  <Datetime id={td.scopeVariable} timeFormat="HH:mm" dateFormat="DD/MM/YYYY" onChange={this.onChangeTime.bind(this,td.scopeVariable)} value={moment.utc(td.value)} />
+                                  <Datetime utc={true} id={td.scopeVariable} timeFormat="HH:mm:ss" dateFormat="DD/MM/YYYY" onChange={this.onChangeTime.bind(this,td.scopeVariable)} value={em ? '' : Math.floor(td.value)} />
                                   :                                  
-                                  <div className="input-group"><input id={td.scopeVariable} onChange={this.onChange.bind(this)} min={td.min} max={td.max} step={td.step} value={td.value} type='number' className='form-control' style={td.style}/><span className="input-group-addon"><td style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} /></span></div>                                
+                                  <div className="input-group"><input id={td.scopeVariable} onChange={this.onChange.bind(this)} min={td.min} max={td.max} step={td.step} value={em ? '' : td.value} type='number' className='form-control' style={td.style}/><span className="input-group-addon"><div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} /></span></div>                                
                                
                            }                        
                            </div>
@@ -128,20 +283,39 @@ class GridForm extends React.Component {
               </tbody>
            </table>  
            <br/>
+        
+            {
+              em ? null :
+              <Confirm  onConfirm={this.CalculateAndSave.bind(this)} body="Are you sure you want to Save Data?" confirmBSStyle='primary' confirmText="Confirm Save" title="Save Method Data">  
+                <button className="hidden-print btn-block btn btn-lg btn-success">Calculate and Save</button>            
+              </Confirm>
+            }         
+             
+            <VictoryChart>
+              
+              <VictoryAxis label="Sieve Sizes" tickValues={labels} style={stylex} tickLabelComponent={<VictoryLabel dy={-1.5}/>}
+              axisLabelComponent={<VictoryLabel dy={1.2}/>}
+              tickFormat={ (tick) =>{
+                return `${tick} %`;
+              }} />
 
-            <Confirm onConfirm={this.CalculateAndSave.bind(this)} body="Are you sure you want to Save Data?" confirmBSStyle='primary' confirmText="Confirm Save" title="Save Method Data">  
-              <button className="hidden-print btn-block btn btn-lg btn-success">Calculate and Save</button>            
-            </Confirm>
+              <VictoryAxis label="Percentage Passing" dependentAxis style={styley} tickFormat={ (tick) =>{return `${tick}%`;}}
+                tickLabelComponent={<VictoryLabel dx={9} />}
+                axisLabelComponent={<VictoryLabel dy={-0.5}/>}
+              />
+              <VictoryArea data={data1} interpolation='basis' style={line} />                
+            </VictoryChart> 
+           
+
            </div>   
   }
   
   onChangeTime(symbol,e){
     const oState = this.state;    
-    let utc_time = moment.utc(e.valueOf());
-
+    
     oState.scopeData.map( (d, index_) =>{
       if(symbol === d.symbol ){
-        oState.scopeData[index_].value = utc_time.valueOf();        
+        oState.scopeData[index_].value = e.valueOf();                
       }
       return d;
     });
@@ -158,9 +332,15 @@ class GridForm extends React.Component {
       
       if(row.id && row.input_type !== 'constant'){        
         if(row.unit === 'string'){
-          sendRow(`sample_has_variables?id=eq.${row.id}`,{value_string: row.value_string},'patch');    
+          //console.log(row.value_string,this.state.oScopeData[rI].value_string);
+          if(row.value_string !== this.state.oScopeData[rI].value_string){
+            sendRow(`sample_has_variables?id=eq.${row.id}`,{value_string: row.value_string},'patch');      
+          }          
+        
         }else{
-          sendRow(`sample_has_variables?id=eq.${row.id}`,{value: row.value},'patch');        
+          if(row.value !== this.state.oScopeData[rI].value){
+            sendRow(`sample_has_variables?id=eq.${row.id}`,{value: row.value},'patch');        
+          }
         }                      
       }else if(row.type !== 'constant'){
         if(row.unit === 'string'){
@@ -172,6 +352,8 @@ class GridForm extends React.Component {
       return row;    
     })     
     sendRow(`sample_has_methods?id=eq.${this.state.sampleMethod.id}`,{completed: this.state.sampleMethod.completed},'patch');
+    
+    oState.oScopeData = JSON.parse(JSON.stringify(this.props.scopeData));
     this.setState(oState);
   }
 
@@ -209,6 +391,7 @@ class GridForm extends React.Component {
           try{        
             scope[d.symbol]=Math.round(math.eval(d.formula,scope)*round)/round;               
           }catch(err){                     
+           console.log(err);
            scope[d.symbol] = ( d.default_value ? d.default_value : 0);
           }        
         }      
@@ -244,9 +427,9 @@ class GridForm extends React.Component {
     let oState = this.state;        
     
     oState.scopeData.map( (d, index_) =>{
+      
       if(e.target.id === d.symbol ){
-        oState.scopeData[index_].value_string = e.target.value;               
-        console.log(oState.scopeData[index_].symbol,oState.scopeData[index_].value_string);
+        oState.scopeData[index_].value_string = e.target.value;                       
       }
       return d;
     });
@@ -289,6 +472,7 @@ GridForm.propTypes = {
   methodCode: React.PropTypes.string.isRequired,
   sampleId: React.PropTypes.number.isRequired,
   sampleMethod: React.PropTypes.object.isRequired,  
+  empty: React.PropTypes.bool.isRequired,  
 }
 
 GridForm.contextTypes = {

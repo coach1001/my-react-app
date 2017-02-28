@@ -63,6 +63,7 @@ export function fetchTables(tables){
 }
 
 export function sendRow(table,data,method){
+
 	let axiosConfig = {
 		method : method,
 		url: `http://localhost:3003/${table}`,

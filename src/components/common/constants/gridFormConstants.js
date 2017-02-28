@@ -2,6 +2,146 @@ import * as STYLES from './styleConstants';
 
 
 export const methods = [
+		
+	{//A17
+		code: 'A17',
+		colLayout: [
+			{span: 1, width:'40%'},
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'}, 
+		],
+
+		grid:[
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Number of Method Samples"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mcs_nop'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.c},
+				{style: STYLES.LARGE_LABEL.c, label: "1"},
+				{style: STYLES.LARGE_LABEL.c, label: "2"},
+				{style: STYLES.LARGE_LABEL.c, label: "3"},							
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Number"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mcs_pn1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mcs_pn2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mcs_pn3'},
+			]},	
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Wet Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mcs_wm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mcs_wm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mcs_wm3'},
+			]},	
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Dry Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mcs_dm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mcs_dm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mcs_dm3'},
+			]},	
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mcs_pm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mcs_pm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mcs_pm3'},
+			]},	
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Moisture Content"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mcs_mcs1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mcs_mcs2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mcs_mcs3'},
+			]},	
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Average Moisture Content"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mcs_avg'},
+
+			]},	
+		],		
+	},//A17
+
+	{//A16T
+		code: 'A16T',
+		colLayout: [
+			{span: 1, width:'40%'},
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'}, 
+		],
+
+		grid:[
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Number of ITS Methods"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'its_nos'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.c},
+				{style: STYLES.LARGE_LABEL.c, label: "1"},
+				{style: STYLES.LARGE_LABEL.c, label: "2"},
+				{style: STYLES.LARGE_LABEL.c, label: "3"},							
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Maximum Load"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'its_mkn1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'its_mkn2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'its_mkn3'},
+			]},	
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Indirect Tensile Strength"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'its_mkpa1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'its_mkpa2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'its_mkpa3'},
+			]},	
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Average ITS"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'its_mkpaa'},
+
+			]},	
+		],		
+	},//A16T
+
+	{//A14
+		code: 'A14',
+		colLayout: [
+			{span: 1, width:'40%'},
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'}, 
+		],
+
+		grid:[
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Number of UCS Methods"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'ucs_nos'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.c},
+				{style: STYLES.LARGE_LABEL.c, label: "1"},
+				{style: STYLES.LARGE_LABEL.c, label: "2"},
+				{style: STYLES.LARGE_LABEL.c, label: "3"},							
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Maximum Load"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'ucs_mkn1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'ucs_mkn2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'ucs_mkn3'},
+			]},	
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Unconfined Compression Strength"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'ucs_mkpa1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'ucs_mkpa2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'ucs_mkpa3'},
+			]},	
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Average UCS"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'ucs_mkpaa'},
+
+			]},	
+		],		
+	},//A14
+
 	{//A13T
 		code: 'A13T',
 		colLayout: [
@@ -247,13 +387,14 @@ export const methods = [
 
 	{//A7
 		code: 'A7',
+		hasChart: true,
 		colLayout:[
-			{ span:1,  width: "25%"},
-			{ span:1,  width: "15%"},
-			{ span:1,  width: "15%"},
-			{ span:1,  width: "15%"},
-			{ span:1,  width: "15%"},
-			{ span:1,  width: "15%"},
+			{ span:1,  width: "30%"},
+			{ span:1,  width: "14%"},
+			{ span:1,  width: "14%"},
+			{ span:1,  width: "14%"},
+			{ span:1,  width: "14%"},
+			{ span:1,  width: "14%"},
 		],
 		grid:[
 			{td: [ 
@@ -313,7 +454,7 @@ export const methods = [
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_mv5'},
 			]},										
 			{td: [
-				{style: STYLES.LARGE_LABEL.tr, label: "Mould Plush Wet Mass"},
+				{style: STYLES.LARGE_LABEL.tr, label: "Mould Plus Wet Mass"},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_mwm1'},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_mwm2'},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_mwm3'},
@@ -391,12 +532,28 @@ export const methods = [
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_hm3'},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_hm4'},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_hm5'},
-			]},												
-			{td: [
-				{style: STYLES.LARGE_LABEL.c, colSpan:6, label: "Graph"},
-			]},												
+			]},
 
-		]
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Maximum Dry Density (Read from Graph)"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_mdd'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Optimum Moisture Content (Read from Graph)"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_omc'},
+			]},												
+		],
+		graph:{
+			xLabel: 'Moisture Content %',
+			yLabel: 'Dry Density',			
+			points: [
+				{ x: 'mdd_amc1', y: 'mdd_add1'},
+				{ x: 'mdd_amc2', y: 'mdd_add2'},
+				{ x: 'mdd_amc3', y: 'mdd_add3'},
+				{ x: 'mdd_amc4', y: 'mdd_add4'},
+				{ x: 'mdd_amc5', y: 'mdd_add5'},				
+			]
+		}
 	},//A7
 
 	{//A6
@@ -818,6 +975,7 @@ export const methods = [
 		 	]},												
 		]
 	}//A1
+
 ]
 
 export const SIEVE_ANALYSIS = [

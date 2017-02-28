@@ -28,7 +28,7 @@ class NavigationBar extends Component {
       
         <li><Link to="/sampleSets">Sample Sets</Link></li>
         <li><Link to="/samples">Samples</Link></li>
-        <li><Link to="/samples">Print Outs</Link></li>
+        {/*<li><Link to="/samples">Print Outs</Link></li>*/}
       
       
         </ul>

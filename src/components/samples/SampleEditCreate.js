@@ -7,7 +7,6 @@ import { FaArrowCircleLeft } from 'react-icons/lib/fa/';
 import Datetime from 'react-datetime';
 import Confirm from 'react-confirm-bootstrap';
 import moment from 'moment';
-import { addFlashMessage } from '../../actions/flashMessages';
 import {notify} from 'react-notify-toast';
 
 class SampleEditCreate extends Component {
@@ -135,7 +134,7 @@ class SampleEditCreate extends Component {
    this.props.updateSampleMethods(oState.sampleMethods, oState.sample.id).then( (res)=>{            
       
       this.props.fetchSampleMethods(oState.sample.id).then((res_)=>{
-        notify.show('Sample Methods Saved Successfully','success',2000);
+        notify.show('Sample Methods Saved Successfully','success',500);
         
          let sample_method_id=null;
          res_.data.map((element)=>{
@@ -148,6 +147,27 @@ class SampleEditCreate extends Component {
       })            
     });
   }
+
+  editSampleMethodEmpty(method){                   
+   const oState = this.state;
+
+   this.props.updateSampleMethods(oState.sampleMethods, oState.sample.id).then( (res)=>{            
+      
+      this.props.fetchSampleMethods(oState.sample.id).then((res_)=>{
+        notify.show('Sample Methods Saved Successfully','success',500);
+        
+         let sample_method_id=null;
+         res_.data.map((element)=>{
+            if( element.method === method.method_id && element.sample === oState.sample.id){
+              sample_method_id = element.id
+            }
+            return element;
+         });
+        this.context.router.push(`/sampleMethod/${oState.sample.id}/${method.method_code}/${sample_method_id}/empty`);        
+      })            
+    });
+  }
+
 
   onChangeFilter(e){
     let oState = this.state;
@@ -175,7 +195,7 @@ class SampleEditCreate extends Component {
     return (    
       <div>           
             <div className="container">                  
-              <span style={{fontSize: '2em', cursor: 'pointer'}}>
+              <span style={{fontSize: '2em', cursor: 'pointer'}} className="hidden-print">
                 <FaArrowCircleLeft  onClick={this.goBack.bind(this)}  className="text-info" size="2em"/>
                 <Confirm onConfirm={this.deleteSample.bind(this)} body="Are you sure you want to Delete this Sample?" confirmText="Confirm Delete" title="Delete Sample">
                   <button disabled={this.state.sample.id ? false : true} className="btn btn-lg btn-danger pull-right">Delete</button>
@@ -235,7 +255,7 @@ class SampleEditCreate extends Component {
                       <div className="col-md-4">
                         <div className="input-group">
                           <span className="input-group-addon">Date</span>
-                          <Datetime timeFormat="HH:mm" dateFormat="DD/MM/YYYY" onChange={this.onChangeSample.bind(this)} value={this.state.sample.created_on} defaultValue={new Date()}/>
+                          <Datetime utc={true} timeFormat="HH:mm" dateFormat="DD/MM/YYYY" onChange={this.onChangeSample.bind(this)} value={this.state.sample.created_on} defaultValue={new Date()}/>
                         </div>
                       </div>                        
                     </div>                                                                                            
@@ -258,12 +278,14 @@ class SampleEditCreate extends Component {
                       
                     return  <div key={index}>                                                    
                               <div className="checkbox">                                
-                                <Confirm onConfirm={this.editSampleMethod.bind(this,method)} confirmBSStyle='primary' body="To Enter Method Data you have to Save the Sample Methods?" confirmText="Confirm Save and Continue" title="Method Data">
-                                  <button className="btn btn-primary" disabled={!method.exists}>Enter Data</button>
-                                </Confirm>    
+                                {/*<Confirm onConfirm={this.editSampleMethod.bind(this,method)} confirmBSStyle='primary' body="To Enter Method Data you have to Save the Sample Methods?" confirmText="Confirm Save and Continue" title="Method Data">*/}
+                                  <button onClick={this.editSampleMethod.bind(this,method)} className="hidden-print btn btn-primary" disabled={!method.exists}>Enter Data</button>
+                                {/*</Confirm>    */}
                                 &nbsp;&nbsp;
-                                <label style={{fontSize: '1.1em'}}><input disabled={this.state.sample.id ? false : true} type="checkbox" onChange={this.onChangeMethods.bind(this,index)} checked={method.exists} />&nbsp;{method.label}: {method.description} </label>                                
-                                <label style={{fontSize: '1.1em'}} className="pull-right"><input disabled={true} type="checkbox" checked={method.completed} />Completed</label>
+                                <button onClick={this.editSampleMethodEmpty.bind(this,method)} className="hidden-print btn btn-default pull-right" disabled={!method.exists}>Print</button>
+                                <label style={{fontSize: '1.1em'}}><input disabled={this.state.sample.id ? false : true} type="checkbox" onChange={this.onChangeMethods.bind(this,index)} checked={method.exists} />&nbsp;{method.label}: {method.description} </label>                                                                
+                                <label style={{fontSize: '1.1em'}} className="pull-right"><input disabled={true} type="checkbox" checked={method.completed} />Completed &nbsp;</label>
+
                               </div>
                             </div>
                     })                    
@@ -286,8 +308,7 @@ SampleEditCreate.propTypes = {
   fetchSample : React.PropTypes.func.isRequired,  
   fetchSampleMethods : React.PropTypes.func.isRequired,
   fetchSampleSets: React.PropTypes.func.isRequired,
-  updateCreateSample : React.PropTypes.func.isRequired,
-  addFlashMessage: React.PropTypes.func.isRequired,
+  updateCreateSample : React.PropTypes.func.isRequired,  
   deleteSample: React.PropTypes.func.isRequired,
   updateSampleMethods: React.PropTypes.func.isRequired,
 }
@@ -300,4 +321,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, { fetchSample, fetchSampleMethods, fetchSampleSets, updateCreateSample, addFlashMessage, deleteSample, updateSampleMethods })(SampleEditCreate);
+export default connect(mapStateToProps, { fetchSample, fetchSampleMethods, fetchSampleSets, updateCreateSample, deleteSample, updateSampleMethods })(SampleEditCreate);
