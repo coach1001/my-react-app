@@ -2,6 +2,58 @@ import * as STYLES from './styleConstants';
 
 
 export const methods = [
+	{//A13T
+		code: 'A13T',
+		colLayout: [
+			{span: 1, width:'40%'},
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'}, 
+		],
+
+		grid:[
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Number of Sample Methods"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'rsc_nos'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.c},
+				{style: STYLES.LARGE_LABEL.c, label: "1"},
+				{style: STYLES.LARGE_LABEL.c, label: "2"},
+				{style: STYLES.LARGE_LABEL.c, label: "3"},							
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Start Time"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'rsc_st1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'rsc_st2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'rsc_st3'},
+			]},	
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Finish Time"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'rsc_ft1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'rsc_ft2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'rsc_ft3'},
+			]},	
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Curing Time"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'rsc_ct1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'rsc_ct2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'rsc_ct3'},
+			]},	
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Maximum Load"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'rsc_mkn1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'rsc_mkn2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'rsc_mkn3'},
+			]},	
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Average Maximum Load"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'rsc_aml'},
+
+			]},	
+		],
+	},
+
 	{//A8
 		code: 'A8',
 		colLayout: [

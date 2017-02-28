@@ -355,7 +355,7 @@ input[type=radio], input[type=checkbox] {
     height: 1.1em; width: 1.1em;          
 }
 
-
+.container
 @media print {
   .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
     float: left;
@@ -549,8 +549,16 @@ input[type=radio], input[type=checkbox] {
     display: table-cell !important;
   }
 }
-
 .avoid {
     page-break-inside: avoid !important;
     margin: 0px 0 0px 0;  /* to keep the page break from cutting too close to the text in the div */
  }
+
+
+.container-print {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 1170px;
+}

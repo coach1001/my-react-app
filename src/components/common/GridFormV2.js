@@ -4,6 +4,8 @@ import math from 'mathjs';
 import { sendRow } from '../../actions/tablesData';
 import { fetchSampleMethod, updateSampleMethod } from '../../actions/sampleMethods';
 import Confirm from 'react-confirm-bootstrap';
+import Datetime from 'react-datetime';
+import moment from 'moment';
 /*import TeX from 'react-formula-beautifier';*/
 
 class GridForm extends React.Component {
@@ -89,17 +91,30 @@ class GridForm extends React.Component {
                            <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>
                            <div className="avoid">
                            {
-                            td.type === 'calc' ? 
-                              <div className="input-group">
-                                <input  id={td.scopeVariable} onChange={this.onChange.bind(this)}  step={td.step} type='number' value={td.value} readOnly className='form-control' style={td.style}/>
-                                <span className="input-group-addon">                                                                    
-                                  <td style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} />
-                                </span>
-                              </div>
-                              :                                                                                      
-                                td.unit === 'string' ?
-                                  <input id={td.scopeVariable} onChange={this.onChangeString.bind(this)} value={td.value_string} type='text' className='form-control' style={td.style}/>
-                                  : <div className="input-group"><input id={td.scopeVariable} onChange={this.onChange.bind(this)} min={td.min} max={td.max} step={td.step} value={td.value} type='number' className='form-control' style={td.style}/><span className="input-group-addon"><td style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} /></span></div>                                  
+                            td.type === 'calc' ?                                                                                                                                                        
+                                
+                                (td.unit === 'datetime' ?                                  
+                                  <Datetime id={td.scopeVariable} inputProps={{disabled: true}} timeFormat="HH:mm" dateFormat={false} onChange={this.onChangeTime.bind(this)} value={moment.utc(td.value)} />                                                                                                
+                                
+                                :
+                                  <div className="input-group">
+                                  <input  id={td.scopeVariable} onChange={this.onChange.bind(this)}  step={td.step} type='number' value={td.value} readOnly className='form-control' style={td.style}/>                                                              
+                                  <span className="input-group-addon">                                                                    
+                                    <td style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} />
+                                  </span>
+                                  </div>)                              
+                                                                                                                            
+                            :                  
+                               
+                                td.unit === 'string' ?                                
+                                 <input id={td.scopeVariable} onChange={this.onChangeString.bind(this)} value={td.value_string} type='text' className='form-control' style={td.style}/>                                
+                                : 
+                                
+                                  td.unit === 'datetime' ?                                                                        
+                                  <Datetime id={td.scopeVariable} timeFormat="HH:mm" dateFormat="DD/MM/YYYY" onChange={this.onChangeTime.bind(this,td.scopeVariable)} value={moment.utc(td.value)} />
+                                  :                                  
+                                  <div className="input-group"><input id={td.scopeVariable} onChange={this.onChange.bind(this)} min={td.min} max={td.max} step={td.step} value={td.value} type='number' className='form-control' style={td.style}/><span className="input-group-addon"><td style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} /></span></div>                                
+                               
                            }                        
                            </div>
                            </td>
@@ -120,6 +135,20 @@ class GridForm extends React.Component {
            </div>   
   }
   
+  onChangeTime(symbol,e){
+    const oState = this.state;    
+    let utc_time = moment.utc(e.valueOf());
+
+    oState.scopeData.map( (d, index_) =>{
+      if(symbol === d.symbol ){
+        oState.scopeData[index_].value = utc_time.valueOf();        
+      }
+      return d;
+    });
+
+    this.setState(oState);
+  }
+
   goBack(){
     this.context.router.goBack();
   }
