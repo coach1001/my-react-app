@@ -19,7 +19,7 @@ class GridForm extends React.Component {
         return null;
       }
     });
-    const hasGrid = methods[index].hasGrid; 
+    const hasGraph = methods[index].hasGraph; 
     const method = methods[index];
     const graph = methods[index].graph;
 
@@ -34,7 +34,7 @@ class GridForm extends React.Component {
       method: method,
       sampleMethod: this.props.sampleMethod,
       colLayout: colLayout,
-      hasGrid: hasGrid,
+      hasGraph: hasGraph,
       graph: graph,
     })            
   }
@@ -195,6 +195,7 @@ class GridForm extends React.Component {
     const table = this.state.table;    
     const col = this.state.colLayout;
     const em = this.props.empty;
+    const eg = this.state.hasGraph;
 
     table.map( (row, rI) => {
       row.td.map( (col, cI) => {        
@@ -290,7 +291,8 @@ class GridForm extends React.Component {
                 <button className="hidden-print btn-block btn btn-lg btn-success">Calculate and Save</button>            
               </Confirm>
             }         
-             
+            {
+             this.state.hasGraph ?
             <VictoryChart>
               
               <VictoryAxis label="Sieve Sizes" tickValues={labels} style={stylex} tickLabelComponent={<VictoryLabel dy={-1.5}/>}
@@ -305,7 +307,8 @@ class GridForm extends React.Component {
               />
               <VictoryArea data={data1} interpolation='basis' style={line} />                
             </VictoryChart> 
-           
+              : null
+            }
 
            </div>   
   }

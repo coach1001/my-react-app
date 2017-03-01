@@ -204,6 +204,7 @@ export const methods = [
 		],
 
 		grid: [
+
 			{td: [
 				{style: STYLES.LARGE_LABEL.tr, label: "Maximum Dry Density"},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_mdd'},
@@ -211,6 +212,10 @@ export const methods = [
 			{td: [
 				{style: STYLES.LARGE_LABEL.tr, label: "Optimum Moisture Content"},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_omc'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Number of Pans"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_nop'},
 			]},
 			{td: [ 
 				{style: STYLES.LARGE_LABEL.c},				
@@ -266,12 +271,6 @@ export const methods = [
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_sm1'},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_sm2'},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_sm3'},				
-			]},
-			{td: [
-				{style: STYLES.LARGE_LABEL.tr, label: "Percentage Added"},
-				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pa1'},
-				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pa2'},
-				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pa3'},				
 			]},
 			{td: [
 				{style: STYLES.LARGE_LABEL.tr, label: "Water Added"},
@@ -341,15 +340,15 @@ export const methods = [
 			]},
 			{td: [
 				{style: STYLES.LARGE_LABEL.tr, label: "Actual Moisture Content"},
-				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_sm1'},
-				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_sm2'},
-				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_sm3'},				
-			]},
-			{td: [
-				{style: STYLES.LARGE_LABEL.tr, label: "Actual Dry Density"},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_amc1'},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_amc2'},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_amc3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Actual Dry Density"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_add1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_add2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_add3'},				
 			]},
 			{td: [
 				{style: STYLES.LARGE_LABEL.tr, label: "% Compaction"},
@@ -380,14 +379,13 @@ export const methods = [
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_ps1'},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_ps2'},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_ps3'},				
-			]},
-		
+			]},		
 		]
 	},//A8
 
 	{//A7
 		code: 'A7',
-		hasChart: true,
+		hasGraph: true,
 		colLayout:[
 			{ span:1,  width: "30%"},
 			{ span:1,  width: "14%"},
@@ -630,17 +628,24 @@ export const methods = [
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sm_pp10'},
 			]},
 			{td: [
-				{style: STYLES.LARGE_LABEL.tr, label: "Fraction Coarse Sand (0.075 mm)"},
+		  	{style: STYLES.LARGE_LABEL.thin,colSpan: 2},
+		  ]},		 	
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Fraction Coarse Sand (2.0 mm - 0.425 mm)"},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sm_fcs'},
 			]},
 			{td: [
-				{style: STYLES.LARGE_LABEL.tr, label: "Fraction Fine Sand"},
+				{style: STYLES.LARGE_LABEL.tr, label: "Fraction Fine Sand (0.425 mm - 0.075 mm)"},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sm_ffs'},
 			]},
 			{td: [
-				{style: STYLES.LARGE_LABEL.tr, label: "Fraction (0.075 mm)"},
+				{style: STYLES.LARGE_LABEL.tr, label: "Fraction ( < 0.075 mm)"},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sm_fm'},
 			]},
+			{td: [
+		  	{style: STYLES.LARGE_LABEL.thin,colSpan: 2},
+		  ]},		 	
 			{td: [
 				{style: STYLES.LARGE_LABEL.tr, label: "Percentage Coarse Sand"},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sm_pcs'},
@@ -650,7 +655,7 @@ export const methods = [
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sm_pfs'},
 			]},
 			{td: [
-				{style: STYLES.LARGE_LABEL.tr, label: "Percentage (0.075 mm)"},
+				{style: STYLES.LARGE_LABEL.tr, label: "Percentage ( < 0.075 mm)"},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sm_pfm'},
 			]},		
 		]
@@ -717,7 +722,7 @@ export const methods = [
 				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Wet Mass"},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'pl_wm1'},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'pl_wm2'},
-				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'll_wm3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'pl_wm3'},
 			]},
 			
 			{td: [ 
@@ -853,7 +858,7 @@ export const methods = [
 			]},			
 
 			{td: [ 
-				{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Dry Mass"},
+				{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Riffled Mass ( < 19 mm)"},
 				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'gr_dm'}
 			]},			
 			{td: [ 
@@ -931,6 +936,9 @@ export const methods = [
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr7"},
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp7"},
 		 	]},
+			{td: [
+		  	{style: STYLES.LARGE_LABEL.thin,colSpan: 5},
+		  ]},		 	
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "13.2 mm"},
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr8"},

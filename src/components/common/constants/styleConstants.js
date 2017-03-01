@@ -25,6 +25,16 @@ export const LARGE_SECTION_HEADER = {
 }
 
 export const LARGE_LABEL = {
+	thin:{
+		textAlign: 'center',	
+		padding: '2px',
+		fontSize: '14px',
+		//height: '39px',
+		height: '5px',
+		color: 'white',
+		backgroundColor: '#31708f'
+	},
+
 	tr:{
 		fontSize: '14px',
 		textAlign: 'right',	

@@ -28,8 +28,9 @@ class MethodEdit extends Component {
     return <div className="container-print">
       <span style={{fontSize: '2em', cursor: 'pointer'}}>
       <FaArrowCircleLeft  onClick={this.goBack.bind(this)}  className="text-info hidden-print" size="2em"/>
-      &nbsp;{this.props.sample.sample} - {this.props.sampleMethod.label}
-      </span>        
+      &nbsp;{this.props.sample.sample} - {this.props.sampleMethod.label} 
+      </span>
+      <h5>{this.props.sampleMethod.description}</h5>        
       <button onClick={this.printWindow.bind(this)} className="pull-right btn btn-lg btn-primary hidden-print">Print</button>
       {this.props.sampleVariables.length > 0 && Object.keys(this.props.sampleMethod).length > 0 && Object.keys(this.props.sample).length > 0 ?        
         <div>                    
