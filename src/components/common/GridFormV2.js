@@ -49,24 +49,7 @@ class GridForm extends React.Component {
 
   drawTable(){  
 
-    let dataGraph =[
-      {x: 10,y: 400},
-      {x: 12,y: 2000},
-      {x: 14,y: 2200},
-      {x: 16,y: 700},
-    ]
-    let maxY=0;
-
-    dataGraph.map( (point) => {
-      if(point.y > maxY){
-        maxY=point.y;
-      }
-      return point;
-    })
-    
-    maxY+=3000;
-    maxY=Math.round(maxY/1000)*1000;
-
+    let maxY = 0;
 
     const graph = this.state.graph;
     const data = this.state.scopeData;    
@@ -75,6 +58,47 @@ class GridForm extends React.Component {
     const em = this.props.empty;
     const eg = this.state.hasGraph;
     
+    
+    if(eg){
+
+
+    graph.dataSets.map( (ds) => {
+
+        ds.data.map( (dt) => {
+                 
+          data.map( (sd) =>{
+          
+            if(sd.symbol === dt.sx ){
+              if(sd.value){
+                dt.x = sd.value;
+              } 
+                
+            }
+            if(sd.symbol === dt.sy){
+              if(sd.value){
+                dt.y = sd.value;  
+                if(sd.value > maxY)
+                {
+                  maxY=sd.value;
+                }
+              }            
+            }
+          
+            return sd;
+          
+          })
+        
+        return dt;
+        
+        });
+        
+        return ds;      
+      });
+    maxY += graph.addMaxY
+    maxY = Math.round(maxY/graph.stepSizeDiv)*graph.stepSizeDiv;
+    }
+
+        
     table.map( (row, rI) => {
       row.td.map( (col, cI) => {        
         data.map( (d, dI) =>{
@@ -174,45 +198,39 @@ class GridForm extends React.Component {
                 <button className="hidden-print btn-block btn btn-lg btn-success">Calculate and Save</button>            
               </Confirm>
             }         
+            
             {
-             this.state.hasGraph ? 
-                               
-               <Line ref="graph" redraw={true}
-                  data={{
-                      datasets: [
-                        {
-                          label: '',                          
-                          showLine: false,
-                          pointRadius: 5,
-                          pointBackgroundColor: 'red',                          
-                          data: dataGraph
-                        }
-                      ]
-                  }}
-                  options={{ 
-                                                  
-                      scales: {
+              
+              this.state.hasGraph ? <Line ref="graph" redraw={true} 
+                  data={{ datasets: graph.dataSets }}
+                  options={{                                                   
+                      scales: {                          
                           xAxes: [{
-                              type: 'linear',
+                              scaleLabel:{
+                                display: true,
+                                labelString: graph.xLabel
+                              },
+                              type: graph.scale.x,
                               position: 'bottom',
-                              ticks: {
-                                
-                              }
+                              ticks: graph.xAxis
                           }],
 
-                          yAxes: [{
-                              type: 'linear',                              
-                              ticks: {                                
-                                max: maxY
+                          yAxes: [{                              
+                              scaleLabel:{
+                                display: true,
+                                labelString: graph.yLabel,
+                              },
+                              type: graph.scale.y,                              
+                              ticks: {                                  
+                                max: maxY,                                                              
+                                stepSize: Math.round((maxY/100)/10)*10
                               }
                           }]
 
                       }
                   }}
-               />
-              : null
-            }
-
+               /> : null              
+            }                    
            </div>   
   }
   

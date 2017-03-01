@@ -663,54 +663,65 @@ export const methods = [
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_omc'},
 			]},												
 		],
+		
 		graph:{
-			
-			xLabel: {title: 'Moisture Content',unit: '%'},
-			yLabel: {title: 'Dry Density',unit: 'kg/m^3'},
-			
-			xLabelFormat:{
-				divisor : 5
-			},
-
-			yLabelFormat:{
-				divisor : 5
-			},
+				
+			xLabel: 'Moisture Content (%)',
+			yLabel: 'Dry Density (kg/m^3)',
 			
 			scale: {
 				x: 'linear',
 				y: 'linear'
 			},
 
-			styleX: {
-				tickLabels: { fontSize: 4,  writingMode: 'tb', textAnchor: 'start' }, 
-        grid: {stroke: 'lightgrey'},            
-        axisLabel: {fontSize: 6},
-        ticks: {stroke: "grey"}
-			},
-			
-			styleY: {
-        tickLabels: { fontSize: 4}, 
-        grid: {stroke: 'lightgrey'},        
-        axisLabel: {fontSize: 6},
-        ticks: {stroke: "grey"}
+			addMaxY: 200,
+			stepSizeDiv: 100,
+
+			xAxis:{
+				min: 0,
+				max: 20,
+				stepSize: 0.1,
+				minRotation: 90,
+				callback: function(label,index,labels){
+					if(label % 1 === 0){
+						return label;
+					}else{
+						return '';
+					}
+				}						        
 			},
 
-			dataSet:[
-				{ 
-					type: 'dot',
-					points: [
-						{ x: 'mdd_amc1', y: 'mdd_add1'},
-						{ x: 'mdd_amc2', y: 'mdd_add2'},
-						{ x: 'mdd_amc3', y: 'mdd_add3'},
-						{ x: 'mdd_amc4', y: 'mdd_add4'},
-						{ x: 'mdd_amc5', y: 'mdd_add5'},				
+      
+			dataSets:[
+				{ 				                          
+	        label: 'Estimated Dry Density and Percentage Water Added',                          
+	        showLine: false,
+	        pointRadius: 3,	        
+	        pointBackgroundColor: 'red',                          
+	        borderColor: 'red',
+          data: [						
+						{ sx: 'mdd_pa1', sy: 'mdd_edd1'},
+						{ sx: 'mdd_pa2', sy: 'mdd_edd2'},
+						{ sx: 'mdd_pa3', sy: 'mdd_edd3'},
+						{ sx: 'mdd_pa4', sy: 'mdd_edd4'},
+						{ sx: 'mdd_pa5', sy: 'mdd_edd5'},										
+					]
+				},
+				{ 				                          
+	        label: 'Actual Dry Density and Actual Moisture Content',                          
+	        showLine: false,
+	        pointRadius: 3,	        
+	        pointBackgroundColor: 'blue',                          
+	        borderColor: 'blue',
+          data: [						
+						{ sx: 'mdd_amc1', sy: 'mdd_add1'},
+						{ sx: 'mdd_amc2', sy: 'mdd_add2'},
+						{ sx: 'mdd_amc3', sy: 'mdd_add3'},
+						{ sx: 'mdd_amc4', sy: 'mdd_add4'},
+						{ sx: 'mdd_amc5', sy: 'mdd_add5'},										
 					]
 				}
-			]
-				
-			
-
-
+			]							
 		}
 	},//A7
 
@@ -1141,7 +1152,56 @@ export const methods = [
 		  	{style: STYLES.LARGE_LABEL.input},
 		  	{style: STYLES.LARGE_LABEL.input},
 		 	]},												
-		]
+		],
+		hasGraph: true,
+	graph:{
+			
+			xLabel: 'Sieve Size (mm) ',
+			yLabel: 'Percentage Passing (%)',
+			
+			scale: {
+				x: 'logarithmic',
+				y: 'linear'
+			},
+
+			addMaxY: 1,
+			stepSizeDiv: 1,
+
+			xAxis:{
+				stepSize: 0.1,
+				minRotation: 90,
+				callback: function(label, index, labels) {        		
+        		
+        		return label.toFixed(2);
+    			}												        				
+			},
+
+      
+			dataSets:[
+				{ 				                          
+	        label: 'Cummulative Percentage Passing',                          
+	        showLine: true,
+	        pointRadius: 4,	        
+	        pointBackgroundColor: 'red',                          
+	        borderColor: 'red',
+          data: [						
+						{ sy: 'gr_cpp1', x: 105},
+						{ sy: 'gr_cpp2', x: 75},
+						{ sy: 'gr_cpp3', x: 63},
+						{ sy: 'gr_cpp4', x: 53},
+						{ sy: 'gr_cpp5', x: 37.5},
+						{ sy: 'gr_cpp6', x: 26.5},
+						{ sy: 'gr_cpp7', x: 19},
+						{ sy: 'gr_cpp8', x: 13.2},										
+						{ sy: 'gr_cpp9', x: 4.75},
+						{ sy: 'gr_cpp10', x: 2.00},
+						{ sy: 'gr_cpp11', x: 0.425},
+						{ sy: 'sm_fm', x: 0.075},
+
+					]
+				}
+			]							
+		}
 	}//A1
 ]
 
