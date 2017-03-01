@@ -21,7 +21,7 @@ class MethodEdit extends Component {
   }
   
   printWindow(){
-    window.print()
+    window.print();
   }
 
   render() {    

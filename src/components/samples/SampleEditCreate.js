@@ -190,6 +190,14 @@ class SampleEditCreate extends Component {
     }
   }
 
+  ellipsify (str) {
+      if (str.length > 90) {
+          return (str.substring(0, 90) + "...");
+      }
+      else {
+          return str;
+      }
+  }
   render() {  
                   
     return (    
@@ -267,32 +275,56 @@ class SampleEditCreate extends Component {
                 : null
               }
               {
+                
+
+
+
                 this.state.sampleMethods.length > 0 ?
                 <div className="panel panel-default">
                   <div className="panel-heading">
                     <div style={{fontWeight: 'bold'}} className="panel-title">Sample Methods</div>
                   </div>
-                  <div className="panel-body">
-                  {
-                    this.state.sampleMethods.map( (method,index) => {
-                      
-                    return  <div key={index}>                                                    
+                  
+                  <div className="panel-body">                  
+                  <h4 style={{margin: '0px', fontWeight: 'bold' }}>TMH1</h4>
+                  {                    
+                    this.state.sampleMethods.map( (method,index) => {                    
+                    if(method.type === 'TMH1')  
+                    {return  <div key={index}>                                                    
                               <div className="checkbox">                                
                                 {/*<Confirm onConfirm={this.editSampleMethod.bind(this,method)} confirmBSStyle='primary' body="To Enter Method Data you have to Save the Sample Methods?" confirmText="Confirm Save and Continue" title="Method Data">*/}
                                   <button onClick={this.editSampleMethod.bind(this,method)} className="hidden-print btn btn-primary" disabled={!method.exists}>Enter Data</button>
                                 {/*</Confirm>    */}
                                 &nbsp;&nbsp;
                                 <button onClick={this.editSampleMethodEmpty.bind(this,method)} className="hidden-print btn btn-default pull-right" disabled={!method.exists}>Print</button>
-                                <label style={{fontSize: '1.1em'}}><input disabled={this.state.sample.id ? false : true} type="checkbox" onChange={this.onChangeMethods.bind(this,index)} checked={method.exists} />&nbsp;{method.label}: {method.description} </label>                                                                
+                                <label style={{fontSize: '1.1em'}}><input disabled={this.state.sample.id ? false : true} type="checkbox" onChange={this.onChangeMethods.bind(this,index)} checked={method.exists} />&nbsp;{method.label}: {this.ellipsify(method.description)} </label>                                                                
                                 <label style={{fontSize: '1.1em'}} className="pull-right"><input disabled={true} type="checkbox" checked={method.completed} />Completed &nbsp;</label>
 
                               </div>
-                            </div>
-                    })                    
+                            </div>}else{return null;}
+                    })                  
                   }   
-                  </div>
-                </div>       
-                : null
+                  <h4 style={{margin: '0px', fontWeight: 'bold'  }}>SANS</h4>
+                  {                    
+                    this.state.sampleMethods.map( (method,index) => {                    
+                    if(method.type === 'SANS')  
+                    {return  <div key={index}>                                                    
+                              <div className="checkbox">                                
+                                {/*<Confirm onConfirm={this.editSampleMethod.bind(this,method)} confirmBSStyle='primary' body="To Enter Method Data you have to Save the Sample Methods?" confirmText="Confirm Save and Continue" title="Method Data">*/}
+                                  <button onClick={this.editSampleMethod.bind(this,method)} className="hidden-print btn btn-primary" disabled={!method.exists}>Enter Data</button>
+                                {/*</Confirm>    */}
+                                &nbsp;&nbsp;
+                                <button onClick={this.editSampleMethodEmpty.bind(this,method)} className="hidden-print btn btn-default pull-right" disabled={!method.exists}>Print</button>
+                                <label style={{fontSize: '1.1em'}}><input disabled={this.state.sample.id ? false : true} type="checkbox" onChange={this.onChangeMethods.bind(this,index)} checked={method.exists} />&nbsp;{method.label}: {this.ellipsify(method.description)} </label>                                                                
+                                <label style={{fontSize: '1.1em'}} className="pull-right"><input disabled={true} type="checkbox" checked={method.completed} />Completed &nbsp;</label>
+
+                              </div>
+                            </div>}else{return null;}
+                    })                  
+                  }
+                  </div>                                                
+                </div>                       
+                : null              
               }
             </div>                
       </div>

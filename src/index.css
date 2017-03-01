@@ -4,6 +4,13 @@
 .control-label{
   font-size: 18px;
 }
+
+.reset {
+  all: initial !important;
+  * {
+    all: unset !important;
+  }
+}
 body {
   margin: 0;
   padding: 0;
@@ -24,6 +31,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;  
+  image-rendering: -moz-crisp-edges;         /* Firefox */
+  image-rendering:   -o-crisp-edges;         /* Opera */
+  image-rendering: -webkit-optimize-contrast;/* Webkit (non-standard naming) */
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;  /* IE (non-standard property) */
 }
 
 label{
@@ -561,4 +573,12 @@ input[type=radio], input[type=checkbox] {
   margin-right: auto;
   margin-left: auto;
   width: 1170px;
+}
+
+.reset {
+  all: initial;
+}
+
+canvas{
+  box-sizing: content-box;
 }

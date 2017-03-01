@@ -14,7 +14,7 @@ import './utils/axiosInterceptors';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/react-bootstrap-table/dist/react-bootstrap-table.min.css';
 import './index.css';
-import '../node_modules/animate.css/animate.css';
+//import '../node_modules/animate.css/animate.css';
 /*import '../node_modules/mathjax/MathJax.js';
 import '../node_modules/mathjax/config/TeX-AMS_HTML-full.js';
 */

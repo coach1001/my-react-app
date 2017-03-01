@@ -197,10 +197,10 @@ export const methods = [
 	{//A8
 		code: 'A8',
 		colLayout: [
-			{span: 1, width:'40%'},
+			{span: 1, width:'25%'},
 			{span: 1, width:'20%'},
 			{span: 1, width:'20%'},
-			{span: 1, width:'20%'}, 
+			{span: 1, width:'20%'}, 			
 		],
 
 		grid: [
@@ -380,6 +380,128 @@ export const methods = [
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_ps2'},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_ps3'},				
 			]},		
+			{td: [
+				{style: STYLES.LARGE_LABEL.c,colSpan:4, label: "Penetration Data"},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "0.00 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_1_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_1_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_1_3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "0.635 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_2_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_2_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_2_3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "1.27 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_3_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_3_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_3_3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "1.905 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_4_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_4_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_4_3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "3.175 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_5_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_5_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_5_3'},				
+			]},
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "3.81 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_6_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_6_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_6_3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "4.445 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_7_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_7_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_7_3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "5.08 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_8_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_8_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_8_3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "5.715 mm "},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_9_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_9_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_9_3'},				
+			]},		
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "6.35 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_10_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_10_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_10_3'},				
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "6.985 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_11_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_11_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_11_3'},				
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "8.255 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_12_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_12_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_12_3'},				
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "8.89 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_13_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_13_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_13_3'},				
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "9.525 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_14_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_14_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_14_3'},				
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "10.16 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_15_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_15_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_15_3'},				
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "10.795 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_16_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_16_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_16_3'},				
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "11.43 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_17_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_17_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_17_3'},				
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "12.065 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_18_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_18_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_pd_18_3'},				
+			]},		
+
+
 		]
 	},//A8
 
@@ -542,15 +664,53 @@ export const methods = [
 			]},												
 		],
 		graph:{
-			xLabel: 'Moisture Content %',
-			yLabel: 'Dry Density',			
-			points: [
-				{ x: 'mdd_amc1', y: 'mdd_add1'},
-				{ x: 'mdd_amc2', y: 'mdd_add2'},
-				{ x: 'mdd_amc3', y: 'mdd_add3'},
-				{ x: 'mdd_amc4', y: 'mdd_add4'},
-				{ x: 'mdd_amc5', y: 'mdd_add5'},				
+			
+			xLabel: {title: 'Moisture Content',unit: '%'},
+			yLabel: {title: 'Dry Density',unit: 'kg/m^3'},
+			
+			xLabelFormat:{
+				divisor : 5
+			},
+
+			yLabelFormat:{
+				divisor : 5
+			},
+			
+			scale: {
+				x: 'linear',
+				y: 'linear'
+			},
+
+			styleX: {
+				tickLabels: { fontSize: 4,  writingMode: 'tb', textAnchor: 'start' }, 
+        grid: {stroke: 'lightgrey'},            
+        axisLabel: {fontSize: 6},
+        ticks: {stroke: "grey"}
+			},
+			
+			styleY: {
+        tickLabels: { fontSize: 4}, 
+        grid: {stroke: 'lightgrey'},        
+        axisLabel: {fontSize: 6},
+        ticks: {stroke: "grey"}
+			},
+
+			dataSet:[
+				{ 
+					type: 'dot',
+					points: [
+						{ x: 'mdd_amc1', y: 'mdd_add1'},
+						{ x: 'mdd_amc2', y: 'mdd_add2'},
+						{ x: 'mdd_amc3', y: 'mdd_add3'},
+						{ x: 'mdd_amc4', y: 'mdd_add4'},
+						{ x: 'mdd_amc5', y: 'mdd_add5'},				
+					]
+				}
 			]
+				
+			
+
+
 		}
 	},//A7
 
@@ -983,7 +1143,6 @@ export const methods = [
 		 	]},												
 		]
 	}//A1
-
 ]
 
 export const SIEVE_ANALYSIS = [

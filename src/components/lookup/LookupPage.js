@@ -70,13 +70,13 @@ class LookupPage extends React.Component {
                 <div className="page">        
                      
 
-                    <VictoryChart scale={ { x: 'log', y: 'linear' }}>
-                      <VictoryAxis label="Sieve Sizes" tickValues={labels} style={stylex} tickLabelComponent={<VictoryLabel dy={-1.5}/>}
+                    <VictoryChart scale={ graph.scale }>
+                      <VictoryAxis label="Sieve Sizes" tickValues={labels} style={graph.styleX} tickLabelComponent={<VictoryLabel dy={-1.5}/>}
                       axisLabelComponent={<VictoryLabel dy={1.2}/>}
                       tickFormat={ (tick) =>{
                         return `${tick} mm`;
                       }} />
-                      <VictoryAxis label="Percentage Passing" dependentAxis style={styley} tickFormat={ (tick) =>{return `${tick}%`;}}
+                      <VictoryAxis label="Percentage Passing" dependentAxis style={graph.styleY} tickFormat={ (tick) =>{return `${tick}%`;}}
                         tickLabelComponent={<VictoryLabel dx={9} />}
                         axisLabelComponent={<VictoryLabel dy={-0.5}/>}
                       />
