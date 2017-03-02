@@ -49,7 +49,7 @@ class GridForm extends React.Component {
 
   drawTable(){  
 
-    let maxY = 0;
+    let maxY = [];
 
     const graph = this.state.graph;
     const data = this.state.scopeData;    
@@ -57,48 +57,49 @@ class GridForm extends React.Component {
     const col = this.state.colLayout;
     const em = this.props.empty;
     const eg = this.state.hasGraph;
-    
-    
+
+    let tempMax;
+
     if(eg){
 
-
-    graph.dataSets.map( (ds) => {
-
-        ds.data.map( (dt) => {
-                 
-          data.map( (sd) =>{
-          
-            if(sd.symbol === dt.sx ){
-              if(sd.value){
-                dt.x = sd.value;
-              } 
-                
-            }
-            if(sd.symbol === dt.sy){
-              if(sd.value){
-                dt.y = sd.value;  
-                if(sd.value > maxY)
-                {
-                  maxY=sd.value;
-                }
-              }            
-            }
-          
-            return sd;
-          
-          })
-        
-        return dt;
-        
-        });
-        
-        return ds;      
-      });
-    maxY += graph.addMaxY
-    maxY = Math.round(maxY/graph.stepSizeDiv)*graph.stepSizeDiv;
+    graph.map( (g) => {
+      tempMax=0;
+      g.dataSets.map( (ds) => {
+              ds.data.map( (dt) => {                 
+                data.map( (sd) =>{          
+                  if(sd.symbol === dt.sx ){
+                    if(sd.value){
+                     if(!em){
+                      dt.x = sd.value;
+                     }                     
+                    }                 
+                  }
+                  if(sd.symbol === dt.sy){
+                    if(sd.value){
+                      if(!em){
+                        dt.y = sd.value;  
+                      }
+                        
+                      if(sd.value > tempMax)
+                      {
+                        tempMax=sd.value;
+                      }
+                    }            
+                  }          
+                  return sd;          
+                })        
+              return dt;        
+              });        
+              return ds;      
+            });
+      tempMax += g.addMaxY
+      tempMax = Math.round(tempMax/g.stepSizeDiv)*g.stepSizeDiv;  
+      maxY.push(tempMax);
+      return g;
+     })          
     }
 
-        
+
     table.map( (row, rI) => {
       row.td.map( (col, cI) => {        
         data.map( (d, dI) =>{
@@ -201,36 +202,40 @@ class GridForm extends React.Component {
             
             {
               
-              this.state.hasGraph ? <Line ref="graph" redraw={true} 
-                  data={{ datasets: graph.dataSets }}
+              graph.map( (g,i) => {
+                return this.state.hasGraph ? <div><Line key={i} redraw={true} 
+                  data={{ datasets: g.dataSets }}
                   options={{                                                   
                       scales: {                          
                           xAxes: [{
                               scaleLabel:{
                                 display: true,
-                                labelString: graph.xLabel
+                                labelString: g.xLabel
                               },
-                              type: graph.scale.x,
+                              type: g.scale.x,
                               position: 'bottom',
-                              ticks: graph.xAxis
+                              ticks: g.xAxis
                           }],
 
                           yAxes: [{                              
                               scaleLabel:{
                                 display: true,
-                                labelString: graph.yLabel,
+                                labelString: g.yLabel,
                               },
-                              type: graph.scale.y,                              
+                              type: g.scale.y,                              
                               ticks: {                                  
-                                max: maxY,                                                              
-                                stepSize: Math.round((maxY/100)/10)*10
+                                max: maxY[i],                                                              
+                                stepSize: Math.round((maxY[i]/g.divisor)/g.stepSizeDiv)*g.stepSizeDiv,
+                                callback: g.yAxis.callback
                               }
                           }]
 
                       }
                   }}
-               /> : null              
-            }                    
+               /><br/><br/></div> : null              
+              })            
+            }
+                   
            </div>   
   }
   
