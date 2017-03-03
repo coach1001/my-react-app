@@ -918,27 +918,25 @@ export const methods = [
 				onClick: function(e){
 					const chartA = this.chartArea;
 					const chartO = this;
-					console.log(e.layerY);
 					
+					console.log(chartO);
+
 					let px = e.layerX - chartA.left;
 					if(px < 0){ px = 0; }
-					let py = e.layerY - chartA.top; 
-					if(py < 0){ py = 0; }
 					
 					let cWidthPx = chartA.right - chartA.left;
 					let cHeightPx = chartA.bottom - chartA.top;
 										
 					let cWidthDt = chartO.scales['x-axis-0'].max - chartO.scales['x-axis-0'].min;
 					let cHeightDt = chartO.scales['y-axis-0'].max - chartO.scales['y-axis-0'].min; 
-					
-					//console.log(chartO.scales['y-axis-0']);
-					//console.log('Width Pixel:',cWidthPx,'Height Pixel:', cHeightPx,'Width Data:', cWidthDt,'Height Data:',cHeightDt);
 
-					console.log(py,py*(cHeightDt/cHeightPx),chartO.scales['y-axis-0'].min);
+					let py = cHeightPx - (e.layerY - chartA.top) ; 
+					if(py < 0){ py = 0; }
+					console.log(py);
 
 					let dx = chartO.scales['x-axis-0'].min + px*(cWidthDt/cWidthPx);
 					let dy = chartO.scales['y-axis-0'].min + py*(cHeightDt/cHeightPx);
-						//console.log(dx,dy);
+					console.log(dx,dy);
 					
 					
 					
