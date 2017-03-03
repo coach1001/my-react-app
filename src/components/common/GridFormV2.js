@@ -2,10 +2,9 @@ import React from 'react';
 import {methods} from './constants/gridFormConstants';
 import math from 'mathjs';
 import { sendRow } from '../../actions/tablesData';
-import { fetchSampleMethod, updateSampleMethod } from '../../actions/sampleMethods';
 import Confirm from 'react-confirm-bootstrap';
 import Datetime from 'react-datetime';
-import moment from 'moment';
+
 /*import TeX from 'react-formula-beautifier';*/
 //import { Line, VictoryArea, VictoryTooltip, VictoryLabel, VictoryChart, VictoryAxis } from 'victory';
 import {Line} from 'react-chartjs-2';
@@ -60,44 +59,42 @@ class GridForm extends React.Component {
 
     let tempMax;
 
-    if(eg){
-
-    graph.map( (g) => {
-      tempMax=0;
-      g.dataSets.map( (ds) => {
-              ds.data.map( (dt) => {                 
-                data.map( (sd) =>{          
-                  if(sd.symbol === dt.sx ){
-                    if(sd.value){
-                     if(!em){
-                      dt.x = sd.value;
-                     }                     
-                    }                 
-                  }
-                  if(sd.symbol === dt.sy){
-                    if(sd.value){
-                      if(!em){
-                        dt.y = sd.value;  
-                      }
-                        
-                      if(sd.value > tempMax)
-                      {
-                        tempMax=sd.value;
-                      }
-                    }            
-                  }          
-                  return sd;          
-                })        
-              return dt;        
-              });        
-              return ds;      
-            });
-      tempMax += g.addMaxY
-      tempMax = Math.round(tempMax/g.stepSizeDiv)*g.stepSizeDiv;  
-      maxY.push(tempMax);
-      return g;
-     })          
+    if(eg && !em){      
+      graph.map( (g) => {
+        tempMax=0;
+        g.dataSets.map( (ds) => {
+                ds.data.map( (dt) => {                 
+                  data.map( (sd) =>{          
+                                        
+                    if(sd.symbol === dt.sx ){
+                      if(sd.value){
+                        dt.x = sd.value;
+                      }                 
+                    
+                    }
+                    if(sd.symbol === dt.sy){
+                      if(sd.value){
+                        dt.y = sd.value;                            
+                        if(sd.value > tempMax)
+                        {
+                          tempMax=sd.value;
+                        }
+                      }            
+                    }          
+                    
+                    return sd;          
+                  })        
+                return dt;        
+                });        
+                return ds;      
+              });
+        tempMax += g.addMaxY
+        tempMax = Math.round(tempMax/g.roundOff)*g.roundOff;          
+        maxY.push(tempMax);
+        return g;
+      })              
     }
+
 
 
     table.map( (row, rI) => {
@@ -201,41 +198,14 @@ class GridForm extends React.Component {
             }         
             
             {
-              
-              graph.map( (g,i) => {
-                return this.state.hasGraph ? <div><Line key={i} redraw={true} 
-                  data={{ datasets: g.dataSets }}
-                  options={{                                                   
-                      scales: {                          
-                          xAxes: [{
-                              scaleLabel:{
-                                display: true,
-                                labelString: g.xLabel
-                              },
-                              type: g.scale.x,
-                              position: 'bottom',
-                              ticks: g.xAxis
-                          }],
-
-                          yAxes: [{                              
-                              scaleLabel:{
-                                display: true,
-                                labelString: g.yLabel,
-                              },
-                              type: g.scale.y,                              
-                              ticks: {                                  
-                                max: maxY[i],                                                              
-                                stepSize: Math.round((maxY[i]/g.divisor)/g.stepSizeDiv)*g.stepSizeDiv,
-                                callback: g.yAxis.callback
-                              }
-                          }]
-
-                      }
-                  }}
-               /><br/><br/></div> : null              
-              })            
-            }
-                   
+              eg && !em ? graph.map( (g,i) => {                    
+                    g.options.scales.yAxes[0].ticks.max = maxY[i]                    
+                    return <div key={i}> 
+                      <Line height={'200mm'} redraw={true} data={{ datasets: g.dataSets }} options={g.options} />
+                    </div>                  
+                  })
+               : null               
+            }                               
            </div>   
   }
   

@@ -582,3 +582,8 @@ input[type=radio], input[type=checkbox] {
 canvas{
   box-sizing: content-box;
 }
+
+  @media print
+ {
+   thead {display: table-header-group;}
+ }

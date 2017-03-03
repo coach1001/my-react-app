@@ -1,5 +1,5 @@
 import * as STYLES from './styleConstants';
-
+import { Chart } from 'react-chartjs-2';
 
 export const methods = [
 		
@@ -537,159 +537,215 @@ export const methods = [
 		hasGraph: true,
 		graph:
 		[//GRAPH ARRAY		
-		 {
-			xLabel: 'Depth Penetration (mm)',yLabel: 'Load (kN)',
-			scale: {x: 'linear',	y: 'linear'},
-			addMaxY: 1,
-			stepSizeDiv: 1,
-			divisor: 10,
-			xAxis:{
-				stepSize: 0.635,
-				minRotation: 90,
-				callback: function(label, index, labels) {        			      		
-	      		return label.toFixed(2);
-	  			}												        				
-			},
-			yAxis:{
-				callback: function(label, index, labels) {        			      			      		
-	      		//return label.toFixed(2);
-	      		return label;
-	  			}												        				
-			},
-			dataSets:[
-				{ 				                          
-	        label: 'CBR Curve (1)',                          
-	        showLine: true,
-	        pointRadius: 4,	        
-	        pointBackgroundColor: 'red',                          
-	        borderColor: 'red',
-	        fill: false,
-	        data: [						
-						{sy: 'cbr_pd_1_1', x:0},
-						{sy: 'cbr_pd_2_1', x:0.635},
-						{sy: 'cbr_pd_3_1', x:1.27},
-						{sy: 'cbr_pd_4_1', x:1.905},
-						{sy: 'cbr_pd_5_1', x:2.54},
-						{sy: 'cbr_pd_6_1', x:3.175},
-						{sy: 'cbr_pd_7_1', x:3.81},
-						{sy: 'cbr_pd_8_1', x:4.445},
-						{sy: 'cbr_pd_9_1', x:5.08},
-						{sy: 'cbr_pd_10_1', x:5.715},
-						{sy: 'cbr_pd_11_1', x:6.35},
-						{sy: 'cbr_pd_12_1', x:6.985},
-						{sy: 'cbr_pd_13_1', x:7.62},
-						{sy: 'cbr_pd_14_1', x:8.255},
-						{sy: 'cbr_pd_15_1', x:8.89},
-						{sy: 'cbr_pd_16_1', x:9.525},
-						{sy: 'cbr_pd_17_1', x:10.16},
-						{sy: 'cbr_pd_18_1', x:10.795},
-						{sy: 'cbr_pd_19_1', x:11.43},
-						{sy: 'cbr_pd_20_1', x:12.065},
-					]
+			{//GRAPH 1
+				addMaxY: 1,
+				roundOff: 1,
+
+				options: {
+					//maintainAspectRatio: false,
+					scales: {
+						xAxes: [
+							{
+								scaleLabel:{display: true,labelString: 'Depth Penetration (mm)',},
+								type:'linear',position: 'bottom',
+								ticks:{
+									stepSize: 0.635,
+									minRotation: 90,
+									callback: function(label,index,labels){																			
+											return label.toFixed(3);																	
+									}
+								}
+							}	
+						],
+						yAxes: [					
+							{							
+								scaleLabel:{display: true,labelString: 'Load (kN)'},
+								type:'linear',
+								ticks:{
+									stepSize: 0.1,
+									callback: function(label){
+										if(label % 0.5 === 0){
+											return label;
+										}else{
+											return '';
+										}
+									}
+								},
+							}
+						]					
+					},
+				},		
+				
+				dataSets:[
+					{ 				                          
+		        label: 'CBR Curve (1)',                          
+		        showLine: true,
+		        pointRadius: 4,	        
+		        pointBackgroundColor: 'red',                          
+		        borderColor: 'red',
+		        fill: false,
+		        data: [
+							{sy: 'cbr_pd_1_1', x:0},
+							{sy: 'cbr_pd_2_1', x:0.635},
+							{sy: 'cbr_pd_3_1', x:1.27},
+							{sy: 'cbr_pd_4_1', x:1.905},
+							{sy: 'cbr_pd_5_1', x:2.54},
+							{sy: 'cbr_pd_6_1', x:3.175},
+							{sy: 'cbr_pd_7_1', x:3.81},
+							{sy: 'cbr_pd_8_1', x:4.445},
+							{sy: 'cbr_pd_9_1', x:5.08},
+							{sy: 'cbr_pd_10_1', x:5.715},
+							{sy: 'cbr_pd_11_1', x:6.35},
+							{sy: 'cbr_pd_12_1', x:6.985},
+							{sy: 'cbr_pd_13_1', x:7.62},
+							{sy: 'cbr_pd_14_1', x:8.255},
+							{sy: 'cbr_pd_15_1', x:8.89},
+							{sy: 'cbr_pd_16_1', x:9.525},
+							{sy: 'cbr_pd_17_1', x:10.16},
+							{sy: 'cbr_pd_18_1', x:10.795},
+							{sy: 'cbr_pd_19_1', x:11.43},
+							{sy: 'cbr_pd_20_1', x:12.065},
+						]
+					},
+					{ 				                          
+		        label: 'CBR Curve (2)',                          
+		        showLine: true,
+		        pointRadius: 4,	        
+		        pointBackgroundColor: 'blue',                          
+		        borderColor: 'blue',
+		        fill: false,
+		        data: [						
+							{sy: 'cbr_pd_1_2', x:0},
+							{sy: 'cbr_pd_2_2', x:0.635},
+							{sy: 'cbr_pd_3_2', x:1.27},
+							{sy: 'cbr_pd_4_2', x:1.905},
+							{sy: 'cbr_pd_5_2', x:2.54},
+							{sy: 'cbr_pd_6_2', x:3.175},
+							{sy: 'cbr_pd_7_2', x:3.81},
+							{sy: 'cbr_pd_8_2', x:4.445},
+							{sy: 'cbr_pd_9_2', x:5.08},
+							{sy: 'cbr_pd_10_2', x:5.715},
+							{sy: 'cbr_pd_11_2', x:6.35},
+							{sy: 'cbr_pd_12_2', x:6.985},
+							{sy: 'cbr_pd_13_2', x:7.62},
+							{sy: 'cbr_pd_14_2', x:8.255},
+							{sy: 'cbr_pd_15_2', x:8.89},
+							{sy: 'cbr_pd_16_2', x:9.525},
+							{sy: 'cbr_pd_17_2', x:10.16},
+							{sy: 'cbr_pd_18_2', x:10.795},
+							{sy: 'cbr_pd_19_2', x:11.43},
+							{sy: 'cbr_pd_20_2', x:12.065},
+						]
+					},
+					{ 				                          
+		        label: 'CBR Curve (3)',                          
+		        showLine: true,
+		        pointRadius: 4,	        
+		        pointBackgroundColor: 'green',                          
+		        borderColor: 'green',
+		        fill: false,
+		        data: [						
+							{sy: 'cbr_pd_1_3', x:0},
+							{sy: 'cbr_pd_2_3', x:0.635},
+							{sy: 'cbr_pd_3_3', x:1.27},
+							{sy: 'cbr_pd_4_3', x:1.905},
+							{sy: 'cbr_pd_5_3', x:2.54},
+							{sy: 'cbr_pd_6_3', x:3.175},
+							{sy: 'cbr_pd_7_3', x:3.81},
+							{sy: 'cbr_pd_8_3', x:4.445},
+							{sy: 'cbr_pd_9_3', x:5.08},
+							{sy: 'cbr_pd_10_3', x:5.715},
+							{sy: 'cbr_pd_11_3', x:6.35},
+							{sy: 'cbr_pd_12_3', x:6.985},
+							{sy: 'cbr_pd_13_3', x:7.62},
+							{sy: 'cbr_pd_14_3', x:8.255},
+							{sy: 'cbr_pd_15_3', x:8.89},
+							{sy: 'cbr_pd_16_3', x:9.525},
+							{sy: 'cbr_pd_17_3', x:10.16},
+							{sy: 'cbr_pd_18_3', x:10.795},
+							{sy: 'cbr_pd_19_3', x:11.43},
+							{sy: 'cbr_pd_20_3', x:12.065},
+						]
+					},					
+				]		
+			},//GRAPH 1
+			{//GRAPH2
+				addMaxY: 3,
+				roundOff: 1,
+
+				options: {
+
+					animation: {
+						duration: 0,
+						onComplete: function () {
+						    
+						    var ctx = this.chart.ctx;						     
+						    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, 'normal', Chart.defaults.global.defaultFontFamily);
+						    ctx.fillStyle = this.chart.config.options.defaultFontColor;
+						    ctx.textAlign = 'center';
+						    ctx.textBaseline = 'bottom';
+						    
+						    this.data.datasets.forEach(function (dataset) {
+						        for (var i = 0; i < dataset.data.length; i++) {
+						            
+						            var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;						            
+						            var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;
+						            						            
+												ctx.save();
+												ctx.translate(model.x, model.y);
+												ctx.rotate(-Math.PI/2 );
+
+												ctx.textAlign = 'left';
+												ctx.fillText(string , 10, 5);
+
+												ctx.restore();
+						        }
+						    });
+						}},
+
+					scales: {
+						xAxes: [
+							{
+								scaleLabel:{display: true,labelString: '% Compaction',},
+								type:'linear',position: 'bottom',
+								ticks:{
+									stepSize: 1,
+									minRotation: 90,
+									callback: function(label,index,labels){
+										return label.toFixed(2);						
+									}
+								}
+							}	
+						],
+						yAxes: [					
+							{							
+								scaleLabel:{display: true,labelString: 'CBR'},
+								type:'linear',
+								ticks:{
+								},
+							}
+						]					
+					},
 				},
-				{ 				                          
-	        label: 'CBR Curve (2)',                          
-	        showLine: true,
-	        pointRadius: 4,	        
-	        pointBackgroundColor: 'blue',                          
-	        borderColor: 'blue',
-	        fill: false,
-	        data: [						
-						{sy: 'cbr_pd_1_2', x:0},
-						{sy: 'cbr_pd_2_2', x:0.635},
-						{sy: 'cbr_pd_3_2', x:1.27},
-						{sy: 'cbr_pd_4_2', x:1.905},
-						{sy: 'cbr_pd_5_2', x:2.54},
-						{sy: 'cbr_pd_6_2', x:3.175},
-						{sy: 'cbr_pd_7_2', x:3.81},
-						{sy: 'cbr_pd_8_2', x:4.445},
-						{sy: 'cbr_pd_9_2', x:5.08},
-						{sy: 'cbr_pd_10_2', x:5.715},
-						{sy: 'cbr_pd_11_2', x:6.35},
-						{sy: 'cbr_pd_12_2', x:6.985},
-						{sy: 'cbr_pd_13_2', x:7.62},
-						{sy: 'cbr_pd_14_2', x:8.255},
-						{sy: 'cbr_pd_15_2', x:8.89},
-						{sy: 'cbr_pd_16_2', x:9.525},
-						{sy: 'cbr_pd_17_2', x:10.16},
-						{sy: 'cbr_pd_18_2', x:10.795},
-						{sy: 'cbr_pd_19_2', x:11.43},
-						{sy: 'cbr_pd_20_2', x:12.065},
-					]
-				},
-				{ 				                          
-	        label: 'CBR Curve (3)',                          
-	        showLine: true,
-	        pointRadius: 4,	        
-	        pointBackgroundColor: 'green',                          
-	        borderColor: 'green',
-	        fill: false,
-	        data: [						
-						{sy: 'cbr_pd_1_3', x:0},
-						{sy: 'cbr_pd_2_3', x:0.635},
-						{sy: 'cbr_pd_3_3', x:1.27},
-						{sy: 'cbr_pd_4_3', x:1.905},
-						{sy: 'cbr_pd_5_3', x:2.54},
-						{sy: 'cbr_pd_6_3', x:3.175},
-						{sy: 'cbr_pd_7_3', x:3.81},
-						{sy: 'cbr_pd_8_3', x:4.445},
-						{sy: 'cbr_pd_9_3', x:5.08},
-						{sy: 'cbr_pd_10_3', x:5.715},
-						{sy: 'cbr_pd_11_3', x:6.35},
-						{sy: 'cbr_pd_12_3', x:6.985},
-						{sy: 'cbr_pd_13_3', x:7.62},
-						{sy: 'cbr_pd_14_3', x:8.255},
-						{sy: 'cbr_pd_15_3', x:8.89},
-						{sy: 'cbr_pd_16_3', x:9.525},
-						{sy: 'cbr_pd_17_3', x:10.16},
-						{sy: 'cbr_pd_18_3', x:10.795},
-						{sy: 'cbr_pd_19_3', x:11.43},
-						{sy: 'cbr_pd_20_3', x:12.065},
-					]
-				},					
-			]	
 
-		},//GRAPH
-		{
-			xLabel: '% Compaction',yLabel: 'CBR',
-			scale: {x: 'linear',	y: 'logarithmic'},
-			addMaxY: 1,
-			stepSizeDiv: 1,
-			divisor: 10,
-			xAxis:{
-				stepSize: 1,
-				minRotation: 90,
-				callback: function(label, index, labels) {        			      			      		
-	      		return label.toFixed(2);
-	  			}												        				
-			},
-			
-			yAxis:{
-				callback: function(label, index, labels) {        			      			      		
-	      		//return label.toFixed(2);
-	      		return label;
-	  			}												        				
-			},
+				dataSets:[
+					{ 				                          
+		        label: 'CBR (2.54 mm)',                          
+		        showLine: true,
+		        pointRadius: 4,	        
+		        pointBackgroundColor: 'red',                          
+		        borderColor: 'red',
+		        fill: false,
+		        data: [						
+		        	{sx:'cbr_mmx1',sy: 'cbr_1_d1'},
+		        	{sx:'cbr_imx1',sy: 'cbr_2_d1'},
+		        	{sx:'cbr_pmx1',sy: 'cbr_3_d1'},
+						]
+					},													
+				]	
+			},//GRAPH2
 
-			dataSets:[
-				{ 				                          
-	        label: 'CBR (2.54 mm)',                          
-	        showLine: true,
-	        pointRadius: 4,	        
-	        pointBackgroundColor: 'red',                          
-	        borderColor: 'red',
-	        fill: false,
-	        data: [						
-	        	{sx:'cbr_mmx1',sy: 'cbr_1_d1'},
-	        	{sx:'cbr_imx1',sy: 'cbr_2_d1'},
-	        	{sx:'cbr_pmx1',sy: 'cbr_3_d1'},
-					]
-				},													
-			]	
-		},//GRAP
-
-	]//GRAPH ARRAY
-
+		]//GRAPH ARRAY
 	},//A8
 
 	{//A7
@@ -852,38 +908,109 @@ export const methods = [
 		],
 
 		graph:[{
-				
-			xLabel: 'Moisture Content (%)',
-			yLabel: 'Dry Density (kg/m^3)',
 			
-			scale: {
-				x: 'linear',
-				y: 'linear'
-			},
+			addMaxY: 100,
+			roundOff: 100,
+			
+			options: {
+				tooltips:{					
+				},
+				onClick: function(e){
+					const chartA = this.chartArea;
+					const chartO = this;
+					console.log(e.layerY);
+					
+					let px = e.layerX - chartA.left;
+					if(px < 0){ px = 0; }
+					let py = e.layerY - chartA.top; 
+					if(py < 0){ py = 0; }
+					
+					let cWidthPx = chartA.right - chartA.left;
+					let cHeightPx = chartA.bottom - chartA.top;
+										
+					let cWidthDt = chartO.scales['x-axis-0'].max - chartO.scales['x-axis-0'].min;
+					let cHeightDt = chartO.scales['y-axis-0'].max - chartO.scales['y-axis-0'].min; 
+					
+					//console.log(chartO.scales['y-axis-0']);
+					//console.log('Width Pixel:',cWidthPx,'Height Pixel:', cHeightPx,'Width Data:', cWidthDt,'Height Data:',cHeightDt);
 
-			addMaxY: 200,
-			stepSizeDiv: 100,
+					console.log(py,py*(cHeightDt/cHeightPx),chartO.scales['y-axis-0'].min);
 
-			xAxis:{
-				min: 0,
-				max: 20,
-				stepSize: 0.1,
-				minRotation: 90,
-				callback: function(label,index,labels){
-					if(label % 1 === 0){
-						return label;
-					}else{
-						return '';
-					}
-				}						        
-			},
+					let dx = chartO.scales['x-axis-0'].min + px*(cWidthDt/cWidthPx);
+					let dy = chartO.scales['y-axis-0'].min + py*(cHeightDt/cHeightPx);
+						//console.log(dx,dy);
+					
+					
+					
+				},
 
-			yAxis:{
-				callback: function(label, index, labels) {        			      			      		
-	      		//return label.toFixed(2);
-	      		return label;
-	  			}												        				
-			},      
+
+				animation: {
+					duration: 0,
+					onComplete: function () {
+					    // render the value of the chart above the bar
+					    var ctx = this.chart.ctx;
+					     
+					    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, 'normal', Chart.defaults.global.defaultFontFamily);
+					    ctx.fillStyle = this.chart.config.options.defaultFontColor;
+					    ctx.textAlign = 'center';
+					    ctx.textBaseline = 'bottom';
+					    
+
+					    this.data.datasets.forEach(function (dataset) {
+					        for (var i = 0; i < dataset.data.length; i++) {
+					            
+					            var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;						            
+					            var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;
+					            						            
+											ctx.save();
+											ctx.translate(model.x, model.y);
+											ctx.rotate(-Math.PI/2);
+
+											ctx.textAlign = 'left';
+											ctx.fillText(string , 10, 5);
+
+											ctx.restore();
+					        }
+					    });
+					}},
+
+				scales: {
+					xAxes: [
+						{
+							scaleLabel:{display: true,labelString: 'Moisture Content (%)',},
+							type:'linear',position: 'bottom',
+							ticks:{
+								min: 0,	max: 20,stepSize: 0.1,minRotation: 90,
+								callback: function(label,index,labels){
+									if(label % 1 === 0){
+										return label;
+									}else{
+										return '';
+									}
+								}								
+							}
+						}	
+					],
+					yAxes: [					
+						{							
+							scaleLabel:{display: true,labelString: 'Dry Density (kg/m^3)'},
+							type:'linear',
+							ticks:{
+								stepSize: 10,
+								callback: function(label,index,labels){
+									if(label % 20 === 0){
+										return label;
+									}else{
+										return '';
+									}
+								}								
+							},
+						}
+					]					
+				},
+			},	
+
 			dataSets:[
 				{ 				                          
 	        label: 'Estimated Dry Density and Percentage Water Added',                          
@@ -891,12 +1018,14 @@ export const methods = [
 	        pointRadius: 3,	        
 	        pointBackgroundColor: 'red',                          
 	        borderColor: 'red',
+	        lineToggle: ['mdd_omc','mdd_mdd'],
           data: [						
 						{ sx: 'mdd_pa1', sy: 'mdd_edd1'},
 						{ sx: 'mdd_pa2', sy: 'mdd_edd2'},
 						{ sx: 'mdd_pa3', sy: 'mdd_edd3'},
 						{ sx: 'mdd_pa4', sy: 'mdd_edd4'},
-						{ sx: 'mdd_pa5', sy: 'mdd_edd5'},										
+						{ sx: 'mdd_pa5', sy: 'mdd_edd5'},
+						{ sx: 'mdd_omc', sy: 'mdd_mdd'},										
 					]
 				},
 				{ 				                          
@@ -1347,39 +1476,68 @@ export const methods = [
 		],
 		hasGraph: true,
 	
-	graph:[{
-			
-			xLabel: 'Sieve Size (mm) ',
-			yLabel: 'Percentage Passing (%)',
-			
-			scale: {
-				x: 'logarithmic',
-				y: 'linear'
-			},
+		graph:[{
+				addMaxY: 40,
+				roundOff: 1,
 
-			addMaxY: 1,
-			stepSizeDiv: 1,
-			
-			yAxis:{
-				callback: function(label, index, labels) {        			      			      		
-	      		//return label.toFixed(2);
-	      		return label;
-	  			}												        				
-			},
-			
-			xAxis:{
-				stepSize: 0.1,
-				minRotation: 90,
-				callback: function(label, index, labels) {        		
-        		
-        		return label.toFixed(2);
-    			}												        				
-			},
+				options: {
 
-      
-			dataSets:[
+					animation: {
+						duration: 0,
+						onComplete: function () {
+						    
+						    var ctx = this.chart.ctx;						     
+						    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, 'normal', Chart.defaults.global.defaultFontFamily);
+						    ctx.fillStyle = this.chart.config.options.defaultFontColor;
+						    ctx.textAlign = 'center';
+						    ctx.textBaseline = 'bottom';
+						    
+						    this.data.datasets.forEach(function (dataset) {
+						        for (var i = 0; i < dataset.data.length; i++) {
+						            
+						            var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;						            
+						            var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;
+						            						            
+												ctx.save();
+												ctx.translate(model.x, model.y);
+												ctx.rotate(-Math.PI/2 );
+
+												ctx.textAlign = 'left';
+												ctx.fillText(string , 10, 5);
+
+												ctx.restore();
+						        }
+						    });
+						}},
+
+					scales: {
+						xAxes: [
+							{
+								scaleLabel:{display: true,labelString: 'Sieve Size (mm)',},
+								type:'logarithmic',position: 'bottom',
+								ticks:{									
+									minRotation: 90,
+									callback: function(label,index,labels){
+										return label.toFixed(2);						
+									}
+								}
+							}	
+						],
+						yAxes: [					
+							{							
+								scaleLabel:{display: true,labelString: 'Percentage Passing (%)'},
+								type:'linear',
+								ticks:{
+								},
+							}
+						]					
+					},
+				},							
+				
+
+				dataSets:[				
 				{ 				                          
-	        label: 'Cummulative Percentage Passing',                          
+	        label: 'Cummulative Percentage Passing',	            
 	        showLine: true,
 	        pointRadius: 4,	        
 	        pointBackgroundColor: 'red',                          
