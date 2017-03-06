@@ -1,94 +1,112 @@
 import React from 'react';
-//import CascadeSelect from '../common/CascadeSelect';
-//import { CASCADE_DATA_LOCATION_CITY, CASCADE_DATA_LOCATION_PROVINCE, CASCADE_DATA_LOCATION_SUBURB } from '../common/constants/constants';
-import { connect } from 'react-redux';
-//import Datetime from 'react-datetime';
-import { VictoryArea, VictoryLabel, VictoryChart, VictoryAxis } from 'victory';
+import {Line} from 'react-chartjs-2';
+import {Chart} from 'react-chartjs-2';
 
+const options = {        
+    
+  hover: {
+    animationDuration: 0
+  },
 
-const data = [
-  { x:75, y:100},  
-  { x:53, y:100},
-  { x:37.5, y:99},
-  { x:26.5, y:97},
-  { x:19.0, y:92},
-  { x:13.2, y:20},
-  { x:4.75, y:10},
-  { x:2.0, y:5},
-  { x:0.425, y:2.5},
-  { x:0.075, y:0.01},  
-];
-
-class LookupPage extends React.Component {
-
-	componentWillMount(){	
-  
-  }
-  
-  componentDidMount(){
-    this.forceUpdate();
-  }
-  onClick(e){
-    e.preventDefault();
-    window.print();
-  }
-  render() {  		  					  
-      let labels = [];
+  animation: {
+    duration: 1000,
+    onComplete: function () {
+      var ctx = this.chart.ctx;              
+      ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, 'normal', Chart.defaults.global.defaultFontFamily);
+      ctx.fillStyle = this.chart.config.options.defaultFontColor;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'bottom';
       
-      let stylex = {
-        tickLabels: { fontSize: 10,  writingMode: 'tb', textAnchor: 'start' }, 
-        grid: {stroke: 'lightgrey'},            
-        axisLabel: {fontSize: 12},
-        ticks: {stroke: "grey"}
-      };
+      this.data.datasets.forEach(function (dataset, di) {
+        for (var i = 0; i < dataset.data.length; i++) {                                                 
+          var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;                        
+          var string = `(${dataset.data[i]})`;                                              
+                                                                
+          ctx.save();
+          ctx.translate(model.x, model.y);
+          ctx.rotate(-Math.PI/2);
 
-      let styley = {
-        tickLabels: { fontSize: 10}, 
-        grid: {stroke: 'lightgrey'},        
-        axisLabel: {fontSize: 12},
-        ticks: {stroke: "grey"}
-      };
-      
-      let line = {
-        data: {
-          fill: "limegreen", opacity: 0.5, strokeWidth: 1, stroke: 'darkgreen'          
+          ctx.textAlign = 'left';
+          ctx.fillText(string , 10, 5);
+
+          ctx.restore();
         }
-      }      
-
-      data.map( (point) => {
-        labels.push(point.x)
-        return point;
-      });
-
-      return (
-        <div>
-            <div>
-              <button className="btn btn-lg btn-primary btn-block hidden-print" onClick={this.onClick.bind(this)} >Print</button>            
-              <br className="hidden-print" ></br><br className="hidden-print"></br>
-            </div>
-        
-                <div className="page">        
-                     
-
-                    <VictoryChart scale={ graph.scale }>
-                      <VictoryAxis label="Sieve Sizes" tickValues={labels} style={graph.styleX} tickLabelComponent={<VictoryLabel dy={-1.5}/>}
-                      axisLabelComponent={<VictoryLabel dy={1.2}/>}
-                      tickFormat={ (tick) =>{
-                        return `${tick} mm`;
-                      }} />
-                      <VictoryAxis label="Percentage Passing" dependentAxis style={graph.styleY} tickFormat={ (tick) =>{return `${tick}%`;}}
-                        tickLabelComponent={<VictoryLabel dx={9} />}
-                        axisLabelComponent={<VictoryLabel dy={-0.5}/>}
-                      />
-                      <VictoryArea data={data} interpolation='basis' style={line} />                
-                    </VictoryChart>
-              
-              </div>
-
-        </div>        
-    );          
+    });
   }
+},
+ 
 }
 
-export default connect(null,{ })(LookupPage); 
+const initialState = {
+  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  datasets: [
+    {
+      label: 'My First dataset',
+      fill: false,
+      lineTension: 0.1,
+      backgroundColor: 'rgba(75,192,192,0.4)',
+      borderColor: 'rgba(75,192,192,1)',
+      borderCapStyle: 'butt',
+      borderDash: [],
+      borderDashOffset: 0.0,
+      borderJoinStyle: 'miter',
+      pointBorderColor: 'rgba(75,192,192,1)',
+      pointBackgroundColor: '#fff',
+      pointBorderWidth: 1,
+      pointHoverRadius: 5,
+      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+      pointHoverBorderColor: 'rgba(220,220,220,1)',
+      pointHoverBorderWidth: 2,
+      pointRadius: 1,
+      pointHitRadius: 10,
+      data: [65, 59, 80, 81, 56, 55, 40]
+    }
+  ]
+};
 
+const Graph = React.createClass({
+  displayName: 'Graph',
+  componentWillMount(){
+    this.setState(initialState);
+  },
+  componentDidMount(){
+
+    var _this = this;
+
+    setInterval(function(){
+      var oldDataSet = _this.state;
+      var newData = [];
+
+      for(var x=0; x< _this.state.labels.length; x++){
+        newData.push(Math.floor(Math.random() * 100));
+      }
+
+      var newDataSet = {
+        ...oldDataSet
+      };
+
+      newDataSet.data = newData;
+
+      _this.setState({datasets: [newDataSet]});
+    }, 2000);
+  },
+  render() {
+    return (
+      <Line data={this.state} options={options}/>
+    );
+  }
+});
+
+class LookupPage extends React.Component {
+  
+  render() {
+    return (
+      <div>
+        <h2>Random Animated Line Example</h2>
+    <Graph />
+      </div>
+    );
+  }
+};
+
+export default LookupPage;

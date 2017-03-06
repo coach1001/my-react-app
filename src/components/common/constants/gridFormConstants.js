@@ -910,17 +910,18 @@ export const methods = [
 		graph:[{
 			
 			addMaxY: 100,
-			roundOff: 100,
-			
-			options: {
-				tooltips:{					
+			roundOff: 100,						
+
+			options: {				
+
+				hover: {
+					animationDuration: 0
 				},
+
 				onClick: function(e){
 					const chartA = this.chartArea;
 					const chartO = this;
-					
-					console.log(chartO);
-
+										
 					let px = e.layerX - chartA.left;
 					if(px < 0){ px = 0; }
 					
@@ -932,35 +933,30 @@ export const methods = [
 
 					let py = cHeightPx - (e.layerY - chartA.top) ; 
 					if(py < 0){ py = 0; }
-					console.log(py);
+					
 
 					let dx = chartO.scales['x-axis-0'].min + px*(cWidthDt/cWidthPx);
 					let dy = chartO.scales['y-axis-0'].min + py*(cHeightDt/cHeightPx);
-					console.log(dx,dy);
-					
-					
-					
-				},
 
+					dx = Math.round(dx*10)/10;
+					dy = Math.round(dy*10)/10;
+					this.options.dataAddCallBack({x: dx, y: dy, pop:true});																			
+				},
 
 				animation: {
 					duration: 0,
 					onComplete: function () {
-					    // render the value of the chart above the bar
-					    var ctx = this.chart.ctx;
-					     
+					    var ctx = this.chart.ctx;					     
 					    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, 'normal', Chart.defaults.global.defaultFontFamily);
 					    ctx.fillStyle = this.chart.config.options.defaultFontColor;
 					    ctx.textAlign = 'center';
 					    ctx.textBaseline = 'bottom';
 					    
-
-					    this.data.datasets.forEach(function (dataset) {
-					        for (var i = 0; i < dataset.data.length; i++) {
-					            
+					    this.data.datasets.forEach(function (dataset, di) {
+					        for (var i = 0; i < dataset.data.length; i++) {					      			      					            
 					            var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;						            
-					            var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;
-					            						            
+					            var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;					            						            
+					            
 											ctx.save();
 											ctx.translate(model.x, model.y);
 											ctx.rotate(-Math.PI/2);
@@ -979,10 +975,13 @@ export const methods = [
 							scaleLabel:{display: true,labelString: 'Moisture Content (%)',},
 							type:'linear',position: 'bottom',
 							ticks:{
-								min: 0,	max: 20,stepSize: 0.1,minRotation: 90,
+								//min: 0,
+								//max: 20,
+								stepSize: 0.1,
+								minRotation: 90,
 								callback: function(label,index,labels){
 									if(label % 1 === 0){
-										return label;
+										return label.toFixed(1);
 									}else{
 										return '';
 									}
@@ -998,7 +997,7 @@ export const methods = [
 								stepSize: 10,
 								callback: function(label,index,labels){
 									if(label % 20 === 0){
-										return label;
+										return label.toFixed(1);
 									}else{
 										return '';
 									}
@@ -1016,14 +1015,14 @@ export const methods = [
 	        pointRadius: 3,	        
 	        pointBackgroundColor: 'red',                          
 	        borderColor: 'red',
-	        lineToggle: ['mdd_omc','mdd_mdd'],
+	        fill: false,	        
           data: [						
 						{ sx: 'mdd_pa1', sy: 'mdd_edd1'},
 						{ sx: 'mdd_pa2', sy: 'mdd_edd2'},
 						{ sx: 'mdd_pa3', sy: 'mdd_edd3'},
 						{ sx: 'mdd_pa4', sy: 'mdd_edd4'},
 						{ sx: 'mdd_pa5', sy: 'mdd_edd5'},
-						{ sx: 'mdd_omc', sy: 'mdd_mdd'},										
+						{ sx: 'mdd_omc', sy: 'mdd_mdd', pop:true, toggleLine: true},										
 					]
 				},
 				{ 				                          
@@ -1032,6 +1031,7 @@ export const methods = [
 	        pointRadius: 3,	        
 	        pointBackgroundColor: 'blue',                          
 	        borderColor: 'blue',
+	        fill: false,
           data: [						
 						{ sx: 'mdd_amc1', sy: 'mdd_add1'},
 						{ sx: 'mdd_amc2', sy: 'mdd_add2'},

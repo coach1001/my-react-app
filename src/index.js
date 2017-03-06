@@ -9,15 +9,10 @@ import setAuthorizationToken from './utils/setAuthorizationToken';
 import { setCurrentUser } from './actions/loginActions';
 //import createLogger from 'redux-logger';
 
-
 import './utils/axiosInterceptors';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/react-bootstrap-table/dist/react-bootstrap-table.min.css';
 import './index.css';
-//import '../node_modules/animate.css/animate.css';
-/*import '../node_modules/mathjax/MathJax.js';
-import '../node_modules/mathjax/config/TeX-AMS_HTML-full.js';
-*/
 import routes from './routes';
 
 //const loggerMiddleware = createLogger();

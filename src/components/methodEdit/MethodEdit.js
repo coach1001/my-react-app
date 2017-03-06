@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import GridForm from '../common/GridFormV2';
+import GridForm from '../common/GridFormV3';
 import { FaArrowCircleLeft } from 'react-icons/lib/fa/';
 import { fetchSampleVariables } from '../../actions/sampleVariables';
 import { fetchSampleMethod } from '../../actions/sampleMethods';
 import { fetchSample } from '../../actions/samples';
+import { methods } from '../../components/common/constants/gridFormConstants';
 
 class MethodEdit extends Component {
   
-  componentWillMount(){     	    
-    
+  componentWillMount(){     	        
     this.props.fetchSampleVariables(this.props.params.sampleId);
     this.props.fetchSampleMethod(this.props.params.methodId);
-    this.props.fetchSample(this.props.params.sampleId);    
-    
+    this.props.fetchSample(this.props.params.sampleId);            
   }
 
   goBack(){
@@ -35,7 +34,7 @@ class MethodEdit extends Component {
       {this.props.sampleVariables.length > 0 && Object.keys(this.props.sampleMethod).length > 0 && Object.keys(this.props.sample).length > 0 ?        
         <div>                    
           {                         
-            <GridForm empty={this.props.params.empty ? true : false} style={{width: '90vh'}} sampleMethod={this.props.sampleMethod} scopeData={this.props.sampleVariables} sampleId={parseInt(this.props.params.sampleId,10)} methodCode={this.props.params.methodCode}/> 
+            <GridForm methods={methods} empty={this.props.params.empty ? true : false} style={{width: '90vh'}} sampleMethod={this.props.sampleMethod} scopeData={this.props.sampleVariables} sampleId={parseInt(this.props.params.sampleId,10)} methodCode={this.props.params.methodCode}/> 
           }
           
         </div>
@@ -62,4 +61,5 @@ function mapStateToProps(state){
     sample: state.samples.sample,          
   }
 }
+
 export default connect(mapStateToProps, { fetchSampleVariables, fetchSampleMethod, fetchSample })(MethodEdit);

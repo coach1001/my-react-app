@@ -11,34 +11,6 @@ import {Line} from 'react-chartjs-2';
 import {Chart} from 'react-chartjs-2';
 
 
-class GraphC extends React.Component {
-  
-  componentWillMount(){
-    this.setState({
-      datasets: this.props.datasets,
-      options: this.props.options,
-    })
-  }
-
-  componentWillReceiveProps(nP){
-   // console.log('Graph Update...');
-    this.setState({
-      datasets: nP.datasets,
-      options: nP.options,
-    })
-  }
-
-  render() {
-    return (
-      <Line data={{datasets: this.state.datasets }} options={this.state.options}/>
-    );
-  }
-}
-GraphC.propTypes = {
-  datasets: React.PropTypes.array.isRequired,
-  options: React.PropTypes.object.isRequired,  
-}
-
 class GridForm extends React.Component {
   
   constructor(props){
@@ -58,42 +30,44 @@ class GridForm extends React.Component {
     let method = cloneDeep(methods[index]);
     let oScopeData = cloneDeep(this.props.scopeData);
     let scopeData = cloneDeep(this.props.scopeData);
+    let sampleMethod = cloneDeep(this.props.sampleMethod);
 
-    this.uiSetup({      
+    this.setState({      
       dataAdded: true,
       oScopeData: oScopeData,
       scopeData: scopeData,
-      table : method.grid,
       method: method,
-      sampleMethod: this.props.sampleMethod,
-      colLayout: method.colLayout,
-      hasGraph: method.hasGraph,
-      isEmpty: this.props.empty,
-      graph: method.graph,    
+      sampleMethod: sampleMethod,            
+      isEmpty: this.props.empty,          
       maxY: [],
       redraw: false,      
-    })            
-    console.log(method.graph,methods[index])
+    })                
   }
 
   onChangeComplete(e){
-    let oState = cloneDeep(this.state);
-    oState.sampleMethod.completed = !oState.sampleMethod.completed;
-    this.setState(oState);
+    let sampleMethod = cloneDeep(this.state.sampleMethod);
+    sampleMethod.completed = !sampleMethod.completed;
+    this.setState({sampleMethod : sampleMethod});
   }
+  
 
-  uiSetup(oState){    
+  drawTable(){  
+
+    let method = cloneDeep(this.state.method);
+    let scopeData = cloneDeep(this.state.scopeData);
+
+    const em = this.props.empty;
 
     let tempMax = 0;
-    oState.maxY.length = 0;
+    let maxY = [];
 
-    if(oState.hasGraph && !oState.isEmpty){            
-      oState.graph.map((g) => {
+    if(method.hasGraph && !em){            
+      method.graph.map((g) => {
         tempMax=0;        
         g.dataSets.map((ds) => {                
           ds.data.map((dt) => {                 
             
-            oState.scopeData.map((sd) =>{                                                  
+            scopeData.map((sd) =>{                                                  
               if(sd.symbol === dt.sx ){
                 if(sd.value){
                   
@@ -130,33 +104,36 @@ class GridForm extends React.Component {
         });
         tempMax += g.addMaxY
         tempMax = Math.round(tempMax/g.roundOff)*g.roundOff;          
-        oState.maxY.push(tempMax);
+        maxY.push(tempMax);
         return g;      
       })              
-      oState.graph[0].options.dataAddCallBack = this.dataAddCallBack;    
+      method.graph[0].options.dataAddCallBack = this.dataAddCallBack;    
     }
-
-    oState.graph.map( (g, gi) =>{
-      g.dataSets.map( (ds, dsi) =>{        
-        ds.data = sortBy(ds.data,'x');                        
-        return ds;    
-      })
-      return g;
-    });    
     
-    oState.graph.map( (g,gi) =>{
-      g.options.scales.yAxes[0].ticks.max = oState.maxY[gi];
-      return g;
-    });
+    if(this.state.method.hasGraph){
+      method.graph.map( (g, gi) =>{
+        g.dataSets.map( (ds, dsi) =>{        
+          ds.data = sortBy(ds.data,'x');                        
+          return ds;    
+        })
+        return g;
+      });    
+      
+      method.graph.map( (g,gi) =>{
+        g.options.scales.yAxes[0].ticks.max = maxY[gi];
+        return g;
+      });
+    }
+      
     
-    oState.table.map( (row, rI) => {
+    method.grid.map( (row, rI) => {
       row.td.map( (col, cI) => {        
-        oState.scopeData.map( (d, dI) =>{
+        scopeData.map( (d, dI) =>{
           
           if(d.symbol === col.scopeVariable){              
 
               if(d.unit === 'string'){
-                col.value_string = d.value_string ? d.value_string : ( d.default_value ? d.default_value : '');  
+                col.value_string = d.value_string ? d.value_string : ( d.default_value ? d.default_value : '');                  
               }else{
                 col.value = d.value ? d.value : ( d.default_value ? d.default_value : undefined);  
               }
@@ -173,17 +150,6 @@ class GridForm extends React.Component {
       })
       return row;
     })
-
-    this.setState(oState);
-  }
-
-  drawTable(){  
-
-    const graph = this.state.graph;      
-    const table = this.state.table;    
-    const col = this.state.colLayout;
-    const em = this.props.empty;
-    const eg = this.state.hasGraph;
     
     return <div>
       {
@@ -200,13 +166,13 @@ class GridForm extends React.Component {
             <table className="table-bordered fixed" width="100%" >              
               <colgroup>
                 {
-                  col.map( (c,i) => { return <col key={i} span={c.span} style={{width: c.width}}></col>} )                
+                  method.colLayout.map( (c,i) => { return <col key={i} span={c.span} style={{width: c.width}}></col>} )                
                 }               
               </colgroup>
               <tbody>
               {                                  
                            
-                  table.map( (tr, trIndex) =>                                                          
+                  method.grid.map( (tr, trIndex) =>                                                          
                       <tr key={trIndex} style={tr.style}>
                       
                       {
@@ -231,8 +197,8 @@ class GridForm extends React.Component {
                                                                                                                             
                             :                  
                                
-                                td.unit === 'string' ?                                
-                                 <input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChangeString.bind(this)} value={em ? '' : td.value_string} type='text' className='form-control' style={td.style}/>                                
+                                td.unit === 'string' ?                              
+                                 <input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChangeString.bind(this)} value={em ? '' : td.value_string} type='text' className='form-control' style={td.style}/>
                                 : 
                                 
                                   td.unit === 'datetime' ?                                                                        
@@ -261,48 +227,50 @@ class GridForm extends React.Component {
               </Confirm>
             }         
             
-            {
+            {/*
               eg && !em ? graph.map( (g,i) => {                                                            
                     return <Line key={i} ref={`chart_${i}`} data={{ datasets: g.dataSets }} options={g.options} />
-                    /*return <GraphC key={i} ref={`chart_${i}`} datasets={g.dataSets} options={g.options} />*/
+                    
                   })
                : null               
-            }                               
+            */}                               
            </div>   
   }
   
   clearValues(){
-    let oState = this.state;      
+    let method = cloneDeep(this.state.method.table);      
+    let scopeData = cloneDeep(this.state.scopeData);
 
-    oState.table.map( (row, rI) => {
+    method.table.map( (row, rI) => {
       row.td.map( (col, cI) => {        
-        oState.scopeData.map( (d, dI) =>{
+        scopeData.map( (d, dI) =>{
           if(d.symbol === col.scopeVariable){
             this.refs[d.symbol].value=undefined;
-            oState.table[rI].td[cI].value = 0.0;
-            oState.table[rI].td[cI].value_string = '';
-            oState.scopeData[dI].value = 0.0;
-            oState.scopeData[dI].value_string = '';
+            col.value = 0.0;
+            col.value_string = '';
+            d.value = 0.0;
+            d.value_string = '';
           }
           return d;
         })
         return col;
       })
       return row;
-    })        
-    this.saveData(oState);        
+    })
+
+    this.saveData({scopeData: scopeData, method: method});        
   }
 
   onChangeTime(symbol,e){
-    let oState =  this.state;
+    let scopeData = cloneDeep(this.state.scopeData);
 
-    oState.scopeData.map( (d, index_) =>{
+    scopeData.map( (d, index_) =>{
       if(symbol === d.symbol ){
-        oState.scopeData[index_].value = e.valueOf();                
+        d.value = e.valueOf();                
       }
       return d;
     });    
-    this.setState(oState);
+    this.setState({scopeData: scopeData});
   }
 
   goBack(){
@@ -311,35 +279,36 @@ class GridForm extends React.Component {
 
   dataAddCallBack(data){
 
-    let oState = this.state;
-    
-    if(oState.dataAdded){        
-      oState.graph[0].dataSets[0].data = oState.graph[0].dataSets[0].data.filter( (d) => { 
+    let method = cloneDeep(this.state.method);
+        
+    if(this.state.dataAdded){        
+      method.graph[0].dataSets[0].data = method.graph[0].dataSets[0].data.filter( (d) => { 
         if(!d.pop){
           return d
         }else{
          return null;
         }
       })
-      oState.graph[0].dataSets[0].data.push({x: data.x, y: data.y, pop: data.pop});
-      oState.graph[0].dataSets[0].showLine  = true;      
+      method.graph[0].dataSets[0].data.push({x: data.x, y: data.y, pop: data.pop});
+      method.graph[0].dataSets[0].showLine  = true;      
     }     
-    this.uiSetup(oState);    
+    this.setState( {method: method} );
   }
 
-  saveData(oState){                
+  saveData(scopeData){                
+    let oScopeData = cloneDeep(this.state.oScopeData);
+
+    scopeData.map( (row, rI) => {          
     
-    oState.scopeData.map( (row, rI) => {          
-  
       if(row.id && row.input_type !== 'constant'){        
         if(row.unit === 'string'){          
-          if(row.value_string !== this.state.oScopeData[rI].value_string){
+          if(row.value_string !== oScopeData[rI].value_string){
             
             sendRow(`sample_has_variables?id=eq.${row.id}`,{value_string: row.value_string},'patch');
           }          
         
         }else{
-          if(row.value !== this.state.oScopeData[rI].value){
+          if(row.value !== oScopeData[rI].value){
             
             sendRow(`sample_has_variables?id=eq.${row.id}`,{value: row.value},'patch');
           }
@@ -356,34 +325,42 @@ class GridForm extends React.Component {
       return row;    
     })     
     sendRow(`sample_has_methods?id=eq.${this.state.sampleMethod.id}`,{completed: this.state.sampleMethod.completed},'patch')                  
-    this.uiSetup(oState);
+    this.setState({scopeData: scopeData,oScopeData: scopeData});
   }
 
-  parseInput(oState){
+  parseInput(){
+    let scopeData = cloneDeep(this.state.scopeData);
     let scope = {};        
     
-    oState.scopeData.map( (d) => {          
+    scopeData.map( (d) => {        
+        
+        scope[d.symbol] = 0;
+
         if(d.unit !== 'string'){
           let round = d.step*10000;
           if(round){}else{ round = 100; }
+          
           if(d.input_type === 'in'){
             try{        
-                scope[d.symbol] = Math.round(parseFloat(d.value,10)*round)/round;
-                if(isNaN(scope[d.symbol])){                
-                  scope[d.symbol] = ( d.default_value ? d.default_value : 0);
-                }
-              }catch(err){
+              scope[d.symbol] = Math.round(parseFloat(d.value,10)*round)/round;
+              if(isNaN(scope[d.symbol])){                
                 scope[d.symbol] = ( d.default_value ? d.default_value : 0);
-              }      
-            }
-          }
-          else{
-            scope[d.symbol] = d.value;
-          }
+              }
+            }catch(err){
+                scope[d.symbol] = ( d.default_value ? d.default_value : 0);
+            }            
+          }        
+        }
+        else{
+          scope[d.symbol] = d.value;
+        }
+    
       return d;    
+    
     });    
+    
 
-    oState.scopeData.map ( (d) =>{      
+    scopeData.map ( (d) =>{      
       let round = d.step*10000;
       if(d.unit !== 'string'){      
        
@@ -411,57 +388,48 @@ class GridForm extends React.Component {
       return d;
     });    
 
-    oState.scopeData.map( (d,index)=>{      
-      oState.scopeData[index].value = scope[d.symbol];
+    scopeData.map( (d,index)=>{      
+      scopeData[index].value = scope[d.symbol];
       return d;
     });
     
-    this.saveData(oState);
+    this.saveData(scopeData);
   }
   
-  CalculateAndSave(e){    
+  CalculateAndSave(){            
     
-    var oState = this.state;
-    
-    this.parseInput(oState);        
+    this.parseInput();        
   }
   
-  onChangeString(e){
+  onChangeString(e){    
     e.preventDefault();
-    let oState = this.state;        
+    let scopeData = cloneDeep(this.state.scopeData);
     
-    oState.scopeData.map( (d, index_) =>{
-      
+
+    scopeData.map( (d) =>{      
       if(e.target.id === d.symbol ){
-        oState.scopeData[index_].value_string = e.target.value;                       
+        d.value_string = e.target.value;                                   
       }
       return d;
-    });    
-    this.setState(oState); 
+    });     
+    this.setState({scopeData: scopeData}); 
   }
 
   onChange(e){
     e.preventDefault();    
-    let oState = this.state;
+    let scopeData = cloneDeep(this.state.scopeData);
 
-    let index=0;
-    let scopeData_ = {};
+    let index=0;    
     
-    this.state.scopeData.map( (d, index_) =>{
+    scopeData.map( (d) =>{
       if(e.target.id === d.symbol ){
-        index = index_;
+        let round = d.step*10000;
+        if(!round) round=100;
+        d.value = Math.round(e.target.value*100)/100;        
       }
       return d;
     });
-    let round = this.state.scopeData[index].step*10000;
-    
-    if(round){}else{ round = 100; }
-    scopeData_ = this.state.scopeData[index];
-    scopeData_.value = Math.round(e.target.value*100)/100;        
-
-    oState.scopeData[index] = scopeData_;
-  
-    this.uiSetup(oState);    
+    this.setState({scopeData: scopeData});    
   }
  
 

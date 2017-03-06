@@ -13,6 +13,7 @@ import SamplePage from './components/samples/SamplePage';
 import SampleList from './components/samples/SampleList';
 import SampleEditCreate from './components/samples/SampleEditCreate';
 
+import LookupPage  from './components/lookup/LookupPage';
 
 import MethodEditPage from './components/methodEdit/MethodEditPage';
 import MethodEdit from './components/methodEdit/MethodEdit';
@@ -23,10 +24,18 @@ export default (
 		<Route path="signup" component={SignupPage} />
 		<Route path="login" component={LoginPage} />					
 
+		<Route path="lookup" component={LookupPage}>
+			<IndexRoute component={LookupPage} />
+		</Route>
+
 		<Route path="sampleSets" component={SampleSetPage}>
 			<IndexRoute component={SampleSetList} />
 			<Route path="new" component={SampleSetEditCreate}/>
 			<Route path=":sampleSetId" component={SampleSetEditCreate}/>
+		</Route>
+
+		<Route path="sampleSets" component={SampleSetPage}>
+			<IndexRoute component={SampleSetList} />
 		</Route>
 
 		<Route path="samples" component={SamplePage}>
