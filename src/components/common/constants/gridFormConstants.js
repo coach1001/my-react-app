@@ -539,7 +539,7 @@ export const methods = [
 		[//GRAPH ARRAY		
 			{//GRAPH 1
 				addMaxY: 1,
-				roundOff: 1,
+				roundOff: 1,								
 
 				options: {
 					//maintainAspectRatio: false,
@@ -672,8 +672,11 @@ export const methods = [
 			{//GRAPH2
 				addMaxY: 3,
 				roundOff: 1,
-
 				options: {
+					
+					hover: {
+						animationDuration: 0
+					},
 
 					animation: {
 						duration: 0,
@@ -689,11 +692,11 @@ export const methods = [
 						        for (var i = 0; i < dataset.data.length; i++) {
 						            
 						            var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;						            
-						            var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;
+						            var string = `(${dataset.data[i].x}, ${dataset.data[i].y.toFixed(2)})`;
 						            						            
 												ctx.save();
 												ctx.translate(model.x, model.y);
-												ctx.rotate(-Math.PI/2 );
+												ctx.rotate(-Math.PI/1.5 );
 
 												ctx.textAlign = 'left';
 												ctx.fillText(string , 10, 5);
@@ -944,7 +947,7 @@ export const methods = [
 				},
 
 				animation: {
-					duration: 0,
+					duration: 500,
 					onComplete: function () {
 					    var ctx = this.chart.ctx;					     
 					    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, 'normal', Chart.defaults.global.defaultFontFamily);
@@ -977,7 +980,7 @@ export const methods = [
 							ticks:{
 								//min: 0,
 								//max: 20,
-								stepSize: 0.1,
+								stepSize: 0.05,
 								minRotation: 90,
 								callback: function(label,index,labels){
 									if(label % 1 === 0){
@@ -1479,7 +1482,11 @@ export const methods = [
 				roundOff: 1,
 
 				options: {
-
+					
+					hover: {
+						animationDuration: 0
+					},
+					
 					animation: {
 						duration: 0,
 						onComplete: function () {

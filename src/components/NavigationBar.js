@@ -25,12 +25,9 @@ class NavigationBar extends Component {
     const userLinks = (
       <div>  
       <ul className="nav navbar-nav">
-      
-        {/*<li><Link to="/sampleSets">Sample Sets</Link></li>*/}
+              
         <li><Link to="/samples">Samples</Link></li>
-        <li><Link to="/lookup">Lookup</Link></li>
-      
-      
+                  
         </ul>
                   
         <ul className="nav navbar-nav navbar-right">                

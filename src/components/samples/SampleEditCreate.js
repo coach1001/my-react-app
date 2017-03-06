@@ -8,11 +8,13 @@ import Datetime from 'react-datetime';
 import Confirm from 'react-confirm-bootstrap';
 import moment from 'moment';
 import {notify} from 'react-notify-toast';
+import cloneDeep from 'lodash/cloneDeep';
 
 class SampleEditCreate extends Component {
 
   componentWillMount(){    
     this.setState( {sample: {}, sampleMethods: [], sampleSets: []});
+    
     if(this.props.params.sampleId){
       this.props.fetchSample(this.props.params.sampleId);
       this.props.fetchSampleMethods(this.props.params.sampleId);
@@ -65,49 +67,52 @@ class SampleEditCreate extends Component {
   }
 
   onChangeMethods(index,e){        
-    const oState = this.state;
-    oState.sampleMethods[index].exists = !oState.sampleMethods[index].exists;     
-    this.setState(oState);                          
+    let sampleMethods = cloneDeep(this.state.sampleMethods);
+    sampleMethods[index].exists = !sampleMethods[index].exists;     
+    this.setState({sampleMethods: sampleMethods});                          
   }
     
   onChangeSample(e){        
+    let sample = cloneDeep(this.state.sample);
+
     if(e._isAMomentObject){
-      const oState = this.state;
-      oState.sample.created_on = e;      
-      this.setState(oState);
-    }else{
-      const oState = this.state;
-      oState.sample[e.target.name] = e.target.value;
-      this.setState(oState);
+      
+      sample.created_on = e;      
+      this.setState({sample:sample});
+    }else{      
+      sample[e.target.name] = e.target.value;
+      this.setState({sample:sample});
     }
   }
 
   saveSample(e){        
-
-    let oState = this.state;      
-    if(oState.sample.sample_set === ' '){
-      oState.sample.sample_set = null;
+    let sample = cloneDeep(this.state.sample);
+    let sampleMethods = cloneDeep(this.state.sampleMethods);
+        
+    if(sample.sample_set === ' '){
+      sample.sample_set = null;
     }    
-    if(oState.sample.sample){
+    if(sample.sample){
       try{
-       oState.sample.created_on = oState.sample.created_on.add(2,'h');
+       sample.created_on = sample.created_on.add(2,'h');
       }catch(ex){}
       
       
-      this.props.updateCreateSample(oState.sample).then( (res)=>{
+      this.props.updateCreateSample(sample).then( (res)=>{
         
         notify.show('Sample Saved Successfully','success',2000);        
         
         if(res.data.id){          
-         oState.sample.id = res.data.id;
+         sample.id = res.data.id;
          this.context.router.push(`${res.data.id}`);        
         }
         
-        this.props.updateSampleMethods(oState.sampleMethods, oState.sample.id).then( (res)=>{
-          this.props.fetchSampleMethods(oState.sample.id);
+        this.props.updateSampleMethods(sampleMethods, sample.id).then( (res)=>{
+          this.props.fetchSampleMethods(sample.id);
         });
 
-        this.setState(oState);        
+        this.setState({sample:sample,sampleMethods:sampleMethods});
+
       }, (res)=>{
         notify.show('Server Error, Contact Administrator','error',2000);
             
@@ -170,23 +175,21 @@ class SampleEditCreate extends Component {
 
 
   onChangeFilter(e){
-    let oState = this.state;
+    //let sampleSets = cloneDeep(this.state.sampleSets);
     let filteredSets = [];
     const filter = e.target.value;    
-    const sampleSets = this.props.sampleSets.sampleSets;
+    const _sampleSets = this.props.sampleSets.sampleSets;
 
-    if(filter === ''){
-      oState.sampleSets = sampleSets;
-      this.setState(oState);
+    if(filter === ''){      
+      this.setState({sampleSets: _sampleSets});
     }else{
-      filteredSets = sampleSets.filter( (item) => {
+      filteredSets = _sampleSets.filter( (item) => {
        if(item.sample_set.indexOf(filter) > -1 ){
           return item;   
         }
         return null;
-      })
-      oState.sampleSets = filteredSets;
-      this.setState(oState);
+      })      
+      this.setState({sampleSets: filteredSets});
     }
   }
 
@@ -229,8 +232,8 @@ class SampleEditCreate extends Component {
                           <span className="input-group-addon">Sample Number</span>
                           <input onChange={this.onChangeSample.bind(this)} value={this.state.sample.sample || ''} name="sample" type="text" className="form-control" placeholder="Sample Number"/>
                         </div>
-                      </div>
-                      <div className="col-md-6">
+                      </div>                      
+                      {/*<div className="col-md-6">
                         <div className="input-group">
                           <span className="input-group-addon">Sample Set</span>                          
                           <select onChange={this.onChangeSample.bind(this)}  value={this.state.sample.sample_set || 0} name="sample_set" className="form-control" placeholder="Sample Set">
@@ -245,8 +248,8 @@ class SampleEditCreate extends Component {
                           <span className="input-group-addon">Filter</span>                          
                           <input value={this.state.filter} name="filter" onChange={this.onChangeFilter.bind(this)} type="text" className="form-control" placeholder="Filter"/>
                         </div>  
-                      </div>                                              
-                    </div>                    
+                      </div>*/}
+                      </div>                    
                     <div className="row"><br/>
                       <div className="col-md-4">
                         <div className="input-group">
