@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import LoginForm from './LoginForm';
 import { connect } from 'react-redux';
-import { userLoginRequest } from '../../actions/loginActions';
+import { userLoginRequestAD, userLoginRequestDB  } from '../../actions/loginActions';
 
 class LoginPage extends Component {
   render() {
-    const { userLoginRequest } = this.props;    	    
+    const { userLoginRequestAD, userLoginRequestDB} = this.props;
     return (    	
     	<div className="row">
     		<div className="col-md-4 col-md-offset-4">    			
-    			<LoginForm userLoginRequest={userLoginRequest} />
+    			<LoginForm userLoginRequestAD={userLoginRequestAD} userLoginRequestDB={userLoginRequestDB} />
     		</div>
     	</div>    	
     );
@@ -17,7 +17,8 @@ class LoginPage extends Component {
 }
 
 LoginPage.propTypes = {
-	userLoginRequest : React.PropTypes.func.isRequired
+	userLoginRequestAD : React.PropTypes.func.isRequired,
+    userLoginRequestDB : React.PropTypes.func.isRequired,
 }
 
-export default connect(null, { userLoginRequest })(LoginPage);
+export default connect(null, { userLoginRequestAD, userLoginRequestDB })(LoginPage);

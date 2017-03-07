@@ -2,7 +2,33 @@ import * as STYLES from './styleConstants';
 import { Chart } from 'react-chartjs-2';
 
 export const methods = [
-		
+	{
+		code: '3001-AG2',		
+		colLayout: [
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'}, 
+		],
+		grid: [			
+			{td:[
+				{style: STYLES.LARGE_LABEL.c,label: "Particle Number"},
+				{style: STYLES.LARGE_LABEL.c,label: "Particle Size"},
+				{style: STYLES.LARGE_LABEL.c,label: "Running ALD"},					
+			]},
+			{	isArray: true, scopeVariable: 'sans_ag2_ld',
+				td:[
+						{style: STYLES.LARGE_LABEL.input,arrayVal: 'index',arrCalc: true},
+						{style: STYLES.LARGE_LABEL.input,arrayVal: 'value',arrCalc: false},
+						{style: STYLES.LARGE_LABEL.input,arrayVal: 'average',arrCalc: true}
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Average Least Dimension"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_ag2_ald'},
+			]},			
+		],			
+	},
+
 	{//A17
 		code: 'A17',
 		colLayout: [

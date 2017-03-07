@@ -3,7 +3,6 @@ import Validator from 'validator';
 import isEmpty from 'lodash/isEmpty';
 import TextFieldGroup from '../common/TextFieldGroup';
 import { connect } from 'react-redux';
-import { addFlashMessage } from '../../actions/flashMessages';
 import {notify} from 'react-notify-toast';
 
 function validateInput(data){
@@ -65,23 +64,30 @@ class LoginForm extends Component {
 		
 		if(isValid){		
 			this.setState( { errors: errors, isLoading: false });	
-			this.props.userLoginRequest(this.state).then(
+			
+			this.props.userLoginRequestAD(this.state).then(				
 				(res) => {				
-						notify.show('You have logged in successfully. Welcome!','success',3000);
-						
+						notify.show('You have logged in successfully. Welcome!','success',3000);						
 						this.context.router.push('/');										
 				}).catch((error) => {				 	
-				 	
-				 	if(error.response.status === 403){				 		
-				 		errors.loginError = 'Invalid Credentials';	
-				 		this.setState( { errors: errors, isLoading: false });										 		
-				 	}else if(error.response.status === 500){				 		
-				 		errors.loginError = 'Authentication server not available';	
-				 		this.setState( { errors: errors, isLoading: false });										 		
-				 	}
-
+					
+					this.props.userLoginRequestDB(this.state).then( (res)=>{					
+						notify.show('You have logged in successfully. Welcome!','success',3000);						
+						this.context.router.push('/');															
+					},(err)=>{											
+				 		if(err.response.status === 403){				 						 		
+				 			err.loginError = 'Invalid Credentials';	
+				 			notify.show(err.loginError,'warning',3000);
+				 			this.setState( { errors: errors, isLoading: false });										 		
+				 		}else if(error.response.status === 500){				 		
+				 			err.loginError = 'Authentication Services not available';	
+				 			notify.show(err.loginError,'error',3000);
+				 			this.setState( { errors: errors, isLoading: false });										 		
+				 		}					
+					})
 
 				});			
+
 		}else{
 			this.setState( { errors: errors, isLoading: false });
 		}		
@@ -106,8 +112,8 @@ class LoginForm extends Component {
 }
 
 LoginForm.propTypes = {
-	userLoginRequest : React.PropTypes.func.isRequired,
-	addFlashMessage : React.PropTypes.func.isRequired
+	userLoginRequestAD : React.PropTypes.func.isRequired,
+	userLoginRequestDB : React.PropTypes.func.isRequired,
 }
 
 LoginForm.contextTypes = {
@@ -115,4 +121,4 @@ LoginForm.contextTypes = {
 }
 
 
-export default connect(null, { addFlashMessage } )(LoginForm);
+export default connect(null, {} )(LoginForm);

@@ -1,0 +1,9 @@
+"symbol","label","description","unit","input_type","default_value","minimum","maximum","formula","calculation_order","step"
+"sans_ag2_co","Created On",,"datetime","na",,,,,,
+"sans_ag2_cb","Created By",,"number","na",,,,,,
+"sans_ag2_cho","Checked On",,"datetime","na",,,,,,
+"sans_ag2_chb","Checked By",,"number","na",,,,,,
+"sans_ag2_ao","Approved On",,"datetime","na",,,,,,
+"sans_ag2_ab","Approved By",,"number","na",,,,,,
+"sans_ag2_ld","Least Dimension",,"number","in_array",,,,,,
+"sans_ag2_ald","Average Least Dimension",,"number","calc_avg_array",,,,"sans_ag2_ld",3200,

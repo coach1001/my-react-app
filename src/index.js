@@ -28,9 +28,9 @@ String.prototype.replaceAll = function(search, replacement){
 };
 
 
-if(localStorage.jwtToken){
-	setAuthorizationToken(localStorage.jwtToken);
-	store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
+if(localStorage.LCS_Token){
+	setAuthorizationToken(localStorage.LCS_Token);
+	store.dispatch(setCurrentUser(jwtDecode(localStorage.LCS_Token)));
 }
 
 ReactDOM.render(<Provider store={store}><Router history={browserHistory} routes={routes}/></Provider>,document.getElementById('root'));

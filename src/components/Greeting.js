@@ -4,12 +4,10 @@ import { connect } from 'react-redux';
 class Greetings extends Component {
   render() {
       return ( 
-        <div>
-                       
+        <div>                      
               <div className="container">
                 <h1>Welcome</h1>
-              </div>
-            
+              </div>            
         </div> 
 
       );

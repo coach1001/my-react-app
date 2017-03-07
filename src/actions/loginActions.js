@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {SET_CURRENT_USER, API_URL} from './types';
+import {SET_CURRENT_USER, API_URL, API_AD_LOGIN_URL} from './types';
 import setAuthorizationToken from '../utils/setAuthorizationToken';
 import jwtDecode from 'jwt-decode';
 
@@ -18,7 +18,26 @@ export function setCurrentUser(user){
 	};
 }
 
-export function userLoginRequest(userData){
+export function userLoginRequestAD(userData){
+	
+	return dispatch => {
+	
+		const transformData = {			
+			email: userData.email_username,
+			pass: userData.password
+		};
+
+		return axios.post(`${API_AD_LOGIN_URL}`, transformData).then( (res) => {			
+			localStorage.setItem('jwtToken', res.data.token);
+			setAuthorizationToken(res.data.token);						
+			dispatch(setCurrentUser( jwtDecode(res.data.token) ));
+		});
+
+	}
+
+}
+
+export function userLoginRequestDB(userData){
 	
 	return dispatch => {
 	
@@ -28,10 +47,9 @@ export function userLoginRequest(userData){
 		};
 
 		return axios.post(`${API_URL}/rpc/login`, transformData).then( (res) => {			
-			localStorage.setItem('jwtToken', res.data.token);
+			localStorage.setItem('LCS_Token', res.data.token);
 			setAuthorizationToken(res.data.token);						
 			dispatch(setCurrentUser( jwtDecode(res.data.token) ));
-		});				
+		});
 	}
-
 }

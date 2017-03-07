@@ -18,10 +18,10 @@ class SampleEditCreate extends Component {
     if(this.props.params.sampleId){
       this.props.fetchSample(this.props.params.sampleId);
       this.props.fetchSampleMethods(this.props.params.sampleId);
-      this.props.fetchSampleSets();        
+      /*this.props.fetchSampleSets();        */
     }else{      
       this.props.fetchSampleMethods(0);
-      this.props.fetchSampleSets();        
+      /*this.props.fetchSampleSets();        */
       let sample = {
         created_on : moment(),
         sample_set: null
@@ -34,9 +34,9 @@ class SampleEditCreate extends Component {
     const cP = this.props;
     const nP = nextProps;        
     
-    if(!nP.sampleSets.isFetching && cP.sampleSets.isFetching !== nP.sampleSets.isFetching){            
+    /*if(!nP.sampleSets.isFetching && cP.sampleSets.isFetching !== nP.sampleSets.isFetching){            
       this.setState({ sampleSets: nP.sampleSets.sampleSets});
-    }
+    }*/
     
     if(!nP.samples.isFetching && cP.samples.isFetching !== nP.samples.isFetching){      
       if(nP.samples.sample.created_on){
@@ -277,11 +277,7 @@ class SampleEditCreate extends Component {
                 </div>       
                 : null
               }
-              {
-                
-
-
-
+              {                
                 this.state.sampleMethods.length > 0 ?
                 <div className="panel panel-default">
                   <div className="panel-heading">

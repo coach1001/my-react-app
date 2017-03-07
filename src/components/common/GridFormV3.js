@@ -9,7 +9,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import regression from 'regression';
 import {Line} from 'react-chartjs-2';
 
-function linearRegression(d){
+/*function linearRegression(d){
   let data = cloneDeep(d);
   let dataT = [];
   
@@ -25,7 +25,7 @@ function linearRegression(d){
 
   var result = regression('linear',dataT);  
   return result;
-}
+}*/
 
 
 class GridForm extends React.Component {
@@ -126,8 +126,7 @@ class GridForm extends React.Component {
     }
     
 
-    if(method.hasGraph){
-      
+    if(method.hasGraph){      
       method.graph.map( (g, gi) =>{
         g.dataSets.map( (ds, dsi) =>{        
           ds.data = sortBy(ds.data,'x');                        
@@ -153,8 +152,61 @@ class GridForm extends React.Component {
       method.graph[0].dataSets.push({fill:false,borderColor:'rgba(0,0,255,0.2)',data: data});*/
     }
       
+    var arrayIndex = 0;
+
+    method.grid.map( (row,rI)=>{
+      if(row.isArray) arrayIndex = rI;
+      return row;        
+    })
     
+    var valArray =  [];
+    var rowObj = {};
+    var tdArray = [];
+    var newRows = [];
+    var sum = 0;
+
+    if(arrayIndex){
+      
+      rowObj = cloneDeep(method.grid[arrayIndex]);
+      tdArray = cloneDeep(method.grid[arrayIndex].td);
+
+      scopeData.map( (d) =>{
+        if(d.symbol === rowObj.scopeVariable){
+          valArray = d.value_string.split(',');            
+          valArray = valArray.map( (val) =>{
+            return parseFloat(val);
+          })                                
+        }
+        return d;
+      })                      
+    
+      valArray.map( (val,vI)=>{
+        sum += val;
+        
+        var temp = cloneDeep(tdArray);
+        var temptd = [];
+
+        temp.map( (c,cI)=>{        
+          c.isArrayVal = true;
+          c.arrayIndex = vI;          
+          if(c.arrayVal === 'index') c.value = vI+1;
+          if(c.arrayVal === 'value') c.value = val;
+          if(c.arrayVal === 'average') c.value = +(sum/(vI+1)).toFixed(1);
+          return c;
+        })
+        temptd.push(temp);
+        newRows.push({td: temp});
+        return val;        
+      });          
+      method.grid.splice(arrayIndex,1);      
+      newRows.map((row,rI)=>{
+        method.grid.splice(arrayIndex+rI,0,row);
+      })
+    }
+    console.log(method.grid);
+                  
     method.grid.map( (row, rI) => {
+      
       row.td.map( (col, cI) => {        
         scopeData.map( (d, dI) =>{          
           if(d.symbol === col.scopeVariable){              
@@ -173,8 +225,11 @@ class GridForm extends React.Component {
         })
         return col;
       })
+                  
       return row;
     })
+    
+    console.log(method.grid.length);  
     
     return <div>
       {
@@ -206,30 +261,32 @@ class GridForm extends React.Component {
                            return !td.isVal ? <td key={tdIndex}  colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>{td.label}</td> :
                            <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>
                            <div className="avoid">
-                           {
-                            td.type === 'calc' ?                                                                                                                                                        
-                                
-                                (td.unit === 'datetime' ?                                  
-                                  <Datetime ref={td.scopeVariable} utc={true} id={td.scopeVariable} inputProps={{disabled: true}}  timeFormat="HH:mm:ss" dateFormat={false} value={this.props.empty ? '' : Math.floor(td.value)} />                                                                                                
-                                
-                                :
-                                  <div className="input-group">
-                                  <input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChange.bind(this)}  step={td.step} type='number' value={this.props.empty ? '' : td.value} readOnly className='form-control' style={td.style}/>                                                              
-                                  <span className="input-group-addon">                                                                    
-                                    <div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} />
-                                  </span>
-                                  </div>)                              
-                                                                                                                            
-                            :                  
-                               
-                                td.unit === 'string' ?                              
-                                 <input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChangeString.bind(this)} value={this.props.empty ? '' : td.value_string} type='text' className='form-control' style={td.style}/>
-                                : 
-                                
-                                  td.unit === 'datetime' ?                                                                        
-                                  <Datetime ref={td.scopeVariable} utc={true} id={td.scopeVariable} timeFormat="HH:mm:ss" dateFormat="DD/MM/YYYY" onChange={this.onChangeTime.bind(this,td.scopeVariable)} value={this.props.empty ? '' : Math.floor(td.value)} />
-                                  :                                  
-                                  <div className="input-group"><input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChange.bind(this)} min={td.min} max={td.max} step={td.step} value={this.props.empty ? '' : td.value} type='number' className='form-control' style={td.style}/><span className="input-group-addon"><div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} /></span></div>                                
+                           {                              
+                              td.isArrayVal ? console.log(td)
+                              :
+                                td.type === 'calc' ?//IS CALC                                                                                                                                                      
+                                    
+                                    (td.unit === 'datetime' ? 
+                                      <Datetime ref={td.scopeVariable} utc={true} id={td.scopeVariable} inputProps={{disabled: true}}  timeFormat="HH:mm:ss" dateFormat={false} value={this.props.empty ? '' : Math.floor(td.value)} />                                                                                                
+                                    
+                                    : 
+                                      <div className="input-group">
+                                      <input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChange.bind(this)}  step={td.step} type='number' value={this.props.empty ? '' : td.value} readOnly className='form-control' style={td.style}/>                                                              
+                                      <span className="input-group-addon">                                                                    
+                                        <div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} />
+                                      </span>
+                                      </div>)                              
+                                                                                                                                
+                                ://IS NOT CALC                  
+                                   
+                                    td.unit === 'string' ? //IS STRING                              
+                                     <input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChangeString.bind(this)} value={this.props.empty ? '' : td.value_string} type='text' className='form-control' style={td.style}/>
+                                    : //IS NOT STRING
+                                    
+                                      td.unit === 'datetime' ?                                                                        
+                                      <Datetime ref={td.scopeVariable} utc={true} id={td.scopeVariable} timeFormat="HH:mm:ss" dateFormat="DD/MM/YYYY" onChange={this.onChangeTime.bind(this,td.scopeVariable)} value={this.props.empty ? '' : Math.floor(td.value)} />
+                                      :                                  
+                                      <div className="input-group"><input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChange.bind(this)} min={td.min} max={td.max} step={td.step} value={this.props.empty ? '' : td.value} type='number' className='form-control' style={td.style}/><span className="input-group-addon"><div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} /></span></div>
                                
                             }                        
                            </div>
