@@ -10,6 +10,8 @@ import sampleMethods from './reducers/sampleMethods';
 import sampleVariables from './reducers/sampleVariables';
 
 export default combineReducers({
+	restApi: '',
+	adService: '',	
 	flashMessages,
 	auth,	
 	sampleSets,

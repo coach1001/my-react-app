@@ -1,5 +1,5 @@
-export const API_URL = 'http://localhost:3003';
-export const API_AD_LOGIN_URL = 'http://localhost:8081/adlogin';
+export const API_URL = 'http://localhost/restapi';
+export const API_AD = 'http://localhost/adservice';
 
 export const ADD_FLASH_MESSAGE = 'ADD_FLASH_MESSAGE';
 export const DELETE_FLASH_MESSAGE = 'DELETE_FLASH_MESSAGE';
@@ -17,7 +17,6 @@ export const RECEIVE_TABLES = 'RECEIVE_TABLES';
 
 export const REQUEST_ROW = 'REQUEST_ROW';
 export const RECEIVE_ROW = 'RECEIVE_ROW';
-
 
 export const REQUEST_SAMPLE_SETS = 'REQUEST_SAMPLE_SETS'; 
 export const RECEIVE_SAMPLE_SETS = 'RECEIVE_SAMPLE_SETS';

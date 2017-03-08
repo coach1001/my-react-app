@@ -24,7 +24,7 @@ class SampleEditCreate extends Component {
       /*this.props.fetchSampleSets();        */
       let sample = {
         created_on : moment(),
-        sample_set: null
+        //sample_set: null
       }
       this.setState({sample: sample});
     }      
@@ -88,10 +88,10 @@ class SampleEditCreate extends Component {
   saveSample(e){        
     let sample = cloneDeep(this.state.sample);
     let sampleMethods = cloneDeep(this.state.sampleMethods);
-        
-    if(sample.sample_set === ' '){
+          
+    /*if(sample.sample_set === ' '){
       sample.sample_set = null;
-    }    
+    }*/    
     if(sample.sample){
       try{
        sample.created_on = sample.created_on.add(2,'h');
@@ -104,7 +104,8 @@ class SampleEditCreate extends Component {
         
         if(res.data.id){          
          sample.id = res.data.id;
-         this.context.router.push(`${res.data.id}`);        
+
+         this.context.router.push(`${this.context.router.location.pathname.replace('/new','')}/${res.data.id}`);        
         }
         
         this.props.updateSampleMethods(sampleMethods, sample.id).then( (res)=>{
@@ -164,7 +165,7 @@ class SampleEditCreate extends Component {
          let sample_method_id=null;
          res_.data.map((element)=>{
             if( element.method === method.method_id && element.sample === oState.sample.id){
-              sample_method_id = element.id
+              sample_method_id = parseInt(element.id,10);
             }
             return element;
          });
@@ -202,7 +203,7 @@ class SampleEditCreate extends Component {
       }
   }
   render() {  
-                  
+                       
     return (    
       <div>           
             <div className="container">                  

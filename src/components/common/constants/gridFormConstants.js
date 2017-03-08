@@ -2,29 +2,36 @@ import * as STYLES from './styleConstants';
 import { Chart } from 'react-chartjs-2';
 
 export const methods = [
-	{
+	{//'3001-AG2'
 		code: '3001-AG2',		
 		colLayout: [
+			{span: 1, width:'10%'},
 			{span: 1, width:'20%'},
 			{span: 1, width:'20%'},
 			{span: 1, width:'20%'},
-			{span: 1, width:'20%'}, 
+			{span: 1, width:'10%'}, 
 		],
 		grid: [			
 			{td:[
-				{style: STYLES.LARGE_LABEL.c,label: "Particle Number"},
-				{style: STYLES.LARGE_LABEL.c,label: "Particle Size"},
-				{style: STYLES.LARGE_LABEL.c,label: "Running ALD"},					
+				{},
+				{style: STYLES.LARGE_LABEL.c,label: "Sample"},
+				{style: STYLES.LARGE_LABEL.c,label: "Least Dimension"},
+				{style: STYLES.LARGE_LABEL.c,label: "Running Average Least Dimension"},					
+				{},
 			]},
 			{	isArray: true, scopeVariable: 'sans_ag2_ld',
+				
 				td:[
-						{style: STYLES.LARGE_LABEL.input,arrayVal: 'index',arrCalc: true},
-						{style: STYLES.LARGE_LABEL.input,arrayVal: 'value',arrCalc: false},
-						{style: STYLES.LARGE_LABEL.input,arrayVal: 'average',arrCalc: true}
+						{isIcon: true, icon: 'minus',isVal:true},
+						{style: STYLES.LARGE_LABEL.input,arrayVal: 'index',isVal:true, arrUnit: ''},
+						{style: STYLES.LARGE_LABEL.input,arrayVal: 'value',isVal:true, arrUnit: 'mm', type: 'in_array'},
+						{style: STYLES.LARGE_LABEL.input,arrayVal: 'average',isVal:true, arrUnit: 'mm'},
+						{isIcon: true, icon: 'plus',isVal:true},
 			]},
 			{td: [
+				{},
 				{style: STYLES.LARGE_LABEL.tr, label: "Average Least Dimension"},
-				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_ag2_ald'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_ag2_ald'},				
 			]},			
 		],			
 	},

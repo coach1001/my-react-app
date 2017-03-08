@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {SET_CURRENT_USER, API_URL, API_AD_LOGIN_URL} from './types';
+import {SET_CURRENT_USER, API_URL} from './types';
 import setAuthorizationToken from '../utils/setAuthorizationToken';
 import jwtDecode from 'jwt-decode';
 
@@ -19,7 +19,7 @@ export function setCurrentUser(user){
 }
 
 export function userLoginRequestAD(userData){
-	
+	console.log();
 	return dispatch => {
 	
 		const transformData = {			
@@ -27,7 +27,7 @@ export function userLoginRequestAD(userData){
 			pass: userData.password
 		};
 
-		return axios.post(`${API_AD_LOGIN_URL}`, transformData).then( (res) => {			
+		return axios.post(`${window.configGA.API_AD}/adlogin`, transformData).then( (res) => {			
 			localStorage.setItem('jwtToken', res.data.token);
 			setAuthorizationToken(res.data.token);						
 			dispatch(setCurrentUser( jwtDecode(res.data.token) ));

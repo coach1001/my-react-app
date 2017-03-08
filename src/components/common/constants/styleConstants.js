@@ -34,7 +34,7 @@ export const LARGE_LABEL = {
 		color: 'white',
 		backgroundColor: '#31708f'
 	},
-
+	
 	tr:{
 		fontSize: '14px',
 		textAlign: 'right',	

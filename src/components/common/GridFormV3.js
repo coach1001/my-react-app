@@ -73,13 +73,54 @@ class GridForm extends React.Component {
     
     let tempMax = 0;
     let maxY = [];
+    
+    /*let i=0;
+    let j=0;  
+    let k=0;
+    let l=0;
+    let m=0;*/
+    
+    if(method.hasGraph && !this.props.empty){                  
+      
+      
+      /*for(i=0;i<method.graph.length;i++){//Loop Graphs        
+        tempMax=0;        
+        for(j=0;j<method.graph[i].dataSets.length;j++){//Loop Datasets                  
+          for(k=0;k<method.graph[i].dataSets[j].data.length;k++){//Loop Data                                                                
+            if(method.graph[i].dataSets[j].data[k].isFormula){            
+              var scope={};
+              for(l=0;l<scopeData.length;l++){//Loop Scope Data                              
+                for(m=0;m<method.graph[i].dataSets[j].data[k].scopeVariables.length;m++){//Loop Graph Scope Variables
+                  if(method.graph[i].dataSets[j].data[k].scopeVariables[m] === scopeData[l].symbol ){
+                    scope[scopeData[l].symbol] = scopeData[l].value;
+                  }                                    
+                }//Loop Graph Scope Variables                                          
+              }//Loop Scope Data                
+              method.graph[i].dataSets[j].data[k].x = math.eval(method.graph[i].dataSets[j].data[k].sx,scope);
+              method.graph[i].dataSets[j].data[k].y = math.eval(method.graph[i].dataSets[j].data[k].sy,scope);                        
+            }else{
+              for(l=0;l<scopeData.length;l++){
+                if(scopeData[l].symbol === method.graph[i].dataSets[j].data[k].sx){
+                  if(scopeData[l].symbol === method.graph[i].dataSets[j].data[k].toggeLine) method.graph[i].dataSets[j].showLine=true; 
+                  if(method.graph[i].dataSets[j].data[k].x !== scopeData[l].value) method.graph[i].dataSets[j].data[k].x = scopeData[l].value; else  method.graph[i].dataSets[j].data[k].x = undefined;
+                }
+                else if(scopeData[l].symbol === method.graph[i].dataSets[j].data[k].sy){
+                  if(method.graph[i].dataSets[j].data[k].y !== scopeData[l].value) method.graph[i].dataSets[j].data[k].y = scopeData[l].value; else  method.graph[i].dataSets[j].data[k].y = undefined; 
+                }
+              }           
+            }
+            if(method.graph[i].dataSets[j].data[k].y > tempMax) tempMax = method.graph[i].dataSets[j].data[k].y;
+          }//Loop Data        
+        }//Loop Datasets
+        tempMax += method.graph[i].addMaxY;
+        tempMax = Math.round(tempMax/method.graph[i].roundOff)*method.graph[i].roundOff;          
+        maxY.push(tempMax);         
+      }//Loop Graphs*/
 
-    if(method.hasGraph && !this.props.empty){            
       method.graph.map((g) => {
         tempMax=0;        
         g.dataSets.map((ds) => {                
-          ds.data.map((dt) => {                 
-          
+          ds.data.map((dt) => {                           
             if(dt.isFormula){
               
               var scope={};
@@ -142,50 +183,57 @@ class GridForm extends React.Component {
       method.graph[0].options.dataAddCallBack = this.dataAddCallBack;    
     }
           
-    method.graph.map( (g,gi) =>{
-      g.options.scales.yAxes[0].ticks.max = maxY[gi];
-      return g;
-    });
+    if(method.hasGraph)
+    {
+      method.graph.map( (g,gi) =>{
+        g.options.scales.yAxes[0].ticks.max = maxY[gi];
+        return g;
+      });      
+    }
       
-    method.graph.map( (g) =>{      
-      g.dataSets.map( (ds, dsi)=>{        
-        if(ds.isFormula){          
-          var eq = linearRegression(ds.data,ds.regression);                    
-          eq.equation.reverse();          
-          ds.xInputs.map( (xi) =>{                                  
-            var y=0;            
-            eq.equation.map( (coff,ci)=>{                            
-              if(ci) y+= Math.pow(xi.x,ci)*coff;
-              else y+=coff;                                          
-              return coff;
-            })            
-            xi.y = y;            
-            ds.data.push({x: xi.x, y: xi.y });            
-            return xi;
-          })          
-        }
-        return ds;
-      })
-      return g;
-    }) 
-
-    scopeData.map( (sd) => {
+    if(method.hasGraph){
       method.graph.map( (g) =>{      
         g.dataSets.map( (ds, dsi)=>{        
-          if(ds.isFormula){                                              
-            ds.xInputs.map( (xi) =>{
-              if(xi.scopeVal === sd.symbol){
-                sd.value = Math.round(xi.y);                  
-              }
+          if(ds.isFormula){          
+            var eq = linearRegression(ds.data,ds.regression);                    
+            eq.equation.reverse();          
+            ds.xInputs.map( (xi) =>{                                  
+              var y=0;            
+              eq.equation.map( (coff,ci)=>{                            
+                if(ci) y+= Math.pow(xi.x,ci)*coff;
+                else y+=coff;                                          
+                return coff;
+              })            
+              xi.y = y;            
+              ds.data.push({x: xi.x, y: xi.y });            
               return xi;
-            })                    
+            })          
           }
           return ds;
         })
         return g;
-      })
-      return sd;
-    });
+      }) 
+    }
+    
+    if(method.hasGraph){
+      scopeData.map( (sd) => {
+        method.graph.map( (g) =>{      
+          g.dataSets.map( (ds, dsi)=>{        
+            if(ds.isFormula){                                              
+              ds.xInputs.map( (xi) =>{
+                if(xi.scopeVal === sd.symbol){
+                  sd.value = Math.round(xi.y);                  
+                }
+                return xi;
+              })                    
+            }
+            return ds;
+          })
+          return g;
+        })
+        return sd;
+      });    
+    }
 
     if(method.hasGraph){      
       method.graph.map( (g, gi) =>{
@@ -220,7 +268,7 @@ class GridForm extends React.Component {
     var rowObj = {};
     var tdArray = [];
     var newRows = [];
-    var sum = 0;
+    var sum = 0;    
 
     if(arrayIndex){
       
@@ -229,10 +277,15 @@ class GridForm extends React.Component {
 
       scopeData.map( (d) =>{
         if(d.symbol === rowObj.scopeVariable){
-          valArray = d.value_string.split(',');            
-          valArray = valArray.map( (val) =>{
-            return parseFloat(val);
-          })                                
+          if(d.value_string){
+            valArray = d.value_string.split(',');            
+            valArray = valArray.map( (val) =>{
+              return parseFloat(val);
+            })
+          }else{
+            valArray = [0];
+          } 
+                                                    
         }
         return d;
       })                      
@@ -245,14 +298,14 @@ class GridForm extends React.Component {
 
         temp.map( (c,cI)=>{        
           c.isArrayVal = true;
-          c.arrayIndex = vI;          
+          c.arrayIndex = vI;                     
           if(c.arrayVal === 'index') c.value = vI+1;
           if(c.arrayVal === 'value') c.value = val;
           if(c.arrayVal === 'average') c.value = +(sum/(vI+1)).toFixed(1);
           return c;
         })
         temptd.push(temp);
-        newRows.push({td: temp});
+        newRows.push({td: temp, scopeVar: rowObj.scopeVariable, index: vI});
         return val;        
       });          
       method.grid.splice(arrayIndex,1);      
@@ -284,7 +337,7 @@ class GridForm extends React.Component {
                   
       return row;
     })
-            
+
     return <div>
       {
         this.props.empty ? null :
@@ -295,6 +348,9 @@ class GridForm extends React.Component {
       }
             <Confirm  onConfirm={this.clearValues.bind(this)} body="Are you sure you want to Clear Data?" confirmBSStyle='danger' confirmText="Confirm Clear" title="Clear Data">  
               <button className="btn btn-default hidden-print">Clear Values</button>
+            </Confirm>&nbsp;
+            <Confirm  onConfirm={this.resetValues.bind(this)} body="Are you sure you want to Reset Data?" confirmBSStyle='warning' confirmText="Confirm Reset" title="Reset Data">  
+              <button className="btn btn-warning hidden-print">Reset Values</button>
             </Confirm>
             <br className="hidden-print"/><br className="hidden-print"/>
             <table className="table-bordered fixed" width="100%" >              
@@ -311,40 +367,58 @@ class GridForm extends React.Component {
                       
                       {
                         tr.td.map( (td, tdIndex) =>
-                          {
-                           return !td.isVal ? <td key={tdIndex}  colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>{td.label}</td> :
-                           <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>
-                           <div className="avoid">
-                           {                              
-                              td.isArrayVal ? console.log(td)
-                              :
-                                td.type === 'calc' || td.type === 'graph' ?//IS CALC                                                                                                                                                      
+                          {                                                      
+                            return !td.isVal ? <td key={tdIndex}  colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>{td.label}</td> 
+                            : 
+                              td.isIcon ? 
+                                  
+                                  td.icon === 'minus' ?
+                                                                        
+                                      <td key={tdIndex} style={{padding:'4px'}}>
+                                        <input type="button" value="Delete" onClick={ this.onDeleteFromArray.bind(this,{scopeVariable: tr.scopeVar,index: tr.index}) } className='btn btn-danger btn-block hidden-print'/>
+                                      </td>
                                     
-                                    (td.unit === 'datetime' ? 
-                                      <Datetime ref={td.scopeVariable} utc={true} id={td.scopeVariable} inputProps={{disabled: true}}  timeFormat="HH:mm:ss" dateFormat={false} value={this.props.empty ? '' : Math.floor(td.value)} />                                                                                                
-                                    
-                                    : 
-                                      <div className="input-group">
-                                      <input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChange.bind(this)}  step={td.step} type='number' value={this.props.empty ? '' : td.value} readOnly className='form-control' style={td.style}/>                                                              
-                                      <span className="input-group-addon">                                                                    
-                                        <div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} />
-                                      </span>
-                                      </div>)                              
-                                                                                                                                
-                                ://IS NOT CALC                  
+                                  :
+                                    <td key={tdIndex} style={{padding:'4px'}}>
+                                      <input type="button" value="Add" onClick={this.onAddToArray.bind(this,{scopeVariable: tr.scopeVar,index: tr.index})} className='btn btn-info btn-block hidden-print'/>
+                                    </td>
+
+                              :                                
+                                <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>
+                                <div className="avoid">
+                                {                              
+                                                                    
+                                    td.type === 'calc' || td.type === 'calc_avg_array' || td.type === 'graph' || td.arrayVal === 'index' || td.arrayVal === 'average' ?//IS CALC                                                                                                                                                      
+                                               
+                                        (td.unit === 'datetime' ? 
+                                          <Datetime ref={td.scopeVariable} utc={true} id={td.scopeVariable} inputProps={{disabled: true}}  timeFormat="HH:mm:ss" dateFormat={false} value={this.props.empty ? '' : Math.floor(td.value)} />                                                                                                
+                                        
+                                        : 
+                                          <div className="input-group">
+                                          <input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChange.bind(this)}  step={td.step} type='number' value={this.props.empty ? '' : td.value} readOnly className='form-control' style={td.style}/>                                                              
+                                          <span className="input-group-addon">                                                                    
+                                            {
+                                              td.isArrayVal ? <div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.arrUnit}} />:<div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} />
+                                            }
+                                          </span>
+                                          </div>)                              
+                                                                                                                                    
+                                    ://IS NOT CALC                  
+                                       
+                                        td.unit === 'string' ? //IS STRING                              
+                                         <input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChangeString.bind(this)} value={this.props.empty ? '' : td.value_string} type='text' className='form-control' style={td.style}/>
+                                        : //IS NOT STRING                                      
+                                          td.unit === 'datetime' ?
+                                            <Datetime ref={td.scopeVariable} utc={true} id={td.scopeVariable} timeFormat="HH:mm:ss" dateFormat="DD/MM/YYYY" onChange={this.onChangeTime.bind(this,td.scopeVariable)} value={this.props.empty ? '' : Math.floor(td.value)} />
+                                          : 
+                                            td.type === 'in_array' ? 
+                                            <div className="input-group"><input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChangeArray.bind(this,{scopeVariable: tr.scopeVar, index: tr.index} )} min={td.min} max={td.max} step={td.step} value={this.props.empty ? '' : td.value} type='number' className='form-control' style={td.style}/><span className="input-group-addon"><div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.arrUnit}} /></span></div>
+                                             :
+                                            <div className="input-group"><input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChange.bind(this)} min={td.min} max={td.max} step={td.step} value={this.props.empty ? '' : td.value} type='number' className='form-control' style={td.style}/><span className="input-group-addon"><div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} /></span></div>
                                    
-                                    td.unit === 'string' ? //IS STRING                              
-                                     <input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChangeString.bind(this)} value={this.props.empty ? '' : td.value_string} type='text' className='form-control' style={td.style}/>
-                                    : //IS NOT STRING
-                                    
-                                      td.unit === 'datetime' ?                                                                        
-                                      <Datetime ref={td.scopeVariable} utc={true} id={td.scopeVariable} timeFormat="HH:mm:ss" dateFormat="DD/MM/YYYY" onChange={this.onChangeTime.bind(this,td.scopeVariable)} value={this.props.empty ? '' : Math.floor(td.value)} />
-                                      :                                  
-                                      <div className="input-group"><input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChange.bind(this)} min={td.min} max={td.max} step={td.step} value={this.props.empty ? '' : td.value} type='number' className='form-control' style={td.style}/><span className="input-group-addon"><div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} /></span></div>
-                               
-                            }                        
-                           </div>
-                           </td>
+                                }                        
+                                </div>                           
+                                </td>
                           } 
                         )
                       }
@@ -371,15 +445,114 @@ class GridForm extends React.Component {
            </div>   
   }
   
+  onDeleteFromArray(data,e){          
+    let scopeData = cloneDeep(this.state.scopeData);
+    let index = data.index;
+    var valArray = [];    
+         
+    scopeData.map( (d) =>{
+      if(d.symbol === data.scopeVariable){
+        if(d.value_string){
+          valArray = d.value_string.split(',');            
+          valArray = valArray.map( (val) =>{
+            return parseFloat(val);
+          })
+        }else{
+          valArray = [];
+        }                                                   
+      }
+      return d;
+    })
+
+    valArray.splice(index,1);
+    
+    scopeData.map( (d) =>{
+      if(d.symbol === data.scopeVariable){
+        d.value_string = valArray.toString();
+      }
+      return d;
+    })
+    this.setState({scopeData: scopeData});
+  }
+
+  onAddToArray(data,e){
+    let scopeData = cloneDeep(this.state.scopeData);
+    let index = data.index;
+    var valArray = [];    
+         
+    scopeData.map( (d) =>{
+      if(d.symbol === data.scopeVariable){
+        if(d.value_string){
+          valArray = d.value_string.split(',');            
+          valArray = valArray.map( (val) =>{
+            return parseFloat(val);
+          })
+        }else{
+          valArray = [];
+        }                                                   
+      }
+      return d;
+    })
+
+    valArray.splice(index+1,0,0);
+    
+    scopeData.map( (d) =>{
+      if(d.symbol === data.scopeVariable){
+        d.value_string = valArray.toString();
+      }
+      return d;
+    })
+    this.setState({scopeData: scopeData});
+  }
+
+  onChangeArray(data,e){
+    let scopeData = cloneDeep(this.state.scopeData);
+    let index = data.index;
+    var valArray = [];    
+         
+    scopeData.map( (d) =>{
+      if(d.symbol === data.scopeVariable){
+        if(d.value_string){
+          valArray = d.value_string.split(',');            
+          valArray = valArray.map( (val) =>{
+            return parseFloat(val);
+          })
+        }else{
+          valArray = [];
+        }                                                   
+      }
+      return d;
+    })
+    valArray.splice(index,1,parseFloat(e.target.value));
+    
+    scopeData.map( (d) =>{
+      if(d.symbol === data.scopeVariable){
+        d.value_string = valArray.toString();
+      }
+      return d;
+    })
+
+    this.setState({scopeData: scopeData});
+  }
+
+  resetValues(){
+    this.setState({scopeData: this.state.oScopeData});
+  }
+  
   clearValues(){
     let method = cloneDeep(this.state.method.grid);      
     let scopeData = cloneDeep(this.state.scopeData);
-
+        
     method.map( (row, rI) => {
       row.td.map( (col, cI) => {        
         scopeData.map( (d, dI) =>{
+          
+          if(d.input_type === 'in_array'){
+            d.value_string = '';
+          }
+
           if(d.symbol === col.scopeVariable){
-            this.refs[d.symbol].value=undefined;
+            this.refs[d.symbol].value= null;
             col.value = 0.0;
             col.value_string = '';
             d.value = 0.0;
@@ -393,7 +566,7 @@ class GridForm extends React.Component {
     })
 
     
-    this.saveData(scopeData);        
+    this.parseInput(scopeData);        
   }
 
   onChangeTime(symbol,e){
@@ -443,11 +616,12 @@ class GridForm extends React.Component {
     let method = cloneDeep(methods[index]);
 
     scopeData.map( (row, rI) => {          
-    
+      //if(row.id === 4841) console.log(row);
+
       if(row.id && row.input_type !== 'constant'){        
-        if(row.unit === 'string'){          
-          if(row.value_string !== oScopeData[rI].value_string){
-            
+        
+        if(row.unit === 'string' || row.input_type === 'in_array' ){          
+          if(row.value_string !== oScopeData[rI].value_string){            
             sendRow(`sample_has_variables?id=eq.${row.id}`,{value_string: row.value_string},'patch');
           }          
         
@@ -458,13 +632,14 @@ class GridForm extends React.Component {
           }
         }                      
       }else if(row.type !== 'constant'){
-        if(row.unit === 'string'){
-          
+
+        if(row.unit === 'string' || row.input_type === 'in_array'){          
           sendRow('sample_has_variables',{sample: this.props.sampleId,variable: row.variable_id,value_string: row.value_string},'post').then( (res) =>{row.id = res.data.id;});        
         }else{          
           
           sendRow('sample_has_variables',{sample: this.props.sampleId,variable: row.variable_id,value: row.value},'post').then( (res) =>{row.id = res.data.id;} );
-        }                
+        }
+
       }      
       return row;    
     })     
@@ -472,15 +647,14 @@ class GridForm extends React.Component {
     this.setState({scopeData: scopeData,oScopeData: scopeData, method: method});
   }
 
-  parseInput(){
-    let scopeData = cloneDeep(this.state.scopeData);
+  parseInput(scopeData){    
     let scope = {};        
     
     scopeData.map( (d) => {        
         
         scope[d.symbol] = 0;
 
-        if(d.unit !== 'string'){
+        if(d.unit !== 'string' && d.unit !== 'in_array'){
           let round = d.step*10000;
           if(round){}else{ round = 100; }
           
@@ -495,7 +669,7 @@ class GridForm extends React.Component {
             }            
           }        
         }
-        else{
+        else{          
           scope[d.symbol] = d.value;
         }
     
@@ -506,7 +680,7 @@ class GridForm extends React.Component {
 
     scopeData.map ( (d) =>{      
       let round = d.step*10000;
-      if(d.unit !== 'string'){      
+      if(d.unit !== 'string' && d.unit !== 'in_array' ){      
        
         if(round){}else{ round = 100; }
         
@@ -517,6 +691,34 @@ class GridForm extends React.Component {
            console.log(err);
            scope[d.symbol] = ( d.default_value ? d.default_value : 0);
           }        
+        }
+
+        if(d.input_type === 'calc_avg_array'){                
+          var scope2 = cloneDeep(this.state.scopeData);
+          var sum = 0;
+          var valArray = [];    
+         
+          scope2.map( (d2) =>{
+            if(d.formula === d2.symbol){
+              if(d2.value_string){
+                valArray = d2.value_string.split(',');            
+                valArray = valArray.map( (val) =>{
+                  return parseFloat(val);
+                })
+              }else{
+                valArray = [];
+              }                                                   
+            }
+            return d;
+          })
+          
+          valArray.map( (val) =>{
+            sum+=val;
+            return val;
+          })
+
+          scope[d.symbol]=Math.round((sum/(valArray.length))*10)/10;
+            
         }      
         
         if(isFinite(scope[d.symbol])){
@@ -541,8 +743,8 @@ class GridForm extends React.Component {
   }
   
   CalculateAndSave(){            
-    
-    this.parseInput();        
+    var scopeData = cloneDeep(this.state.scopeData);
+    this.parseInput(scopeData);        
   }
   
   onChangeString(e){    
