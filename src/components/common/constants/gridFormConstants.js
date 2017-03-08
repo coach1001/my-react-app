@@ -557,6 +557,40 @@ export const methods = [
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_3_d1'},				
 			]},		
 
+			{td: [
+				{style: STYLES.LARGE_LABEL.c, label: "% Compaction"},
+				{style: STYLES.LARGE_LABEL.c,label: 'CBR'},
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "90"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_at_90'},
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "93"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_at_93'},
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "95"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_at_95'},
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "97"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_at_97'},
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "98"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_at_98'},
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "100"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_at_100'},
+			]},		
 
 		],
 
@@ -718,7 +752,7 @@ export const methods = [
 						        for (var i = 0; i < dataset.data.length; i++) {
 						            
 						            var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;						            
-						            var string = `(${dataset.data[i].x}, ${dataset.data[i].y.toFixed(2)})`;
+						            var string = `(${dataset.data[i].x.toFixed(0)}, ${dataset.data[i].y.toFixed(0)})`;
 						            						            
 												ctx.save();
 												ctx.translate(model.x, model.y);
@@ -756,7 +790,6 @@ export const methods = [
 						]					
 					},
 				},
-
 				dataSets:[
 					{ 				                          
 		        label: 'CBR (2.54 mm)',                          
@@ -765,12 +798,35 @@ export const methods = [
 		        pointBackgroundColor: 'red',                          
 		        borderColor: 'red',
 		        fill: false,
+		        lineTension: 0,
 		        data: [						
 		        	{sx:'cbr_mmx1',sy: 'cbr_1_d1'},
 		        	{sx:'cbr_imx1',sy: 'cbr_2_d1'},
 		        	{sx:'cbr_pmx1',sy: 'cbr_3_d1'},
 						]
-					},													
+					},
+					
+					{ 				                          
+		        label: 'CBR (2.54 mm - Normalized)',                          
+		        showLine: true,
+		        pointRadius: 4,	        
+		        fill: false,
+		        isFormula: true,
+		        lineTension: 0,
+		        regression: 'linear',
+		        xInputs: [
+		        	{x:90,scopeVal:'cbr_at_90'},
+		        	{x:93,scopeVal:'cbr_at_93'},
+		        	{x:95,scopeVal:'cbr_at_95'},
+		        	{x:97,scopeVal:'cbr_at_97'},
+		        	{x:98,scopeVal:'cbr_at_98'},
+		        	{x:100,scopeVal:'cbr_at_100'},
+		        ],
+		        data: [						
+		        	{sx:'cbr_pmx1',sy: 'cbr_3_d1'},		        	
+		        	{sx:'(cbr_mmx1+cbr_imx1)/2',sy: '(cbr_1_d1+cbr_2_d1)/2', isFormula:true, scopeVariables: ['cbr_mmx1','cbr_imx1','cbr_1_d1','cbr_2_d1'] }
+						]
+					}
 				]	
 			},//GRAPH2
 

@@ -9,23 +9,21 @@ import cloneDeep from 'lodash/cloneDeep';
 import regression from 'regression';
 import {Line} from 'react-chartjs-2';
 
-/*function linearRegression(d){
+function linearRegression(d,rType){
   let data = cloneDeep(d);
   let dataT = [];
   
-  console.log(d);
-
   data.map( (point) =>{
     let set = [];
     set.push(point.x);
     set.push(point.y);
     dataT.push(set);
+    return point;
   })
   
-
-  var result = regression('linear',dataT);  
+  var result = regression(rType,dataT);  
   return result;
-}*/
+}
 
 
 class GridForm extends React.Component {
@@ -81,34 +79,53 @@ class GridForm extends React.Component {
         tempMax=0;        
         g.dataSets.map((ds) => {                
           ds.data.map((dt) => {                 
-            
-            scopeData.map((sd) =>{                                                  
-              if(sd.symbol === dt.sx ){
-                if(sd.value){
-                  
-                  if(dt.toggleLine){
-                    ds.showLine = true;
+          
+            if(dt.isFormula){
+              
+              var scope={};
+              
+              scopeData.map((sd)=>{
+                dt.scopeVariables.map( (sv) =>{
+                  if(sv === sd.symbol){                    
+                    scope[sd.symbol] = sd.value;                                      
                   }
-                  if(dt.x !== sd.value){
-                    dt.x = sd.value;
-                  }
-                }                                     
-              }
-              if(sd.symbol === dt.sy){
-                if(sd.value){
-                   if(dt.y !== sd.value){
-                      dt.y = sd.value;                      
-                   }
-                  
-                  if(sd.value > tempMax)
-                  {
-                    tempMax=sd.value;
-                  }
-                }            
-              }                            
-              return sd;          
-            })
+                  return sv;
+                })
+                return sd;
+              })
+              dt.x = math.eval(dt.sx,scope);
+              dt.y = math.eval(dt.sy,scope);
 
+              
+            }else{
+              scopeData.map((sd) =>{                                                  
+                if(sd.symbol === dt.sx ){
+                  if(sd.value){
+                    
+                    if(dt.toggleLine){
+                      ds.showLine = true;
+                    }
+                    if(dt.x !== sd.value){
+                      dt.x = sd.value;
+                    }
+                  }                                     
+                }
+                if(sd.symbol === dt.sy){
+                  if(sd.value){
+                     if(dt.y !== sd.value){
+                        dt.y = sd.value;                      
+                     }
+                    
+                    if(sd.value > tempMax)
+                    {
+                      tempMax=sd.value;
+                    }
+                  }            
+                }                            
+                return sd;          
+              })
+            }
+                          
             if(dt.y > tempMax){
               tempMax= dt.y;
             }
@@ -124,22 +141,60 @@ class GridForm extends React.Component {
       })              
       method.graph[0].options.dataAddCallBack = this.dataAddCallBack;    
     }
-    
+          
+    method.graph.map( (g,gi) =>{
+      g.options.scales.yAxes[0].ticks.max = maxY[gi];
+      return g;
+    });
+      
+    method.graph.map( (g) =>{      
+      g.dataSets.map( (ds, dsi)=>{        
+        if(ds.isFormula){          
+          var eq = linearRegression(ds.data,ds.regression);                    
+          eq.equation.reverse();          
+          ds.xInputs.map( (xi) =>{                                  
+            var y=0;            
+            eq.equation.map( (coff,ci)=>{                            
+              if(ci) y+= Math.pow(xi.x,ci)*coff;
+              else y+=coff;                                          
+              return coff;
+            })            
+            xi.y = y;            
+            ds.data.push({x: xi.x, y: xi.y });            
+            return xi;
+          })          
+        }
+        return ds;
+      })
+      return g;
+    }) 
+
+    scopeData.map( (sd) => {
+      method.graph.map( (g) =>{      
+        g.dataSets.map( (ds, dsi)=>{        
+          if(ds.isFormula){                                              
+            ds.xInputs.map( (xi) =>{
+              if(xi.scopeVal === sd.symbol){
+                sd.value = Math.round(xi.y);                  
+              }
+              return xi;
+            })                    
+          }
+          return ds;
+        })
+        return g;
+      })
+      return sd;
+    });
 
     if(method.hasGraph){      
       method.graph.map( (g, gi) =>{
         g.dataSets.map( (ds, dsi) =>{        
-          ds.data = sortBy(ds.data,'x');                        
+          ds.data = sortBy(ds.data,'x');                                  
           return ds;    
         })
         return g;
-      });    
-      
-      method.graph.map( (g,gi) =>{
-        g.options.scales.yAxes[0].ticks.max = maxY[gi];
-        return g;
-      });
-      
+    });    
       
       /*var eq = linearRegression(method.graph[0].dataSets[0].data);                  
       console.log(eq);
@@ -151,6 +206,8 @@ class GridForm extends React.Component {
       });      
       method.graph[0].dataSets.push({fill:false,borderColor:'rgba(0,0,255,0.2)',data: data});*/
     }
+
+
       
     var arrayIndex = 0;
 
@@ -201,12 +258,11 @@ class GridForm extends React.Component {
       method.grid.splice(arrayIndex,1);      
       newRows.map((row,rI)=>{
         method.grid.splice(arrayIndex+rI,0,row);
+        return row;
       })
     }
-    console.log(method.grid);
-                  
-    method.grid.map( (row, rI) => {
-      
+                      
+    method.grid.map( (row, rI) => {      
       row.td.map( (col, cI) => {        
         scopeData.map( (d, dI) =>{          
           if(d.symbol === col.scopeVariable){              
@@ -228,9 +284,7 @@ class GridForm extends React.Component {
                   
       return row;
     })
-    
-    console.log(method.grid.length);  
-    
+            
     return <div>
       {
         this.props.empty ? null :
@@ -264,7 +318,7 @@ class GridForm extends React.Component {
                            {                              
                               td.isArrayVal ? console.log(td)
                               :
-                                td.type === 'calc' ?//IS CALC                                                                                                                                                      
+                                td.type === 'calc' || td.type === 'graph' ?//IS CALC                                                                                                                                                      
                                     
                                     (td.unit === 'datetime' ? 
                                       <Datetime ref={td.scopeVariable} utc={true} id={td.scopeVariable} inputProps={{disabled: true}}  timeFormat="HH:mm:ss" dateFormat={false} value={this.props.empty ? '' : Math.floor(td.value)} />                                                                                                
@@ -309,9 +363,8 @@ class GridForm extends React.Component {
             }         
             
             {
-              method.hasGraph && !this.props.empty ? method.graph.map( (g,i) => {                                                            
-                    return <Line key={i} height={'200mm'} ref={`chart_${i}`} data={{ datasets: g.dataSets }} options={g.options} />
-                    
+              method.hasGraph && !this.props.empty ? method.graph.map( (g,i) => {                                                                                
+                    return <Line key={i} height={200} ref={`chart_${i}`} data={{ datasets: g.dataSets }} options={g.options} />                    
                   })
                : null               
             }                               
@@ -457,7 +510,7 @@ class GridForm extends React.Component {
        
         if(round){}else{ round = 100; }
         
-        if(d.input_type === 'calc'){                
+        if(d.input_type === 'calc' && d.input_type !== 'graph'){                
           try{        
             scope[d.symbol]=Math.round(math.eval(d.formula,scope)*round)/round;               
           }catch(err){                     
