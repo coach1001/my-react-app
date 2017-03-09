@@ -18,7 +18,7 @@ export function receiveTables(tableDataArray){
 function fetchTableRequest(table, method){		
 		let axiosConfig = {
 			method : method,
-			url: `http://localhost:3003/${table}`,			
+			url: `${window.configGA.API_DB}/${table}`,			
 			headers: {
 				'xtable': table.split("?")[0]
 			}
@@ -41,12 +41,9 @@ export function fetchTablesNoDispatch(tables){
 
 export function fetchTables(tables){			
 	
-
 	return dispatch => {
 		dispatch(requestTables());
-
-		let requestPromises= [];		
-		
+		let requestPromises= [];				
 		tables.map( (table) =>{
 			requestPromises.push(fetchTableRequest(table,'get'));
 			requestPromises.push(fetchTableRequest(table,'options'));
@@ -62,11 +59,29 @@ export function fetchTables(tables){
 	}
 }
 
+export function sendRows(requests){
+	 var promises = [];	 
+	 requests.map( (r) =>{
+	 	var request = axios(r);
+	 	promises.push(request);	 	
+	 	return r;
+	 });
+	 
+	 //return dispatch => {
+	 	return axios.all(promises);//.then( (res) => {
+	 			
+	 		//}, (err) =>{
+
+	 		//})
+	 //}
+}
+
+
 export function sendRow(table,data,method){
 
 	let axiosConfig = {
 		method : method,
-		url: `http://localhost:3003/${table}`,
+		url: `${window.configGA.API_DB}/${table}`,
 		data : data, 			
 		headers: {
 			'xtable': table.split("?")[0],

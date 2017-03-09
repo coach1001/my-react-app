@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {SET_CURRENT_USER, API_URL} from './types';
+import {SET_CURRENT_USER } from './types';
 import setAuthorizationToken from '../utils/setAuthorizationToken';
 import jwtDecode from 'jwt-decode';
 
@@ -34,7 +34,6 @@ export function userLoginRequestAD(userData){
 		});
 
 	}
-
 }
 
 export function userLoginRequestDB(userData){
@@ -46,7 +45,7 @@ export function userLoginRequestDB(userData){
 			pass: userData.password
 		};
 
-		return axios.post(`${API_URL}/rpc/login`, transformData).then( (res) => {			
+		return axios.post(`${window.configGA.API_DB}/rpc/login`, transformData).then( (res) => {			
 			localStorage.setItem('LCS_Token', res.data.token);
 			setAuthorizationToken(res.data.token);						
 			dispatch(setCurrentUser( jwtDecode(res.data.token) ));

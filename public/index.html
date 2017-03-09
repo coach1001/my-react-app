@@ -13,22 +13,9 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>TMH1/SANS Calculator</title>
-  
-    <script>
-        var configGA = window.configGA|| {};
-        var request = new XMLHttpRequest();
-        
-        request.onreadystatechange = function(){
-          if(request.readyState === 4){
-            configGA = JSON.parse(request.responseText);            
-          }
-        }
-        
-        request.open('Get','config.json');
-        request.send();
-    </script>
-  
+    <title>TMH1/SANS Calculator</title>  
+    <script type="text/javascript" src="%PUBLIC_URL%/config.js"></script>
+
   </head>
   <body>    
     <div id="root"></div>

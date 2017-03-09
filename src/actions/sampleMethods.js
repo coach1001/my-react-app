@@ -1,5 +1,5 @@
 import axios from 'axios';
-import  { API_URL, RECEIVE_SAMPLE_METHODS, REQUEST_SAMPLE_METHODS, RECEIVE_SAMPLE_METHOD, REQUEST_SAMPLE_METHOD } from './types';
+import  { RECEIVE_SAMPLE_METHODS, REQUEST_SAMPLE_METHODS, RECEIVE_SAMPLE_METHOD, REQUEST_SAMPLE_METHOD } from './types';
 
 export function requestSampleMethods(){
 	return {
@@ -30,7 +30,7 @@ export function receiveSampleMethod(sampleMethod){
 export function fetchSampleMethods(sample_id){
 	return dispatch => {
 		dispatch(requestSampleMethods());		
-		return axios.post(`${API_URL}/rpc/f_sample_methods`,{ sample_id: sample_id }).then( (res) => {
+		return axios.post(`${window.configGA.API_DB}/rpc/f_sample_methods`,{ sample_id: sample_id }).then( (res) => {
 			dispatch(receiveSampleMethods(res.data));
 			return res;
 		});
@@ -40,7 +40,7 @@ export function fetchSampleMethods(sample_id){
 export function fetchSampleMethod(sample_method_id){
 	return dispatch => {
 		dispatch(requestSampleMethod());		
-		return axios.get(`${API_URL}/sample_methods?id=eq.${sample_method_id}`).then( (res) => {
+		return axios.get(`${window.configGA.API_DB}/sample_methods?id=eq.${sample_method_id}`).then( (res) => {
 			dispatch(receiveSampleMethod(res.data[0]));
 			return res;
 		});
@@ -59,7 +59,7 @@ export function updateSampleMethod(data){
 		
 		let axiosConfig = {
 			method : method,
-			url: `${API_URL}/sample_has_methods${param}`,
+			url: `${window.configGA.API_DB}/sample_has_methods${param}`,
 			data : data, 			
 			headers: {			
 				'Prefer': 'return=representation'
@@ -83,13 +83,13 @@ export function updateSampleMethods(data, sample_id){
 			if (method.id && !method.exists){	
 
 				delete method.exists;
-				requestPromises.push(axios.delete(`${API_URL}/sample_has_methods?id=eq.${method.id}`));
+				requestPromises.push(axios.delete(`${window.configGA.API_DB}/sample_has_methods?id=eq.${method.id}`));
 			
 			}else if (method.id === null && method.exists){				
 				
 				delete method.exists;
 
-				requestPromises.push(axios.post(`${API_URL}/sample_has_methods`,{method: method.method_id, sample: sample_id}));
+				requestPromises.push(axios.post(`${window.configGA.API_DB}/sample_has_methods`,{method: method.method_id, sample: sample_id}));
 			
 			}
 			return method;

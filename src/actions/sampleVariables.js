@@ -1,5 +1,5 @@
 import axios from 'axios';
-import  { API_URL, RECEIVE_SAMPLE_VARIABLES, REQUEST_SAMPLE_VARIABLES } from './types';
+import  { RECEIVE_SAMPLE_VARIABLES, REQUEST_SAMPLE_VARIABLES } from './types';
 
 export function requestSampleVariables(){
 	return {
@@ -17,7 +17,7 @@ export function receiveSampleVariables(sampleVariables){
 export function fetchSampleVariables(sample_id){
 	return dispatch => {
 		dispatch(requestSampleVariables());		
-		return axios.post(`${API_URL}/rpc/f_sample_variables`,{ sample_id: sample_id }).then( (res) => {
+		return axios.post(`${window.configGA.API_DB}/rpc/f_sample_variables`,{ sample_id: sample_id }).then( (res) => {
 			dispatch(receiveSampleVariables(res.data));
 		});
 	}

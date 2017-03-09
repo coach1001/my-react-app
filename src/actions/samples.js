@@ -1,5 +1,5 @@
 import axios from 'axios';
-import  { API_URL, RECEIVE_SAMPLES, REQUEST_SAMPLES, RECEIVE_SAMPLE, REQUEST_SAMPLE} from './types';
+import  { RECEIVE_SAMPLES, REQUEST_SAMPLES, RECEIVE_SAMPLE, REQUEST_SAMPLE} from './types';
 
 export function requestSamples(){
 	return {
@@ -30,7 +30,7 @@ export function receiveSample(sample){
 export function fetchSamples(){
 	return dispatch => {
 		dispatch(requestSamples());		
-		return axios.get(`${API_URL}/samples_view`).then( (res) => {
+		return axios.get(`${window.configGA.API_DB}/samples_view`).then( (res) => {
 			dispatch(receiveSamples(res.data));
 		});
 	}
@@ -39,7 +39,7 @@ export function fetchSamples(){
 export function fetchSample(id){
 	return dispatch => {
 		dispatch(requestSample());
-		return axios.get(`${API_URL}/samples?id=eq.${id}`).then( (res) => {
+		return axios.get(`${window.configGA.API_DB}/samples?id=eq.${id}`).then( (res) => {
 			dispatch(receiveSample(res.data[0]));
 		});
 	}
@@ -57,7 +57,7 @@ export function updateCreateSample(data){
 		
 		let axiosConfig = {
 			method : method,
-			url: `${API_URL}/samples${param}`,
+			url: `${window.configGA.API_DB}/samples${param}`,
 			data : data, 			
 			headers: {			
 				'Prefer': 'return=representation'
@@ -69,7 +69,7 @@ export function updateCreateSample(data){
 
 export function deleteSample(id){
 	return dispatch =>{
-		return axios.delete(`${API_URL}/samples?id=eq.${id}`);
+		return axios.delete(`${window.configGA.API_DB}/samples?id=eq.${id}`);
 	}
 }
 

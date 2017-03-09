@@ -1,7 +1,7 @@
 import React from 'react';
 import { methods } from './constants/gridFormConstants';
 import math from 'mathjs';
-import { sendRow } from '../../actions/tablesData';
+import { sendRow, sendRows } from '../../actions/tablesData';
 import Confirm from 'react-confirm-bootstrap';
 import Datetime from 'react-datetime';
 import sortBy from 'lodash/sortBy';
@@ -236,23 +236,13 @@ class GridForm extends React.Component {
     }
 
     if(method.hasGraph){      
-      method.graph.map( (g, gi) =>{
-        g.dataSets.map( (ds, dsi) =>{        
-          ds.data = sortBy(ds.data,'x');                                  
-          return ds;    
-        })
-        return g;
-    });    
-      
-      /*var eq = linearRegression(method.graph[0].dataSets[0].data);                  
-      console.log(eq);
-      var data = [];      
-      method.graph[0].dataSets[0].data.map( (d) =>{
-        let y = eq.equation[0]*d.x+eq.equation[1];
-        data.push({x: d.x, y: y } );
-        return d;
-      });      
-      method.graph[0].dataSets.push({fill:false,borderColor:'rgba(0,0,255,0.2)',data: data});*/
+        method.graph.map( (g, gi) =>{
+          g.dataSets.map( (ds, dsi) =>{        
+            ds.data = sortBy(ds.data,'x');                                  
+            return ds;    
+          })
+          return g;
+      });    
     }
 
 
@@ -614,36 +604,57 @@ class GridForm extends React.Component {
     }
 
     let method = cloneDeep(methods[index]);
-
+    var promises = [];
+    var axiosConfig = {method : '',url: `${window.configGA.API_DB}/sample_has_variables`,data : {},headers: {'Prefer': 'return=representation'}};
+  
     scopeData.map( (row, rI) => {          
-      //if(row.id === 4841) console.log(row);
-
-      if(row.id && row.input_type !== 'constant'){        
-        
+      var request = cloneDeep(axiosConfig);
+      if(row.id && row.input_type !== 'constant'){                
+        request.method = 'patch';
         if(row.unit === 'string' || row.input_type === 'in_array' ){          
           if(row.value_string !== oScopeData[rI].value_string){            
-            sendRow(`sample_has_variables?id=eq.${row.id}`,{value_string: row.value_string},'patch');
-          }          
-        
+            //sendRow(`sample_has_variables?id=eq.${row.id}`,{value_string: row.value_string},'patch');
+            request.url = request.url.concat(`id=eq.${row.id}`);
+            request.data = {value_string: row.value_string};
+            promises.push(request);
+          }                  
         }else{
-          if(row.value !== oScopeData[rI].value){
-            
-            sendRow(`sample_has_variables?id=eq.${row.id}`,{value: row.value},'patch');
+          if(row.value !== oScopeData[rI].value){            
+            //sendRow(`sample_has_variables?id=eq.${row.id}`,{value: row.value},'patch');
+            request.url = request.url.concat(`id=eq.${row.id}`);            
+            request.data = {value_string: row.value};
+            promises.push(request);
           }
         }                      
       }else if(row.type !== 'constant'){
-
+        request.method = 'post';
         if(row.unit === 'string' || row.input_type === 'in_array'){          
-          sendRow('sample_has_variables',{sample: this.props.sampleId,variable: row.variable_id,value_string: row.value_string},'post').then( (res) =>{row.id = res.data.id;});        
-        }else{          
-          
-          sendRow('sample_has_variables',{sample: this.props.sampleId,variable: row.variable_id,value: row.value},'post').then( (res) =>{row.id = res.data.id;} );
+          //sendRow('sample_has_variables',{sample: this.props.sampleId,variable: row.variable_id,value_string: row.value_string},'post').then( (res) =>{row.id = res.data.id;});        
+          request.data = {value_string: row.value};
+          promises.push(request);
+        }else{                    
+          //sendRow('sample_has_variables',{sample: this.props.sampleId,variable: row.variable_id,value: row.value},'post').then( (res) =>{row.id = res.data.id;} );
+          request.data = {value_string: row.value};
+          promises.push(request);
         }
-
-      }      
+      } 
+           
       return row;    
     })     
-    sendRow(`sample_has_methods?id=eq.${this.state.sampleMethod.id}`,{completed: this.state.sampleMethod.completed},'patch')                  
+    
+    var request = cloneDeep(axiosConfig);
+    request.url = `${window.configGA.API_DB}/sample_has_methods?id=eq.${this.state.sampleMethod.id}`;
+    request.data = {completed: this.state.sampleMethod.completed};
+    request.method = 'patch';
+    promises.push(request);
+    
+    //sendRow(`sample_has_methods?id=eq.${this.state.sampleMethod.id}`,{completed: this.state.sampleMethod.completed},'patch')                  
+    
+    
+    sendRows(promises).then( (res)=>{
+      console.log('done');
+    });
+    
     this.setState({scopeData: scopeData,oScopeData: scopeData, method: method});
   }
 
