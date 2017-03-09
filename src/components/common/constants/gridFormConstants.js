@@ -759,7 +759,13 @@ export const methods = [
 						        for (var i = 0; i < dataset.data.length; i++) {
 						            
 						            var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;						            
-						            var string = `(${dataset.data[i].x.toFixed(0)}, ${dataset.data[i].y.toFixed(0)})`;
+						            var string = '' 
+						            try{
+						            	string = `(${dataset.data[i].x.toFixed(0)}, ${dataset.data[i].y.toFixed(0)})`;
+						            }catch(e){						            		
+						            	string = '';
+						            } 
+						             
 						            						            
 												ctx.save();
 												ctx.translate(model.x, model.y);
@@ -1636,6 +1642,7 @@ export const methods = [
 	        pointRadius: 4,	        
 	        pointBackgroundColor: 'red',                          
 	        borderColor: 'red',
+	        lineTension: 0.2,
           data: [						
 						{ sy: 'gr_cpp1', x: 105},
 						{ sy: 'gr_cpp2', x: 75},

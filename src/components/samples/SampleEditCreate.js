@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchSample, updateCreateSample, deleteSample } from '../../actions/samples';
 import { fetchSampleMethods, updateSampleMethods } from '../../actions/sampleMethods';
 import { fetchSampleSets } from '../../actions/sampleSets';
+import { setLoader } from '../../actions/loader';
 import { FaArrowCircleLeft } from 'react-icons/lib/fa/';
 import Datetime from 'react-datetime';
 import Confirm from 'react-confirm-bootstrap';
@@ -13,6 +14,7 @@ import cloneDeep from 'lodash/cloneDeep';
 class SampleEditCreate extends Component {
 
   componentWillMount(){    
+    this.props.setLoader(true);
     this.setState( {sample: {}, sampleMethods: [], sampleSets: []});
     
     if(this.props.params.sampleId){
@@ -58,11 +60,15 @@ class SampleEditCreate extends Component {
         return method;
       })      
       this.setState({ sampleMethods: nP.sampleMethods.sampleMethods});      
-    }  
+    }
+
+    if(!nP.samples.isFetching && !nP.sampleMethods.isFetching){      
+      this.props.setLoader(false);      
+    }        
   }
 
   goBack(e){
-    e.preventDefault();    
+    //e.preventDefault();    
     this.context.router.push('/samples');
   }
 
@@ -91,7 +97,8 @@ class SampleEditCreate extends Component {
           
     /*if(sample.sample_set === ' '){
       sample.sample_set = null;
-    }*/    
+    }*/
+
     if(sample.sample){
       try{
        sample.created_on = sample.created_on.add(2,'h');
@@ -127,7 +134,7 @@ class SampleEditCreate extends Component {
   deleteSample(e){    
     this.props.deleteSample(this.state.sample.id).then( (res) => {        
         notify.show(`Sample Number ${this.state.sample.sample} successfully deleted`,'warning',2000);
-        this.context.router.goBack();
+        this.goBack();
 
     }, (res) => {
       notify.show('Server Error, Contact Administrator','error',2000);
@@ -343,6 +350,7 @@ SampleEditCreate.propTypes = {
   updateCreateSample : React.PropTypes.func.isRequired,  
   deleteSample: React.PropTypes.func.isRequired,
   updateSampleMethods: React.PropTypes.func.isRequired,
+  setLoader: React.PropTypes.func.isRequired,
 }
 
 function mapStateToProps(state){
@@ -353,4 +361,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, { fetchSample, fetchSampleMethods, fetchSampleSets, updateCreateSample, deleteSample, updateSampleMethods })(SampleEditCreate);
+export default connect(mapStateToProps, { setLoader, fetchSample, fetchSampleMethods, fetchSampleSets, updateCreateSample, deleteSample, updateSampleMethods })(SampleEditCreate);

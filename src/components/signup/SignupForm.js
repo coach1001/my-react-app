@@ -121,8 +121,7 @@ class SignupForm extends Component {
 }
 
 SignupForm.propTypes = {
-	userSignupRequest : React.PropTypes.func.isRequired,
-	addFlashMessage : React.PropTypes.func.isRequired
+	userSignupRequest : React.PropTypes.func.isRequired,	
 }
 
 SignupForm.contextTypes = {

@@ -67,13 +67,9 @@ export function sendRows(requests){
 	 	return r;
 	 });
 	 
-	 //return dispatch => {
-	 	return axios.all(promises);//.then( (res) => {
-	 			
-	 		//}, (err) =>{
-
-	 		//})
-	 //}
+	 return dispatch => {
+	 	return axios.all(promises)
+	 }
 }
 
 

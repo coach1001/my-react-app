@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import NavigationBar from './components/NavigationBar'
-import FlashMessagesList from './components/flash/FlashMessagesList'
-import { fetchTablesNoDispatch } from './actions/tablesData';
-import { connect } from 'react-redux';
-
-import parseTablesResponses from './utils/parseTablesResponses';
 import Notifications from 'react-notify-toast';
+import { connect } from 'react-redux';
+import { setLoader } from './actions/loader';
 
 class App extends Component {
 	
@@ -14,24 +11,31 @@ class App extends Component {
 						
 	}
 
-  render() {  	
-    return (
-      <div className="container-fluid">
-         <NavigationBar/> 
+  render() {  	    
+    return (                    
+          <div className="container-fluid">          
+            {
+              this.props.isEnabled ? <div className="loading">Loading&#8230;</div> : null
+            }           
+            <NavigationBar/>                               
+          	{this.props.children}                      
+            <Notifications/>          
           
-        <FlashMessagesList />
-             
-        	{this.props.children}              
-        
-        <Notifications/>
-      </div>
+          </div>
     );
   }
 }
 
-App.propTypes = {
-	fetchTablesNoDispatch: React.PropTypes.func.isRequired,
-	parseTablesResponses: React.PropTypes.func.isRequired,
+App.propTypes = { 
+  setLoader: React.PropTypes.func.isRequired,
 }
 
-export default connect(null,{fetchTablesNoDispatch: fetchTablesNoDispatch, parseTablesResponses: parseTablesResponses})(App);
+function mapStateToProps(state){
+  return {    
+    isEnabled: state.loader.isEnabled,          
+  }
+}
+
+export default connect(mapStateToProps, { setLoader })(App);
+
+

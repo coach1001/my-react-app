@@ -4,6 +4,7 @@ import isEmpty from 'lodash/isEmpty';
 import TextFieldGroup from '../common/TextFieldGroup';
 import { connect } from 'react-redux';
 import {notify} from 'react-notify-toast';
+import { setLoader  } from '../../actions/loader';
 
 function validateInput(data){
 	let errors = {};
@@ -57,6 +58,7 @@ class LoginForm extends Component {
 	}
 
 	onSubmit(e){
+		this.props.setLoader(true);
 		this.setState({ errors : {}, isLoading: true });
 		e.preventDefault();
 		
@@ -69,23 +71,26 @@ class LoginForm extends Component {
 				(res) => {				
 						notify.show('You have logged in successfully. Welcome!','success',3000);						
 						this.context.router.push('/');										
+						this.props.setLoader(false);
 				}).catch((error) => {				 	
 					
 					this.props.userLoginRequestDB(this.state).then( (res)=>{					
 						notify.show('You have logged in successfully. Welcome!','success',3000);						
-						this.context.router.push('/');															
+						this.context.router.push('/');
+						this.props.setLoader(false);															
 					},(err)=>{											
 				 		if(err.response.status === 403){				 						 		
 				 			err.loginError = 'Invalid Credentials';	
 				 			notify.show(err.loginError,'warning',3000);
-				 			this.setState( { errors: errors, isLoading: false });										 		
+				 			this.props.setLoader(false);
+				 			this.setState( { errors: errors, isLoading: false });										 						 			
 				 		}else if(error.response.status === 500){				 		
 				 			err.loginError = 'Authentication Services not available';	
 				 			notify.show(err.loginError,'error',3000);
+				 			this.props.setLoader(false);
 				 			this.setState( { errors: errors, isLoading: false });										 		
 				 		}					
 					})
-
 				});			
 
 		}else{
@@ -114,6 +119,7 @@ class LoginForm extends Component {
 LoginForm.propTypes = {
 	userLoginRequestAD : React.PropTypes.func.isRequired,
 	userLoginRequestDB : React.PropTypes.func.isRequired,
+	setLoader: React.PropTypes.func.isRequired,
 }
 
 LoginForm.contextTypes = {
@@ -121,4 +127,4 @@ LoginForm.contextTypes = {
 }
 
 
-export default connect(null, {} )(LoginForm);
+export default connect(null, { setLoader } )(LoginForm);

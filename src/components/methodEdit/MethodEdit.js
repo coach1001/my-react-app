@@ -6,10 +6,12 @@ import { fetchSampleVariables } from '../../actions/sampleVariables';
 import { fetchSampleMethod } from '../../actions/sampleMethods';
 import { fetchSample } from '../../actions/samples';
 import { methods } from '../../components/common/constants/gridFormConstants';
+import { setLoader } from '../../actions/loader';
 
 class MethodEdit extends Component {
   
   componentWillMount(){     	        
+    this.props.setLoader(true);
     this.props.fetchSampleVariables(this.props.params.sampleId);
     this.props.fetchSampleMethod(this.props.params.methodId);
     this.props.fetchSample(this.props.params.sampleId);            
@@ -25,20 +27,22 @@ class MethodEdit extends Component {
 
   render() {    
     return <div className="container-print">
-      <span style={{fontSize: '2em', cursor: 'pointer'}}>
-      <FaArrowCircleLeft  onClick={this.goBack.bind(this)}  className="text-info hidden-print" size="2em"/>
-      &nbsp;{this.props.sample.sample} - {this.props.sampleMethod.label} 
-      </span>
-      <h5>{this.props.sampleMethod.description}</h5>        
+      
+      
+        <span style={{fontSize: '2em', cursor: 'pointer'}}>
+        <FaArrowCircleLeft  onClick={this.goBack.bind(this)}  className="text-info hidden-print" size="2em"/>      
+        </span>
+        <h4>Sample Number : {this.props.sample.sample}</h4>
+        <h5>Method: {this.props.sampleMethod.label} - {this.props.sampleMethod.description}</h5> 
       <button onClick={this.printWindow.bind(this)} className="pull-right btn btn-lg btn-primary hidden-print">Print</button>
       {this.props.sampleVariables.length > 0 && Object.keys(this.props.sampleMethod).length > 0 && Object.keys(this.props.sample).length > 0 ?        
         <div>                    
           {                         
             <GridForm methods={methods} empty={this.props.params.empty ? true : false} style={{width: '90vh'}} sampleMethod={this.props.sampleMethod} scopeData={this.props.sampleVariables} sampleId={parseInt(this.props.params.sampleId,10)} methodCode={this.props.params.methodCode}/> 
-          }
-          
+          }          
         </div>
         : null}
+
     </div>    
   }
 }
@@ -47,6 +51,7 @@ MethodEdit.propTypes = {
   fetchSampleVariables: React.PropTypes.func.isRequired,
   fetchSampleMethod: React.PropTypes.func.isRequired,
   fetchSample: React.PropTypes.func.isRequired,
+  setLoader: React.PropTypes.func.isRequired,
 }
 
 MethodEdit.contextTypes = {
@@ -62,4 +67,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, { fetchSampleVariables, fetchSampleMethod, fetchSample })(MethodEdit);
+export default connect(mapStateToProps, { fetchSampleVariables, fetchSampleMethod, fetchSample, setLoader })(MethodEdit);

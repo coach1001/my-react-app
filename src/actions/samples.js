@@ -32,6 +32,7 @@ export function fetchSamples(){
 		dispatch(requestSamples());		
 		return axios.get(`${window.configGA.API_DB}/samples_view`).then( (res) => {
 			dispatch(receiveSamples(res.data));
+			return res;
 		});
 	}
 }

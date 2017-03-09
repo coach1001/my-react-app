@@ -1,4 +1,4 @@
 window.configGA = {
-	"API_DB":"http://localhost:3003",
-	"API_AD":"http://localhost:8081"
+	"API_DB":"http://localhost/restapi",
+	"API_AD":"http://localhost/adservice"
 }

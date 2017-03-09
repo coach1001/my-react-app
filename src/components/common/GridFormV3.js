@@ -1,13 +1,15 @@
 import React from 'react';
 import { methods } from './constants/gridFormConstants';
 import math from 'mathjs';
-import { sendRow, sendRows } from '../../actions/tablesData';
+import { sendRows } from '../../actions/tablesData';
+import { setLoader } from '../../actions/loader';
 import Confirm from 'react-confirm-bootstrap';
 import Datetime from 'react-datetime';
 import sortBy from 'lodash/sortBy';
 import cloneDeep from 'lodash/cloneDeep';
 import regression from 'regression';
 import {Line} from 'react-chartjs-2';
+import { connect } from 'react-redux';
 
 function linearRegression(d,rType){
   let data = cloneDeep(d);
@@ -32,8 +34,11 @@ class GridForm extends React.Component {
     super(props);
     this.dataAddCallBack = this.dataAddCallBack.bind(this);
   }
-
+  componentDidMount(){
+    this.props.setLoader(false);
+  }
   componentWillMount(){
+    
     let index=0;
 
     for(let i=0;i<methods.length;i++){
@@ -45,8 +50,7 @@ class GridForm extends React.Component {
     let method = cloneDeep(methods[index]);
     let oScopeData = cloneDeep(this.props.scopeData);
     let scopeData = cloneDeep(this.props.scopeData);
-    let sampleMethod = cloneDeep(this.props.sampleMethod);
-
+    let sampleMethod = cloneDeep(this.props.sampleMethod);    
     this.setState({      
       dataAdded: true,
       oScopeData: oScopeData,
@@ -55,7 +59,7 @@ class GridForm extends React.Component {
       sampleMethod: sampleMethod,            
       isEmpty: this.props.empty,          
       maxY: [],
-      redraw: false,      
+      redrawGraph: true,      
     })                
   }
 
@@ -70,7 +74,8 @@ class GridForm extends React.Component {
 
     let method = cloneDeep(this.state.method);
     let scopeData = cloneDeep(this.state.scopeData);
-    
+    const redrawGraph = this.state.redrawGraph;
+
     let tempMax = 0;
     let maxY = [];
     
@@ -80,7 +85,7 @@ class GridForm extends React.Component {
     let l=0;
     let m=0;*/
     
-    if(method.hasGraph && !this.props.empty){                  
+    if(redrawGraph && method.hasGraph && !this.props.empty){                  
       
       
       /*for(i=0;i<method.graph.length;i++){//Loop Graphs        
@@ -183,7 +188,7 @@ class GridForm extends React.Component {
       method.graph[0].options.dataAddCallBack = this.dataAddCallBack;    
     }
           
-    if(method.hasGraph)
+    if(redrawGraph && method.hasGraph)
     {
       method.graph.map( (g,gi) =>{
         g.options.scales.yAxes[0].ticks.max = maxY[gi];
@@ -191,7 +196,7 @@ class GridForm extends React.Component {
       });      
     }
       
-    if(method.hasGraph){
+    if(redrawGraph && method.hasGraph){
       method.graph.map( (g) =>{      
         g.dataSets.map( (ds, dsi)=>{        
           if(ds.isFormula){          
@@ -215,7 +220,7 @@ class GridForm extends React.Component {
       }) 
     }
     
-    if(method.hasGraph){
+    if(redrawGraph && method.hasGraph){
       scopeData.map( (sd) => {
         method.graph.map( (g) =>{      
           g.dataSets.map( (ds, dsi)=>{        
@@ -235,7 +240,7 @@ class GridForm extends React.Component {
       });    
     }
 
-    if(method.hasGraph){      
+    if(redrawGraph && method.hasGraph){      
         method.graph.map( (g, gi) =>{
           g.dataSets.map( (ds, dsi) =>{        
             ds.data = sortBy(ds.data,'x');                                  
@@ -332,8 +337,7 @@ class GridForm extends React.Component {
       {
         this.props.empty ? null :
         <div className="input-group checkbox">     
-          <label style={{fontSize: '1.3em', fontWeight:'normal'}}><input name="completed" type="checkbox" onChange={this.onChangeComplete.bind(this)} checked={this.state.sampleMethod.completed} />&nbsp;Completed</label>                                
-          
+          <label style={{fontSize: '1.3em', fontWeight:'normal'}}><input name="completed" type="checkbox" onChange={this.onChangeComplete.bind(this)} checked={this.state.sampleMethod.completed} />&nbsp;Completed</label>
         </div>    
       }
             <Confirm  onConfirm={this.clearValues.bind(this)} body="Are you sure you want to Clear Data?" confirmBSStyle='danger' confirmText="Confirm Clear" title="Clear Data">  
@@ -342,7 +346,9 @@ class GridForm extends React.Component {
             <Confirm  onConfirm={this.resetValues.bind(this)} body="Are you sure you want to Reset Data?" confirmBSStyle='warning' confirmText="Confirm Reset" title="Reset Data">  
               <button className="btn btn-warning hidden-print">Reset Values</button>
             </Confirm>
+            
             <br className="hidden-print"/><br className="hidden-print"/>
+            
             <table className="table-bordered fixed" width="100%" >              
               <colgroup>
                 {
@@ -462,7 +468,7 @@ class GridForm extends React.Component {
       }
       return d;
     })
-    this.setState({scopeData: scopeData});
+    this.setState({scopeData: scopeData, redrawGraph: true});
   }
 
   onAddToArray(data,e){
@@ -492,7 +498,7 @@ class GridForm extends React.Component {
       }
       return d;
     })
-    this.setState({scopeData: scopeData});
+    this.setState({scopeData: scopeData, redrawGraph:true});
   }
 
   onChangeArray(data,e){
@@ -526,7 +532,7 @@ class GridForm extends React.Component {
   }
 
   resetValues(){
-    this.setState({scopeData: this.state.oScopeData});
+    this.setState({scopeData: this.state.oScopeData, redrawGraph: true});
   }
   
   clearValues(){
@@ -568,7 +574,7 @@ class GridForm extends React.Component {
       }
       return d;
     });    
-    this.setState({scopeData: scopeData});
+    this.setState({scopeData: scopeData, redrawGraph: true});
   }
 
   goBack(){
@@ -590,7 +596,7 @@ class GridForm extends React.Component {
       method.graph[0].dataSets[0].data.push({x: data.x, y: data.y, pop: data.pop});
       method.graph[0].dataSets[0].showLine  = true;      
     }     
-    this.setState( {method: method} );
+    this.setState( {method: method, redrawGraph: true} );
   }
 
   saveData(scopeData){                
@@ -602,6 +608,7 @@ class GridForm extends React.Component {
         index = i;
       }    
     }
+    this.props.setLoader(true);
 
     let method = cloneDeep(methods[index]);
     var promises = [];
@@ -613,16 +620,16 @@ class GridForm extends React.Component {
         request.method = 'patch';
         if(row.unit === 'string' || row.input_type === 'in_array' ){          
           if(row.value_string !== oScopeData[rI].value_string){            
-            //sendRow(`sample_has_variables?id=eq.${row.id}`,{value_string: row.value_string},'patch');
-            request.url = request.url.concat(`id=eq.${row.id}`);
+            //sendRow(`sample_has_variables?id=eq.${row.id}`,{value_string: row.value_string},'patch');            
+            request.url = request.url.concat(`?id=eq.${row.id}`);
             request.data = {value_string: row.value_string};
             promises.push(request);
           }                  
         }else{
           if(row.value !== oScopeData[rI].value){            
             //sendRow(`sample_has_variables?id=eq.${row.id}`,{value: row.value},'patch');
-            request.url = request.url.concat(`id=eq.${row.id}`);            
-            request.data = {value_string: row.value};
+            request.url = request.url.concat(`?id=eq.${row.id}`);            
+            request.data = {value: row.value};
             promises.push(request);
           }
         }                      
@@ -630,11 +637,13 @@ class GridForm extends React.Component {
         request.method = 'post';
         if(row.unit === 'string' || row.input_type === 'in_array'){          
           //sendRow('sample_has_variables',{sample: this.props.sampleId,variable: row.variable_id,value_string: row.value_string},'post').then( (res) =>{row.id = res.data.id;});        
-          request.data = {value_string: row.value};
+          request.headers['xScopeVariable'] = row.symbol;
+          request.data = {value_string: row.value_string, sample: this.props.sampleId,variable: row.variable_id};
           promises.push(request);
         }else{                    
           //sendRow('sample_has_variables',{sample: this.props.sampleId,variable: row.variable_id,value: row.value},'post').then( (res) =>{row.id = res.data.id;} );
-          request.data = {value_string: row.value};
+          request.headers['xScopeVariable'] = row.symbol;
+          request.data = {value: row.value, sample: this.props.sampleId,variable: row.variable_id};
           promises.push(request);
         }
       } 
@@ -648,14 +657,23 @@ class GridForm extends React.Component {
     request.method = 'patch';
     promises.push(request);
     
-    //sendRow(`sample_has_methods?id=eq.${this.state.sampleMethod.id}`,{completed: this.state.sampleMethod.completed},'patch')                  
+    //sendRow(`sample_has_methods?id=eq.${this.state.sampleMethod.id}`,{completed: this.state.sampleMethod.completed},'patch')                      
     
-    
-    sendRows(promises).then( (res)=>{
-      console.log('done');
-    });
-    
-    this.setState({scopeData: scopeData,oScopeData: scopeData, method: method});
+    this.props.sendRows(promises).then( (res)=>{      
+      res.map((r)=>{              
+        scopeData.map( (sd)=>{        
+          if(r.config.headers.xScopeVariable === sd.symbol && r.config.method === 'post'){
+            sd.id = r.data.id;
+          }
+          return sd;
+        });
+        return r;
+        
+      });      
+      this.props.setLoader(false);
+      this.setState({scopeData: scopeData,oScopeData: scopeData, method: method, redrawGraph: true});      
+    });        
+  
   }
 
   parseInput(scopeData){    
@@ -769,7 +787,7 @@ class GridForm extends React.Component {
       }
       return d;
     });     
-    this.setState({scopeData: scopeData}); 
+    this.setState({scopeData: scopeData, redrawGraph: true}); 
   }
 
   onChange(e){
@@ -783,7 +801,7 @@ class GridForm extends React.Component {
       }
       return d;
     });
-    this.setState({scopeData: scopeData});    
+    this.setState({scopeData: scopeData, redrawGraph: true});    
   }
  
 
@@ -801,10 +819,13 @@ GridForm.propTypes = {
   sampleMethod: React.PropTypes.object.isRequired,  
   empty: React.PropTypes.bool.isRequired,  
   methods: React.PropTypes.array.isRequired,
+  sendRows: React.PropTypes.func.isRequired,
+  setLoader: React.PropTypes.func.isRequired,
 }
 
 GridForm.contextTypes = {
   router: React.PropTypes.object.isRequired
 }
 
-export default GridForm;
+
+export default connect(null, { sendRows, setLoader })(GridForm);
