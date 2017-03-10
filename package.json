@@ -34,7 +34,6 @@
     "redux-logger": "^2.8.2",
     "redux-thunk": "^2.2.0",
     "regression": "^1.4.0",
-    "shortid": "^2.2.8",
     "validator": "^7.0.0",
     "victory": "^0.18.0"
   },

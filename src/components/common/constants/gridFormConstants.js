@@ -1437,17 +1437,12 @@ export const methods = [
 				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'gr_tp19'}
 			]},			
 			{td: [ 
-				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Riffled Fraction Passing 19mm Sieve"},
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Riffled Mass ( < 19 mm)"},
 				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'gr_rfp19'}
 			]},			
 			{td: [ 
 				{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Reduction factor"},
 				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'gr_rf'}
-			]},			
-
-			{td: [ 
-				{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Riffled Mass ( < 19 mm)"},
-				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'gr_dm'}
 			]},			
 			{td: [ 
 				{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Initial Sieve (<0.425 mm)"},
@@ -1464,111 +1459,102 @@ export const methods = [
 			]},				
 			{td: [
 				{label:'Sieve Arpeture Size',style: STYLES.LARGE_LABEL.c},
-				{label:'Mass Retained',style: STYLES.LARGE_LABEL.c},
-				{label:'Mass Reduced',style: STYLES.LARGE_LABEL.c},
+				{label:'Mass Retained',style: STYLES.LARGE_LABEL.c},				
 				{label:'Percentage Retained',style: STYLES.LARGE_LABEL.c},
 				{label:'Cumulative Percentage Passing',style: STYLES.LARGE_LABEL.c},
+				
 			]},
 		  
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "105 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr1"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr1r"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr1"},		  	
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr1"},
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp1"},
+		  	
 		 	]},
 
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "75 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr2"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr2r"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr2"},		  	
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr2"},
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp2"},
+				
 		 	]},
 
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "63 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr3"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr3r"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr3"},		  	
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr3"},
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp3"},
+		  	
 		 	]},
 
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "53 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr4"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr4r"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr4"},		  	
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr4"},
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp4"},
+		  	
 		 	]},
 
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "37.5 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr5"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr5r"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr5"},		  	
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr5"},
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp5"},
+		  
 		 	]},
 
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "26.5 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr6"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr6r"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr6"},		  	
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr6"},
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp6"},
+		  	
 		 	]},
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "19 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr7"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr7r"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr7"},	  	
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr7"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp7"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp7"},		  
 		 	]},
 			{td: [
-		  	{style: STYLES.LARGE_LABEL.thin,colSpan: 5},
+		  	{style: STYLES.LARGE_LABEL.thin,colSpan: 4},
 		  ]},		 	
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "13.2 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr8"},
-		  	{style: STYLES.LARGE_LABEL.input},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr8"},		  	
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr8"},
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp8"},
+		  
 		 	]},
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "4.75 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr9"},
-		  	{style: STYLES.LARGE_LABEL.input},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr9"},		  	
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr9"},
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp9"},
+		  
 		 	]},
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "2.0 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr10"},
-		  	{style: STYLES.LARGE_LABEL.input},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr10"},		  	
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr10"},
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp10"},
+		  
 		 	]},
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "0.425 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr11"},
-		  	{style: STYLES.LARGE_LABEL.input},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr11"},		  	
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr11"},
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp11"},
+		  
 		 	]},
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "< 0.425 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mp_tot"},
-		  	{style: STYLES.LARGE_LABEL.input},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr_total"},
-		  	{style: STYLES.LARGE_LABEL.input},
-		 	]},
-		  {td: [
-		  	{style: STYLES.LARGE_LABEL.tr},		  	
-		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Dry Mass Calculated"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_dm_calc"},
-		  	{style: STYLES.LARGE_LABEL.input},
-		  	{style: STYLES.LARGE_LABEL.input},
-		 	]},												
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr12"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr12"},
+		  			  	
+		 	]},		 							
 		],
 		hasGraph: true,
 	

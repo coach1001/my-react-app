@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { store }  from './store';
 import jwtDecode from 'jwt-decode';
 import setAuthorizationToken from './utils/setAuthorizationToken';
-
+import axios from 'axios';
 import { setCurrentUser } from './actions/loginActions';
 //import createLogger from 'redux-logger';
 
@@ -32,6 +32,8 @@ if(localStorage.LCS_Token){
 	setAuthorizationToken(localStorage.LCS_Token);
 	store.dispatch(setCurrentUser(jwtDecode(localStorage.LCS_Token)));
 }
+
+axios.defaults.timeout = window.configGA.asyncTimeout;
 
 ReactDOM.render(<Provider store={store}><Router history={browserHistory} routes={routes}/></Provider>,document.getElementById('root'));
  
