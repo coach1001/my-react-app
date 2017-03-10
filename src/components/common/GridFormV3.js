@@ -657,7 +657,7 @@ class GridForm extends React.Component {
       res.map((r)=>{              
         scopeData.map( (sd)=>{        
           if(r.config.headers.xScopeVariable === sd.symbol && r.config.method === 'post'){
-            sd.id = r.data[0].id;
+            sd.id = r.data.id;
           }
           return sd;
         });
