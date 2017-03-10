@@ -5,9 +5,7 @@ import { fetchSampleMethods, updateSampleMethods } from '../../actions/sampleMet
 import { fetchSampleSets } from '../../actions/sampleSets';
 import { setLoader } from '../../actions/loader';
 import { FaArrowCircleLeft } from 'react-icons/lib/fa/';
-import Datetime from 'react-datetime';
 import Confirm from 'react-confirm-bootstrap';
-import moment from 'moment';
 import {notify} from 'react-notify-toast';
 import cloneDeep from 'lodash/cloneDeep';
 
@@ -19,13 +17,11 @@ class SampleEditCreate extends Component {
     
     if(this.props.params.sampleId){
       this.props.fetchSample(this.props.params.sampleId);
-      this.props.fetchSampleMethods(this.props.params.sampleId);
-      /*this.props.fetchSampleSets();        */
+      this.props.fetchSampleMethods(this.props.params.sampleId);      
     }else{      
-      this.props.fetchSampleMethods(0);
-      /*this.props.fetchSampleSets();        */
+      this.props.fetchSampleMethods(0);      
       let sample = {
-        created_on : moment(),
+        //created_on : moment(),
         //sample_set: null
       }
       this.setState({sample: sample});
@@ -36,17 +32,7 @@ class SampleEditCreate extends Component {
     const cP = this.props;
     const nP = nextProps;        
     
-    /*if(!nP.sampleSets.isFetching && cP.sampleSets.isFetching !== nP.sampleSets.isFetching){            
-      this.setState({ sampleSets: nP.sampleSets.sampleSets});
-    }*/
-    
     if(!nP.samples.isFetching && cP.samples.isFetching !== nP.samples.isFetching){      
-      if(nP.samples.sample.created_on){
-        nP.samples.sample.created_on = moment(nP.samples.sample.created_on);  
-      }else{
-        
-        nP.samples.sample.created_on = moment();  
-      }            
       this.setState({ sample: nP.samples.sample});
     }
     
@@ -94,25 +80,16 @@ class SampleEditCreate extends Component {
   saveSample(e){        
     let sample = cloneDeep(this.state.sample);
     let sampleMethods = cloneDeep(this.state.sampleMethods);
-          
-    /*if(sample.sample_set === ' '){
-      sample.sample_set = null;
-    }*/
 
     if(sample.sample){
-      try{
-       sample.created_on = sample.created_on.add(2,'h');
-      }catch(ex){}
       
-      
-      this.props.updateCreateSample(sample).then( (res)=>{
-        
-        notify.show('Sample Saved Successfully','success',2000);        
-        
-        if(res.data.id){          
-         sample.id = res.data.id;
-
-         this.context.router.push(`${this.context.router.location.pathname.replace('/new','')}/${res.data.id}`);        
+      this.props.updateCreateSample(sample).then( (res)=>{        
+        notify.show('Sample Saved Successfully','success',2000);                
+        console.log(res);
+        if(res.data[0].id){ 
+          
+          sample.id = res.data[0].id;
+          this.context.router.push(`${this.context.router.location.pathname.replace('/new','')}/${res.data[0].id}`);        
         }
         
         this.props.updateSampleMethods(sampleMethods, sample.id).then( (res)=>{
@@ -143,12 +120,9 @@ class SampleEditCreate extends Component {
 
   editSampleMethod(method){                   
    const oState = this.state;
-
-   this.props.updateSampleMethods(oState.sampleMethods, oState.sample.id).then( (res)=>{            
-      
+   this.props.updateSampleMethods(oState.sampleMethods, oState.sample.id).then( (res)=>{                
       this.props.fetchSampleMethods(oState.sample.id).then((res_)=>{
-        notify.show('Sample Methods Saved Successfully','success',500);
-        
+        notify.show('Sample Methods Saved Successfully','success',500);        
          let sample_method_id=null;
          res_.data.map((element)=>{
             if( element.method === method.method_id && element.sample === oState.sample.id){
@@ -271,12 +245,12 @@ class SampleEditCreate extends Component {
                           <input onChange={this.onChangeSample.bind(this)} value={this.state.sample.longitude || 0.0} name="longitude" type="number" className="form-control" placeholder=""/>
                         </div>
                       </div>
-                      <div className="col-md-4">
+                      {/*<div className="col-md-4">
                         <div className="input-group">
                           <span className="input-group-addon">Date</span>
                           <Datetime utc={true} timeFormat="HH:mm" dateFormat="DD/MM/YYYY" onChange={this.onChangeSample.bind(this)} value={this.state.sample.created_on} defaultValue={new Date()}/>
                         </div>
-                      </div>                        
+                      </div>*/}                        
                     </div>                                                                                            
                     </form>
 

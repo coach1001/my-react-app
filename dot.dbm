@@ -1,0 +1,1922 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.8.2-beta1" last-position="0,0" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<role name="authenticator"
+      encrypted="true"
+      password="********">
+</role>
+
+<role name="super"
+      superuser="true"
+      encrypted="true"
+      password="********">
+</role>
+
+<role name="ldap_utility"
+      inherit="true"
+      encrypted="true"
+      password="********">
+</role>
+
+<role name="anon"
+      inherit="true"
+      encrypted="true"
+      password="********">
+	<roles names="authenticator" role-type="member" />
+</role>
+
+<role name="author"
+      inherit="true"
+      encrypted="true"
+      password="********">
+	<roles names="authenticator" role-type="member" />
+</role>
+
+<database name="react-app" encoding="UTF8" lc-collate="en_ZA" lc-ctype="en_ZA">
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+</database>
+
+<schema name="public" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<schema name="basic_auth" rect-visible="true" fill-color="#231781">
+	<role name="postgres"/>
+</schema>
+
+<extension name="pgcrypto" cur-version="1.2">
+	<schema name="public"/>
+	<comment><![CDATA[cryptographic functions]]></comment>
+</extension>
+
+<extension name="uuid-ossp" cur-version="1.0">
+	<schema name="public"/>
+	<comment><![CDATA[generate universally unique identifiers (UUIDs)]]></comment>
+</extension>
+
+<usertype name="jwt_claims" configuration="composite">
+	<schema name="basic_auth"/>
+	<role name="postgres"/>
+	<typeattrib name="username">
+		<type name="text"/>
+	</typeattrib>
+	<typeattrib name="logged_in_time">
+		<type name="timestamp"/>
+	</typeattrib>
+	<typeattrib name="role">
+		<type name="text"/>
+	</typeattrib>
+	<typeattrib name="email">
+		<type name="text"/>
+	</typeattrib>
+	<typeattrib name="verified">
+		<type name="boolean"/>
+	</typeattrib>
+</usertype>
+
+<usertype name="token_type_enum" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="validation,reset"/>
+</usertype>
+
+<function name="check_role_exists"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="basic_auth"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="trigger"/>
+	</return-type>
+	<definition><![CDATA[
+begin
+  if not exists (select 1 from pg_roles as r where r.rolname = new.role) then
+    raise foreign_key_violation using message =
+      'unknown database role: ' || new.role;
+    return null;
+  end if;
+  return new;
+end
+]]></definition>
+</function>
+
+<function name="clearance_for_role"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="basic_auth"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="void"/>
+	</return-type>
+	<parameter name="u">
+		<type name="name"/>
+	</parameter>
+	<definition><![CDATA[
+declare
+  ok boolean;
+begin
+  select exists (
+    select rolname
+      from pg_authid
+     where pg_has_role(current_user, oid, 'member')
+       and rolname = u
+  ) into ok;
+  if not ok then
+    raise invalid_password using message =
+      'current user not member of role ' || u;
+  end if;
+end
+]]></definition>
+</function>
+
+<function name="current_email"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="basic_auth"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="text"/>
+	</return-type>
+	<definition><![CDATA[
+begin
+  return current_setting('postgrest.claims.email');
+exception
+  -- handle unrecognized configuration parameter error
+  when undefined_object then return '';
+end;
+]]></definition>
+</function>
+
+<function name="current_user_id"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="basic_auth"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="text"/>
+	</return-type>
+	<definition><![CDATA[
+begin
+  return current_setting('postgrest.claims.username')::text;
+exception
+  -- handle unrecognized configuration parameter error
+  when undefined_object then return NULL;
+end;
+]]></definition>
+</function>
+
+<function name="encrypt_pass"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="basic_auth"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="trigger"/>
+	</return-type>
+	<definition><![CDATA[
+begin
+  if tg_op = 'INSERT' or new.pass <> old.pass then
+    new.pass = crypt(new.pass, gen_salt('bf'));
+  end if;
+  return new;
+end
+]]></definition>
+</function>
+
+<function name="send_validation"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="basic_auth"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="trigger"/>
+	</return-type>
+	<definition><![CDATA[
+declare
+  tok uuid;
+begin
+  select uuid_generate_v4() into tok;
+  insert into basic_auth.tokens (token, token_type, user_id)
+         values (tok, 'validation', new.username);
+  perform pg_notify('validate',
+    json_build_object(
+      'email', new.email,
+      'token', tok,
+      'token_type', 'validation'
+    )::text
+  );
+  return new;
+end
+]]></definition>
+</function>
+
+<function name="user_role"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="basic_auth"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="name"/>
+	</return-type>
+	<parameter name="email">
+		<type name="text"/>
+	</parameter>
+	<parameter name="pass">
+		<type name="text"/>
+	</parameter>
+	<definition><![CDATA[
+begin
+  return (
+  select role from basic_auth.users
+   where (users.email = user_role.email or users.username = user_role.email)
+     and users.pass = crypt(user_role.pass, users.pass)
+  );
+end;
+]]></definition>
+</function>
+
+<function name="colpivot"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="void"/>
+	</return-type>
+	<parameter name="out_table">
+		<type name="character varying"/>
+	</parameter>
+	<parameter name="in_query">
+		<type name="character varying"/>
+	</parameter>
+	<parameter name="key_cols">
+		<type name="character varying" dimension="1"/>
+	</parameter>
+	<parameter name="class_cols">
+		<type name="character varying" dimension="1"/>
+	</parameter>
+	<parameter name="value_e">
+		<type name="character varying"/>
+	</parameter>
+	<parameter name="col_order">
+		<type name="character varying"/>
+	</parameter>
+	<definition><![CDATA[
+    declare
+        in_table varchar;
+        col varchar;
+        ali varchar;
+        on_e varchar;
+        i integer;
+        rec record;
+        query varchar;
+        -- This is actually an array of arrays but postgres does not support an array of arrays type so we flatten it.
+        -- We could theoretically use the matrix feature but it's extremly cancerogenous and we would have to involve
+        -- custom aggrigates. For most intents and purposes postgres does not have a multi-dimensional array type.
+        clsc_cols text[] := array[]::text[];
+        n_clsc_cols integer;
+        n_class_cols integer;
+    begin
+        in_table := quote_ident('__' || out_table || '_in');
+        execute ('create temp table ' || in_table || ' on commit drop as ' || in_query);
+        -- get ordered unique columns (column combinations)
+        query := 'select array[';
+        i := 0;
+        foreach col in array class_cols loop
+            if i > 0 then
+                query := query || ', ';
+            end if;
+            query := query || 'quote_literal(' || quote_ident(col) || ')';
+            i := i + 1;
+        end loop;
+        query := query || '] x from ' || in_table;
+        for j in 1..2 loop
+            if j = 1 then
+                query := query || ' group by ';
+            else
+                query := query || ' order by ';
+                if col_order is not null then
+                    query := query || col_order || ' ';
+                    exit;
+                end if;
+            end if;
+            i := 0;
+            foreach col in array class_cols loop
+                if i > 0 then
+                    query := query || ', ';
+                end if;
+                query := query || quote_ident(col);
+                i := i + 1;
+            end loop;
+        end loop;
+        -- raise notice '%', query;
+        for rec in
+            execute query
+        loop
+            clsc_cols := array_cat(clsc_cols, rec.x);
+        end loop;
+        n_class_cols := array_length(class_cols, 1);
+        n_clsc_cols := array_length(clsc_cols, 1) / n_class_cols;
+        -- build target query
+        query := 'select ';
+        i := 0;
+        foreach col in array key_cols loop
+            if i > 0 then
+                query := query || ', ';
+            end if;
+            query := query || '_key.' || quote_ident(col) || ' ';
+            i := i + 1;
+        end loop;
+        for j in 1..n_clsc_cols loop
+            query := query || ', ';
+            col := '';
+            for k in 1..n_class_cols loop
+                if k > 1 then
+                    col := col || ', ';
+                end if;
+                col := col || clsc_cols[(j - 1) * n_class_cols + k];
+            end loop;
+            ali := '_clsc_' || j::text;
+            query := query || '(' || replace(value_e, '#', ali) || ')' || ' as ' || quote_ident(col) || ' ';
+        end loop;
+        query := query || ' from (select distinct ';
+        i := 0;
+        foreach col in array key_cols loop
+            if i > 0 then
+                query := query || ', ';
+            end if;
+            query := query || quote_ident(col) || ' ';
+            i := i + 1;
+        end loop;
+        query := query || ' from ' || in_table || ') _key ';
+        for j in 1..n_clsc_cols loop
+            ali := '_clsc_' || j::text;
+            on_e := '';
+            i := 0;
+            foreach col in array key_cols loop
+                if i > 0 then
+                    on_e := on_e || ' and ';
+                end if;
+                on_e := on_e || ali || '.' || quote_ident(col) || ' = _key.' || quote_ident(col) || ' ';
+                i := i + 1;
+            end loop;
+            for k in 1..n_class_cols loop
+                on_e := on_e || ' and ';
+                on_e := on_e || ali || '.' || quote_ident(class_cols[k]) || ' = ' || clsc_cols[(j - 1) * n_class_cols + k];
+            end loop;
+            query := query || 'left join ' || in_table || ' as ' || ali || ' on ' || on_e || ' ';
+        end loop;
+        -- raise notice '%', query;
+        execute ('create temp table ' || quote_ident(out_table) || ' on commit drop as ' || query);
+        -- cleanup temporary in_table before we return
+        execute ('drop table ' || in_table)
+        return;
+    end;
+]]></definition>
+</function>
+
+<table name="users">
+	<schema name="basic_auth"/>
+	<role name="postgres"/>
+	<position x="1738.59" y="50"/>
+	<column name="email" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="pass" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="role" not-null="true">
+		<type name="name"/>
+	</column>
+	<column name="verified" not-null="true" default-value="false">
+		<type name="boolean"/>
+	</column>
+	<column name="username" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="ad_user" not-null="true" default-value="false">
+		<type name="boolean"/>
+	</column>
+	<constraint name="users_email_check" type="ck-constr" table="basic_auth.users">
+			<expression><![CDATA[(email ~* '^.+@.+\..+$'::text)]]></expression>
+	</constraint>
+	<constraint name="users_pass_check" type="ck-constr" table="basic_auth.users">
+			<expression><![CDATA[(length(pass) < 512)]]></expression>
+	</constraint>
+	<constraint name="users_role_check" type="ck-constr" table="basic_auth.users">
+			<expression><![CDATA[(length((role)::text) < 512)]]></expression>
+	</constraint>
+	<constraint name="users_email_unique" type="uq-constr" table="basic_auth.users">
+		<columns names="email" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="users_pkey" type="pk-constr" table="basic_auth.users">
+		<columns names="username" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="users_username_unique" type="uq-constr" table="basic_auth.users">
+		<columns names="username" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<view name="ad_users">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="899.875" y="371.4"/>
+	<reference>
+		<expression><![CDATA[ SELECT users.username,
+    users.email,
+    users.role,
+    users.verified,
+    users.ad_user
+   FROM basic_auth.users
+  WHERE ((users.verified = true) AND (users.ad_user = true));]]></expression>
+	</reference>
+</view>
+
+<usertype name="ad_users" configuration="composite">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<typeattrib name="username">
+		<type name="text"/>
+		<collation name="pg_catalog.&quot;default&quot;"/>
+	</typeattrib>
+	<typeattrib name="email">
+		<type name="text"/>
+		<collation name="pg_catalog.&quot;default&quot;"/>
+	</typeattrib>
+	<typeattrib name="role">
+		<type name="name"/>
+	</typeattrib>
+	<typeattrib name="verified">
+		<type name="boolean"/>
+	</typeattrib>
+	<typeattrib name="ad_user">
+		<type name="boolean"/>
+	</typeattrib>
+</usertype>
+
+<function name="create_ad_user"
+		window-func="false"
+		returns-setof="true"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="1000">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="public.ad_users"/>
+	</return-type>
+	<parameter name="email_">
+		<type name="text"/>
+	</parameter>
+	<parameter name="username_">
+		<type name="text"/>
+	</parameter>
+	<parameter name="role_">
+		<type name="text"/>
+	</parameter>
+	<definition><![CDATA[
+declare
+  _username text;
+begin
+    insert into basic_auth.users (email, username,pass, role,ad_user,verified) values
+    (email_,username_,'',role_,true,true) RETURNING username into _username;
+    RETURN QUERY SELECT * FROM public.ad_users WHERE username = _username LIMIT 1;
+end;
+]]></definition>
+</function>
+
+<function name="create_log_columns"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="void"/>
+	</return-type>
+	<definition><![CDATA[
+DECLARE
+ my_row RECORD;
+BEGIN
+ FOR my_row IN 
+ SELECT table_name
+ FROM information_schema.tables
+ WHERE table_schema = 'public' and table_type='BASE TABLE'
+ LOOP
+ IF NOT EXISTS
+ (
+ SELECT attname FROM pg_attribute WHERE attrelid = 
+ (SELECT oid FROM pg_class WHERE relname = my_row.table_name )
+ AND attname = 'created_at'
+ )
+ THEN
+ EXECUTE('ALTER TABLE ' || my_row.table_name || 
+ ' ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,'||
+ ' ADD COLUMN created_by TEXT,' ||
+ ' ADD COLUMN updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,'||
+ ' ADD COLUMN updated_by TEXT;'
+ );
+ END IF;
+ END LOOP;
+END
+]]></definition>
+</function>
+
+<function name="create_log_triggers"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="void"/>
+	</return-type>
+	<definition><![CDATA[
+DECLARE
+ my_row RECORD;
+BEGIN
+ FOR my_row IN 
+ SELECT table_name
+ FROM information_schema.tables
+ WHERE table_schema = 'public' and table_type='BASE TABLE'
+ LOOP
+ EXECUTE(
+'DROP TRIGGER IF EXISTS log_insert_'||my_row.table_name||'_tf ON ' || my_row.table_name || ';' 
+'DROP TRIGGER IF EXISTS log_update_'||my_row.table_name||'_tf ON ' || my_row.table_name || ';' 
+
+'CREATE TRIGGER log_insert_'||my_row.table_name||'_tf BEFORE INSERT ON ' || my_row.table_name || ' FOR EACH ROW EXECUTE PROCEDURE log_insert();' 
+'CREATE TRIGGER log_update_'||my_row.table_name||'_tf BEFORE UPDATE ON ' || my_row.table_name || ' FOR EACH ROW EXECUTE PROCEDURE log_update();'
+ );
+
+ END LOOP;
+END
+]]></definition>
+</function>
+
+<table name="methods">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="4" y="116"/>
+	<column name="id" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="method">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="label">
+		<type name="text"/>
+	</column>
+	<column name="description">
+		<type name="text"/>
+	</column>
+	<column name="type">
+		<type name="character varying" length="255"/>
+	</column>
+	<constraint name="method_pkey" type="pk-constr" table="public.methods">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="method_uq" type="uq-constr" table="public.methods">
+		<columns names="method" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="sample_has_methods_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<view name="sample_methods">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1148.68" y="371.4"/>
+	<reference>
+		<expression><![CDATA[ SELECT sample_has_methods.id,
+    sample_has_methods.sample,
+    sample_has_methods.method,
+    methods.id AS method_id,
+    methods.label,
+    methods.method AS method_code,
+    methods.description,
+    sample_has_methods.completed,
+    methods.type
+   FROM (sample_has_methods
+     JOIN methods ON ((sample_has_methods.method = methods.id)))
+  ORDER BY methods.id;]]></expression>
+	</reference>
+</view>
+
+<usertype name="sample_methods" configuration="composite">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<typeattrib name="id">
+		<type name="integer"/>
+	</typeattrib>
+	<typeattrib name="sample">
+		<type name="integer"/>
+	</typeattrib>
+	<typeattrib name="method">
+		<type name="integer"/>
+	</typeattrib>
+	<typeattrib name="method_id">
+		<type name="integer"/>
+	</typeattrib>
+	<typeattrib name="label">
+		<type name="text"/>
+		<collation name="pg_catalog.&quot;default&quot;"/>
+	</typeattrib>
+	<typeattrib name="method_code">
+		<type name="character varying" length="255"/>
+		<collation name="pg_catalog.&quot;default&quot;"/>
+	</typeattrib>
+	<typeattrib name="description">
+		<type name="text"/>
+		<collation name="pg_catalog.&quot;default&quot;"/>
+	</typeattrib>
+	<typeattrib name="completed">
+		<type name="boolean"/>
+	</typeattrib>
+	<typeattrib name="type">
+		<type name="character varying" length="255"/>
+		<collation name="pg_catalog.&quot;default&quot;"/>
+	</typeattrib>
+</usertype>
+
+<function name="f_sample_methods"
+		window-func="false"
+		returns-setof="true"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="50">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="public.sample_methods"/>
+	</return-type>
+	<parameter name="sample_id">
+		<type name="integer"/>
+	</parameter>
+	<definition><![CDATA[
+--#variable_conflict use_variable   
+BEGIN		
+        RETURN QUERY Select
+  sample_has_methods.id,
+  sample_has_methods.sample,
+  sample_has_methods.method,
+  methods.id  As method_id,
+  methods.label,
+  methods.method as method_code,
+  methods.description,
+  sample_has_methods.completed,
+  methods.type
+From
+  sample_has_methods Full Join
+  methods
+    On sample_has_methods.method = methods.id And sample_has_methods.sample = sample_id
+Where
+  methods.id Is Not Null
+Order By
+  method_id;  -- note the potential ambiguity
+        
+
+	--EXCEPTION WHEN OTHERS THEN /*Catch all*/
+	--RAISE EXCEPTION 'Something went wrong';	
+END;
+]]></definition>
+</function>
+
+<sequence name="sample_has_variables_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<sequence name="variables_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<function name="log_insert"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="trigger"/>
+	</return-type>
+	<definition><![CDATA[
+  BEGIN
+    NEW.created_at = NOW();
+    NEW.created_by = basic_auth.current_user_id();
+    RETURN NEW;
+  END;
+]]></definition>
+</function>
+
+<function name="log_update"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="trigger"/>
+	</return-type>
+	<definition><![CDATA[
+  BEGIN
+    NEW.updated_at = NOW();
+    NEW.updated_by = basic_auth.current_user_id();
+    RETURN NEW;
+  END;
+]]></definition>
+</function>
+
+<function name="login"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="basic_auth.jwt_claims"/>
+	</return-type>
+	<parameter name="email">
+		<type name="text"/>
+	</parameter>
+	<parameter name="pass">
+		<type name="text"/>
+	</parameter>
+	<definition><![CDATA[
+declare
+  _role name;
+  _username text; 
+  _email text; 
+  _logged_in_time timestamp without time zone;  
+  _verified  boolean;
+  result basic_auth.jwt_claims;
+begin
+  select basic_auth.user_role(email, pass) into _role;
+
+  if _role is null then
+    raise invalid_password using message = 'invalid user or password';
+  end if;
+  -- TODO; check verified flag if you care whether users
+  -- have validated their emails
+
+  select t.username, t.email, LOCALTIMESTAMP, t.verified INTO _username, _email, _logged_in_time, _verified from basic_auth.users as t where t.email = login.email or t.username = login.email;
+  select _username as username, _logged_in_time as logged_in_time, _role as role, _email as email, _verified as verified  into result;
+
+  if _verified	then
+	return result;
+  else
+	raise invalid_password using message = 'User Not Verified';
+  end if;
+
+  
+end;
+]]></definition>
+</function>
+
+<function name="request_password_reset"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="void"/>
+	</return-type>
+	<parameter name="email">
+		<type name="text"/>
+	</parameter>
+	<definition><![CDATA[
+declare
+  tok uuid;
+begin
+  delete from basic_auth.tokens
+   where token_type = 'reset'
+     and tokens.email = request_password_reset.email;
+
+  select uuid_generate_v4() into tok;
+  insert into basic_auth.tokens (token, token_type, email)
+         values (tok, 'reset', request_password_reset.email);
+  perform pg_notify('reset',
+    json_build_object(
+      'email', request_password_reset.email,
+      'token', tok,
+      'token_type', 'reset'
+    )::text
+  );
+end;
+]]></definition>
+</function>
+
+<function name="reset_password"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="void"/>
+	</return-type>
+	<parameter name="email">
+		<type name="text"/>
+	</parameter>
+	<parameter name="token">
+		<type name="uuid"/>
+	</parameter>
+	<parameter name="pass">
+		<type name="text"/>
+	</parameter>
+	<definition><![CDATA[
+declare
+  tok uuid;
+begin
+  if exists(select 1 from basic_auth.tokens
+             where tokens.email = reset_password.email
+               and tokens.token = reset_password.token
+               and token_type = 'reset') then
+    update basic_auth.users set pass=reset_password.pass
+     where users.email = reset_password.email;
+
+    delete from basic_auth.tokens
+     where tokens.email = reset_password.email
+       and tokens.token = reset_password.token
+       and token_type = 'reset';
+  else
+    raise invalid_password using message =
+      'invalid user or token';
+  end if;
+  delete from basic_auth.tokens
+   where token_type = 'reset'
+     and tokens.email = reset_password.email;
+
+  select uuid_generate_v4() into tok;
+  insert into basic_auth.tokens (token, token_type, email)
+         values (tok, 'reset', reset_password.email);
+  perform pg_notify('reset',
+    json_build_object(
+      'email', reset_password.email,
+      'token', tok
+    )::text
+  );
+end;
+]]></definition>
+</function>
+
+<function name="signup"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="sql" sql-disabled="true"/>
+	<return-type>
+	<type name="void"/>
+	</return-type>
+	<parameter name="username">
+		<type name="text"/>
+	</parameter>
+	<parameter name="email">
+		<type name="text"/>
+	</parameter>
+	<parameter name="pass">
+		<type name="text"/>
+	</parameter>
+	<definition><![CDATA[
+  insert into basic_auth.users (username, email, pass, role) values
+    (signup.username, signup.email, signup.pass, 'author');
+]]></definition>
+</function>
+
+<function name="update_ad_user_email"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="void"/>
+	</return-type>
+	<parameter name="email_">
+		<type name="text"/>
+	</parameter>
+	<parameter name="username_">
+		<type name="text"/>
+	</parameter>
+	<definition><![CDATA[
+begin
+    UPDATE basic_auth.users SET email=email_ WHERE username = username_;
+end;
+]]></definition>
+</function>
+
+<function name="update_users"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="trigger"/>
+	</return-type>
+	<definition><![CDATA[
+begin
+  if tg_op = 'INSERT' then
+    perform basic_auth.clearance_for_role(new.role);
+
+    insert into basic_auth.users
+      (username,role, pass, email, verified) values
+      (new.username, coalesce(new.role, 'author'), new.pass,
+        new.email, coalesce(new.verified, false));
+    return new;
+  elsif tg_op = 'UPDATE' then
+    -- no need to check clearance for old.role because
+    -- an ineligible row would not even available to update (http 404)
+    perform basic_auth.clearance_for_role(new.role);
+
+    update basic_auth.users set
+      username = new.username,	
+      email  = new.email,
+      role   = new.role,
+      pass   = new.pass,
+      verified = coalesce(new.verified, old.verified, false)
+      where email = old.email;
+    return new;
+  elsif tg_op = 'DELETE' then
+    -- no need to check clearance for old.role (see previous case)
+
+    delete from basic_auth.users
+     where basic_auth.email = old.email;
+    return null;
+  end if;
+end
+]]></definition>
+</function>
+
+<table name="tokens">
+	<schema name="basic_auth"/>
+	<role name="postgres"/>
+	<position x="2061.42" y="50"/>
+	<column name="token" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="token_type" not-null="true">
+		<type name="public.token_type_enum"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="('now'::text)::date">
+		<type name="timestamp with time zone" with-timezone="true"/>
+	</column>
+	<column name="user_id">
+		<type name="character varying" length="255"/>
+	</column>
+	<constraint name="tokens_pkey" type="pk-constr" table="basic_auth.tokens">
+		<columns names="token" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="sample_has_methods">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="345.078" y="116"/>
+	<column name="id" not-null="true" sequence="public.sample_has_methods_id_seq">
+		<type name="integer"/>
+	</column>
+	<column name="method" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="sample" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="completed" not-null="true" default-value="false">
+		<type name="boolean"/>
+	</column>
+	<constraint name="sample_method_pkey" type="pk-constr" table="public.sample_has_methods">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="sample_method_uq" type="uq-constr" table="public.sample_has_methods">
+		<columns names="method,sample" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="sample_has_variables">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="229.578" y="504"/>
+	<column name="id" not-null="true" sequence="public.sample_has_variables_id_seq">
+		<type name="integer"/>
+	</column>
+	<column name="sample">
+		<type name="integer"/>
+	</column>
+	<column name="variable">
+		<type name="integer"/>
+	</column>
+	<column name="value" not-null="true" default-value="0.0">
+		<type name="double precision"/>
+	</column>
+	<column name="value_string">
+		<type name="text"/>
+	</column>
+	<constraint name="sample_has_variable_pkey" type="pk-constr" table="public.sample_has_variables">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="sample_variable_uq" type="uq-constr" table="public.sample_has_variables">
+		<columns names="sample,variable" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="samples_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="samples">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="546.344" y="675"/>
+	<column name="id" not-null="true" sequence="public.samples_id_seq">
+		<type name="integer"/>
+	</column>
+	<column name="worksheet">
+		<type name="integer"/>
+	</column>
+	<column name="sample">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="latitude">
+		<type name="real"/>
+	</column>
+	<column name="longitude">
+		<type name="real"/>
+	</column>
+	<column name="start_depth">
+		<type name="double precision"/>
+	</column>
+	<column name="end_depth">
+		<type name="double precision"/>
+	</column>
+	<column name="tester">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="bag_container_no">
+		<type name="text"/>
+	</column>
+	<column name="sample_position">
+		<type name="text"/>
+	</column>
+	<column name="lane">
+		<type name="text"/>
+	</column>
+	<column name="pavement_layer">
+		<type name="public.pavement_layer_enum"/>
+	</column>
+	<column name="description_of_material">
+		<type name="text"/>
+	</column>
+	<constraint name="sample_pkey" type="pk-constr" table="public.samples">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="sample_uq" type="uq-constr" table="public.samples">
+		<columns names="sample" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<view name="samples_view">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1410" y="370.4"/>
+	<reference>
+		<expression><![CDATA[ SELECT samples.id,
+    samples.sample,
+    samples.latitude,
+    samples.longitude,
+    samples.created_on
+   FROM samples
+  ORDER BY samples.created_on DESC;]]></expression>
+	</reference>
+</view>
+
+<table name="sections">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="4" y="371.4"/>
+	<column name="id" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="method">
+		<type name="integer"/>
+	</column>
+	<column name="section">
+		<type name="integer"/>
+	</column>
+	<column name="label">
+		<type name="text"/>
+	</column>
+	<column name="description">
+		<type name="text"/>
+	</column>
+	<constraint name="section_pkey" type="pk-constr" table="public.sections">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="section_uq" type="uq-constr" table="public.sections">
+		<columns names="method,section" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<view name="users">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="4" y="1102.8"/>
+	<reference>
+		<expression><![CDATA[ SELECT actual.role,
+    '***'::text AS pass,
+    actual.email,
+    actual.verified,
+    actual.username,
+    actual.ad_user
+   FROM basic_auth.users actual,
+    ( SELECT pg_authid.rolname
+           FROM pg_authid
+          WHERE pg_has_role("current_user"(), pg_authid.oid, 'member'::text)) member_of
+  WHERE ((actual.role = member_of.rolname) AND ((actual.role <> 'author'::name) OR (actual.email = basic_auth.current_email())));]]></expression>
+	</reference>
+</view>
+
+<table name="variables">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="0" y="715"/>
+	<column name="id" not-null="true" sequence="public.variables_id_seq">
+		<type name="integer"/>
+	</column>
+	<column name="section">
+		<type name="integer"/>
+	</column>
+	<column name="symbol" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="label">
+		<type name="text"/>
+	</column>
+	<column name="description">
+		<type name="text"/>
+	</column>
+	<column name="unit">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="input_type" not-null="true" default-value="'input'::character varying">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="default_value" default-value="0">
+		<type name="real"/>
+	</column>
+	<column name="minimum">
+		<type name="real"/>
+	</column>
+	<column name="maximum">
+		<type name="real"/>
+	</column>
+	<column name="formula">
+		<type name="text"/>
+	</column>
+	<column name="calculation_order" default-value="0">
+		<type name="integer"/>
+	</column>
+	<column name="step" default-value="0.01">
+		<type name="real"/>
+	</column>
+	<constraint name="variable_pkey" type="pk-constr" table="public.variables">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="variable_uq" type="uq-constr" table="public.variables">
+		<columns names="symbol" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<trigger name="encrypt_pass" firing-type="BEFORE" per-line="true" constraint="false"
+	 ins-event="true" del-event="false" upd-event="true" trunc-event="false"
+	 table="basic_auth.users">
+		<function signature="basic_auth.encrypt_pass()"/>
+</trigger>
+
+<trigger name="ensure_user_role_exists" firing-type="AFTER" per-line="true" constraint="true"
+	 ins-event="true" del-event="false" upd-event="true" trunc-event="false"
+	 table="basic_auth.users">
+		<function signature="basic_auth.check_role_exists()"/>
+</trigger>
+
+<trigger name="send_validation" firing-type="AFTER" per-line="true" constraint="false"
+	 ins-event="true" del-event="false" upd-event="false" trunc-event="false"
+	 table="basic_auth.users">
+		<function signature="basic_auth.send_validation()"/>
+</trigger>
+
+<view name="sample_variables">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="230.881" y="1102.8"/>
+	<reference>
+		<expression><![CDATA[ SELECT sample_has_variables.id,
+    variables.id AS variable_id,
+    sample_has_variables.sample AS sample_id,
+    variables.section,
+    variables.symbol,
+    variables.label,
+    variables.description,
+    variables.unit,
+    variables.input_type,
+    variables.default_value,
+    variables.minimum,
+    variables.maximum,
+    variables.formula,
+    variables.calculation_order,
+    sample_has_variables.value,
+    variables.step,
+    sample_has_variables.value_string
+   FROM (sample_has_variables
+     RIGHT JOIN variables ON ((sample_has_variables.variable = variables.id)))
+  ORDER BY variables.calculation_order NULLS FIRST;]]></expression>
+	</reference>
+</view>
+
+<usertype name="sample_variables" configuration="composite">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<typeattrib name="id">
+		<type name="integer"/>
+	</typeattrib>
+	<typeattrib name="variable_id">
+		<type name="integer"/>
+	</typeattrib>
+	<typeattrib name="sample_id">
+		<type name="integer"/>
+	</typeattrib>
+	<typeattrib name="section">
+		<type name="integer"/>
+	</typeattrib>
+	<typeattrib name="symbol">
+		<type name="character varying" length="255"/>
+		<collation name="pg_catalog.&quot;default&quot;"/>
+	</typeattrib>
+	<typeattrib name="label">
+		<type name="text"/>
+		<collation name="pg_catalog.&quot;default&quot;"/>
+	</typeattrib>
+	<typeattrib name="description">
+		<type name="text"/>
+		<collation name="pg_catalog.&quot;default&quot;"/>
+	</typeattrib>
+	<typeattrib name="unit">
+		<type name="character varying" length="50"/>
+		<collation name="pg_catalog.&quot;default&quot;"/>
+	</typeattrib>
+	<typeattrib name="input_type">
+		<type name="character varying" length="255"/>
+		<collation name="pg_catalog.&quot;default&quot;"/>
+	</typeattrib>
+	<typeattrib name="default_value">
+		<type name="real"/>
+	</typeattrib>
+	<typeattrib name="minimum">
+		<type name="real"/>
+	</typeattrib>
+	<typeattrib name="maximum">
+		<type name="real"/>
+	</typeattrib>
+	<typeattrib name="formula">
+		<type name="text"/>
+		<collation name="pg_catalog.&quot;default&quot;"/>
+	</typeattrib>
+	<typeattrib name="calculation_order">
+		<type name="integer"/>
+	</typeattrib>
+	<typeattrib name="value">
+		<type name="double precision"/>
+	</typeattrib>
+	<typeattrib name="step">
+		<type name="real"/>
+	</typeattrib>
+	<typeattrib name="value_string">
+		<type name="text"/>
+		<collation name="pg_catalog.&quot;default&quot;"/>
+	</typeattrib>
+</usertype>
+
+<function name="f_sample_variables"
+		window-func="false"
+		returns-setof="true"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="50">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="public.sample_variables"/>
+	</return-type>
+	<parameter name="sample_id">
+		<type name="integer"/>
+	</parameter>
+	<definition><![CDATA[
+--#variable_conflict use_variable   
+BEGIN		
+        RETURN QUERY Select
+  sample_has_variables.id,
+  variables.id As variable_id,
+  sample_has_variables.sample As sample_id,
+  variables.section,
+  variables.symbol,
+  variables.label,
+  variables.description,
+  variables.unit,
+  variables.input_type,
+  variables.default_value,
+  variables.minimum,
+  variables.maximum,
+  variables.formula,
+  variables.calculation_order,
+  sample_has_variables.value,
+  variables.step,
+  sample_has_variables.value_string
+From
+  sample_has_variables Right Join
+  variables
+    On sample_has_variables.variable = variables.id and   sample_has_variables.sample = f_sample_variables.sample_id
+Order By
+  variables.calculation_order Nulls First;  -- note the potential ambiguity
+        
+
+	--EXCEPTION WHEN OTHERS THEN 
+	--RAISE EXCEPTION 'Something went wrong';	
+END;
+]]></definition>
+</function>
+
+<usertype name="rank_job_title_enum" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="Chief Auxiliary,Technician,Registration,Lab Manager"/>
+</usertype>
+
+<usertype name="section_enum" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="Asphalt,Aggregate,Soil,Bitumen"/>
+</usertype>
+
+<usertype name="test_method_enum" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="TMH1,SANS-3001"/>
+</usertype>
+
+<usertype name="priority_enum" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="Normal,Urgent,Preference"/>
+</usertype>
+
+<usertype name="division_enum" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="Maintenance,Special Projects,Construction,Projects"/>
+</usertype>
+
+<usertype name="region_enum" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="To Be Provided"/>
+</usertype>
+
+<usertype name="pavement_layer_enum" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="Surfacing,Base,Upper Sub-Base,Lower Sub-Base,Upper Selected,Lower Selected,Fill and Road Bed"/>
+</usertype>
+
+<usertype name="environmental_condition_enum" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="Hot,Windy,Wet Rain"/>
+</usertype>
+
+<usertype name="sampling_method" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="Colto,TGI,TMH1,TMH5,SANS-3001,Other"/>
+</usertype>
+
+<usertype name="sample_condition" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="Slighty Moist,Moist,Dry"/>
+</usertype>
+
+<usertype name="findings_enum" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="Material within Specification"/>
+</usertype>
+
+<usertype name="results_delivery_method_enum" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="Emailed,Collected,Hand Delivered"/>
+</usertype>
+
+<sequence name="worksheeets_job_ref_no_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="worksheeets">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1038.53" y="635.4"/>
+	<column name="id" not-null="true" sequence="public.worksheeets_job_ref_no_seq">
+		<type name="integer"/>
+	</column>
+	<column name="captured_by" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="captured_on" not-null="true">
+		<type name="timestamp"/>
+	</column>
+	<column name="rank_job_title" not-null="true">
+		<type name="public.rank_job_title_enum"/>
+	</column>
+	<column name="section" not-null="true">
+		<type name="public.section_enum"/>
+	</column>
+	<column name="tes_method" not-null="true">
+		<type name="public.test_method_enum"/>
+	</column>
+	<column name="new_test" not-null="true">
+		<type name="boolean"/>
+	</column>
+	<column name="priority" not-null="true">
+		<type name="public.priority_enum"/>
+	</column>
+	<column name="division" not-null="true">
+		<type name="public.division_enum"/>
+	</column>
+	<column name="consultant_name" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="sample_requester" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="region" not-null="true">
+		<type name="public.region_enum"/>
+	</column>
+	<column name="road_number" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="entry_date" not-null="true">
+		<type name="timestamp"/>
+	</column>
+	<column name="environmental_condition">
+		<type name="public.environmental_condition_enum"/>
+	</column>
+	<column name="do_you_want_to_witness_the_test_procedure">
+		<type name="boolean"/>
+	</column>
+	<column name="interim_report">
+		<type name="boolean"/>
+	</column>
+	<column name="customer_agreement_on_test_method">
+		<type name="boolean"/>
+	</column>
+	<column name="capability_to_peform_test">
+		<type name="boolean"/>
+	</column>
+	<column name="resources">
+		<type name="boolean"/>
+	</column>
+	<column name="sample_condition">
+		<type name="public.sample_condition"/>
+	</column>
+	<column name="purpose_of_test">
+		<type name="text"/>
+	</column>
+	<column name="remarks_comments">
+		<type name="text"/>
+	</column>
+	<column name="sample_submitted_by" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="time_sampled">
+		<type name="timestamp"/>
+	</column>
+	<column name="time_received">
+		<type name="timestamp"/>
+	</column>
+	<column name="special_packagin">
+		<type name="boolean"/>
+	</column>
+	<column name="comments">
+		<type name="text"/>
+	</column>
+	<column name="requisition_received_by">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="requisition_date_received">
+		<type name="timestamp"/>
+	</column>
+	<column name="requisition_registered_by">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="requisition_date_registered">
+		<type name="timestamp"/>
+	</column>
+	<column name="requisition_for_testing_received_by">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="requisition_for_testing_date_received_by">
+		<type name="timestamp"/>
+	</column>
+	<column name="requisition_controlled_by">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="requisition_controlled_date">
+		<type name="timestamp"/>
+	</column>
+	<column name="results_received_by">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="completion_date">
+		<type name="timestamp"/>
+	</column>
+	<column name="date_needed">
+		<type name="timestamp"/>
+	</column>
+	<column name="test_duration">
+		<type name="integer"/>
+	</column>
+	<column name="findings">
+		<type name="public.findings_enum"/>
+	</column>
+	<column name="remarks" default-value="'None'::text">
+		<type name="text"/>
+	</column>
+	<column name="are_you_registered">
+		<type name="boolean"/>
+	</column>
+	<column name="registration_start_date">
+		<type name="timestamp"/>
+	</column>
+	<column name="registration_end_date">
+		<type name="timestamp"/>
+	</column>
+	<column name="is_your_registration_still_active">
+		<type name="boolean"/>
+	</column>
+	<column name="result_delivery_method">
+		<type name="public.results_delivery_method_enum"/>
+	</column>
+	<constraint name="worksheet_pkey" type="pk-constr" table="public.worksheeets">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="method_fkey" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.methods" table="public.sample_has_methods">
+	<columns names="method" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="sample_fkey" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.samples" table="public.sample_has_methods">
+	<columns names="sample" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="sample_fkey" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.samples" table="public.sample_has_variables">
+	<columns names="sample" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="variable_fkey" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.variables" table="public.sample_has_variables">
+	<columns names="variable" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="section_fkey" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="SET NULL" ref-table="public.sections" table="public.variables">
+	<columns names="section" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="worksheet_fkey" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.worksheeets" table="public.samples">
+	<columns names="worksheet" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="method_fkey" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="SET NULL" ref-table="public.methods" table="public.sections">
+	<columns names="method" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_sample_has_methods_methods" type="relfk"
+	 custom-color="#0dec75"
+	 src-table="public.sample_has_methods"
+	 dst-table="public.methods"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_sample_has_methods_samples" type="relfk"
+	 custom-color="#0d2985"
+	 src-table="public.sample_has_methods"
+	 dst-table="public.samples"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_sample_has_variables_samples" type="relfk"
+	 custom-color="#de06b2"
+	 src-table="public.sample_has_variables"
+	 dst-table="public.samples"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_sample_has_variables_variables" type="relfk"
+	 custom-color="#353476"
+	 src-table="public.sample_has_variables"
+	 dst-table="public.variables"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_variables_sections" type="relfk"
+	 custom-color="#30f914"
+	 src-table="public.variables"
+	 dst-table="public.sections"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_sections_methods" type="relfk"
+	 custom-color="#e3ab57"
+	 src-table="public.sections"
+	 dst-table="public.methods"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_samples_worksheeets" type="relfk"
+	 src-table="public.samples"
+	 dst-table="public.worksheeets"
+	 src-required="false" dst-required="false"/>
+
+<permission>
+	<object name="basic_auth" type="schema"/>
+	<roles names="postgres"/>
+	<privileges create="true" usage="true"/>
+</permission>
+<permission>
+	<object name="basic_auth" type="schema"/>
+	<roles names="anon"/>
+	<privileges usage="true"/>
+</permission>
+<permission>
+	<object name="basic_auth" type="schema"/>
+	<roles names="author"/>
+	<privileges usage="true"/>
+</permission>
+<permission>
+	<object name="basic_auth" type="schema"/>
+	<roles names="ldap_utility"/>
+	<privileges usage="true"/>
+</permission>
+<permission>
+	<object name="basic_auth.users" type="table"/>
+	<roles names="postgres"/>
+	<privileges select="true" delete="true" insert="true" update="true" truncate="true" references="true" trigger="true"/>
+</permission>
+<permission>
+	<object name="basic_auth.users" type="table"/>
+	<roles names="anon"/>
+	<privileges select="true" delete="true" insert="true" update="true"/>
+</permission>
+<permission>
+	<object name="basic_auth.users" type="table"/>
+	<roles names="author"/>
+	<privileges select="true" delete="true" insert="true" update="true"/>
+</permission>
+<permission>
+	<object name="basic_auth.users" type="table"/>
+	<roles names="ldap_utility"/>
+	<privileges select="true" insert="true"/>
+</permission>
+<permission>
+	<object name="public.ad_users" type="view"/>
+	<roles names="postgres"/>
+	<privileges select="true" delete="true" insert="true" update="true" truncate="true" references="true" trigger="true"/>
+</permission>
+<permission>
+	<object name="public.ad_users" type="view"/>
+	<roles names="ldap_utility"/>
+	<privileges select="true"/>
+</permission>
+<permission>
+	<object name="public.create_ad_user(text,text,text)" type="function"/>
+	<roles names="postgres"/>
+	<privileges execute="true"/>
+</permission>
+<permission>
+	<object name="public.create_ad_user(text,text,text)" type="function"/>
+	<roles names="ldap_utility"/>
+	<privileges execute="true"/>
+</permission>
+<permission>
+	<object name="public.request_password_reset(text)" type="function"/>
+	<roles names="postgres"/>
+	<privileges execute="true"/>
+</permission>
+<permission>
+	<object name="public.request_password_reset(text)" type="function"/>
+	<privileges execute="true"/>
+</permission>
+<permission>
+	<object name="public.request_password_reset(text)" type="function"/>
+	<roles names="anon"/>
+	<privileges execute="true"/>
+</permission>
+<permission>
+	<object name="public.reset_password(text,uuid,text)" type="function"/>
+	<roles names="postgres"/>
+	<privileges execute="true"/>
+</permission>
+<permission>
+	<object name="public.reset_password(text,uuid,text)" type="function"/>
+	<privileges execute="true"/>
+</permission>
+<permission>
+	<object name="public.reset_password(text,uuid,text)" type="function"/>
+	<roles names="anon"/>
+	<privileges execute="true"/>
+</permission>
+<permission>
+	<object name="public.signup(text,text,text)" type="function"/>
+	<roles names="postgres"/>
+	<privileges execute="true"/>
+</permission>
+<permission>
+	<object name="public.signup(text,text,text)" type="function"/>
+	<privileges execute="true"/>
+</permission>
+<permission>
+	<object name="public.signup(text,text,text)" type="function"/>
+	<roles names="anon"/>
+	<privileges execute="true"/>
+</permission>
+<permission>
+	<object name="public.update_ad_user_email(text,text)" type="function"/>
+	<roles names="postgres"/>
+	<privileges execute="true"/>
+</permission>
+<permission>
+	<object name="public.update_ad_user_email(text,text)" type="function"/>
+	<roles names="ldap_utility"/>
+	<privileges execute="true"/>
+</permission>
+<permission>
+	<object name="basic_auth.tokens" type="table"/>
+	<roles names="postgres"/>
+	<privileges select="true" delete="true" insert="true" update="true" truncate="true" references="true" trigger="true"/>
+</permission>
+<permission>
+	<object name="basic_auth.tokens" type="table"/>
+	<roles names="anon"/>
+	<privileges select="true" delete="true" insert="true" update="true"/>
+</permission>
+<permission>
+	<object name="basic_auth.tokens" type="table"/>
+	<roles names="author"/>
+	<privileges select="true" delete="true" insert="true" update="true"/>
+</permission>
+<permission>
+	<object name="basic_auth.tokens" type="table"/>
+	<roles names="ldap_utility"/>
+	<privileges select="true" delete="true" insert="true" update="true"/>
+</permission>
+</dbmodel>

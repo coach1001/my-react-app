@@ -619,15 +619,13 @@ class GridForm extends React.Component {
       if(row.id && row.input_type !== 'constant'){                
         request.method = 'patch';
         if(row.unit === 'string' || row.input_type === 'in_array' ){          
-          if(row.value_string !== oScopeData[rI].value_string){            
-            //sendRow(`sample_has_variables?id=eq.${row.id}`,{value_string: row.value_string},'patch');            
+          if(row.value_string !== oScopeData[rI].value_string){                                  
             request.url = request.url.concat(`?id=eq.${row.id}`);
             request.data = {value_string: row.value_string};
             promises.push(request);
           }                  
         }else{
-          if(row.value !== oScopeData[rI].value){            
-            //sendRow(`sample_has_variables?id=eq.${row.id}`,{value: row.value},'patch');
+          if(row.value !== oScopeData[rI].value){                        
             request.url = request.url.concat(`?id=eq.${row.id}`);            
             request.data = {value: row.value};
             promises.push(request);
@@ -635,13 +633,11 @@ class GridForm extends React.Component {
         }                      
       }else if(row.type !== 'constant'){
         request.method = 'post';
-        if(row.unit === 'string' || row.input_type === 'in_array'){          
-          //sendRow('sample_has_variables',{sample: this.props.sampleId,variable: row.variable_id,value_string: row.value_string},'post').then( (res) =>{row.id = res.data.id;});        
+        if(row.unit === 'string' || row.input_type === 'in_array'){                          
           request.headers['xScopeVariable'] = row.symbol;
           request.data = {value_string: row.value_string, sample: this.props.sampleId,variable: row.variable_id};
           promises.push(request);
-        }else{                    
-          //sendRow('sample_has_variables',{sample: this.props.sampleId,variable: row.variable_id,value: row.value},'post').then( (res) =>{row.id = res.data.id;} );
+        }else{                              
           request.headers['xScopeVariable'] = row.symbol;
           request.data = {value: row.value, sample: this.props.sampleId,variable: row.variable_id};
           promises.push(request);
@@ -656,14 +652,12 @@ class GridForm extends React.Component {
     request.data = {completed: this.state.sampleMethod.completed};
     request.method = 'patch';
     promises.push(request);
-    
-    //sendRow(`sample_has_methods?id=eq.${this.state.sampleMethod.id}`,{completed: this.state.sampleMethod.completed},'patch')                      
-    
+                                
     this.props.sendRows(promises).then( (res)=>{      
       res.map((r)=>{              
         scopeData.map( (sd)=>{        
           if(r.config.headers.xScopeVariable === sd.symbol && r.config.method === 'post'){
-            sd.id = r.data.id;
+            sd.id = r.data[0].id;
           }
           return sd;
         });
