@@ -21,8 +21,7 @@ class SampleEditCreate extends Component {
     }else{      
       this.props.fetchSampleMethods(0);      
       let sample = {
-        //created_on : moment(),
-        //sample_set: null
+
       }
       this.setState({sample: sample});
     }      
@@ -120,17 +119,20 @@ class SampleEditCreate extends Component {
 
   editSampleMethod(method){                   
    const oState = this.state;
+   this.props.setLoader(true);
    this.props.updateSampleMethods(oState.sampleMethods, oState.sample.id).then( (res)=>{                
       this.props.fetchSampleMethods(oState.sample.id).then((res_)=>{
         notify.show('Sample Methods Saved Successfully','success',500);        
-         let sample_method_id=null;
+         let sample_method_id=null;                  
+
          res_.data.map((element)=>{
             if( element.method === method.method_id && element.sample === oState.sample.id){
               sample_method_id = element.id
             }
             return element;
          });
-        this.context.router.push(`/sampleMethod/${oState.sample.id}/${method.method_code}/${sample_method_id}`);        
+
+        this.context.router.push(`/sampleMethod/${oState.sample.id}/${method.method_code}/${method.method_id}/${sample_method_id}`);        
       })            
     });
   }
@@ -150,7 +152,7 @@ class SampleEditCreate extends Component {
             }
             return element;
          });
-        this.context.router.push(`/sampleMethod/${oState.sample.id}/${method.method_code}/${sample_method_id}/empty`);        
+        this.context.router.push(`/sampleMethod/${oState.sample.id}/${method.method_code}/${method.method_id}/${sample_method_id}/empty`);        
       })            
     });
   }
@@ -195,7 +197,7 @@ class SampleEditCreate extends Component {
                 </Confirm>  
                 <span className="pull-right">&nbsp;</span>
                 <Confirm onConfirm={this.saveSample.bind(this)} confirmBSStyle='primary' body="Are you sure you want to Save this Sample?" confirmText="Confirm Save" title="Save Sample">
-                  <button  className="btn btn-lg btn-primary pull-right">Save</button>
+                  <button  className="btn btn-lg btn-primary pull-right">{this.state.sample.id ? 'Update' : 'Create'}</button>
                 </Confirm>
               </span>              
               

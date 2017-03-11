@@ -1,0 +1,108 @@
+symbol,label,description,unit,input_type,default_value,formula,calculation_order,method
+sans_ag1_tsm,Total Sample Mass,,grams,in,,,,26
+sans_ag1_mr1,Mass Retained 1,28 mm,grams,in,,,,26
+sans_ag1_mr2,Mass Retained 2,20 mm,grams,in,,,,26
+sans_ag1_mr3,Mass Retained 3,14 mm,grams,in,,,,26
+sans_ag1_mr4,Mass Retained 4,10 mm,grams,in,,,,26
+sans_ag1_mr5,Mass Retained 5,7.1 mm,grams,in,,,,26
+sans_ag1_mr6,Mass Retained 6,5 mm,grams,in,,,,26
+sans_ag1_mr7,Mass Retained 7,2 mm,grams,in,,,,26
+sans_ag1_mr8,Mass Retained 8,1 mm,grams,in,,,,26
+sans_ag1_mr9,Mass Retained 9,0.425 mm,grams,in,,,,26
+sans_ag1_mr10,Mass Retained 10,0.075 mm,grams,in,,sans_ag1_tsm-(sans_ag1_mr1+ sans_ag1_mr2+sans_ag1_mr3+sans_ag1_mr4+sans_ag1_mr5+sans_ag1_mr6+sans_ag1_mr7+sans_ag1_mr8+sans_ag1_mr9+sans_ag1_mr10),30001,26
+sans_ag1_pr1,Percentage Retained 1,28 mm,grams,calc,,(sans_ag1_mr1/sans_ag1_tsm)*100,30002,26
+sans_ag1_pr2,Percentage Retained 2,20 mm,grams,calc,,(sans_ag1_mr2/sans_ag1_tsm)*100,30003,26
+sans_ag1_pr3,Percentage Retained 3,14 mm,grams,calc,,(sans_ag1_mr3/sans_ag1_tsm)*100,30004,26
+sans_ag1_pr4,Percentage Retained 4,10 mm,grams,calc,,(sans_ag1_mr4/sans_ag1_tsm)*100,30005,26
+sans_ag1_pr5,Percentage Retained 5,7.1 mm,grams,calc,,(sans_ag1_mr5/sans_ag1_tsm)*100,30006,26
+sans_ag1_pr6,Percentage Retained 6,5 mm,grams,calc,,(sans_ag1_mr6/sans_ag1_tsm)*100,30007,26
+sans_ag1_pr7,Percentage Retained 7,2 mm,grams,calc,,(sans_ag1_mr7/sans_ag1_tsm)*100,30008,26
+sans_ag1_pr8,Percentage Retained 8,1 mm,grams,calc,,(sans_ag1_mr8/sans_ag1_tsm)*100,30009,26
+sans_ag1_pr9,Percentage Retained 9,0.425 mm,grams,calc,,(sans_ag1_mr9/sans_ag1_tsm)*100,30010,26
+sans_ag1_pr10,Percentage Retained 10,0.075 mm,grams,calc,,(sans_ag1_mr10/sans_ag1_tsm)*100,30011,26
+sans_ag1_cpp1,Cumulative Percentage Passing 1,28 mm,%,calc,,100-sans_ag1_pr1,30012,26
+sans_ag1_cpp2,Cumulative Percentage Passing 2,20 mm,%,calc,,sans_ag1_cpp1-sans_ag1_pr2,30013,26
+sans_ag1_cpp3,Cumulative Percentage Passing 3,14 mm,%,calc,,sans_ag1_cpp2-sans_ag1_pr3,30014,26
+sans_ag1_cpp4,Cumulative Percentage Passing 4,10 mm,%,calc,,sans_ag1_cpp3-sans_ag1_pr4,30015,26
+sans_ag1_cpp5,Cumulative Percentage Passing 5,7.1 mm,%,calc,,sans_ag1_cpp4-sans_ag1_pr5,30016,26
+sans_ag1_cpp6,Cumulative Percentage Passing 6,5 mm,%,calc,,sans_ag1_cpp6-sans_ag1_pr6,30017,26
+sans_ag1_cpp7,Cumulative Percentage Passing 7,2 mm,%,calc,,sans_ag1_cpp7-sans_ag1_pr7,30018,26
+sans_ag1_cpp8,Cumulative Percentage Passing 8,1 mm,%,calc,,sans_ag1_cpp8-sans_ag1_pr8,30019,26
+sans_ag1_cpp9,Cumulative Percentage Passing 9,0.425 mm,%,calc,,sans_ag1_cpp9-sans_ag1_pr9,30020,26
+sans_ag1_cpp10,Cumulative Percentage Passing 10,0.075 mm,%,calc,,sans_ag1_cpp10-sans_ag1_pr10,30021,26
+sans_ag4_tsm,Test Sample Mass,,grams,in,,,,28
+sans_ag4_mr1,Mass Retained 1,75 mm,grams,in,,,,28
+sans_ag4_mr2,Mass Retained 2,50 mm,grams,in,,,,28
+sans_ag4_mr3,Mass Retained 3,37.5 mm,grams,in,,,,28
+sans_ag4_mr4,Mass Retained 4,28.0 mm,grams,in,,,,28
+sans_ag4_mr5,Mass Retained 5,20 mm,grams,in,,,,28
+sans_ag4_mr6,Mass Retained 6,14 mm,grams,in,,,,28
+sans_ag4_mr7,Mass Retained 7,10 mm,grams,in,,,,28
+sans_ag4_mr8,Mass Retained 8,7.1 mm,grams,in,,,,28
+sans_ag4_mp1,Mass of Aggregate Passing 1,75 mm,grams,in,,,,28
+sans_ag4_mp2,Mass of Aggregate Passing 2,50 mm,grams,in,,,,28
+sans_ag4_mp3,Mass of Aggregate Passing 3,37.5 mm,grams,in,,,,28
+sans_ag4_mp4,Mass of Aggregate Passing 4,28.0 mm,grams,in,,,,28
+sans_ag4_mp5,Mass of Aggregate Passing 5,20 mm,grams,in,,,,28
+sans_ag4_mp6,Mass of Aggregate Passing 6,14 mm,grams,in,,,,28
+sans_ag4_mp7,Mass of Aggregate Passing 7,10 mm,grams,in,,,,28
+sans_ag4_mp8,Mass of Aggregate Passing 8,7.1 mm,grams,in,,,,28
+sans_ag4_fi1,Flakiness Index 1,75 mm,%,calc,,100*(sans_ag4_mp1/sans_ag4_mr1),3100,28
+sans_ag4_fi2,Flakiness Index 2,50 mm,%,calc,,100*(sans_ag4_mp2/sans_ag4_mr2),3101,28
+sans_ag4_fi3,Flakiness Index 3,37.5 mm,%,calc,,100*(sans_ag4_mp3/sans_ag4_mr3),3102,28
+sans_ag4_fi4,Flakiness Index 4,28.0 mm,%,calc,,100*(sans_ag4_mp4/sans_ag4_mr4),3103,28
+sans_ag4_fi5,Flakiness Index 5,20 mm,%,calc,,100*(sans_ag4_mp5/sans_ag4_mr5),3104,28
+sans_ag4_fi6,Flakiness Index 6,14 mm,%,calc,,100*(sans_ag4_mp6/sans_ag4_mr6),3105,28
+sans_ag4_fi7,Flakiness Index 7,10 mm,%,calc,,100*(sans_ag4_mp7/sans_ag4_mr7),3106,28
+sans_ag4_fi8,Flakiness Index 8,7.1 mm,%,calc,,100*(sans_ag4_mp8/sans_ag4_mr8),3107,28
+sans_ag4_mrt,Total Mass Retained,,index,calc,,sans_ag4_mr1+sans_ag4_mr2+sans_ag4_mr3+sans_ag4_mr4+sans_ag4_mr5+sans_ag4_mr6+sans_ag4_mr7+sans_ag4_mr8,3108,28
+sans_ag4_mpt,Total Aggregate Passing,,index,calc,,sans_ag4_mp1+sans_ag4_mp2+sans_ag4_mp3+sans_ag4_mp4+sans_ag4_mp5+sans_ag4_mp6+sans_ag4_mp7+sans_ag4_mp8,3109,28
+sans_ag4_fit,Total Flakiness,,index,calc,,100*(sans_ag4_mpt/sans_ag4_mrt),3110,28
+sans_ag5_sr,Sand Reading,,number,in,,,,29
+sans_ag5_fr,Fines Reading,,number,in,,,,29
+sans_ag5_se,Sands Equivalent Value,,number,calc,,((sans_ag5_sr -200)/sans_ag5_fr)*100,3200,29
+sans_ag5_sr10,Sand Reading 10 min,,number,in,,,,29
+sans_ag5_fr10,Fines Reading 10 min,,number,in,,,,29
+sans_ag5_se10,Sands Equivalent Value 10,,number,calc,,((sans_ag5_sr10 -200)/sans_ag5_fr10)*100,3201,29
+sans_ag5_ese,Extended Sand Equivalent Value,,number,calc,,(sans_ag5_se10^2)/sans_ag5_se,3202,29
+sans_ag10_nos,Number of Specimens,,number,in,3,,,30
+sans_ag10_sm1,Specimen Mass 1,,grams,in,,,,30
+sans_ag10_sm2,Specimen Mass 2,,grams,in,,,,30
+sans_ag10_sm3,Specimen Mass 3,,grams,in,,,,30
+sans_ag10_pss1,Mass Passing Seperating Sieve 1,,grams,in,,,,30
+sans_ag10_pss2,Mass Passing Seperating Sieve 2,,grams,in,,,,30
+sans_ag10_pss3,Mass Passing Seperating Sieve 3,,grams,in,,,,30
+sans_ag10_acv1,Aggregate Crushing Value,,%,calc,,(100*sans_ag10_pss1)/sans_ag10_sm1,3301,30
+sans_ag10_acv2,Aggregate Crushing Value,,%,calc,,(100*sans_ag10_pss2)/sans_ag10_sm2,3302,30
+sans_ag10_acv3,Aggregate Crushing Value,,%,calc,,(100*sans_ag10_pss3)/sans_ag10_sm3,3303,30
+sans_ag10_aacv,Average Aggregate Crushing Value,,%,calc,,(sans_ag10_acv1+sans_ag10_acv2+sans_ag10_acv3)/sans_ag10_nos,3304,30
+sans_ag10_1pacv,1st Point Load (ACV),,%,in,,,,30
+sans_ag10_2pl,2nd Point Load,,kN,calc,,4000/sans_a10_1pacv,3305,30
+sans_ag10_2e10,2nd Point Load (Estimated 10% Fact),,%,in,,,,30
+sans_ag10_3pl10,3rd Point Load,,kN,calc,,sans_ag10_2pl*(1-((sans_ag10_2e10-10)/sans_ag10_2e10)),3306,30
+sans_ag20_mssd,Mass of Saturated Surface-dry Test Sample,,grams,in,,,,31
+sans_ag20_ms25w,Mass of Saturated  Test Sample in 25 degree water,,grams,in,,,,31
+sans_ag20_mod,Mass of Oven Dried Sample,,grams,in,,,,31
+sans_ag20_bd,Bulk Density of the Aggregate Particles,,kg/m<sup>3</sup>,calc,,997*(sans_ag20_mod/(sans_ag20_mssd-sans_ag20_ms25w)) ,3501,31
+sans_ag20_ad,Apparent Density of Aggregate Particles,,kg/m<sup>3</sup>,calc,,997*(sans_ag20_mod/(sans_ag20_mod-sans_ag20_ms25w)),3502,31
+sans_ag20_wa,Water Absorption of the Test Sample,,%,calc,,100*((sans_ag20_mssd-sans_ag20_mod)/sans_ag20_mod),3503,31
+sans_ag21_m1,Mass of Clean Dry Pycnometer,,grams,in,,,,32
+sans_ag21_m2,Mass of Pycnometer filled with water,,grams,in,,,,32
+sans_ag21_m3,Mass of Pycnometer and Surface Dry Test Sample,,grams,in,,,,32
+sans_ag21_m4,"Mass of Pycnometer, Test Sample and Water",,grams,in,,,,32
+sans_ag21_m5,Mass of Basin,,grams,in,,,,32
+sans_ag21_m6,Mass of Basin and Oven dried Sample,,grams,in,,,,32
+sans_ag21_bd,Bulk Density,,kg/m<sup>3</sup>,calc,,997*( (sans_ag21_m6-sans_ag21_m5)/( (sans_ag21_m3-sans_ag21_m1) - (sans_ag21_m4-sans_ag21_m2) ) ),3601,32
+sans_ag21_ad,Apparent Density,,kg/m<sup>3</sup>,calc,,997*( (sans_ag21_m6-sans_ag21_m5)/( (sans_ag21_m6-sans_ag21_m5) - (sans_ag21_m4-sans_ag21_m2) ) ),3602,32
+sans_ag21_wa,Water Absorption,,%,calc,,100*(((sans_ag21_m3-sans_ag21_m1)-(sans_ag21_m6-sans_ag21_m5))/(sans_ag21_m6-sans_ag21_m5)),3602,32
+sans_ag22_mps,"Mass of Pycnometer, Glass Sheet and Dried Sample",,grams,in,,,,33
+sans_ag22_mp,Mass of Pycnometer and Glass Sheet,,grams,in,,,,33
+sans_ag22_mb,Mass of Base Sample,,grams,calc,,sans_ag22_mps-sans_ag22_mp,3701,33
+sans_ag22_mpw,"Mass of Pycnometer, Glass Sheet and Water",,grams,in,,,,33
+sans_ag22_mw,Mass of Water,,grams,calc,,sans_ag22_mpw-sans_ag22_mp,3702,33
+sans_ag22_vp,Volume of Pycnometer,,cm<sup>3</sup>,calc,,sans_ag22_mw/0.997,3703,33
+sans_ag22_wa,Water required to fill Pycnometer when it contains dry sample,,grams,calc,,sans_ag22_mpw-sans_ag22_mps,3704,33
+sans_ag22_vpa,Volume of Water to Picnometer when it contains dry sample,,cm<sup>3</sup>,calc,,sans_ag22_mwa/0.997,3705,33
+sans_ag22_adb,Apparent Density of the base,,kg/m<sup>3</sup>,calc,,(1000*mb)/(vp-vpa),3706,33
+sans_ag22_wabs,Water Absorption (From SANS 3001-AG20),,%,in,,,,33
+sans_ag22_aadb,Adjust Apparent Density,,kg/m<sup>3</sup>,calc,,sans_ag22_adb/(1+((0.7*sans_ag22_wabs-0.3)*(sans_ag22_adb/10^5))),3707,33

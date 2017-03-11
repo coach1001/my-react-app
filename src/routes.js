@@ -45,8 +45,8 @@ export default (
 		</Route>
 		
 		<Route path="sampleMethod" component={MethodEditPage}>						
-			<Route path=":sampleId/:methodCode/:methodId" component={MethodEdit}/>
-			<Route path=":sampleId/:methodCode/:methodId/:empty" component={MethodEdit}/>
+			<Route path=":sampleId/:methodCode/:methodId/:sampleMethodId" component={MethodEdit}/>
+			<Route path=":sampleId/:methodCode/:methodId/:sampleMethodId/:empty" component={MethodEdit}/>
 		</Route>
 
 	</Route>

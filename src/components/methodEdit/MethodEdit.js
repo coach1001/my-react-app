@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import GridForm from '../common/GridFormV3';
 import { FaArrowCircleLeft } from 'react-icons/lib/fa/';
-import { fetchSampleVariables } from '../../actions/sampleVariables';
+import { fetchSampleVariables, fetchSampleVariables2, fetchSampleVariables3 } from '../../actions/sampleVariables';
 import { fetchSampleMethod } from '../../actions/sampleMethods';
 import { fetchSample } from '../../actions/samples';
 import { methods } from '../../components/common/constants/gridFormConstants';
@@ -11,9 +11,10 @@ import { setLoader } from '../../actions/loader';
 class MethodEdit extends Component {
   
   componentWillMount(){     	        
+    
     this.props.setLoader(true);
-    this.props.fetchSampleVariables(this.props.params.sampleId);
-    this.props.fetchSampleMethod(this.props.params.methodId);
+    this.props.fetchSampleVariables3(this.props.params.sampleId,this.props.params.methodId);
+    this.props.fetchSampleMethod(this.props.params.sampleMethodId);
     this.props.fetchSample(this.props.params.sampleId);            
   }
 
@@ -26,13 +27,12 @@ class MethodEdit extends Component {
   }
 
   render() {    
-    return <div className="container-print">
-      
-      
+    //console.log(this.props.sampleMethod);
+    return <div className="container-print">              
         <span style={{fontSize: '2em', cursor: 'pointer'}}>
         <FaArrowCircleLeft  onClick={this.goBack.bind(this)}  className="text-info hidden-print" size="2em"/>      
         </span>
-        <h4>Sample Number : {this.props.sample.sample}</h4>
+        <h3>Sample Number : {this.props.sample.sample}</h3>
         <h5>Method: {this.props.sampleMethod.label} - {this.props.sampleMethod.description}</h5> 
       <button onClick={this.printWindow.bind(this)} className="pull-right btn btn-lg btn-primary hidden-print">Print</button>
       {this.props.sampleVariables.length > 0 && Object.keys(this.props.sampleMethod).length > 0 && Object.keys(this.props.sample).length > 0 ?        
@@ -49,9 +49,11 @@ class MethodEdit extends Component {
 
 MethodEdit.propTypes = {	
   fetchSampleVariables: React.PropTypes.func.isRequired,
+  fetchSampleVariables2: React.PropTypes.func.isRequired,
   fetchSampleMethod: React.PropTypes.func.isRequired,
   fetchSample: React.PropTypes.func.isRequired,
-  setLoader: React.PropTypes.func.isRequired,
+  setLoader: React.PropTypes.func.isRequired,  
+  fetchSampleVariables3: React.PropTypes.func.isRequired,  
 }
 
 MethodEdit.contextTypes = {
@@ -67,4 +69,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, { fetchSampleVariables, fetchSampleMethod, fetchSample, setLoader })(MethodEdit);
+export default connect(mapStateToProps, { fetchSampleVariables, fetchSampleVariables2, fetchSampleVariables3, fetchSampleMethod, fetchSample, setLoader })(MethodEdit);

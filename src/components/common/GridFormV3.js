@@ -85,9 +85,7 @@ class GridForm extends React.Component {
     let l=0;
     let m=0;*/
     
-    if(redrawGraph && method.hasGraph && !this.props.empty){                  
-      
-      
+    if(redrawGraph && method.hasGraph && !this.props.empty){                              
       /*for(i=0;i<method.graph.length;i++){//Loop Graphs        
         tempMax=0;        
         for(j=0;j<method.graph[i].dataSets.length;j++){//Loop Datasets                  
@@ -139,9 +137,13 @@ class GridForm extends React.Component {
                 })
                 return sd;
               })
-              dt.x = math.eval(dt.sx,scope);
-              dt.y = math.eval(dt.sy,scope);
+              
+              try{
+                dt.x = math.eval(dt.sx,scope);
+                dt.y = math.eval(dt.sy,scope);                            
+              }catch(ex){
 
+              }
               
             }else{
               scopeData.map((sd) =>{                                                  
@@ -249,8 +251,6 @@ class GridForm extends React.Component {
           return g;
       });    
     }
-
-
       
     var arrayIndex = 0;
 
@@ -379,7 +379,7 @@ class GridForm extends React.Component {
                                       <input type="button" value="Add" onClick={this.onAddToArray.bind(this,{scopeVariable: tr.scopeVar,index: tr.index})} className='btn btn-info btn-block hidden-print'/>
                                     </td>
 
-                              :                                
+                              :  //NOT ICON                              
                                 <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>
                                 <div className="avoid">
                                 {                              
@@ -409,7 +409,7 @@ class GridForm extends React.Component {
                                           : 
                                             td.type === 'in_array' ? 
                                             <div className="input-group"><input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChangeArray.bind(this,{scopeVariable: tr.scopeVar, index: tr.index} )} min={td.min} max={td.max} step={td.step} value={this.props.empty ? '' : td.value} type='number' className='form-control' style={td.style}/><span className="input-group-addon"><div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.arrUnit}} /></span></div>
-                                             :
+                                             ://NORMAL NUMBER INPUT
                                             <div className="input-group"><input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChange.bind(this)} min={td.min} max={td.max} step={td.step} value={this.props.empty ? '' : td.value} type='number' className='form-control' style={td.style}/><span className="input-group-addon"><div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} /></span></div>
                                    
                                 }                        
