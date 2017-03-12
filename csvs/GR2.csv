@@ -1,0 +1,41 @@
+symbol,label,description,unit,input_type,default_value,minimum,maximum,formula,calculation_order,step,method
+sans_gr2_mr1,Mass Retained 1,,grams,in,,,,,,,14
+sans_gr2_mr2,Mass Retained 2,,grams,in,,,,,,,14
+sans_gr2_mr3,Mass Retained 3,,grams,in,,,,,,,14
+sans_gr2_mr4,Mass Retained 4,,grams,in,,,,,,,14
+sans_gr2_mr5,Mass Retained 5,,grams,in,,,,,,,14
+sans_gr2_mr6,Mass Retained 6,,grams,in,,,,,,,14
+sans_gr2_mr7,Mass Retained 7,,grams,in,,,,,,,14
+sans_gr2_mr8,Mass Retained 8,,grams,in,,,,,,,14
+sans_gr2_mr9,Mass Retained 9,,grams,in,,,,,,,14
+sans_gr2_mr10,Mass Retained 10,,grams,in,,,,,,,14
+sans_gr2_mr11,Mass Retained 11,,grams,in,,,,,,,14
+sans_gr2_mr12,Mass Retained 12,,grams,in,,,,,,0.001,14
+sans_gr2_fi,Final,,grams,in,,,,,,,14
+sans_gr2_tsm,Total Sample Mass,,grams,in,,,,,,,14
+sans_gr2_tp20,Total Passing 20mm Sieve,,grams,in,,,,,,,14
+sans_gr2_rfp20,Riffled Fraction Passing 20mm Sieve,,grams,in,,,,,,,14
+sans_gr2_rf,Reduction factor,,factor,calc,1,0,10,(100*sans_gr2_tp20)/(sans_gr2_rfp20*sans_gr2_tsm),2700,100,14
+sans_gr2_pr1,Percentage Retained 1,,%,calc,,,,(sans_gr2_mr1/sans_gr2_tsm)*100,2702,0.001,14
+sans_gr2_pr2,Percentage Retained 2,,%,calc,,,,(sans_gr2_mr2/sans_gr2_tsm)*100,2703,0.001,14
+sans_gr2_pr3,Percentage Retained 3,,%,calc,,,,(sans_gr2_mr3/sans_gr2_tsm)*100,2704,0.001,14
+sans_gr2_pr4,Percentage Retained 4,,%,calc,,,,(sans_gr2_mr4/sans_gr2_tsm)*100,2705,0.001,14
+sans_gr2_pr5,Percentage Retained 5,,%,calc,,,,(sans_gr2_mr5/sans_gr2_tsm)*100,2706,0.001,14
+sans_gr2_pr6,Percentage Retained 6,,%,calc,,,,(sans_gr2_mr6/sans_gr2_tsm)*100,2707,0.001,14
+sans_gr2_pr7,Percentage Retained 7,,%,calc,,,,(sans_gr2_mr7/sans_gr2_tsm)*100,2708,0.001,14
+sans_gr2_pr8,Percentage Retained 8,,%,calc,,,,sans_gr2_mr8*sans_gr2_rf,2709,0.001,14
+sans_gr2_pr9,Percentage Retained 9,,%,calc,,,,sans_gr2_mr9*sans_gr2_rf,2710,0.001,14
+sans_gr2_pr10,Percentage Retained 10,,%,calc,,,,sans_gr2_mr10*sans_gr2_rf,2711,0.001,14
+sans_gr2_pr11,Percentage Retained 11,,%,calc,,,,sans_gr2_mr11*sans_gr2_rf,2712,0.001,14
+sans_gr2_pr12,Percentage Retained Total,,%,calc,,,,sans_gr2_mr12*sans_gr2_rf,2713,0.001,14
+sans_gr2_cpp1,Cumulative Percentage Passing 1,,%,calc,,,,100-sans_gr2_pr1,2714,0.0001,14
+sans_gr2_cpp2,Cumulative Percentage Passing 2,,%,calc,,,,sans_gr2_cpp1-sans_gr2_pr2,2715,0.0001,14
+sans_gr2_cpp3,Cumulative Percentage Passing 3,,%,calc,,,,sans_gr2_cpp2-sans_gr2_pr3,2716,0.0001,14
+sans_gr2_cpp4,Cumulative Percentage Passing 4,,%,calc,,,,sans_gr2_cpp3-sans_gr2_pr4,2717,0.0001,14
+sans_gr2_cpp5,Cumulative Percentage Passing 5,,%,calc,,,,sans_gr2_cpp4-sans_gr2_pr5,2718,0.0001,14
+sans_gr2_cpp6,Cumulative Percentage Passing 6,,%,calc,,,,sans_gr2_cpp5-sans_gr2_pr6,2719,0.0001,14
+sans_gr2_cpp7,Cumulative Percentage Passing 7,,%,calc,,,,sans_gr2_cpp6-sans_gr2_pr7,2720,0.0001,14
+sans_gr2_cpp8,Cumulative Percentage Passing 8,,%,calc,,,,sans_gr2_cpp7-sans_gr2_pr8,2721,0.0001,14
+sans_gr2_cpp9,Cumulative Percentage Passing 9,,%,calc,,,,sans_gr2_cpp8-sans_gr2_pr9,2722,0.0001,14
+sans_gr2_cpp10,Cumulative Percentage Passing 10,,%,calc,,,,sans_gr2_cpp9-sans_gr2_pr10,2723,0.0001,14
+sans_gr2_cpp11,Cumulative Percentage Passing 11,,%,calc,,,,sans_gr2_cpp10-sans_gr2_pr11,2724,0.0001,14

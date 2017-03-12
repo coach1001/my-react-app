@@ -697,7 +697,6 @@ class GridForm extends React.Component {
         }
     
       return d;    
-    
     });    
     
 
@@ -709,12 +708,24 @@ class GridForm extends React.Component {
         
         if(d.input_type === 'calc' && d.input_type !== 'graph'){                
           try{        
-            scope[d.symbol]=Math.round(math.eval(d.formula,scope)*round)/round;               
+            scope[d.symbol]=Math.round(math.eval(d.formula,scope)*round)/round;                                      
           }catch(err){                     
-           console.log(err);
-           scope[d.symbol] = ( d.default_value ? d.default_value : 0);
-          }        
+           scope[d.symbol] = ( d.default_value ? d.default_value : 0);           
+          } 
+        
+          if(isNaN(scope[d.symbol])){
+            scope[d.symbol] = 0;
+          }
+
+          //if(scope[d.symbol] === 0 ){
+          //  this.refs[d.symbol].value = 0;
+          //}
+
+          //console.log(d.symbol,scope[d.symbol]);       
+        
         }
+
+
 
         if(d.input_type === 'calc_avg_array'){                
           var scope2 = cloneDeep(this.state.scopeData);

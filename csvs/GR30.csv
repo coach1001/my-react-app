@@ -1,0 +1,84 @@
+symbol,label,description,unit,input_type,default_value,minimum,maximum,formula,calculation_order,step,method
+sans_gr30_omc,Optimum Moisture Content,,%,in,,,,,,,20
+sans_gr30_sm1,Sample Mass,,grams,in,,,,,,,20
+sans_gr30_pa1,Percentage Added,,%,in,,,,,,,20
+sans_gr30_mm1,Mould Mass,,grams,in,,,,,,,20
+sans_gr30_mwm1,Mould Plus Wet Mass,,grams,in,,,,,,,20
+sans_gr30_pwmp1,Pan Wet Mass Plus Pan,,grams,in,,,,,,,20
+sans_gr30_pdmp1,Pan Dry Mass Plus Pan,,grams,in,,,,,,,20
+sans_gr30_pm1,Pan Mass,,grams,in,,,,,,,20
+sans_gr30_pn2,Pan Number,,string,in,,,,,,,20
+sans_gr30_mdd,Maximum Dry Density,,kg/m<sup>3</sup>,in,,,,,,,20
+sans_gr30_sm3,Sample Mass,,grams,in,,,,,,,20
+sans_gr30_pa3,Percentage Added,,%,in,,,,,,,20
+sans_gr30_mm3,Mould Mass,,grams,in,,,,,,,20
+sans_gr30_mwm3,Mould Plus Wet Mass,,grams,in,,,,,,,20
+sans_gr30_pwmp3,Pan Wet Mass Plus Pan,,grams,in,,,,,,,20
+sans_gr30_pdmp3,Pan Dry Mass Plus Pan,,grams,in,,,,,,,20
+sans_gr30_pm3,Pan Mass,,grams,in,,,,,,,20
+sans_gr30_sm4,Sample Mass,,grams,in,,,,,,,20
+sans_gr30_pa4,Percentage Added,,%,in,,,,,,,20
+sans_gr30_mm4,Mould Mass,,grams,in,,,,,,,20
+sans_gr30_mwm4,Mould Plus Wet Mass,,grams,in,,,,,,,20
+sans_gr30_pwmp4,Pan Wet Mass Plus Pan,,grams,in,,,,,,,20
+sans_gr30_pdmp4,Pan Dry Mass Plus Pan,,grams,in,,,,,,,20
+sans_gr30_pm4,Pan Mass,,grams,in,,,,,,,20
+sans_gr30_sm5,Sample Mass,,grams,in,,,,,,,20
+sans_gr30_pa5,Percentage Added,,%,in,,,,,,,20
+sans_gr30_mm5,Mould Mass,,grams,in,,,,,,,20
+sans_gr30_mwm5,Mould Plus Wet Mass,,grams,in,,,,,,,20
+sans_gr30_pwmp5,Pan Wet Mass Plus Pan,,grams,in,,,,,,,20
+sans_gr30_pdmp5,Pan Dry Mass Plus Pan,,grams,in,,,,,,,20
+sans_gr30_pm5,Pan Mass,,grams,in,,,,,,,20
+sans_gr30_mn3,Mould Number,,string,in,,,,,,,20
+sans_gr30_pn3,Pan Number,,string,in,,,,,,,20
+sans_gr30_mn4,Mould Number,,string,in,,,,,,,20
+sans_gr30_pn4,Pan Number,,string,in,,,,,,,20
+sans_gr30_mn5,Mould Number,,string,in,,,,,,,20
+sans_gr30_pn5,Pan Number,,string,in,,,,,,,20
+sans_gr30_mv5,Mould Volume,,ml<sup>3</sup>,in,,,,,,,20
+sans_gr30_mv3,Mould Volume,,ml<sup>3</sup>,in,,,,,,,20
+sans_gr30_mv4,Mould Volume,,ml<sup>3</sup>,in,,,,,,,20
+sans_gr30_sm2,Sample Mass,,grams,in,,,,,,,20
+sans_gr30_pa2,Percentage Added,,%,in,,,,,,,20
+sans_gr30_mm2,Mould Mass,,grams,in,,,,,,,20
+sans_gr30_mwm2,Mould Plus Wet Mass,,grams,in,,,,,,,20
+sans_gr30_mn1,Mould Number,,string,in,,,,,,,20
+sans_gr30_pn1,Pan Number,,string,in,,,,,,,20
+sans_gr30_mn2,Mould Number,,string,in,,,,,,,20
+sans_gr30_pwmp2,Pan Wet Mass Plus Pan,,grams,in,,,,,,,20
+sans_gr30_pdmp2,Pan Dry Mass Plus Pan,,grams,in,,,,,,,20
+sans_gr30_pm2,Pan Mass,,grams,in,,,,,,,20
+sans_gr30_mv1,Mould Volume,,ml<sup>3</sup>,in,,,,,,,20
+sans_gr30_mv2,Mould Volume,,ml<sup>3</sup>,in,,,,,,,20
+sans_gr30_wa1,Water Added,,ml,calc,,,,(sans_gr30_sm1*sans_gr30_pa1)/100,3300,,20
+sans_gr30_wa2,Water Added,,ml,calc,,,,(sans_gr30_sm2*sans_gr30_pa2)/100,3301,,20
+sans_gr30_wa3,Water Added,,ml,calc,,,,(sans_gr30_sm3*sans_gr30_pa3)/100,3302,,20
+sans_gr30_wa4,Water Added,,ml,calc,,,,(sans_gr30_sm4*sans_gr30_pa4)/100,3303,,20
+sans_gr30_wa5,Water Added,,ml,calc,,,,(sans_gr30_sm5*sans_gr30_pa5)/100,3304,,20
+sans_gr30_wd1,Wet Density,,kg/m<sup>3</sup>,calc,,,,((sans_gr30_mwm1-sans_gr30_mm1)/sans_gr30_mv1)*1000,3305,,20
+sans_gr30_edd1,Estimated Dry Density,,kg/m<sup>3</sup>,calc,,,,(sans_gr30_wd1/(1+(sans_gr30_pa1/100))),3306,,20
+sans_gr30_amc1,Actual Moisture Content,,%,calc,,,,((sans_gr30_pwmp1-sans_gr30_pdmp1)*100)/(sans_gr30_pdmp1-sans_gr30_pm1),3307,,20
+sans_gr30_add1,Actual Dry Density,,kg/m<sup>3</sup>,calc,,,,(sans_gr30_wd1/(1+(sans_gr30_amc1/100))),3308,,20
+sans_gr30_hm1,Hydroscopic Moisture,,%,calc,,,,sans_gr30_amc1-sans_gr30_pa1,3309,,20
+sans_gr30_wd2,Wet Density,,kg/m<sup>3</sup>,calc,,,,((sans_gr30_mwm2-sans_gr30_mm2)/sans_gr30_mv2)*1000,3310,,20
+sans_gr30_edd2,Estimated Dry Density,,kg/m<sup>3</sup>,calc,,,,(sans_gr30_wd2/(1+(sans_gr30_pa2/100))),3311,,20
+sans_gr30_amc2,Actual Moisture Content,,%,calc,,,,((sans_gr30_pwmp2-sans_gr30_pdmp2)*100)/(sans_gr30_pdmp2-sans_gr30_pm2),3312,,20
+sans_gr30_add2,Actual Dry Density,,"kg/m<sup>3</sup>
+",calc,,,,(sans_gr30_wd2/(1+(sans_gr30_amc2/100))),3313,,20
+sans_gr30_hm2,Hydroscopic Moisture,,%,calc,,,,sans_gr30_amc2-sans_gr30_pa2,3314,,20
+sans_gr30_wd3,Wet Density,,kg/m<sup>3</sup>,calc,,,,((sans_gr30_mwm3-sans_gr30_mm3)/sans_gr30_mv3)*1000,3315,,20
+sans_gr30_edd3,Estimated Dry Density,,kg/m<sup>3</sup>,calc,,,,(sans_gr30_wd3/(1+(sans_gr30_pa3/100))),3316,,20
+sans_gr30_amc3,Actual Moisture Content,,%,calc,,,,((sans_gr30_pwmp3-sans_gr30_pdmp3)*100)/(sans_gr30_pdmp3-sans_gr30_pm3),3317,,20
+sans_gr30_add3,Actual Dry Density,,kg/m<sup>3</sup>,calc,,,,(sans_gr30_wd3/(1+(sans_gr30_amc3/100))),3318,,20
+sans_gr30_hm3,Hydroscopic Moisture,,%,calc,,,,sans_gr30_amc3-sans_gr30_pa3,3319,,20
+sans_gr30_wd4,Wet Density,,kg/m<sup>3</sup>,calc,,,,((sans_gr30_mwm4-sans_gr30_mm4)/sans_gr30_mv4)*1000,3320,,20
+sans_gr30_edd4,Estimated Dry Density,,kg/m<sup>3</sup>,calc,,,,(sans_gr30_wd4/(1+(sans_gr30_pa4/100))),3321,,20
+sans_gr30_amc4,Actual Moisture Content,,%,calc,,,,((sans_gr30_pwmp4-sans_gr30_pdmp4)*100)/(sans_gr30_pdmp4-sans_gr30_pm4),3322,,20
+sans_gr30_add4,Actual Dry Density,,kg/m<sup>3</sup>,calc,,,,(sans_gr30_wd4/(1+(sans_gr30_amc4/100))),3323,,20
+sans_gr30_hm4,Hydroscopic Moisture,,%,calc,,,,sans_gr30_amc4-sans_gr30_pa4,3324,,20
+sans_gr30_wd5,Wet Density,,kg/m<sup>3</sup>,calc,,,,((sans_gr30_mwm5-sans_gr30_mm5)/sans_gr30_mv5)*1000,3325,,20
+sans_gr30_amc5,Actual Moisture Content,,%,calc,,,,((sans_gr30_pwmp5-sans_gr30_pdmp5)*100)/(sans_gr30_pdmp5-sans_gr30_pm5),3326,,20
+sans_gr30_edd5,Estimated Dry Density,,kg/m<sup>3</sup>,calc,,,,(sans_gr30_wd5/(1+(sans_gr30_pa5/100))),3327,,20
+sans_gr30_add5,Actual Dry Density,,kg/m<sup>3</sup>,calc,,,,(sans_gr30_wd5/(1+(sans_gr30_amc5/100))),3328,,20
+sans_gr30_hm5,Hydroscopic Moisture,,%,calc,,,,sans_gr30_amc5-sans_gr30_pa5,3329,,20

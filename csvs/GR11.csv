@@ -1,0 +1,30 @@
+symbol,label,description,unit,input_type,default_value,minimum,maximum,formula,calculation_order,step,method
+sans_gr11_ll_ll1,Liquid Limit,,%,calc,,,,((100*(sans_gr11_ll_wm1-sans_gr11_ll_dm1))/(sans_gr11_ll_dm1-sans_gr11_ll_pm1))*( (sans_gr11_ll_bl1/25)^0.12),3000,,17
+sans_gr11_ll_ll2,Liquid Limit,,%,calc,,,,((100*(sans_gr11_ll_wm2-sans_gr11_ll_dm2))/(sans_gr11_ll_dm2-sans_gr11_ll_pm2))*( (sans_gr11_ll_bl2/25)^0.12),3001,,17
+sans_gr11_ll_avg,Liquid Limit Average,,%,calc,,,,(sans_gr11_ll_ll1+sans_gr11_ll_ll2+sans_gr11_ll_ll3)/2,3002,,17
+sans_gr11_pl_pl1,Plastic Limit,,%,calc,,,,((100*(sans_gr11_pl_wm1-sans_gr11_pl_dm1))/(sans_gr11_pl_dm1-sans_gr11_pl_pm1)),3003,0.01,17
+sans_gr11_pl_pl2,Plastic Limit,,%,calc,,,,((100*(sans_gr11_pl_wm2-sans_gr11_pl_dm2))/(sans_gr11_pl_dm2-sans_gr11_pl_pm2)),3004,0.01,17
+sans_gr11_pl_avg,Plastic Limit Average,,%,calc,,,,(sans_gr11_pl_pl1+sans_gr11_pl_pl2+sans_gr11_pl_pl3)/2,3005,0.01,17
+sans_gr11_pi,Plasticity Index,,index,calc,,,,sans_gr11_ll_avg-sans_gr11_pl_avg,3006,0.0001,17
+sans_gr11_ls_pls,Percentage Linear Shrinkage,,%,calc,,,,((sans_gr11_ls_ls)*(100/150))*(0.8/(1-0.008*sans_gr11_ls_bl)),3007,0.01,17
+sans_gr11_ll_bl1,Blows,,,in,25,0,,,,1,17
+sans_gr11_ll_bl2,Blows,,,in,25,0,,,,1,17
+sans_gr11_ll_dm1,Dry Mass,,grams,in,,,,,,,17
+sans_gr11_ll_dm2,Dry Mass,,grams,in,,,,,,,17
+sans_gr11_ll_pm1,Pan Mass,,grams,in,,,,,,,17
+sans_gr11_ll_pm2,Pan Mass,,grams,in,,,,,,,17
+sans_gr11_ll_pn1,Pan Number,,string,in,,,,,,,17
+sans_gr11_ll_pn2,Pan Number,,string,in,,,,,,,17
+sans_gr11_ll_wm1,Wet Mass,,grams,in,,,,,,,17
+sans_gr11_ll_wm2,Wet Mass,,grams,in,,,,,,,17
+sans_gr11_ls_bl,Blows,,number,in,25,0,,,,1,17
+sans_gr11_ls_ls,Linear Shrinkage,,mm,in,,,,,,0.01,17
+sans_gr11_ls_tn,Trough Number,,string,in,,,,,,,17
+sans_gr11_pl_dm1,Dry Mass,,grams,in,,,,,,0.01,17
+sans_gr11_pl_dm2,Dry Mass,,grams,in,,,,,,0.01,17
+sans_gr11_pl_pm1,Pan Mass,,grams,in,,,,,,0.01,17
+sans_gr11_pl_pm2,Pan Mass,,grams,in,,,,,,0.01,17
+sans_gr11_pl_pn1,Pan Number,,string,in,,,,,,,17
+sans_gr11_pl_pn2,Pan Number,,string,in,,,,,,,17
+sans_gr11_pl_wm1,Wet Mass,,grams,in,,,,,,0.01,17
+sans_gr11_pl_wm2,Wet Mass,,grams,in,,,,,,0.01,17

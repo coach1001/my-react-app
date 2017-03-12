@@ -1,0 +1,5 @@
+symbol,label,description,unit,input_type,default_value,minimum,maximum,formula,calculation_order,step,method
+sans_gr10_ls_tn,Trough Number,,string,in,,,,,,,4
+sans_gr10_ls_ls,Linear Shrinkage,,mm,in,,,,,,0.01,4
+sans_gr10_ls_bl,Blows,,number,in,0,0,,,,1,4
+sans_gr10_ls_pls,Percentage Linear Shrinkage,,%,calc,,,,((sans_gr10_ls_ls)*(100/150))*(0.8/(1-0.008*sans_gr10_ls_bl)),400,0.01,4

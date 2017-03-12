@@ -1,0 +1,10 @@
+symbol,label,description,unit,input_type,default_value,minimum,maximum,formula,calculation_order,step,method
+sans_gr54_nos,Number of ITS Samples,,number,in,1,1,3,,,1,25
+sans_gr54_md,Mould Diameter,,mm,in,150,,,,,,25
+sans_gr54_mkn1,Maximum Load,,kN,in,,,,,,,25
+sans_gr54_mkn2,Maximum Load,,kN,in,,,,,,,25
+sans_gr54_mkn3,Maximum Load,,kN,in,,,,,,,25
+sans_gr54_mkpa1,Indirect Tensile Strength,,kPa,calc,,,,(2*sans_gr54_mkn1)/(3.1416*0.127*(sans_gr54_md/1000)),6200,,25
+sans_gr54_mkpa2,Indirect Tensile Strength,,kPa,calc,,,,(2*sans_gr54_mkn2)/(3.1416*0.127*(sans_gr54_md/1000)),6201,,25
+sans_gr54_mkpa3,Indirect Tensile Strength,,kPa,calc,,,,(2*sans_gr54_mkn3)/(3.1416*0.127*(sans_gr54_md/1000)),6202,,25
+sans_gr54_mkpaa,Average ITS,,kPa,calc,,,,(sans_gr54_mkpa1+sans_gr54_mkpa2+sans_gr54_mkpa3)/sans_gr54_nos,6203,,25

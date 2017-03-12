@@ -84,7 +84,7 @@ class SampleEditCreate extends Component {
       
       this.props.updateCreateSample(sample).then( (res)=>{        
         notify.show('Sample Saved Successfully','success',2000);                
-        console.log(res);
+        //console.log(res);
         if(res.data.id){ 
           
           sample.id = res.data.id;

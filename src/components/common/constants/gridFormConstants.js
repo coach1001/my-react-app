@@ -5,10 +5,47 @@ export const methods = [
 
 	{//3001-GR54
 		code: '3001-GR54',
-		hasGraph: false,
-		colLayout: [],
-		grid: [],
-		graph: [],
+		colLayout: [
+			{span: 1, width:'40%'},
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'}, 
+		],
+
+		grid:[
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mould Diameter"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr54_md'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Number of ITS Methods"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr54_nos'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.c},
+				{style: STYLES.LARGE_LABEL.c, label: "1"},
+				{style: STYLES.LARGE_LABEL.c, label: "2"},
+				{style: STYLES.LARGE_LABEL.c, label: "3"},							
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Maximum Load"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr54_mkn1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr54_mkn2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr54_mkn3'},
+			]},	
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Indirect Tensile Strength"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr54_mkpa1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr54_mkpa2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr54_mkpa3'},
+			]},	
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Average ITS"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr54_mkpaa'},
+
+			]},	
+		],		
+
 	},//3001-GR54
 	
 	{//3001-GR51
@@ -28,43 +65,1592 @@ export const methods = [
 	},//3001-GR50
 	
 	{//3001-GR40
-		code: '3001-GR40',
-		hasGraph: false,
-		colLayout: [],
-		grid: [],
-		graph: [],
+		code: '3001-GR40',		
+		colLayout: [
+			{span: 1, width:'25%'},
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'}, 			
+		],
+
+		grid: [
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Maximum Dry Density"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mdd'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Optimum Moisture Content"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_omc'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Number of Pans"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_nop'},
+			]},
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.c},				
+				{style: STYLES.LARGE_LABEL.c, label: "1"},
+				{style: STYLES.LARGE_LABEL.c, label: "2"},
+				{style: STYLES.LARGE_LABEL.c, label: "3"},
+			]},
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Number"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pn1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pn2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pn3'},
+			]},					
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Initial Dry Mass Plus Pan"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_idmp1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_idmp2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_idmp3'},
+			]},					
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Final Dry Mass Plus Pan"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_fdmp1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_fdmp2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_fdmp3'},
+			]},					
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mass Pan"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mp1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mp2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mp3'},
+			]},					
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Moisture Content Hygro"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mch1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mch2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mch3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Average Moisture Content Hygro"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mcha'},
+			]},					
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.c},				
+				{style: STYLES.LARGE_LABEL.c, label: "Modified AASHTO"},
+				{style: STYLES.LARGE_LABEL.c, label: "Intermediate"},
+				{style: STYLES.LARGE_LABEL.c, label: "Proctor"},
+			]},
+					
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Sample Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_sm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_sm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_sm3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Water Added"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_wa1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_wa2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_wa3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mould Number"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mn1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mn2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mn3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mould Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mm3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mould Volume"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mv1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mv2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mv3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mould Plus Wet Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mwm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mwm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mwm3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Wet Density"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_wd1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_wd2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_wd3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Estimated Dry Density"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_edd1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_edd2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_edd3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Number"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pn1n'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pn2n'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pn3n'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Wet Mass Plus Pan"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pwmp1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pwmp2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pwmp3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Dry Mass Plus Pan"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pdmp1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pdmp2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pdmp3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pm3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Actual Moisture Content"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_amc1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_amc2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_amc3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Actual Dry Density"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_add1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_add2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_add3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "% Compaction"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_mmx1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_imx1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pmx1'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Hydroscopic Moisture"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_hm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_hm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_hm3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Swell Initial Reading"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_si1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_si2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_si3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Swell Final Reading"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_sf1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_sf2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_sf3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Percentage Swell"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_ps1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_ps2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_ps3'},				
+			]},		
+			{td: [
+				{style: STYLES.LARGE_LABEL.c,colSpan:4, label: "Penetration Data"},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "0.0 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_1_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_1_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_1_3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "0.5 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_2_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_2_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_2_3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "1.0 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_3_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_3_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_3_3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "1.5 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_4_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_4_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_4_3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "2.0 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_5_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_5_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_5_3'},				
+			]},
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "2.5 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_6_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_6_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_6_3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "3.0 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_7_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_7_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_7_3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "3.5 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_8_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_8_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_8_3'},				
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "4.0 mm "},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_9_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_9_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_9_3'},				
+			]},		
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "4.5 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_10_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_10_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_10_3'},				
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "5.0 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_11_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_11_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_11_3'},				
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "5.5 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_12_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_12_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_12_3'},				
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "6.0 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_13_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_13_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_13_3'},				
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "6.5 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_14_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_14_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_14_3'},				
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "7.0 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_15_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_15_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_15_3'},				
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "7.5 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_16_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_16_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_16_3'},				
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "8.0 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_17_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_17_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_17_3'},				
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "8.5 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_18_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_18_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_18_3'},				
+			]},		
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "9.0 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_19_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_19_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_19_3'},				
+			]},		
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "9.5 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_20_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_20_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_20_3'},				
+			]},		
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "10.0 mm"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_21_1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_21_2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_pd_21_3'},				
+			]},		
+
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.thin, colSpan: 4},
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Corrected kN (2.5 mm)"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_ckn1_d1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_ckn2_d1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_ckn3_d1'},				
+			]},		
+			
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "CBR (2.5 mm)"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_1_d1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_2_d1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_3_d1'},				
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.c, label: "% Compaction"},
+				{style: STYLES.LARGE_LABEL.c,label: 'CBR'},
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "90"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_at_90'},
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "93"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_at_93'},
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "95"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_at_95'},
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "97"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_at_97'},
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "98"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_at_98'},
+			]},		
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "100"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr40_at_100'},
+			]},		
+
+		],
+
+		hasGraph: true,
+		graph:
+		[//GRAPH ARRAY		
+			{//GRAPH 1
+				addMaxY: 1,
+				roundOff: 1,								
+
+				options: {
+					//maintainAspectRatio: false,
+					scales: {
+						xAxes: [
+							{
+								scaleLabel:{display: true,labelString: 'Depth Penetration (mm)',},
+								type:'linear',position: 'bottom',
+								ticks:{
+									stepSize: 0.635,
+									minRotation: 90,
+									callback: function(label,index,labels){																			
+											return label.toFixed(3);																	
+									}
+								}
+							}	
+						],
+						yAxes: [					
+							{							
+								scaleLabel:{display: true,labelString: 'Load (kN)'},
+								type:'linear',
+								ticks:{
+									stepSize: 0.1,
+									callback: function(label){
+										if(label % 0.5 === 0){
+											return label;
+										}else{
+											return '';
+										}
+									}
+								},
+							}
+						]					
+					},
+				},		
+				
+				dataSets:[
+					{ 				                          
+		        label: 'CBR Curve (1)',                          
+		        showLine: true,
+		        pointRadius: 4,	        
+		        pointBackgroundColor: 'red',                          
+		        borderColor: 'red',
+		        fill: false,
+		        data: [
+							{sy: 'sans_gr40_pd_1_1', x:0},
+							{sy: 'sans_gr40_pd_2_1', x:0.5},
+							{sy: 'sans_gr40_pd_3_1', x:1.0},
+							{sy: 'sans_gr40_pd_4_1', x:1.5},
+							{sy: 'sans_gr40_pd_5_1', x:2.0},
+							{sy: 'sans_gr40_pd_6_1', x:2.5},
+							{sy: 'sans_gr40_pd_7_1', x:3.0},
+							{sy: 'sans_gr40_pd_8_1', x:3.5},
+							{sy: 'sans_gr40_pd_9_1', x:4.0},
+							{sy: 'sans_gr40_pd_10_1', x:4.5},
+							{sy: 'sans_gr40_pd_11_1', x:5.0},
+							{sy: 'sans_gr40_pd_12_1', x:5.5},
+							{sy: 'sans_gr40_pd_13_1', x:6.0},
+							{sy: 'sans_gr40_pd_14_1', x:6.5},
+							{sy: 'sans_gr40_pd_15_1', x:7.0},
+							{sy: 'sans_gr40_pd_16_1', x:7.5},
+							{sy: 'sans_gr40_pd_17_1', x:8.0},
+							{sy: 'sans_gr40_pd_18_1', x:8.5},
+							{sy: 'sans_gr40_pd_19_1', x:9.0},
+							{sy: 'sans_gr40_pd_20_1', x:9.5},
+							{sy: 'sans_gr40_pd_21_1', x:10.0},
+						]
+					},
+					{ 				                          
+		        label: 'CBR Curve (2)',                          
+		        showLine: true,
+		        pointRadius: 4,	        
+		        pointBackgroundColor: 'blue',                          
+		        borderColor: 'blue',
+		        fill: false,
+		        data: [						
+							{sy: 'sans_gr40_pd_1_2', x:0},
+							{sy: 'sans_gr40_pd_2_2', x:0.5},
+							{sy: 'sans_gr40_pd_3_2', x:1.0},
+							{sy: 'sans_gr40_pd_4_2', x:1.5},
+							{sy: 'sans_gr40_pd_5_2', x:2.0},
+							{sy: 'sans_gr40_pd_6_2', x:2.5},
+							{sy: 'sans_gr40_pd_7_2', x:3.0},
+							{sy: 'sans_gr40_pd_8_2', x:3.5},
+							{sy: 'sans_gr40_pd_9_2', x:4.0},
+							{sy: 'sans_gr40_pd_10_2', x:4.5},
+							{sy: 'sans_gr40_pd_11_2', x:5.0},
+							{sy: 'sans_gr40_pd_12_2', x:5.5},
+							{sy: 'sans_gr40_pd_13_2', x:6.0},
+							{sy: 'sans_gr40_pd_14_2', x:6.5},
+							{sy: 'sans_gr40_pd_15_2', x:7.0},
+							{sy: 'sans_gr40_pd_16_2', x:7.5},
+							{sy: 'sans_gr40_pd_17_2', x:8.0},
+							{sy: 'sans_gr40_pd_18_2', x:8.5},
+							{sy: 'sans_gr40_pd_19_2', x:9.0},
+							{sy: 'sans_gr40_pd_20_2', x:9.5},
+							{sy: 'sans_gr40_pd_21_2', x:10.0},
+						]
+					},
+					{ 				                          
+		        label: 'CBR Curve (3)',                          
+		        showLine: true,
+		        pointRadius: 4,	        
+		        pointBackgroundColor: 'green',                          
+		        borderColor: 'green',
+		        fill: false,
+		        data: [						
+							{sy: 'sans_gr40_pd_1_3', x:0},
+							{sy: 'sans_gr40_pd_2_3', x:0.5},
+							{sy: 'sans_gr40_pd_3_3', x:1.0},
+							{sy: 'sans_gr40_pd_4_3', x:1.5},
+							{sy: 'sans_gr40_pd_5_3', x:2.0},
+							{sy: 'sans_gr40_pd_6_3', x:2.5},
+							{sy: 'sans_gr40_pd_7_3', x:3.0},
+							{sy: 'sans_gr40_pd_8_3', x:3.5},
+							{sy: 'sans_gr40_pd_9_3', x:4.0},
+							{sy: 'sans_gr40_pd_10_3', x:4.5},
+							{sy: 'sans_gr40_pd_11_3', x:5.0},
+							{sy: 'sans_gr40_pd_12_3', x:5.5},
+							{sy: 'sans_gr40_pd_13_3', x:6.0},
+							{sy: 'sans_gr40_pd_14_3', x:6.5},
+							{sy: 'sans_gr40_pd_15_3', x:7.0},
+							{sy: 'sans_gr40_pd_16_3', x:7.5},
+							{sy: 'sans_gr40_pd_17_3', x:8.0},
+							{sy: 'sans_gr40_pd_18_3', x:8.5},
+							{sy: 'sans_gr40_pd_19_3', x:9.0},
+							{sy: 'sans_gr40_pd_20_3', x:9.5},
+							{sy: 'sans_gr40_pd_21_3', x:10},
+						]
+					},					
+				]		
+			},//GRAPH 1
+			{//GRAPH2
+				addMaxY: 3,
+				roundOff: 1,
+				options: {
+					
+					hover: {
+						animationDuration: 0
+					},
+
+					animation: {
+						duration: 0,
+						onComplete: function () {
+						    
+						    var ctx = this.chart.ctx;						     
+						    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, 'normal', Chart.defaults.global.defaultFontFamily);
+						    ctx.fillStyle = this.chart.config.options.defaultFontColor;
+						    ctx.textAlign = 'center';
+						    ctx.textBaseline = 'bottom';
+						    
+						    this.data.datasets.forEach(function (dataset) {
+						        for (var i = 0; i < dataset.data.length; i++) {
+						            
+						            var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;						            
+						            var string = '' 
+						            try{
+						            	string = `(${dataset.data[i].x.toFixed(0)}, ${dataset.data[i].y.toFixed(0)})`;
+						            }catch(e){						            		
+						            	string = '';
+						            } 
+						             
+						            						            
+												ctx.save();
+												ctx.translate(model.x, model.y);
+												ctx.rotate(-Math.PI/1.5 );
+
+												ctx.textAlign = 'left';
+												ctx.fillText(string , 10, 5);
+
+												ctx.restore();
+						        }
+						    });
+						}},
+
+					scales: {
+						xAxes: [
+							{
+								scaleLabel:{display: true,labelString: '% Compaction',},
+								type:'linear',position: 'bottom',
+								ticks:{
+									stepSize: 1,
+									minRotation: 90,
+									callback: function(label,index,labels){
+										return label.toFixed(2);						
+									}
+								}
+							}	
+						],
+						yAxes: [					
+							{							
+								scaleLabel:{display: true,labelString: 'CBR'},
+								type:'linear',
+								ticks:{
+								},
+							}
+						]					
+					},
+				},
+				dataSets:[
+					{ 				                          
+		        label: 'CBR (2.5 mm)',                          
+		        showLine: true,
+		        pointRadius: 4,	        
+		        pointBackgroundColor: 'red',                          
+		        borderColor: 'red',
+		        fill: false,
+		        lineTension: 0,
+		        data: [						
+		        	{sx:'sans_gr40_mmx1',sy: 'sans_gr40_1_d1'},
+		        	{sx:'sans_gr40_imx1',sy: 'sans_gr40_2_d1'},
+		        	{sx:'sans_gr40_pmx1',sy: 'sans_gr40_3_d1'},
+						]
+					},
+					
+					{ 				                          
+		        label: 'CBR (2.5 mm - Normalized)',                          
+		        showLine: true,
+		        pointRadius: 4,	        
+		        fill: false,
+		        isFormula: true,
+		        lineTension: 0,
+		        regression: 'linear',
+		        xInputs: [
+		        	{x:90,scopeVal:'sans_gr40_at_90'},
+		        	{x:93,scopeVal:'sans_gr40_at_93'},
+		        	{x:95,scopeVal:'sans_gr40_at_95'},
+		        	{x:97,scopeVal:'sans_gr40_at_97'},
+		        	{x:98,scopeVal:'sans_gr40_at_98'},
+		        	{x:100,scopeVal:'sans_gr40_at_100'},
+		        ],
+		        data: [						
+		        	{sx:'sans_gr40_pmx1',sy: 'sans_gr40_3_d1'},		        	
+		        	{sx:'(sans_gr40_mmx1+sans_gr40_imx1)/2',sy: '(sans_gr40_1_d1+sans_gr40_2_d1)/2', isFormula:true, scopeVariables: ['sans_gr40_mmx1','sans_gr40_imx1','sans_gr40_1_d1','sans_gr40_2_d1'] }
+						]
+					}
+				]	
+			},//GRAPH2
+
+		]//GRAPH ARRAY
 	},//3001-GR40
 	
 	{//3001-GR31
 		code: '3001-GR31',
-		hasGraph: false,
-		colLayout: [],
-		grid: [],
-		graph: [],
+		hasGraph: true,
+		colLayout:[
+			{ span:1,  width: "30%"},
+			{ span:1,  width: "14%"},
+			{ span:1,  width: "14%"},
+			{ span:1,  width: "14%"},
+			{ span:1,  width: "14%"},
+			{ span:1,  width: "14%"},
+		],
+		grid:[
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Hydroscopic Moisture Content (SANS 3001-GR20)"},				
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_hyggr20'},
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Percentage Stabilizer to be Added"},				
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_psa'},
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.c, isVal:false,label: "Points"},				
+				{style: STYLES.LARGE_LABEL.c, label: "1"},
+				{style: STYLES.LARGE_LABEL.c, label: "2"},
+				{style: STYLES.LARGE_LABEL.c, label: "3"},
+				{style: STYLES.LARGE_LABEL.c, label: "4"},
+				{style: STYLES.LARGE_LABEL.c, label: "5"},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Sample Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_sm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_sm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_sm3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_sm4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_sm5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mass Stabilizer to be Added"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_msa1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_msa2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_msa3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_msa4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_msa5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Percentage Water Added"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pa1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pa2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pa3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pa4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pa5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Water Added"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_wa1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_wa2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_wa3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_wa4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_wa5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mould Number"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mn1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mn2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mn3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mn4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mn5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mould Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mm3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mm4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mm5'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mould Volume"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mv1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mv2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mv3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mv4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mv5'},
+			]},										
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mould Plus Wet Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mwm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mwm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mwm3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mwm4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mwm5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Wet Density"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_wd1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_wd2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_wd3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_wd4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_wd5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Estimated Dry Density"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_edd1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_edd2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_edd3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_edd4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_edd5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Number"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pn1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pn2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pn3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pn4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pn5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Wet Mass Plus Plan"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pwmp1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pwmp2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pwmp3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pwmp4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pwmp5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Dry Mass Plus Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pdmp1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pdmp2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pdmp3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pdmp4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pdmp5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pm3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pm4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_pm5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Actual Moisture Content"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_amc1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_amc2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_amc3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_amc4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_amc5'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Actual Dry Density"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_add1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_add2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_add3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_add4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_add5'},
+			]},												
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Hydroscopic Moisture"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_hm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_hm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_hm3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_hm4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_hm5'},
+			]},
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Maximum Dry Density (Read from Graph)"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_mdd'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Optimum Moisture Content (Read from Graph)"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr31_omc'},
+			]},												
+		],
+
+		graph:[{
+			
+			addMaxY: 100,
+			roundOff: 100,						
+
+			options: {				
+
+				hover: {
+					animationDuration: 0
+				},
+
+				onClick: function(e){
+					const chartA = this.chartArea;
+					const chartO = this;
+										
+					let px = e.layerX - chartA.left;
+					if(px < 0){ px = 0; }
+					
+					let cWidthPx = chartA.right - chartA.left;
+					let cHeightPx = chartA.bottom - chartA.top;
+										
+					let cWidthDt = chartO.scales['x-axis-0'].max - chartO.scales['x-axis-0'].min;
+					let cHeightDt = chartO.scales['y-axis-0'].max - chartO.scales['y-axis-0'].min; 
+
+					let py = cHeightPx - (e.layerY - chartA.top) ; 
+					if(py < 0){ py = 0; }
+					
+
+					let dx = chartO.scales['x-axis-0'].min + px*(cWidthDt/cWidthPx);
+					let dy = chartO.scales['y-axis-0'].min + py*(cHeightDt/cHeightPx);
+
+					dx = Math.round(dx*10)/10;
+					dy = Math.round(dy*10)/10;
+					this.options.dataAddCallBack({x: dx, y: dy, pop:true});																			
+				},
+
+				animation: {
+					duration: 500,
+					onComplete: function () {
+					    var ctx = this.chart.ctx;					     
+					    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, 'normal', Chart.defaults.global.defaultFontFamily);
+					    ctx.fillStyle = this.chart.config.options.defaultFontColor;
+					    ctx.textAlign = 'center';
+					    ctx.textBaseline = 'bottom';
+					    
+					    this.data.datasets.forEach(function (dataset, di) {
+					        for (var i = 0; i < dataset.data.length; i++) {					      			      					            
+					            var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;						            
+					            var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;					            						            
+					            
+											ctx.save();
+											ctx.translate(model.x, model.y);
+											ctx.rotate(-Math.PI/2);
+
+											ctx.textAlign = 'left';
+											ctx.fillText(string , 10, 5);
+
+											ctx.restore();
+					        }
+					    });
+					}},
+
+				scales: {
+					xAxes: [
+						{
+							scaleLabel:{display: true,labelString: 'Moisture Content (%)',},
+							type:'linear',position: 'bottom',
+							ticks:{
+								//min: 0,
+								//max: 20,
+								stepSize: 0.05,
+								minRotation: 90,
+								callback: function(label,index,labels){
+									if(label % 1 === 0){
+										return label.toFixed(1);
+									}else{
+										return '';
+									}
+								}								
+							}
+						}	
+					],
+					yAxes: [					
+						{							
+							scaleLabel:{display: true,labelString: 'Dry Density (kg/m^3)'},
+							type:'linear',
+							ticks:{
+								stepSize: 10,
+								callback: function(label,index,labels){
+									if(label % 20 === 0){
+										return label.toFixed(1);
+									}else{
+										return '';
+									}
+								}								
+							},
+						}
+					]					
+				},
+			},	
+
+			dataSets:[
+				{ 				                          
+	        label: 'Estimated Dry Density and Percentage Water Added',                          
+	        showLine: false,
+	        pointRadius: 3,	        
+	        pointBackgroundColor: 'red',                          
+	        borderColor: 'red',
+	        fill: false,	        
+          data: [						
+						{ sx: 'sans_gr31_pa1', sy: 'sans_gr31_edd1'},
+						{ sx: 'sans_gr31_pa2', sy: 'sans_gr31_edd2'},
+						{ sx: 'sans_gr31_pa3', sy: 'sans_gr31_edd3'},
+						{ sx: 'sans_gr31_pa4', sy: 'sans_gr31_edd4'},
+						{ sx: 'sans_gr31_pa5', sy: 'sans_gr31_edd5'},
+						{ sx: 'sans_gr31_omc', sy: 'sans_gr31_mdd', pop:true, toggleLine: true},										
+					]
+				},
+				{ 				                          
+	        label: 'Actual Dry Density and Actual Moisture Content',                          
+	        showLine: false,
+	        pointRadius: 3,	        
+	        pointBackgroundColor: 'blue',                          
+	        borderColor: 'blue',
+	        fill: false,
+          data: [						
+						{ sx: 'sans_gr31_amc1', sy: 'sans_gr31_add1'},
+						{ sx: 'sans_gr31_amc2', sy: 'sans_gr31_add2'},
+						{ sx: 'sans_gr31_amc3', sy: 'sans_gr31_add3'},
+						{ sx: 'sans_gr31_amc4', sy: 'sans_gr31_add4'},
+						{ sx: 'sans_gr31_amc5', sy: 'sans_gr31_add5'},										
+					]
+				}
+			]							
+		}]
+
 	},//3001-GR31
 	
 	{//3001-GR30
 		code: '3001-GR30',
-		hasGraph: false,
-		colLayout: [],
-		grid: [],
-		graph: [],
+		hasGraph: true,
+		colLayout:[
+			{ span:1,  width: "30%"},
+			{ span:1,  width: "14%"},
+			{ span:1,  width: "14%"},
+			{ span:1,  width: "14%"},
+			{ span:1,  width: "14%"},
+			{ span:1,  width: "14%"},
+		],
+		grid:[
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.c, isVal:false,label: "Points"},				
+				{style: STYLES.LARGE_LABEL.c, label: "1"},
+				{style: STYLES.LARGE_LABEL.c, label: "2"},
+				{style: STYLES.LARGE_LABEL.c, label: "3"},
+				{style: STYLES.LARGE_LABEL.c, label: "4"},
+				{style: STYLES.LARGE_LABEL.c, label: "5"},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Sample Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_sm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_sm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_sm3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_sm4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_sm5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Water Percentage Added"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pa1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pa2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pa3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pa4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pa5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Water Added"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_wa1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_wa2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_wa3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_wa4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_wa5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mould Number"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mn1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mn2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mn3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mn4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mn5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mould Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mm3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mm4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mm5'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mould Volume"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mv1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mv2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mv3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mv4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mv5'},
+			]},										
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mould Plus Wet Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mwm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mwm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mwm3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mwm4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mwm5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Wet Density"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_wd1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_wd2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_wd3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_wd4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_wd5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Estimated Dry Density"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_edd1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_edd2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_edd3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_edd4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_edd5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Number"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pn1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pn2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pn3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pn4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pn5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Wet Mass Plus Plan"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pwmp1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pwmp2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pwmp3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pwmp4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pwmp5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Dry Mass Plus Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pdmp1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pdmp2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pdmp3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pdmp4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pdmp5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pm3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pm4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_pm5'},
+			]},						
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Actual Moisture Content"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_amc1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_amc2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_amc3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_amc4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_amc5'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Actual Dry Density"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_add1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_add2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_add3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_add4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_add5'},
+			]},												
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Hydroscopic Moisture"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_hm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_hm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_hm3'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_hm4'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_hm5'},
+			]},
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Maximum Dry Density (Read from Graph)"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_mdd'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Optimum Moisture Content (Read from Graph)"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr30_omc'},
+			]},												
+		],
+
+		graph:[{
+			
+			addMaxY: 100,
+			roundOff: 100,						
+
+			options: {				
+
+				hover: {
+					animationDuration: 0
+				},
+
+				onClick: function(e){
+					const chartA = this.chartArea;
+					const chartO = this;
+										
+					let px = e.layerX - chartA.left;
+					if(px < 0){ px = 0; }
+					
+					let cWidthPx = chartA.right - chartA.left;
+					let cHeightPx = chartA.bottom - chartA.top;
+										
+					let cWidthDt = chartO.scales['x-axis-0'].max - chartO.scales['x-axis-0'].min;
+					let cHeightDt = chartO.scales['y-axis-0'].max - chartO.scales['y-axis-0'].min; 
+
+					let py = cHeightPx - (e.layerY - chartA.top) ; 
+					if(py < 0){ py = 0; }
+					
+
+					let dx = chartO.scales['x-axis-0'].min + px*(cWidthDt/cWidthPx);
+					let dy = chartO.scales['y-axis-0'].min + py*(cHeightDt/cHeightPx);
+
+					dx = Math.round(dx*10)/10;
+					dy = Math.round(dy*10)/10;
+					this.options.dataAddCallBack({x: dx, y: dy, pop:true});																			
+				},
+
+				animation: {
+					duration: 500,
+					onComplete: function () {
+					    var ctx = this.chart.ctx;					     
+					    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, 'normal', Chart.defaults.global.defaultFontFamily);
+					    ctx.fillStyle = this.chart.config.options.defaultFontColor;
+					    ctx.textAlign = 'center';
+					    ctx.textBaseline = 'bottom';
+					    
+					    this.data.datasets.forEach(function (dataset, di) {
+					        for (var i = 0; i < dataset.data.length; i++) {					      			      					            
+					            var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;						            
+					            var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;					            						            
+					            
+											ctx.save();
+											ctx.translate(model.x, model.y);
+											ctx.rotate(-Math.PI/2);
+
+											ctx.textAlign = 'left';
+											ctx.fillText(string , 10, 5);
+
+											ctx.restore();
+					        }
+					    });
+					}},
+
+				scales: {
+					xAxes: [
+						{
+							scaleLabel:{display: true,labelString: 'Moisture Content (%)',},
+							type:'linear',position: 'bottom',
+							ticks:{
+								//min: 0,
+								//max: 20,
+								stepSize: 0.05,
+								minRotation: 90,
+								callback: function(label,index,labels){
+									if(label % 1 === 0){
+										return label.toFixed(1);
+									}else{
+										return '';
+									}
+								}								
+							}
+						}	
+					],
+					yAxes: [					
+						{							
+							scaleLabel:{display: true,labelString: 'Dry Density (kg/m^3)'},
+							type:'linear',
+							ticks:{
+								stepSize: 10,
+								callback: function(label,index,labels){
+									if(label % 20 === 0){
+										return label.toFixed(1);
+									}else{
+										return '';
+									}
+								}								
+							},
+						}
+					]					
+				},
+			},	
+
+			dataSets:[
+				{ 				                          
+	        label: 'Estimated Dry Density and Percentage Water Added',                          
+	        showLine: false,
+	        pointRadius: 3,	        
+	        pointBackgroundColor: 'red',                          
+	        borderColor: 'red',
+	        fill: false,	        
+          data: [						
+						{ sx: 'sans_gr30_pa1', sy: 'sans_gr30_edd1'},
+						{ sx: 'sans_gr30_pa2', sy: 'sans_gr30_edd2'},
+						{ sx: 'sans_gr30_pa3', sy: 'sans_gr30_edd3'},
+						{ sx: 'sans_gr30_pa4', sy: 'sans_gr30_edd4'},
+						{ sx: 'sans_gr30_pa5', sy: 'sans_gr30_edd5'},
+						{ sx: 'sans_gr30_omc', sy: 'sans_gr30_mdd', pop:true, toggleLine: true},										
+					]
+				},
+				{ 				                          
+	        label: 'Actual Dry Density and Actual Moisture Content',                          
+	        showLine: false,
+	        pointRadius: 3,	        
+	        pointBackgroundColor: 'blue',                          
+	        borderColor: 'blue',
+	        fill: false,
+          data: [						
+						{ sx: 'sans_gr30_amc1', sy: 'sans_gr30_add1'},
+						{ sx: 'sans_gr30_amc2', sy: 'sans_gr30_add2'},
+						{ sx: 'sans_gr30_amc3', sy: 'sans_gr30_add3'},
+						{ sx: 'sans_gr30_amc4', sy: 'sans_gr30_add4'},
+						{ sx: 'sans_gr30_amc5', sy: 'sans_gr30_add5'},										
+					]
+				}
+			]							
+		}]
+
 	},//3001-GR30
 	
 	{//3001-GR20
 		code: '3001-GR20',
-		hasGraph: false,
-		colLayout: [],
-		grid: [],
-		graph: [],
+		colLayout: [
+			{span: 1, width:'40%'},
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'}, 
+		],
+		grid:[
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Number of Method Samples"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr20_nop'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.c},
+				{style: STYLES.LARGE_LABEL.c, label: "1"},
+				{style: STYLES.LARGE_LABEL.c, label: "2"},
+				{style: STYLES.LARGE_LABEL.c, label: "3"},							
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Number"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr20_pn1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr20_pn2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr20_pn3'},
+			]},	
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Wet Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr20_wm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr20_wm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr20_wm3'},
+			]},	
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Dry Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr20_dm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr20_dm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr20_dm3'},
+			]},	
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr20_pm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr20_pm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr20_pm3'},
+			]},	
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Moisture Content"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr20_mcs1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr20_mcs2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr20_mcs3'},
+			]},	
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Average Moisture Content"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr20_avg'},
+
+			]},	
+		],
 	},//3001-GR20
 	
+	{//3001-GR11
+		code: '3001-GR11',
+		colLayout: [
+			{ span:1,  width: "25%"},
+			{ span:1,  width: "25%"},
+			{ span:1,  width: "25%"},
+			{ span:1,  width: "25%"},
+		],
+		grid: [			
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.c, label: "Liquid Limit",colSpan: 3},				
+			]},
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: ""},				
+				{style: STYLES.LARGE_LABEL.c, label: "1"},
+				{style: STYLES.LARGE_LABEL.c, label: "2"},
+			]},
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Number"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_ll_pn1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_ll_pn2'},
+
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Blows"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_ll_bl1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_ll_bl2'},
+
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Wet Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_ll_wm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_ll_wm2'},
+
+			]},
+			
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Dry Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_ll_dm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_ll_dm2'},
+
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Pan Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_ll_pm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_ll_pm2'},
+
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Liquid Limit"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_ll_ll1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_ll_ll2'},
+
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Average Liquid Limit"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_ll_avg'},								
+			]},
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.c, label: "Plastic Limit",colSpan: 3},				
+			]},
+			
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Number"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_pl_pn1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_pl_pn2'},
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Wet Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_pl_wm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_pl_wm2'},				
+			]},
+			
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Dry Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_pl_dm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_pl_dm2'},				
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Pan Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_pl_pm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_pl_pm2'},				
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Plasitc Limit"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_pl_pl1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_pl_pl2'},				
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Average Plastic Limit"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_pl_avg'},								
+			]},
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.c, label: "Plasticity Index",colSpan: 3},				
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Plasticity Index"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_pi'},								
+			]},
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.c, label: "Linear Shrinkage",colSpan: 3},				
+			]},
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Through Number"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_ls_tn'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Blows"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_ls_bl'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Linear Shrinkage"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_ls_ls'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Percentage Linear Shrinkage"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr11_ls_pls'},
+			]},
+		],
+	},//3001-GR11
+
 	{//3001-GR10
 		code: '3001-GR10',
-		hasGraph: false,
-		colLayout: [],
-		grid: [],
-		graph: [],
+		colLayout: [
+			{ span:1,  width: "25%"},
+			{ span:1,  width: "25%"},
+			{ span:1,  width: "25%"},
+			{ span:1,  width: "25%"},
+		],
+		grid: [			
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.c, label: "Liquid Limit",colSpan: 5},				
+			]},
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, label: "Number of Points"},
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_gr10_ll_nop'}
+			]},
+			
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: ""},				
+				{style: STYLES.LARGE_LABEL.c, label: "1"},
+				{style: STYLES.LARGE_LABEL.c, label: "2"},
+				{style: STYLES.LARGE_LABEL.c, label: "3"},
+			]},
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Number"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ll_pn1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ll_pn2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ll_pn3'},
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Blows"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ll_bl1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ll_bl2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ll_bl3'},
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Wet Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ll_wm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ll_wm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ll_wm3'},
+			]},
+			
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Dry Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ll_dm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ll_dm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ll_dm3'},
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Pan Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ll_pm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ll_pm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ll_pm3'},
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Liquid Limit"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ll_ll1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ll_ll2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ll_ll3'},
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Average Liquid Limit"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ll_avg'},								
+			]},
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.c, label: "Plastic Limit",colSpan: 5},				
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, label: "Number of Points"},
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_gr10_pl_nop'}
+			]},
+			
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: ""},				
+				{style: STYLES.LARGE_LABEL.c, label: "1"},
+				{style: STYLES.LARGE_LABEL.c, label: "2"},
+				{style: STYLES.LARGE_LABEL.c, label: "3"},
+			]},
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Pan Number"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_pl_pn1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_pl_pn2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_pl_pn3'},
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Wet Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_pl_wm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_pl_wm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_pl_wm3'},
+			]},
+			
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Dry Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_pl_dm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_pl_dm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_pl_dm3'},
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Pan Mass"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_pl_pm1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_pl_pm2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_pl_pm3'},
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Plasitc Limit"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_pl_pl1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_pl_pl2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_pl_pl3'},
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Average Plastic Limit"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_pl_avg'},								
+			]},
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.c, label: "Plasticity Index",colSpan: 5},				
+			]},
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Plasticity Index"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_pi'},								
+			]},
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.c, label: "Linear Shrinkage",colSpan: 5},				
+			]},
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Through Number"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ls_tn'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Blows"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ls_bl'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Linear Shrinkage"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ls_ls'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Percentage Linear Shrinkage"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr10_ls_pls'},
+			]},
+		],
 	},//3001-GR10
 	
 	{//3001-GR5
@@ -77,18 +1663,479 @@ export const methods = [
 
 	{//3001-GR2
 		code: '3001-GR2',
-		hasGraph: false,
-		colLayout: [],
-		grid: [],
-		graph: [],
+		colLayout: [
+			{ span:1,  width: "25%"},
+			{ span:1,  width: "20%"},
+			{ span:1,  width: "20%"},
+			{ span:1,  width: "20%"},
+			{ span:1,  width: "15%"},		
+		],
+		grid: [			
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Total Sample Mass"},
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_gr2_tsm'}
+			]},						
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Total Passing 20mm Sieve"},
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_gr2_tp20'}
+			]},			
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Riffled Mass ( < 20 mm)"},
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_gr2_rfp20'}
+			]},			
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Reduction factor"},
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_gr2_rf'}
+			]},				
+			{td: [
+				{label:'Sieve Arpeture Size',style: STYLES.LARGE_LABEL.c},
+				{label:'Mass Retained',style: STYLES.LARGE_LABEL.c},				
+				{label:'Percentage Retained',style: STYLES.LARGE_LABEL.c},
+				{label:'Cumulative Percentage Passing',style: STYLES.LARGE_LABEL.c},				
+			]},		  
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "100 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_mr1"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_pr1"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_cpp1"},
+		  	
+		 	]},
+
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "75 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_mr2"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_pr2"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_cpp2"},
+				
+		 	]},
+
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "63 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_mr3"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_pr3"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_cpp3"},
+		  	
+		 	]},
+
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "50 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_mr4"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_pr4"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_cpp4"},
+		  	
+		 	]},
+
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "37.5 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_mr5"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_pr5"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_cpp5"},
+		  
+		 	]},
+
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "28 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_mr6"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_pr6"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_cpp6"},
+		  	
+		 	]},
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "20 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_mr7"},	  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_pr7"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_cpp7"},		  
+		 	]},
+			{td: [
+		  	{style: STYLES.LARGE_LABEL.thin,colSpan: 4},
+		  ]},		 	
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "14 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_mr8"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_pr8"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_cpp8"},
+		  
+		 	]},
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "5 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_mr9"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_pr9"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_cpp9"},
+		  
+		 	]},
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "2.0 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_mr10"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_pr10"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_cpp10"},
+		  
+		 	]},
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "0.425 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_mr11"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_pr11"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr2_cpp11"},
+		  
+		 	]},		 							
+		],
+
+
+		hasGraph: true,
+	
+		graph:[{
+				addMaxY: 40,
+				roundOff: 1,
+
+				options: {
+					
+					hover: {
+						animationDuration: 0
+					},
+					
+					animation: {
+						duration: 0,
+						onComplete: function () {
+						    
+						    var ctx = this.chart.ctx;						     
+						    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, 'normal', Chart.defaults.global.defaultFontFamily);
+						    ctx.fillStyle = this.chart.config.options.defaultFontColor;
+						    ctx.textAlign = 'center';
+						    ctx.textBaseline = 'bottom';
+						    
+						    this.data.datasets.forEach(function (dataset) {
+						        for (var i = 0; i < dataset.data.length; i++) {
+						            
+						            var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;						            
+						            var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;
+						            						            
+												ctx.save();
+												ctx.translate(model.x, model.y);
+												ctx.rotate(-Math.PI/2 );
+
+												ctx.textAlign = 'left';
+												ctx.fillText(string , 10, 5);
+
+												ctx.restore();
+						        }
+						    });
+						}},
+
+					scales: {
+						xAxes: [
+							{
+								scaleLabel:{display: true,labelString: 'Sieve Size (mm)',},
+								type:'logarithmic',position: 'bottom',
+								ticks:{									
+									minRotation: 90,
+									callback: function(label,index,labels){
+										return label.toFixed(2);						
+									}
+								}
+							}	
+						],
+						yAxes: [					
+							{							
+								scaleLabel:{display: true,labelString: 'Percentage Passing (%)'},
+								type:'linear',
+								ticks:{
+								},
+							}
+						]					
+					},
+				},							
+				
+
+				dataSets:[				
+				{ 				                          
+	        label: 'Cummulative Percentage Passing',	            
+	        showLine: true,
+	        pointRadius: 4,	        
+	        pointBackgroundColor: 'red',                          
+	        borderColor: 'red',
+	        lineTension: 0.2,
+          data: [						
+						{ sy: 'sans_gr2_cpp1', x: 100},
+						{ sy: 'sans_gr2_cpp2', x: 75},
+						{ sy: 'sans_gr2_cpp3', x: 63},
+						{ sy: 'sans_gr2_cpp4', x: 50},
+						{ sy: 'sans_gr2_cpp5', x: 37.5},
+						{ sy: 'sans_gr2_cpp6', x: 28},
+						{ sy: 'sans_gr2_cpp7', x: 20},
+						{ sy: 'sans_gr2_cpp8', x: 14},										
+						{ sy: 'sans_gr2_cpp9', x: 5},
+						{ sy: 'sans_gr2_cpp10', x: 2.00},
+						{ sy: 'sans_gr2_cpp11', x: 0.425},
+					]
+				}
+			]							
+		}]
 	},//3001-GR2
 	
 	{//3001-GR1
 		code: '3001-GR1',
-		hasGraph: false,
-		colLayout: [],
-		grid: [],
-		graph: [],
+		colLayout: [
+			{ span:1,  width: "25%"},
+			{ span:1,  width: "20%"},
+			{ span:1,  width: "20%"},
+			{ span:1,  width: "20%"},
+			{ span:1,  width: "15%"},		
+		],
+		grid: [			
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Total Sample Mass"},
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_gr1_tsm'}
+			]},						
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Total Passing 20mm Sieve"},
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_gr1_tp20'}
+			]},			
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Riffled Mass ( < 20 mm)"},
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_gr1_rfp20'}
+			]},			
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Reduction factor"},
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_gr1_rf'}
+			]},			
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Initial Sieve (<0.425 mm)"},
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_gr1_is'}
+			]},			
+
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Washed (<0.425 mm)"},
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_gr1_wa'}
+			]},			
+		  {td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Final (<0.425 mm)"},
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_gr1_fi'}
+			]},
+			{td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "< 0.425 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_mr12"},		  			  			  			  	
+		 	]},				
+			{td: [
+				{label:'Sieve Arpeture Size',style: STYLES.LARGE_LABEL.c},
+				{label:'Mass Retained',style: STYLES.LARGE_LABEL.c},				
+				{label:'Percentage Retained',style: STYLES.LARGE_LABEL.c},
+				{label:'Cumulative Percentage Passing',style: STYLES.LARGE_LABEL.c},
+				
+			]},
+		  
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "100 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_mr1"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_pr1"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_cpp1"},
+		  	
+		 	]},
+
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "75 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_mr2"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_pr2"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_cpp2"},
+				
+		 	]},
+
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "63 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_mr3"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_pr3"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_cpp3"},
+		  	
+		 	]},
+
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "50 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_mr4"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_pr4"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_cpp4"},
+		  	
+		 	]},
+
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "37.5 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_mr5"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_pr5"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_cpp5"},
+		  
+		 	]},
+
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "28 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_mr6"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_pr6"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_cpp6"},
+		  	
+		 	]},
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "20 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_mr7"},	  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_pr7"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_cpp7"},		  
+		 	]},
+			{td: [
+		  	{style: STYLES.LARGE_LABEL.thin,colSpan: 4},
+		  ]},		 	
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "14 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_mr8"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_pr8"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_cpp8"},
+		  
+		 	]},
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "5 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_mr9"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_pr9"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_cpp9"},
+		  
+		 	]},
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "2.0 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_mr10"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_pr10"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_cpp10"},
+		  
+		 	]},
+		  {td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "0.425 mm"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_mr11"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_pr11"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_cpp11"},
+		  
+		 	]},
+
+		 	{td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "+0.075 mm"},
+		  	{},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_sm_fpr75um"},		  			  			  			  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_sm_fpp75um"},		  			  			  			  			  			  			  			  			  	
+		 	]},
+		 	{td: [
+		  	{style: STYLES.LARGE_LABEL.thin, colSpan:4},
+		 	]},
+
+		 	{td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Sample Mass for Fines Determination"},
+		 		{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_sm_ism"},
+		 		{style: STYLES.LARGE_LABEL.c, isVal:false, label: "% Fines in Total Sample"},
+		 	]},
+
+		 	{td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Mass Retained 0.250 mm"},
+		 		{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_sm_250umr"},
+		 		{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_sm_pr250um"},
+		 	]},
+
+		 	{td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Mass Retained 0.150 mm"},
+		 		{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_sm_150umr"},
+		 		{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_sm_pr150um"},
+		 	]},		 	
+		 	{td: [
+		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Mass Retained 0.075 mm"},
+		 		{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_sm_75umr"},
+		 		{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_gr1_sm_pr75um"},
+		 	]},
+
+		  		 							
+		 							
+		],
+
+
+		hasGraph: true,
+	
+		graph:[{
+				addMaxY: 40,
+				roundOff: 1,
+
+				options: {
+					
+					hover: {
+						animationDuration: 0
+					},
+					
+					animation: {
+						duration: 0,
+						onComplete: function () {
+						    
+						    var ctx = this.chart.ctx;						     
+						    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, 'normal', Chart.defaults.global.defaultFontFamily);
+						    ctx.fillStyle = this.chart.config.options.defaultFontColor;
+						    ctx.textAlign = 'center';
+						    ctx.textBaseline = 'bottom';
+						    
+						    this.data.datasets.forEach(function (dataset) {
+						        for (var i = 0; i < dataset.data.length; i++) {
+						            
+						            var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;						            
+						            var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;
+						            						            
+												ctx.save();
+												ctx.translate(model.x, model.y);
+												ctx.rotate(-Math.PI/2 );
+
+												ctx.textAlign = 'left';
+												ctx.fillText(string , 10, 5);
+
+												ctx.restore();
+						        }
+						    });
+						}},
+
+					scales: {
+						xAxes: [
+							{
+								scaleLabel:{display: true,labelString: 'Sieve Size (mm)',},
+								type:'logarithmic',position: 'bottom',
+								ticks:{									
+									minRotation: 90,
+									callback: function(label,index,labels){
+										return label.toFixed(2);						
+									}
+								}
+							}	
+						],
+						yAxes: [					
+							{							
+								scaleLabel:{display: true,labelString: 'Percentage Passing (%)'},
+								type:'linear',
+								ticks:{
+								},
+							}
+						]					
+					},
+				},							
+				
+
+				dataSets:[				
+				{ 				                          
+	        label: 'Cummulative Percentage Passing',	            
+	        showLine: true,
+	        pointRadius: 4,	        
+	        pointBackgroundColor: 'red',                          
+	        borderColor: 'red',
+	        lineTension: 0.2,
+          data: [						
+						{ sy: 'sans_gr1_cpp1', x: 100},
+						{ sy: 'sans_gr1_cpp2', x: 75},
+						{ sy: 'sans_gr1_cpp3', x: 63},
+						{ sy: 'sans_gr1_cpp4', x: 50},
+						{ sy: 'sans_gr1_cpp5', x: 37.5},
+						{ sy: 'sans_gr1_cpp6', x: 28},
+						{ sy: 'sans_gr1_cpp7', x: 20},
+						{ sy: 'sans_gr1_cpp8', x: 14},										
+						{ sy: 'sans_gr1_cpp9', x: 5},
+						{ sy: 'sans_gr1_cpp10', x: 2.00},
+						{ sy: 'sans_gr1_cpp11', x: 0.425},
+						{ sy: 'sans_gr1_sm_fpp75um', x: 0.075},						
+
+					]
+				}
+			]							
+		}]	
 	},//3001-GR1
 
 	{//3001-AG22
@@ -117,6 +2164,10 @@ export const methods = [
 			{td: [ 
 				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Mass of Pycnometer, Glass Sheet and Water"},
 				{style: STYLES.LARGE_LABEL.input,  isVal:true, scopeVariable: "sans_ag22_mpw"},
+			]},
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Water to fill Pycnometer, glass sheet and dried sample"},
+				{style: STYLES.LARGE_LABEL.input,  isVal:true, scopeVariable: "sans_ag22_mpsw"},
 			]},
 			{td: [ 
 				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Mass of Water"},
@@ -302,6 +2353,11 @@ export const methods = [
 				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "3rd Point Load"},
 				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_ag10_3pl10'}
 			]},
+			{td: [ 
+				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "3rd Point Load (Estimated FA)"},
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_ag10_3e10'}
+			]},
+
 		],
 		graph: [],
 	},//3001-AG10
@@ -364,7 +2420,7 @@ export const methods = [
 			{td: [ 
 				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Total Sample Mass"},
 				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_ag4_tsm'}
-			]},						
+			]},				
 			{td: [
 				{label:'Sieve Arpeture Size',style: STYLES.LARGE_LABEL.c},
 				{label:'Mass of Aggregate Retained',style: STYLES.LARGE_LABEL.c},				
@@ -426,9 +2482,6 @@ export const methods = [
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag4_mp7"},
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag4_fi7"},		  
 		 	]},
-			{td: [
-		  	{style: STYLES.LARGE_LABEL.thin,colSpan: 4},
-		  ]},		 	
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "7.1 mm"},
 		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag4_mr8"},		  	
@@ -1269,14 +3322,14 @@ export const methods = [
 			]},		
 
 			{td: [
-				{style: STYLES.LARGE_LABEL.tr, label: "Corrected kN (0.254 mm)"},
+				{style: STYLES.LARGE_LABEL.tr, label: "Corrected kN (2.54 mm)"},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_ckn1_d1'},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_ckn2_d1'},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_ckn3_d1'},				
 			]},		
 			
 			{td: [
-				{style: STYLES.LARGE_LABEL.tr, label: "CBR (0.254 mm)"},
+				{style: STYLES.LARGE_LABEL.tr, label: "CBR (2.54 mm)"},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_1_d1'},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_2_d1'},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'cbr_3_d1'},				
@@ -1561,7 +3614,7 @@ export const methods = [
 				]	
 			},//GRAPH2
 
-		]//GRAPH ARRAY
+		]//GRAPH ARRAY		
 	},//A8
 
 	{//A7
@@ -1593,7 +3646,7 @@ export const methods = [
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_sm5'},
 			]},						
 			{td: [
-				{style: STYLES.LARGE_LABEL.tr, label: "Percentage Added"},
+				{style: STYLES.LARGE_LABEL.tr, label: "Water Percentage Added"},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_pa1'},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_pa2'},
 				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'mdd_pa3'},
@@ -2153,32 +4206,32 @@ export const methods = [
 					
 			{td: [ 
 				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Total Sample Mass"},
-				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_ag1_tsm'}
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'gr_tsm'}
 			]},						
 			{td: [ 
 				{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Total Passing 19mm Sieve"},
-				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_ag1_tp19'}
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'gr_tp19'}
 			]},			
 			{td: [ 
 				{style: STYLES.LARGE_LABEL.tr, isVal:false,label: "Riffled Mass ( < 19 mm)"},
-				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_ag1_rfp19'}
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'gr_rfp19'}
 			]},			
 			{td: [ 
 				{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Reduction factor"},
-				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_ag1_rf'}
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'gr_rf'}
 			]},			
 			{td: [ 
 				{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Initial Sieve (<0.425 mm)"},
-				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_ag1_is'}
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'gr_is'}
 			]},			
 
 			{td: [ 
 				{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Washed (<0.425 mm)"},
-				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_ag1_wa'}
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'gr_wa'}
 			]},			
 		  {td: [ 
 				{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "Final (<0.425 mm)"},
-				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'sans_ag1_fi'}
+				{style: STYLES.LARGE_LABEL.input, isVal:true, scopeVariable: 'gr_fi'}
 			]},				
 			{td: [
 				{label:'Sieve Arpeture Size',style: STYLES.LARGE_LABEL.c},
@@ -2190,92 +4243,92 @@ export const methods = [
 		  
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "105 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_mr1"},		  	
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_pr1"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_cpp1"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr1"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr1"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp1"},
 		  	
 		 	]},
 
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "75 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_mr2"},		  	
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_pr2"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_cpp2"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr2"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr2"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp2"},
 				
 		 	]},
 
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "63 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_mr3"},		  	
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_pr3"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_cpp3"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr3"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr3"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp3"},
 		  	
 		 	]},
 
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "53 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_mr4"},		  	
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_pr4"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_cpp4"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr4"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr4"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp4"},
 		  	
 		 	]},
 
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "37.5 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_mr5"},		  	
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_pr5"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_cpp5"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr5"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr5"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp5"},
 		  
 		 	]},
 
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "26.5 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_mr6"},		  	
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_pr6"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_cpp6"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr6"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr6"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp6"},
 		  	
 		 	]},
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "19 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_mr7"},	  	
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_pr7"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_cpp7"},		  
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr7"},	  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr7"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp7"},		  
 		 	]},
 			{td: [
 		  	{style: STYLES.LARGE_LABEL.thin,colSpan: 4},
 		  ]},		 	
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "13.2 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_mr8"},		  	
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_pr8"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_cpp8"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr8"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr8"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp8"},
 		  
 		 	]},
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "4.75 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_mr9"},		  	
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_pr9"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_cpp9"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr9"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr9"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp9"},
 		  
 		 	]},
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "2.0 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_mr10"},		  	
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_pr10"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_cpp10"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr10"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr10"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp10"},
 		  
 		 	]},
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "0.425 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_mr11"},		  	
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_pr11"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_cpp11"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr11"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr11"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_cpp11"},
 		  
 		 	]},
 		  {td: [
 		  	{style: STYLES.LARGE_LABEL.tr, isVal:false, label: "< 0.425 mm"},
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_mr12"},		  	
-		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "sans_ag1_pr12"},
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_mr12"},		  	
+		  	{style: STYLES.LARGE_LABEL.input, isVal:true,scopeVariable: "gr_pr12"},
 		  			  	
 		 	]},		 							
 		],
@@ -2353,18 +4406,18 @@ export const methods = [
 	        borderColor: 'red',
 	        lineTension: 0.2,
           data: [						
-						{ sy: 'sans_ag1_cpp1', x: 105},
-						{ sy: 'sans_ag1_cpp2', x: 75},
-						{ sy: 'sans_ag1_cpp3', x: 63},
-						{ sy: 'sans_ag1_cpp4', x: 53},
-						{ sy: 'sans_ag1_cpp5', x: 37.5},
-						{ sy: 'sans_ag1_cpp6', x: 26.5},
-						{ sy: 'sans_ag1_cpp7', x: 19},
-						{ sy: 'sans_ag1_cpp8', x: 13.2},										
-						{ sy: 'sans_ag1_cpp9', x: 4.75},
-						{ sy: 'sans_ag1_cpp10', x: 2.00},
-						{ sy: 'sans_ag1_cpp11', x: 0.425},
-						{ sy: 'sm_fm', x: 0.075},
+						{ sy: 'gr_cpp1', x: 105},
+						{ sy: 'gr_cpp2', x: 75},
+						{ sy: 'gr_cpp3', x: 63},
+						{ sy: 'gr_cpp4', x: 53},
+						{ sy: 'gr_cpp5', x: 37.5},
+						{ sy: 'gr_cpp6', x: 26.5},
+						{ sy: 'gr_cpp7', x: 19},
+						{ sy: 'gr_cpp8', x: 13.2},										
+						{ sy: 'gr_cpp9', x: 4.75},
+						{ sy: 'gr_cpp10', x: 2.00},
+						{ sy: 'gr_cpp11', x: 0.425},
+						{ sy: 'gr_cpp12', x: 0.075},
 
 					]
 				}

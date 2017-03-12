@@ -1,0 +1,20 @@
+symbol,label,description,unit,input_type,default_value,minimum,maximum,formula,calculation_order,step,method
+sans_gr10_pl_dm3,Dry Mass,,grams,in,,,,,,0.01,3
+sans_gr10_pl_nop,Number of Points,,number,in,1,1,3,,,1,3
+sans_gr10_pl_pn1,Pan Number,,string,in,,,,,,,3
+sans_gr10_pl_wm1,Wet Mass,,grams,in,,,,,,0.01,3
+sans_gr10_pl_dm1,Dry Mass,,grams,in,,,,,,0.01,3
+sans_gr10_pl_pm1,Pan Mass,,grams,in,,,,,,0.01,3
+sans_gr10_pl_pm3,Pan Mass,,grams,in,,,,,,0.01,3
+sans_gr10_pl_pn2,Pan Number,,string,in,,,,,,,3
+sans_gr10_pl_wm2,Wet Mass,,grams,in,,,,,,0.01,3
+sans_gr10_pl_dm2,Dry Mass,,grams,in,,,,,,0.01,3
+sans_gr10_pl_pm2,Pan Mass,,grams,in,,,,,,0.01,3
+sans_gr10_pl_pn3,Pan Number,,string,in,,,,,,,3
+sans_gr10_pl_wm3,Wet Mass,,grams,in,,,,,,0.01,3
+sans_gr10_pl_ll_avg,Liquid Limit (PL) Average,,,in,0,,,,0,0.01,3
+sans_gr10_pl_pl1,Plastic Limit,,%,calc,,,,((100*(sans_gr10_pl_wm1-sans_gr10_pl_dm1))/(sans_gr10_pl_dm1-sans_gr10_pl_pm1)),300,0.01,3
+sans_gr10_pl_pl2,Plastic Limit,,%,calc,,,,((100*(sans_gr10_pl_wm2-sans_gr10_pl_dm2))/(sans_gr10_pl_dm2-sans_gr10_pl_pm2)),301,0.01,3
+sans_gr10_pl_pl3,Plastic Limit,,%,calc,,,,((100*(sans_gr10_pl_wm3-sans_gr10_pl_dm3))/(sans_gr10_pl_dm3-sans_gr10_pl_pm3)),302,0.01,3
+sans_gr10_pl_avg,Plastic Limit Average,,%,calc,,,,(sans_gr10_pl_pl1+sans_gr10_pl_pl2+sans_gr10_pl_pl3)/sans_gr10_pl_nop,303,0.01,3
+sans_gr10_pi,Plasticity Index,,index,calc,,,,sans_gr10_ll_avg-sans_gr10_pl_avg,304,0.01,3

@@ -1,0 +1,5 @@
+symbol,label,description,unit,input_type,default_value,minimum,maximum,formula,calculation_order,step,method
+sans_gr1_sm_ism,Initial Sample Mass,,grams,in,100,1,,,,1,5
+sans_gr1_sm_mr10,Mass Retained,0.075 mm,grams,in,,,,,,,5
+sans_gr1_pr75um,Percentage Retained 0.075 mm,,%,calc,,,,100*((sans_gr1_sm_mr10/sans_gr1_sm_ism)*sans_gr1_cpp11),,,
+sans_gr1_pp75um,Percentage Passing 0.075 mm,,%,calc,,,,sans_gr1_cpp11-sans_gr1_pr75um,,,
