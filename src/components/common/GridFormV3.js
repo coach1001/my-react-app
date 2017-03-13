@@ -702,30 +702,32 @@ class GridForm extends React.Component {
 
     scopeData.map ( (d) =>{      
       let round = d.step*10000;
+      
       if(d.unit !== 'string' && d.unit !== 'in_array' ){      
        
-        if(round){}else{ round = 100; }
+        if(round){}else{ round = 100; }                
         
-        if(d.input_type === 'calc' && d.input_type !== 'graph'){                
+        if(d.input_type === 'calc'){                          
           try{        
             scope[d.symbol]=Math.round(math.eval(d.formula,scope)*round)/round;                                      
+            
+            try{
+              this.refs[d.symbol].value = isNaN(scope[d.symbol]) ? 0 : scope[d.symbol] ;
+            }
+            catch(ex){              
+            }
+            
+            
           }catch(err){                     
            scope[d.symbol] = ( d.default_value ? d.default_value : 0);           
-          } 
-        
-          if(isNaN(scope[d.symbol])){
-            scope[d.symbol] = 0;
+            this.refs[d.symbol].value = 0;
           }
 
-          //if(scope[d.symbol] === 0 ){
-          //  this.refs[d.symbol].value = 0;
-          //}
-
-          //console.log(d.symbol,scope[d.symbol]);       
-        
+          if(isNaN(scope[d.symbol])){
+            this.refs[d.symbol].value = 0;
+            scope[d.symbol] = 0;
+          }                  
         }
-
-
 
         if(d.input_type === 'calc_avg_array'){                
           var scope2 = cloneDeep(this.state.scopeData);
@@ -764,8 +766,11 @@ class GridForm extends React.Component {
           scope[d.symbol] = ( d.default_value ? d.default_value : 0);
         }
       }
-
+      if(d.symbol === 'sans_gr1_sm_fpp75um'){
+        console.log(d.symbol,scope[d.symbol]);
+      }
       return d;
+      
     });    
 
     scopeData.map( (d,index)=>{      
