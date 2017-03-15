@@ -9,6 +9,7 @@ import Confirm from 'react-confirm-bootstrap';
 import {notify} from 'react-notify-toast';
 import cloneDeep from 'lodash/cloneDeep';
 
+
 class SampleEditCreate extends Component {
 
   componentWillMount(){    
@@ -189,7 +190,7 @@ class SampleEditCreate extends Component {
                        
     return (    
       <div>           
-            <div className="container">                  
+            <div className="container-print">                  
               <span style={{fontSize: '2em', cursor: 'pointer'}} className="hidden-print">
                 <FaArrowCircleLeft  onClick={this.goBack.bind(this)}  className="text-info" size="2em"/>
                 <Confirm onConfirm={this.deleteSample.bind(this)} body="Are you sure you want to Delete this Sample?" confirmText="Confirm Delete" title="Delete Sample">
@@ -211,7 +212,7 @@ class SampleEditCreate extends Component {
                     
                     <form>
                     <div className="row">
-                      <div className="col-md-6">
+                      <div className="col-xs-6">
                         <div className="input-group">
                           <span className="input-group-addon">Sample Number</span>
                           <input onChange={this.onChangeSample.bind(this)} value={this.state.sample.sample || ''} name="sample" type="text" className="form-control" placeholder="Sample Number"/>
@@ -235,18 +236,33 @@ class SampleEditCreate extends Component {
                       </div>*/}
                       </div>                    
                     <div className="row"><br/>
-                      <div className="col-md-4">
+                      <div className="col-xs-3">
                         <div className="input-group">
                           <span className="input-group-addon">Latitude</span>  
                           <input onChange={this.onChangeSample.bind(this)} value={this.state.sample.latitude || 0.0} name="latitude" type="number" className="form-control" placeholder=""/>
                         </div>
                       </div>
-                      <div className="col-md-4">
+                      <div className="col-xs-3">
                         <div className="input-group">
                           <span className="input-group-addon">Longitude</span>
                           <input onChange={this.onChangeSample.bind(this)} value={this.state.sample.longitude || 0.0} name="longitude" type="number" className="form-control" placeholder=""/>
                         </div>
                       </div>
+                      <div className="col-xs-3">
+                        <div className="input-group">
+                          <span className="input-group-addon">Start Depth</span>  
+                          <input onChange={this.onChangeSample.bind(this)} value={this.state.sample.start_depth || 0.0} name="start_depth" type="number" className="form-control" placeholder=""/>
+                          <span className="input-group-addon">mm</span>
+                        </div>
+                      </div>
+                      <div className="col-xs-3">
+                        <div className="input-group">
+                          <span className="input-group-addon">End Depth</span>  
+                          <input onChange={this.onChangeSample.bind(this)} value={this.state.sample.end_depth || 0.0} name="end_depth" type="number" className="form-control" placeholder=""/>
+                          <span className="input-group-addon">mm</span>
+                        </div>
+                      </div>
+
                       {/*<div className="col-md-4">
                         <div className="input-group">
                           <span className="input-group-addon">Date</span>

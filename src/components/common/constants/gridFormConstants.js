@@ -48,6 +48,50 @@ export const methods = [
 
 	},//3001-GR54
 	
+	{//A14
+		code: '3001-GR53',
+		colLayout: [
+			{span: 1, width:'40%'},
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'},
+			{span: 1, width:'20%'}, 
+		],
+
+		grid:[
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Mould Diameter"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr53_dm'},
+			]},
+
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Number of UCS Methods"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr53_nos'},
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.c},
+				{style: STYLES.LARGE_LABEL.c, label: "1"},
+				{style: STYLES.LARGE_LABEL.c, label: "2"},
+				{style: STYLES.LARGE_LABEL.c, label: "3"},							
+			]},
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Maximum Load"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr53_mkn1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr53_mkn2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr53_mkn3'},
+			]},	
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Unconfined Compression Strength"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr53_mkpa1'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr53_mkpa2'},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr53_mkpa3'},
+			]},	
+			{td: [
+				{style: STYLES.LARGE_LABEL.tr, label: "Average UCS"},
+				{style: STYLES.LARGE_LABEL.input,isVal:true,scopeVariable: 'sans_gr53_mkpaa'},
+
+			]},	
+		],		
+	},//A14
 	{//3001-GR51
 		code: '3001-GR51',
 		hasGraph: false,

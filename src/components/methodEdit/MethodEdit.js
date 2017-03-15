@@ -7,6 +7,7 @@ import { fetchSampleMethod } from '../../actions/sampleMethods';
 import { fetchSample } from '../../actions/samples';
 import { methods } from '../../components/common/constants/gridFormConstants';
 import { setLoader } from '../../actions/loader';
+import image1 from '../../dot.svg';
 
 class MethodEdit extends Component {
   
@@ -32,8 +33,17 @@ class MethodEdit extends Component {
         <span style={{fontSize: '2em', cursor: 'pointer'}}>
         <FaArrowCircleLeft  onClick={this.goBack.bind(this)}  className="text-info hidden-print" size="2em"/>      
         </span>
-        <h3>Sample Number : {this.props.sample.sample}</h3>
-        <h5>Method: {this.props.sampleMethod.label} - {this.props.sampleMethod.description}</h5> 
+          
+        <div className="row">
+          <div className="col-md-4 pull-right visible-print"><img role="presentation" src={image1} style={{width:300}} /></div>
+          
+          <div className="col-md-8">          
+            <h3>Sample Number : {this.props.sample.sample}</h3>
+            <h5>Method: {this.props.sampleMethod.label} - {this.props.sampleMethod.description}</h5>           
+          </div>                       
+        </div>
+        
+
       <button onClick={this.printWindow.bind(this)} className="pull-right btn btn-lg btn-primary hidden-print">Print</button>
       {this.props.sampleVariables.length > 0 && Object.keys(this.props.sampleMethod).length > 0 && Object.keys(this.props.sample).length > 0 ?        
         <div>                    

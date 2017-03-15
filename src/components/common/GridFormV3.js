@@ -10,6 +10,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import regression from 'regression';
 import {Line} from 'react-chartjs-2';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 function linearRegression(d,rType){
   let data = cloneDeep(d);
@@ -333,12 +334,31 @@ class GridForm extends React.Component {
       return row;
     })
 
-    return <div>
+    return <div>        
+
+                <div className="contatiner row">
+                  <div className="col-xs-4">
+                    <div className="input-group">
+                      <span className="input-group-addon">Tested On</span>
+                      <Datetime utc={true} timeFormat="HH:mm:ss" dateFormat="DD-MM-YYYY" onChange={this.onChangeSample.bind(this)} name="tested_on" value={moment.utc(this.state.sampleMethod.tested_on)}/>
+                    </div>
+                  </div>
+                  
+                  <div className="col-xs-4">
+                    <div className="input-group">
+                      <span className="input-group-addon">Tested By</span>
+                      <input onChange={this.onChangeSample.bind(this)} value={this.state.sampleMethod.tested_by || ''} name="tested_by" type="text" className="form-control" placeholder="Name of Tester"/>
+                    </div>
+                  </div>
+                
+                </div>
+
       {
-        this.props.empty ? null :
+        this.props.empty ? null :                
         <div className="input-group checkbox">     
           <label style={{fontSize: '1.3em', fontWeight:'normal'}}><input name="completed" type="checkbox" onChange={this.onChangeComplete.bind(this)} checked={this.state.sampleMethod.completed} />&nbsp;Completed</label>
         </div>    
+      
       }
             <Confirm  onConfirm={this.clearValues.bind(this)} body="Are you sure you want to Clear Data?" confirmBSStyle='danger' confirmText="Confirm Clear" title="Clear Data">  
               <button className="btn btn-default hidden-print">Clear Values</button>
@@ -381,7 +401,7 @@ class GridForm extends React.Component {
 
                               :  //NOT ICON                              
                                 <td key={tdIndex} colSpan={td.colSpan} height={td.height} rowSpan={td.rowSpan} width={td.width} style={td.style}>
-                                <div className="avoid">
+                                
                                 {                              
                                                                     
                                     td.type === 'calc' || td.type === 'calc_avg_array' || td.type === 'graph' || td.arrayVal === 'index' || td.arrayVal === 'average' ?//IS CALC                                                                                                                                                      
@@ -390,8 +410,8 @@ class GridForm extends React.Component {
                                           <Datetime ref={td.scopeVariable} utc={true} id={td.scopeVariable} inputProps={{disabled: true}}  timeFormat="HH:mm:ss" dateFormat={false} value={this.props.empty ? '' : Math.floor(td.value)} />                                                                                                
                                         
                                         : 
-                                          <div className="input-group">
-                                          <input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChange.bind(this)}  step={td.step} type='number' value={this.props.empty ? '' : td.value} readOnly className='form-control' style={td.style}/>                                                              
+                                          <div  className="input-group">
+                                          <input  tabIndex={-1} ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChange.bind(this)}  step={td.step} type='number' value={this.props.empty ? '' : td.value} readOnly className='form-control' style={td.style}/>                                                              
                                           <span className="input-group-addon">                                                                    
                                             {
                                               td.isArrayVal ? <div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.arrUnit}} />:<div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} />
@@ -413,7 +433,7 @@ class GridForm extends React.Component {
                                             <div className="input-group"><input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChange.bind(this)} min={td.min} max={td.max} step={td.step} value={this.props.empty ? '' : td.value} type='number' className='form-control' style={td.style}/><span className="input-group-addon"><div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} /></span></div>
                                    
                                 }                        
-                                </div>                           
+                                                           
                                 </td>
                           } 
                         )
@@ -441,6 +461,19 @@ class GridForm extends React.Component {
            </div>   
   }
   
+  onChangeSample(e){        
+    let sampleMethod = cloneDeep(this.state.sampleMethod);    
+    if(e._isAMomentObject){
+      
+      sampleMethod.tested_on = e._d;
+      console.log(sampleMethod.tested_on);
+      
+    }else{      
+      sampleMethod[e.target.name] = e.target.value;
+    }
+
+    this.setState({sampleMethod:sampleMethod});
+  }
   onDeleteFromArray(data,e){          
     let scopeData = cloneDeep(this.state.scopeData);
     let index = data.index;
@@ -649,7 +682,7 @@ class GridForm extends React.Component {
     
     var request = cloneDeep(axiosConfig);
     request.url = `${window.configGA.API_DB}/sample_has_methods?id=eq.${this.state.sampleMethod.id}`;
-    request.data = {completed: this.state.sampleMethod.completed};
+    request.data = {completed: this.state.sampleMethod.completed, tested_on: this.state.sampleMethod.tested_on, tested_by: this.state.sampleMethod.tested_by};
     request.method = 'patch';
     promises.push(request);
                                 
@@ -711,21 +744,20 @@ class GridForm extends React.Component {
           try{        
             scope[d.symbol]=Math.round(math.eval(d.formula,scope)*round)/round;                                      
             
-            try{
-              this.refs[d.symbol].value = isNaN(scope[d.symbol]) ? 0 : scope[d.symbol] ;
+            if(scope[d.symbol] === 0 || isNaN(scope[d.symbol])){
+              this.refs[d.symbol].value = null;
             }
-            catch(ex){              
-            }
-            
-            
+                                    
           }catch(err){                     
            scope[d.symbol] = ( d.default_value ? d.default_value : 0);           
-            this.refs[d.symbol].value = 0;
+            if(scope[d.symbol === 0]){
+              this.refs[d.symbol].value = null;
+            }             
           }
 
           if(isNaN(scope[d.symbol])){
-            this.refs[d.symbol].value = 0;
             scope[d.symbol] = 0;
+            this.refs[d.symbol].value = null;            
           }                  
         }
 
@@ -757,20 +789,19 @@ class GridForm extends React.Component {
             
         }      
         
-        if(isFinite(scope[d.symbol])){
-        }else{        
-          scope[d.symbol] = ( d.default_value ? d.default_value : 0);
+        if(!isFinite(scope[d.symbol])){
+          scope[d.symbol] = ( d.default_value ? d.default_value : 0);          
         }
 
         if(isNaN(scope[d.symbol])){        
           scope[d.symbol] = ( d.default_value ? d.default_value : 0);
+          if(scope[d.symbol === 0]){
+            this.refs[d.symbol].value = null;
+          }             
         }
       }
-      if(d.symbol === 'sans_gr1_sm_fpp75um'){
-        console.log(d.symbol,scope[d.symbol]);
-      }
-      return d;
-      
+
+      return d;      
     });    
 
     scopeData.map( (d,index)=>{      

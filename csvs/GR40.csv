@@ -1,149 +1,149 @@
-symbol;label;description;unit;input_type;default_value;minimum;maximum;formula;calculation_order;step;method
-sans_gr40_pwmp1;Pan Wet Mass Plus Pan;;grams;in;;;;;;;22
-sans_gr40_mm3;Mould Mass;;grams;in;;;;;;;22
-sans_gr40_omc;Optimum Moisture Content;;%;in;;;;;;0.01;22
-sans_gr40_nop;Number Of Pans;;number;in;1;1;3;;;1;22
-sans_gr40_pn1;Pan Number;;string;in;;;;;;;22
-sans_gr40_idmp1;Initial Dry Mass Plus Pan;;grams;in;;;;;;;22
-sans_gr40_fdmp1;Final Dry Mass Plus Pan;;grams;in;;;;;;;22
-sans_gr40_mp1;Mass Pan;;grams;in;;;;;;;22
-sans_gr40_mch1;Moisture Content Hygro;;%;calc;;;;((sans_gr40_idmp1-sans_gr40_fdmp1)*100)/(sans_gr40_fdmp1-sans_gr40_mp1);800;;22
-sans_gr40_pn2;Pan Number;;string;in;;;;;;;22
-sans_gr40_idmp2;Initial Dry Mass Plus Pan;;grams;in;;;;;;;22
-sans_gr40_fdmp2;Final Dry Mass Plus Pan;;grams;in;;;;;;;22
-sans_gr40_mp2;Mass Pan;;grams;in;;;;;;;22
-sans_gr40_mch2;Moisture Content Hygro;;%;calc;;;;((sans_gr40_idmp2-sans_gr40_fdmp2)*100)/(sans_gr40_fdmp2-sans_gr40_mp2);801;;22
-sans_gr40_pn3;Pan Number;;string;in;;;;;;;22
-sans_gr40_idmp3;Initial Dry Mass Plus Pan;;grams;in;;;;;;;22
-sans_gr40_fdmp3;Final Dry Mass Plus Pan;;grams;in;;;;;;;22
-sans_gr40_mp3;Mass Pan;;grams;in;;;;;;;22
-sans_gr40_mch3;Moisture Content Hygro;;%;calc;;;;((sans_gr40_idmp3-sans_gr40_fdmp3)*100)/(sans_gr40_fdmp3-sans_gr40_mp3);802;;22
-sans_gr40_mcha;Moisture Content Hygro Average;;%;calc;;;;(sans_gr40_mch1+sans_gr40_mch2+sans_gr40_mch3)/sans_gr40_nop;803;;22
-sans_gr40_mn1;Mould Number;;string;in;;;;;;;22
-sans_gr40_mm1;Mould Mass;;grams;in;;;;;;;22
-sans_gr40_mwm1;Mould Plus Wet Mass;;grams;in;;;;;;;22
-sans_gr40_pn1n;Pan Number;;string;in;;;;;;;22
-sans_gr40_pd_19_3;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pdmp1;Pan Dry Mass Plus Pan;;grams;in;;;;;;;22
-sans_gr40_pm1;Pan Mass;;grams;in;;;;;;;22
-sans_gr40_amc1;Actual Moisture Content;;%;calc;;;;((sans_gr40_pwmp1-sans_gr40_pdmp1)*100)/(sans_gr40_pdmp1-sans_gr40_pm1);807;;22
-sans_gr40_mdd;Maximum Dry Density;;kg/m<sup>3</sup>;in;;;;;;0.01;22
-sans_gr40_mv1;Mould Volume;;ml<sup>3</sup>;in;;;;;;;22
-sans_gr40_wd1;Wet Density;;kg/m<sup>3</sup>;calc;;;;((sans_gr40_mwm1-sans_gr40_mm1)/sans_gr40_mv1)*1000;805;;22
-sans_gr40_add1;Actual Dry Density;;kg/m<sup>3</sup>;calc;;;;(sans_gr40_wd1/(1+(sans_gr40_amc1/100)));808;;22
-sans_gr40_si1;Swell Initial Reading;;mm;in;;;;;;;22
-sans_gr40_sf1;Swell Final Reading;;mm;in;;;;;;;22
-sans_gr40_sm2;Sample Mass;;grams;in;;;;;;;22
-sans_gr40_mn2;Mould Number;;string;in;;;;;;;22
-sans_gr40_mm2;Mould Mass;;grams;in;;;;;;;22
-sans_gr40_mwm2;Mould Plus Wet Mass;;grams;in;;;;;;;22
-sans_gr40_pn2n;Pan Number;;string;in;;;;;;;22
-sans_gr40_wa1;Water Added;;ml;calc;;;;((sans_gr40_omc-sans_gr40_mcha)*sans_gr40_sm1)/(100+sans_gr40_mcha);804;;22
-sans_gr40_sm1;Sample Mass;;grams;in;;;;;;;22
-sans_gr40_add2;Actual Dry Density;;kg/m<sup>3</sup>;calc;;;;(sans_gr40_wd2/(1+(sans_gr40_amc2/100)));817;;22
-sans_gr40_edd3;Estimated Dry Density;;kg/m<sup>3</sup>;calc;;;;sans_gr40_wd3/(1+(sans_gr40_omc/100));823;;22
-sans_gr40_imx1;Intermediate Maximum;;%;calc;;;;(sans_gr40_add2*100)/sans_gr40_mdd;818;;22
-sans_gr40_pmx1;Proc Maximum;;%;calc;;;;(sans_gr40_add3*100)/sans_gr40_mdd;826;;22
-sans_gr40_hm2;Hydroscopic Moisture;;%;calc;;;;sans_gr40_amc2-sans_gr40_omc;819;;22
-sans_gr40_hm3;Hydroscopic Moisture;;%;calc;;;;sans_gr40_amc3-sans_gr40_omc;827;;22
-sans_gr40_mv2;Mould Volume;;ml<sup>3</sup>;in;;;;;;;22
-sans_gr40_wa3;Water Added;;ml;calc;;;;((sans_gr40_omc-sans_gr40_mcha)*sans_gr40_sm3)/(100+sans_gr40_mcha);821;;22
-sans_gr40_wa2;Water Added;;ml;calc;;;;((sans_gr40_omc-sans_gr40_mcha)*sans_gr40_sm2)/(100+sans_gr40_mcha);812;;22
-sans_gr40_pd_19_2;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_20_1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pwmp2;Pan Wet Mass Plus Pan;;grams;in;;;;;;;22
-sans_gr40_pdmp2;Pan Dry Mass Plus Pan;;grams;in;;;;;;;22
-sans_gr40_pm2;Pan Mass;;grams;in;;;;;;;22
-sans_gr40_si2;Swell Initial Reading;;mm;in;;;;;;;22
-sans_gr40_sf2;Swell Final Reading;;mm;in;;;;;;;22
-sans_gr40_sm3;Sample Mass;;grams;in;;;;;;;22
-sans_gr40_mn3;Mould Number;;string;in;;;;;;;22
-sans_gr40_mwm3;Mould Plus Wet Mass;;grams;in;;;;;;;22
-sans_gr40_pn3n;Pan Number;;string;in;;;;;;;22
-sans_gr40_pwmp3;Pan Wet Mass Plus Pan;;grams;in;;;;;;;22
-sans_gr40_pdmp3;Pan Dry Mass Plus Pan;;grams;in;;;;;;;22
-sans_gr40_pm3;Pan Mass;;grams;in;;;;;;;22
-sans_gr40_si3;Swell Initial Reading;;mm;in;;;;;;;22
-sans_gr40_sf3;Swell Final Reading;;mm;in;;;;;;;22
-sans_gr40_mv3;Mould Volume;;ml<sup>3</sup>;in;;;;;;;22
-sans_gr40_wd2;Wet Density;;kg/m<sup>3</sup>;calc;;;;((sans_gr40_mwm2-sans_gr40_mm2)/sans_gr40_mv2)*1000;814;;22
-sans_gr40_amc2;Actual Moisture Content;;%;calc;;;;((sans_gr40_pwmp2-sans_gr40_pdmp2)*100)/(sans_gr40_pdmp2-sans_gr40_pm2);816;;22
-sans_gr40_ps2;Percentage Swelll;;%;calc;;;;((sans_gr40_sf2-sans_gr40_si2)*100)/127;820;;22
-sans_gr40_wd3;Wet Density;;kg/m<sup>3</sup>;calc;;;;((sans_gr40_mwm3-sans_gr40_mm3)/sans_gr40_mv3)*1000;822;;22
-sans_gr40_amc3;Actual Moisture Content;;%;calc;;;;((sans_gr40_pwmp3-sans_gr40_pdmp3)*100)/(sans_gr40_pdmp3-sans_gr40_pm3);824;;22
-sans_gr40_ps3;Percentage Swelll;;%;calc;;;;((sans_gr40_sf3-sans_gr40_si3)*100)/127;828;;22
-sans_gr40_edd1;Estimated Dry Density;;kg/m<sup>3</sup>;calc;;;;sans_gr40_wd1/(1+(sans_gr40_omc/100));806;;22
-sans_gr40_edd2;Estimated Dry Density;;kg/m<sup>3</sup>;calc;;;;sans_gr40_wd2/(1+(sans_gr40_omc/100));815;;22
-sans_gr40_mmx1;Mod Maximum;;%;calc;;;;(sans_gr40_add1*100)/sans_gr40_mdd;809;;22
-sans_gr40_hm1;Hydroscopic Moisture;;%;calc;;;;sans_gr40_amc1-sans_gr40_omc;810;;22
-sans_gr40_ps1;Percentage Swelll;;%;calc;;;;((sans_gr40_sf1-sans_gr40_si1)*100)/127;811;;22
-sans_gr40_pd_1_1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_1_2;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_1_3;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_2_1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_2_2;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_2_3;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_3_1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_3_2;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_3_3;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_4_1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_4_2;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_4_3;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_5_1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_5_2;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_5_3;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_6_1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_6_2;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_6_3;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_7_1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_7_2;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_7_3;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_8_1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_8_2;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_8_3;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_9_1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_9_2;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_9_3;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_10_1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_10_2;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_10_3;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_11_1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_11_2;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_11_3;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_12_1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_12_2;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_12_3;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_13_1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_13_2;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_13_3;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_14_1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_14_2;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_14_3;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_15_1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_15_2;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_15_3;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_16_1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_16_2;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_16_3;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_17_1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_17_2;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_17_3;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_18_1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_18_2;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_18_3;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_19_1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_20_2;;;kN;in;0;;;;0;0.01;22
-sans_gr40_pd_20_3;;;kN;in;0;;;;0;0.01;22
-sans_gr40_add3;Actual Dry Density;;kg/m<sup>3</sup>;calc;;;;(sans_gr40_wd3/(1+(sans_gr40_amc3/100)));825;;22
-sans_gr40_ckn1_d1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_ckn2_d1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_ckn3_d1;;;kN;in;0;;;;0;0.01;22
-sans_gr40_3_d1;;;;calc;0;;;(sans_gr40_ckn3_d1*100)/13.344;832;0.01;22
-sans_gr40_1_d1;;;;calc;0;;;(sans_gr40_ckn1_d1*100)/13.344;830;0.01;22
-sans_gr40_2_d1;;;;calc;0;;;(sans_gr40_ckn2_d1*100)/13.344;831;0.01;22
-sans_gr40_at_90;;;;graph;0;;;;0;0.01;22
-sans_gr40_at_93;;;;graph;0;;;;0;0.01;22
-sans_gr40_at_95;;;;graph;0;;;;0;0.01;22
-sans_gr40_at_97;;;;graph;0;;;;0;0.01;22
-sans_gr40_at_98;;;;graph;0;;;;0;0.01;22
-sans_gr40_at_100;;;;graph;0;;;;0;0.01;22
+"symbol","label","description","unit","input_type","default_value","minimum","maximum","formula","calculation_order","step","method"
+"sans_gr40_pwmp1","Pan Wet Mass Plus Pan","","grams","in",,,,"",,,22
+"sans_gr40_mm3","Mould Mass","","grams","in",,,,"",,,22
+"sans_gr40_omc","Optimum Moisture Content","","%","in",,,,"",,0.01,22
+"sans_gr40_nop","Number Of Pans","","number","in",1,1,3,"",,1,22
+"sans_gr40_pn1","Pan Number","","string","in",,,,"",,,22
+"sans_gr40_idmp1","Initial Dry Mass Plus Pan","","grams","in",,,,"",,,22
+"sans_gr40_fdmp1","Final Dry Mass Plus Pan","","grams","in",,,,"",,,22
+"sans_gr40_mp1","Mass Pan","","grams","in",,,,"",,,22
+"sans_gr40_mch1","Moisture Content Hygro","","%","calc",,,,"((sans_gr40_idmp1-sans_gr40_fdmp1)*100)/(sans_gr40_fdmp1-sans_gr40_mp1)",800,,22
+"sans_gr40_pn2","Pan Number","","string","in",,,,"",,,22
+"sans_gr40_idmp2","Initial Dry Mass Plus Pan","","grams","in",,,,"",,,22
+"sans_gr40_fdmp2","Final Dry Mass Plus Pan","","grams","in",,,,"",,,22
+"sans_gr40_mp2","Mass Pan","","grams","in",,,,"",,,22
+"sans_gr40_mch2","Moisture Content Hygro","","%","calc",,,,"((sans_gr40_idmp2-sans_gr40_fdmp2)*100)/(sans_gr40_fdmp2-sans_gr40_mp2)",801,,22
+"sans_gr40_pn3","Pan Number","","string","in",,,,"",,,22
+"sans_gr40_idmp3","Initial Dry Mass Plus Pan","","grams","in",,,,"",,,22
+"sans_gr40_fdmp3","Final Dry Mass Plus Pan","","grams","in",,,,"",,,22
+"sans_gr40_mp3","Mass Pan","","grams","in",,,,"",,,22
+"sans_gr40_mch3","Moisture Content Hygro","","%","calc",,,,"((sans_gr40_idmp3-sans_gr40_fdmp3)*100)/(sans_gr40_fdmp3-sans_gr40_mp3)",802,,22
+"sans_gr40_mcha","Moisture Content Hygro Average","","%","calc",,,,"(sans_gr40_mch1+sans_gr40_mch2+sans_gr40_mch3)/sans_gr40_nop",803,,22
+"sans_gr40_mn1","Mould Number","","string","in",,,,"",,,22
+"sans_gr40_mm1","Mould Mass","","grams","in",,,,"",,,22
+"sans_gr40_mwm1","Mould Plus Wet Mass","","grams","in",,,,"",,,22
+"sans_gr40_pn1n","Pan Number","","string","in",,,,"",,,22
+"sans_gr40_pd_19_3","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pdmp1","Pan Dry Mass Plus Pan","","grams","in",,,,"",,,22
+"sans_gr40_pm1","Pan Mass","","grams","in",,,,"",,,22
+"sans_gr40_amc1","Actual Moisture Content","","%","calc",,,,"((sans_gr40_pwmp1-sans_gr40_pdmp1)*100)/(sans_gr40_pdmp1-sans_gr40_pm1)",807,,22
+"sans_gr40_mdd","Maximum Dry Density","","kg/m<sup>3</sup>","in",,,,"",,0.01,22
+"sans_gr40_mv1","Mould Volume","","ml<sup>3</sup>","in",,,,"",,,22
+"sans_gr40_wd1","Wet Density","","kg/m<sup>3</sup>","calc",,,,"((sans_gr40_mwm1-sans_gr40_mm1)/sans_gr40_mv1)*1000",805,,22
+"sans_gr40_add1","Actual Dry Density","","kg/m<sup>3</sup>","calc",,,,"(sans_gr40_wd1/(1+(sans_gr40_amc1/100)))",808,,22
+"sans_gr40_si1","Swell Initial Reading","","mm","in",,,,"",,,22
+"sans_gr40_sf1","Swell Final Reading","","mm","in",,,,"",,,22
+"sans_gr40_sm2","Sample Mass","","grams","in",,,,"",,,22
+"sans_gr40_mn2","Mould Number","","string","in",,,,"",,,22
+"sans_gr40_mm2","Mould Mass","","grams","in",,,,"",,,22
+"sans_gr40_mwm2","Mould Plus Wet Mass","","grams","in",,,,"",,,22
+"sans_gr40_pn2n","Pan Number","","string","in",,,,"",,,22
+"sans_gr40_wa1","Water Added","","ml","calc",,,,"((sans_gr40_omc-sans_gr40_mcha)*sans_gr40_sm1)/(100+sans_gr40_mcha)",804,,22
+"sans_gr40_sm1","Sample Mass","","grams","in",,,,"",,,22
+"sans_gr40_add2","Actual Dry Density","","kg/m<sup>3</sup>","calc",,,,"(sans_gr40_wd2/(1+(sans_gr40_amc2/100)))",817,,22
+"sans_gr40_edd3","Estimated Dry Density","","kg/m<sup>3</sup>","calc",,,,"sans_gr40_wd3/(1+(sans_gr40_omc/100))",823,,22
+"sans_gr40_imx1","Intermediate Maximum","","%","calc",,,,"(sans_gr40_add2*100)/sans_gr40_mdd",818,,22
+"sans_gr40_pmx1","Proc Maximum","","%","calc",,,,"(sans_gr40_add3*100)/sans_gr40_mdd",826,,22
+"sans_gr40_hm2","Hydroscopic Moisture","","%","calc",,,,"sans_gr40_amc2-sans_gr40_omc",819,,22
+"sans_gr40_hm3","Hydroscopic Moisture","","%","calc",,,,"sans_gr40_amc3-sans_gr40_omc",827,,22
+"sans_gr40_mv2","Mould Volume","","ml<sup>3</sup>","in",,,,"",,,22
+"sans_gr40_wa3","Water Added","","ml","calc",,,,"((sans_gr40_omc-sans_gr40_mcha)*sans_gr40_sm3)/(100+sans_gr40_mcha)",821,,22
+"sans_gr40_wa2","Water Added","","ml","calc",,,,"((sans_gr40_omc-sans_gr40_mcha)*sans_gr40_sm2)/(100+sans_gr40_mcha)",812,,22
+"sans_gr40_pd_19_2","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_20_1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pwmp2","Pan Wet Mass Plus Pan","","grams","in",,,,"",,,22
+"sans_gr40_pdmp2","Pan Dry Mass Plus Pan","","grams","in",,,,"",,,22
+"sans_gr40_pm2","Pan Mass","","grams","in",,,,"",,,22
+"sans_gr40_si2","Swell Initial Reading","","mm","in",,,,"",,,22
+"sans_gr40_sf2","Swell Final Reading","","mm","in",,,,"",,,22
+"sans_gr40_sm3","Sample Mass","","grams","in",,,,"",,,22
+"sans_gr40_mn3","Mould Number","","string","in",,,,"",,,22
+"sans_gr40_mwm3","Mould Plus Wet Mass","","grams","in",,,,"",,,22
+"sans_gr40_pn3n","Pan Number","","string","in",,,,"",,,22
+"sans_gr40_pwmp3","Pan Wet Mass Plus Pan","","grams","in",,,,"",,,22
+"sans_gr40_pdmp3","Pan Dry Mass Plus Pan","","grams","in",,,,"",,,22
+"sans_gr40_pm3","Pan Mass","","grams","in",,,,"",,,22
+"sans_gr40_si3","Swell Initial Reading","","mm","in",,,,"",,,22
+"sans_gr40_sf3","Swell Final Reading","","mm","in",,,,"",,,22
+"sans_gr40_mv3","Mould Volume","","ml<sup>3</sup>","in",,,,"",,,22
+"sans_gr40_wd2","Wet Density","","kg/m<sup>3</sup>","calc",,,,"((sans_gr40_mwm2-sans_gr40_mm2)/sans_gr40_mv2)*1000",814,,22
+"sans_gr40_amc2","Actual Moisture Content","","%","calc",,,,"((sans_gr40_pwmp2-sans_gr40_pdmp2)*100)/(sans_gr40_pdmp2-sans_gr40_pm2)",816,,22
+"sans_gr40_ps2","Percentage Swelll","","%","calc",,,,"((sans_gr40_sf2-sans_gr40_si2)*100)/127",820,,22
+"sans_gr40_wd3","Wet Density","","kg/m<sup>3</sup>","calc",,,,"((sans_gr40_mwm3-sans_gr40_mm3)/sans_gr40_mv3)*1000",822,,22
+"sans_gr40_amc3","Actual Moisture Content","","%","calc",,,,"((sans_gr40_pwmp3-sans_gr40_pdmp3)*100)/(sans_gr40_pdmp3-sans_gr40_pm3)",824,,22
+"sans_gr40_ps3","Percentage Swelll","","%","calc",,,,"((sans_gr40_sf3-sans_gr40_si3)*100)/127",828,,22
+"sans_gr40_edd1","Estimated Dry Density","","kg/m<sup>3</sup>","calc",,,,"sans_gr40_wd1/(1+(sans_gr40_omc/100))",806,,22
+"sans_gr40_edd2","Estimated Dry Density","","kg/m<sup>3</sup>","calc",,,,"sans_gr40_wd2/(1+(sans_gr40_omc/100))",815,,22
+"sans_gr40_mmx1","Mod Maximum","","%","calc",,,,"(sans_gr40_add1*100)/sans_gr40_mdd",809,,22
+"sans_gr40_hm1","Hydroscopic Moisture","","%","calc",,,,"sans_gr40_amc1-sans_gr40_omc",810,,22
+"sans_gr40_ps1","Percentage Swelll","","%","calc",,,,"((sans_gr40_sf1-sans_gr40_si1)*100)/127",811,,22
+"sans_gr40_pd_1_1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_1_2","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_1_3","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_2_1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_2_2","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_2_3","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_3_1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_3_2","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_3_3","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_4_1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_4_2","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_4_3","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_5_1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_5_2","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_5_3","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_6_1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_6_2","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_6_3","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_7_1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_7_2","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_7_3","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_8_1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_8_2","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_8_3","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_9_1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_9_2","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_9_3","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_10_1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_10_2","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_10_3","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_11_1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_11_2","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_11_3","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_12_1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_12_2","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_12_3","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_13_1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_13_2","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_13_3","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_14_1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_14_2","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_14_3","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_15_1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_15_2","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_15_3","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_16_1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_16_2","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_16_3","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_17_1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_17_2","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_17_3","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_18_1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_18_2","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_18_3","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_19_1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_20_2","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_pd_20_3","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_add3","Actual Dry Density","","kg/m<sup>3</sup>","calc",,,,"(sans_gr40_wd3/(1+(sans_gr40_amc3/100)))",825,,22
+"sans_gr40_ckn1_d1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_ckn2_d1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_ckn3_d1","","","kN","in",0,,,"",0,0.01,22
+"sans_gr40_3_d1","","","","calc",0,,,"(sans_gr40_ckn3_d1*100)/13.344",832,0.01,22
+"sans_gr40_1_d1","","","","calc",0,,,"(sans_gr40_ckn1_d1*100)/13.344",830,0.01,22
+"sans_gr40_2_d1","","","","calc",0,,,"(sans_gr40_ckn2_d1*100)/13.344",831,0.01,22
+"sans_gr40_at_90","","","","graph",0,,,"",0,0.01,22
+"sans_gr40_at_93","","","","graph",0,,,"",0,0.01,22
+"sans_gr40_at_95","","","","graph",0,,,"",0,0.01,22
+"sans_gr40_at_97","","","","graph",0,,,"",0,0.01,22
+"sans_gr40_at_98","","","","graph",0,,,"",0,0.01,22
+"sans_gr40_at_100","","","","graph",0,,,"",0,0.01,22

@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { logout } from '../actions/loginActions';
 /*import classnames from 'classnames';*/
+import image1 from '../dot.svg';
 
 class NavigationBar extends Component {
   
@@ -47,7 +48,8 @@ class NavigationBar extends Component {
       		<div className="container-fluid">
       			
       			<div className="navbar-header">
-      				<Link to="/" className="navbar-brand">LAB Calculator</Link>      			 
+      				<Link to="/" className="navbar-brand" style={{display: 'inline-block'}}><img role="presentation" src={image1} style={{height: '4vh', marginTop: '-1.2vh'}}/></Link>
+              <Link to="/" className="navbar-brand">LAB Calculator</Link>      			 
             </div>
       			
       			<div className="collapse navbar-collapse">      			 

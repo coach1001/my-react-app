@@ -304,36 +304,6 @@ td.rdtYear:hover {
    margin: 0 !important;
 }
 
-.page {
-  position: relative !important;
-  height: 28cm !important;
-  width: 20cm !important;
-  display: block !important;  
-  page-break-after: auto !important;
-  margin: 0 auto;
-}
-
-.page-landscape {
-  position: relative !important;
-  width: 28cm !important;
-  height: 20cm !important;
-  display: block !important;  
-  page-break-after: auto !important;
-  margin: 0 auto;
-}
-
-@media print {
-  .page {    
-    height: 100%;
-    width: 100%;
-  }
-  .page-landscape{
-    height: 100%;
-    width: 100%;
-    page-break-after : auto;
-  }  
-}
-
 td{
   font-size:16px;
 }
@@ -561,11 +531,6 @@ input[type=radio], input[type=checkbox] {
     display: table-cell !important;
   }
 }
-.avoid {
-    page-break-inside: avoid !important;
-    margin: 0px 0 0px 0;  /* to keep the page break from cutting too close to the text in the div */
- }
-
 
 .container-print {
   padding-right: 15px;
