@@ -67,7 +67,9 @@ class LoginForm extends Component {
 		if(isValid){		
 			this.setState( { errors: errors, isLoading: false });	
 			this.props.setLoader(true);
+			
 			this.props.userLoginRequestAD(this.state).then(				
+				
 				(res) => {				
 						notify.show('You have logged in successfully. Welcome!','success',3000);						
 						this.context.router.push('/');										
@@ -86,7 +88,7 @@ class LoginForm extends Component {
 					 				err.loginError = 'Invalid Credentials';	
 					 				notify.show(err.loginError,'warning',3000);				 			;
 					 				this.setState( { errors: errors, isLoading: false });										 						 			
-					 			}else if(error.response.status === 500){				 		
+					 			}else if(err.response.status === 500){				 		
 					 				err.loginError = 'Authentication Services not available';	
 				 					notify.show(err.loginError,'error',3000);				 			
 				 					this.setState( { errors: errors, isLoading: false });										 		
@@ -97,6 +99,7 @@ class LoginForm extends Component {
 				 				this.setState( { errors: errors, isLoading: false });										 		
 				 		}
 					})
+				
 				});			
 
 		}else{
