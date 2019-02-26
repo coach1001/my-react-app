@@ -80,7 +80,7 @@ class LoginForm extends Component {
 						notify.show('You have logged in successfully. Welcome!','success',3000);						
 						this.context.router.push('/');
 						this.props.setLoader(false);															
-					
+						console.log('Logged In Succesfully');
 					},(err)=>{											
 				 		this.props.setLoader(false);
 				 		try{

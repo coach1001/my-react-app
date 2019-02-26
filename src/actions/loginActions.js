@@ -39,17 +39,15 @@ export function userLoginRequestAD(userData){
 export function userLoginRequestDB(userData){
 	
 	return dispatch => {
-	
 		const transformData = {			
 			email: userData.email_username,
 			pass: userData.password
 		};
 
 		return axios.post(`${window.configGA.API_DB}/rpc/login`, transformData).then( (res) => {			
-			console.log(res.data[0]);
-			localStorage.setItem('LCS_Token', res.data[0].token);
-			setAuthorizationToken(res.data[0].token);						
-			dispatch(setCurrentUser( jwtDecode(res.data[0].token) ));
+			localStorage.setItem('LCS_Token', res.data.token);
+			setAuthorizationToken(res.data.token);						
+			dispatch(setCurrentUser( jwtDecode(res.data.token) ));
 		});
 	}
 }
