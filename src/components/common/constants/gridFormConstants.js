@@ -2104,29 +2104,52 @@ export const methods = [
 					animation: {
 						duration: 0,
 						onComplete: function () {
-						    
+						    var limitIndexes = [];
+								
 						    var ctx = this.chart.ctx;						     
 						    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, 'normal', Chart.defaults.global.defaultFontFamily);
 						    ctx.fillStyle = this.chart.config.options.defaultFontColor;
 						    ctx.textAlign = 'center';
 						    ctx.textBaseline = 'bottom';
 						    
-						    this.data.datasets.forEach(function (dataset) {
-						        for (var i = 0; i < dataset.data.length; i++) {
-						            
-						            var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;						            
-						            var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;
-						            						            
-												ctx.save();
-												ctx.translate(model.x, model.y);
-												ctx.rotate(-Math.PI/2 );
-
-												ctx.textAlign = 'left';
-												ctx.fillText(string , 10, 5);
-
-												ctx.restore();
+						    this.data.datasets.forEach(function (dataset, dIndex) {
+								let limitY = { showLimit: 1, countLimit: 0, limit: 100, limitReached: false };
+								for (var i = 0; i < dataset.data.length; i++) {
+									
+									const valY = dataset.data[i].y;
+									
+									if(valY === limitY.limit) {
+										limitY.countLimit+=1;
+									}
+									if(!limitY.limitReached) {
+										var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;						            
+										var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;
+																			
+													ctx.save();
+													ctx.translate(model.x, model.y);
+													ctx.rotate(-Math.PI/2 );
+	
+													ctx.textAlign = 'left';
+													ctx.fillText(string , 10, 5);
+	
+													ctx.restore();	
+									} else {
+										limitIndexes.push({
+											whichGraph: dIndex,
+											whichPoint: i
+										});
+									}
+									if(limitY.showLimit === limitY.countLimit) {
+										limitY.limitReached = true;
+									}
 						        }
-						    });
+							});
+							
+							limitIndexes.forEach((removePoint) => {
+								this.data.datasets[removePoint.whichGraph].data.splice(removePoint.whichPoint, 1);
+								this.chart.update();
+							});
+
 						}},
 
 					scales: {
@@ -2162,7 +2185,7 @@ export const methods = [
 	        pointBackgroundColor: 'red',                          
 	        borderColor: 'red',
 	        lineTension: 0.2,
-          data: [						
+          	data: [						
 						{ sy: 'sans_gr1_cpp1', x: 100},
 						{ sy: 'sans_gr1_cpp2', x: 75},
 						{ sy: 'sans_gr1_cpp3', x: 63},
@@ -4391,29 +4414,51 @@ export const methods = [
 					animation: {
 						duration: 0,
 						onComplete: function () {
-						    
+						    var limitIndexes = [];
 						    var ctx = this.chart.ctx;						     
 						    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, 'normal', Chart.defaults.global.defaultFontFamily);
 						    ctx.fillStyle = this.chart.config.options.defaultFontColor;
 						    ctx.textAlign = 'center';
 						    ctx.textBaseline = 'bottom';
 						    
-						    this.data.datasets.forEach(function (dataset) {
-						        for (var i = 0; i < dataset.data.length; i++) {
-						            
-						            var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;						            
-						            var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;
-						            						            
-												ctx.save();
-												ctx.translate(model.x, model.y);
-												ctx.rotate(-Math.PI/2 );
-
-												ctx.textAlign = 'left';
-												ctx.fillText(string , 10, 5);
-
-												ctx.restore();
+						    this.data.datasets.forEach(function (dataset, dIndex) {
+								let limitY = { showLimit: 1, countLimit: 0, limit: 100, limitReached: false };
+								for (var i = 0; i < dataset.data.length; i++) {
+									
+									const valY = dataset.data[i].y;
+									
+									if(valY === limitY.limit) {
+										limitY.countLimit+=1;
+									}
+									if(!limitY.limitReached) {
+										var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;						            
+										var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;
+																			
+													ctx.save();
+													ctx.translate(model.x, model.y);
+													ctx.rotate(-Math.PI/2 );
+	
+													ctx.textAlign = 'left';
+													ctx.fillText(string , 10, 5);
+	
+													ctx.restore();	
+									} else {
+										limitIndexes.push({
+											whichGraph: dIndex,
+											whichPoint: i
+										});
+									}
+									if(limitY.showLimit === limitY.countLimit) {
+										limitY.limitReached = true;
+									}
 						        }
-						    });
+							});
+							
+							limitIndexes.forEach((removePoint) => {
+								this.data.datasets[removePoint.whichGraph].data.splice(removePoint.whichPoint, 1);
+								this.chart.update();
+							});
+							
 						}},
 
 					scales: {

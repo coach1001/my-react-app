@@ -705,7 +705,7 @@ class GridForm extends React.Component {
 
   parseInput(scopeData){    
     let scope = {};        
-    
+  
     scopeData.map( (d) => {        
         
         scope[d.symbol] = 0;
