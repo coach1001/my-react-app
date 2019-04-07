@@ -76,12 +76,12 @@ class LoginForm extends Component {
 						this.props.setLoader(false);
 				}).catch((error) => {				 	
 										
-					this.props.userLoginRequestDB(this.state).then( (res)=>{					
+					this.props.userLoginRequestDB(this.state).then((res)=>{				
 						notify.show('You have logged in successfully. Welcome!','success',3000);						
 						this.context.router.push('/');
 						this.props.setLoader(false);															
 						console.log('Logged In Succesfully');
-					},(err)=>{											
+					},(err)=>{										
 				 		this.props.setLoader(false);
 				 		try{
 						 		if(err.response.status === 403){				 						 		
@@ -94,7 +94,7 @@ class LoginForm extends Component {
 				 					this.setState( { errors: errors, isLoading: false });										 		
 				 				}					 						 		
 				 		}catch(ex){
-				 				err.loginError = 'Authentication Services not available';	
+				 				err.loginError = 'Internal Server error';	
 				 				notify.show(err.loginError,'error',3000);				 			
 				 				this.setState( { errors: errors, isLoading: false });										 		
 				 		}
