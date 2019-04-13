@@ -1567,8 +1567,8 @@ export const methods = [
                             { sx: 'sans_gr30_amc2', sy: 'sans_gr30_add2' },
                             { sx: 'sans_gr30_amc3', sy: 'sans_gr30_add3' },
                             { sx: 'sans_gr30_amc4', sy: 'sans_gr30_add4' },
-							{ sx: 'sans_gr30_amc5', sy: 'sans_gr30_add5' },
-							{ sx: 'sans_gr30_omc', sy: 'sans_gr30_mdd', pop: true, toggleLine: true }
+                            { sx: 'sans_gr30_amc5', sy: 'sans_gr30_add5' },
+                            { sx: 'sans_gr30_omc', sy: 'sans_gr30_mdd', pop: true, toggleLine: true }
                         ]
                     }
                 ]
@@ -4082,6 +4082,66 @@ export const methods = [
 
                 options: {
                     //maintainAspectRatio: false,
+                    getDatasetAtEvent: function(e) {
+                        console.log(e)
+                    },
+                    onClick: function(e) {
+                        let el = this.getElementAtEvent(e);
+                        if(el.length > 0) {
+                            let line = el[0]._datasetIndex;
+
+                            //line 0 -> 3
+                            //line 1 -> 4
+                            //line 2 -> 5
+
+                            let point = el[0]._index;
+                            let dataset = el[0]._chart.data.datasets[line];
+                            let data = dataset.data[point];
+                            console.log(line + 3, data);
+                            //console.log(dataset.label, data);
+                        }
+                          
+                        // const activePoints = this.getElementsAtEvent(e);
+                        // console.log(activePoints);
+
+
+                        // if (activePoints.length > 0) {
+                        //     var clickedDatasetIndex = activePoints[0]._datasetIndex;
+                        //     var clickedElementIndex = activePoints[0]._index;
+                        //     var clickedDatasetPoint = this.data.datasets[clickedDatasetIndex];
+                        //     var label = clickedDatasetPoint.label;
+                        //     var value = clickedDatasetPoint.data[clickedElementIndex]["y"];  
+                     
+                        //     alert("Clicked: " + label + " - " + value);    
+                        //  }
+
+                        
+                        // const chartA = this.chartArea;
+                        // const chartO = this;
+
+                        // let px = e.layerX - chartA.left;
+                        // if (px < 0) {
+                        //     px = 0;
+                        // }
+
+                        // let cWidthPx = chartA.right - chartA.left;
+                        // let cHeightPx = chartA.bottom - chartA.top;
+
+                        // let cWidthDt = chartO.scales['x-axis-0'].max - chartO.scales['x-axis-0'].min;
+                        // let cHeightDt = chartO.scales['y-axis-0'].max - chartO.scales['y-axis-0'].min;
+
+                        // let py = cHeightPx - (e.layerY - chartA.top);
+                        // if (py < 0) {
+                        //     py = 0;
+                        // }
+
+                        // let dx = chartO.scales['x-axis-0'].min + px * (cWidthDt / cWidthPx);
+                        // let dy = chartO.scales['y-axis-0'].min + py * (cHeightDt / cHeightPx);
+
+                        // dx = Math.round(dx * 10) / 10;
+                        // dy = Math.round(dy * 10) / 10;
+                        // this.options.dataAddCallBack({ x: dx, y: dy, pop: true });
+                    },
                     scales: {
                         xAxes: [
                             {
@@ -4117,13 +4177,15 @@ export const methods = [
                 },
 
                 dataSets: [
+                    // MOD AASHTO
                     {
-                        label: 'CBR Curve (1)',
+                        label: 'MOD AASHTO',
                         showLine: true,
                         pointRadius: 4,
                         pointBackgroundColor: 'red',
                         borderColor: 'red',
                         fill: false,
+                        hidden: true,
                         data: [
                             { sy: 'cbr_pd_1_1', x: 0 },
                             { sy: 'cbr_pd_2_1', x: 0.635 },
@@ -4147,13 +4209,15 @@ export const methods = [
                             { sy: 'cbr_pd_20_1', x: 12.065 }
                         ]
                     },
+                    // INTERMEDIATE
                     {
-                        label: 'CBR Curve (2)',
+                        label: 'INTERMEDIATE',
                         showLine: true,
                         pointRadius: 4,
                         pointBackgroundColor: 'blue',
                         borderColor: 'blue',
                         fill: false,
+                        hidden: true,
                         data: [
                             { sy: 'cbr_pd_1_2', x: 0 },
                             { sy: 'cbr_pd_2_2', x: 0.635 },
@@ -4177,13 +4241,15 @@ export const methods = [
                             { sy: 'cbr_pd_20_2', x: 12.065 }
                         ]
                     },
+                    // PROCTOR
                     {
-                        label: 'CBR Curve (3)',
+                        label: 'PROCTOR',
                         showLine: true,
                         pointRadius: 4,
                         pointBackgroundColor: 'green',
                         borderColor: 'green',
                         fill: false,
+                        hidden: true,
                         data: [
                             { sy: 'cbr_pd_1_3', x: 0 },
                             { sy: 'cbr_pd_2_3', x: 0.635 },
@@ -4206,7 +4272,44 @@ export const methods = [
                             { sy: 'cbr_pd_19_3', x: 11.43 },
                             { sy: 'cbr_pd_20_3', x: 12.065 }
                         ]
-                    }
+                    },
+                    // MOD AASHTO CORRECTION
+                    {
+                        // CORRECTION LINE 1
+                        label: 'CORRECTION',
+                        showLine: true,
+                        pointRadius: 4,
+                        pointBackgroundColor: 'red',
+                        borderColor: 'red',
+                        fill: false,
+                        hidden: true,
+                        data: []
+                    },
+                    // NTERMEDIATE CORRECTION
+                    {
+                        // CORRECTION LINE 2
+                        label: 'CORRECTION',
+                        showLine: true,
+                        pointRadius: 4,
+                        pointBackgroundColor: 'blue',
+                        borderColor: 'blue',
+                        fill: false,
+                        hidden: true,
+                        data: []
+                    },
+                    // PROCTOR CORRECTION
+                    {
+
+                        label: 'CORRECTION',
+                        showLine: true,
+                        pointRadius: 4,
+                        pointBackgroundColor: 'green',
+                        borderColor: 'green',
+                        fill: false,
+                        hidden: true,
+                        data: []
+                    },
+
                 ]
             }, //GRAPH 1
             {
@@ -4629,14 +4732,14 @@ export const methods = [
                 },
 
                 dataSets: [
-					{
+                    {
                         label: 'Actual Dry Density and Actual Moisture Content',
                         showLine: true,
                         pointRadius: 3,
                         pointBackgroundColor: 'red',
                         borderColor: 'red',
-						fill: false,
-						lineTension: 0.25,
+                        fill: false,
+                        lineTension: 0.25,
                         data: [
                             { sx: 'mdd_amc1', sy: 'mdd_add1' },
                             { sx: 'mdd_amc2', sy: 'mdd_add2' },
@@ -4652,8 +4755,8 @@ export const methods = [
                         pointRadius: 3,
                         pointBackgroundColor: 'blue',
                         borderColor: 'blue',
-						fill: false,
-						lineTension: 0.25,
+                        fill: false,
+                        lineTension: 0.25,
                         data: [
                             { sx: 'mdd_pa1', sy: 'mdd_edd1' },
                             { sx: 'mdd_pa2', sy: 'mdd_edd2' },
@@ -4787,7 +4890,7 @@ export const methods = [
             },
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Fraction ( < 0.075 mm)' },
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Fraction ( < 0.075 mm for Grading Modulus in A1)' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_fm' }
                 ]
             },
@@ -5049,11 +5152,11 @@ export const methods = [
         //A1
         code: 'A1',
         colLayout: [
+            { span: 1, width: '30%' },
             { span: 1, width: '20%' },
             { span: 1, width: '20%' },
             { span: 1, width: '20%' },
-            { span: 1, width: '20%' },
-            { span: 1, width: '20%' }
+            { span: 1, width: '10%' }
         ],
         grid: [
             {
@@ -5208,13 +5311,25 @@ export const methods = [
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'gr_mr12' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'gr_pr12' }
                 ]
-            }
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: '0.075 mm percentage passing (Fraction < 0.075 mm From A5)' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'gr_pp10' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Grading Modulus' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'gr_gm' }
+                ]
+            },
         ],
         hasGraph: true,
 
         graph: [
             {
-                addMaxY: 40,
+                addMaxY: 10,
                 roundOff: 1,
 
                 options: {
@@ -5293,7 +5408,13 @@ export const methods = [
                             {
                                 scaleLabel: { display: true, labelString: 'Percentage Passing (%)' },
                                 type: 'linear',
-                                ticks: {}
+                                ticks: {
+                                    beginAtZero: true,
+                                    steps: 10,
+                                    stepValue: 5,
+                                    max: 100,
+                                    min: 0
+                                }
                             }
                         ]
                     }
