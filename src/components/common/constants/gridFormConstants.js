@@ -627,7 +627,7 @@ export const methods = [
                                 ticks: {
                                     stepSize: 0.635,
                                     minRotation: 90,
-                                    callback: function(label, index, labels) {
+                                    callback: function (label, index, labels) {
                                         return label.toFixed(3);
                                     }
                                 }
@@ -639,7 +639,7 @@ export const methods = [
                                 type: 'linear',
                                 ticks: {
                                     stepSize: 0.1,
-                                    callback: function(label) {
+                                    callback: function (label) {
                                         if (label % 0.5 === 0) {
                                             return label;
                                         } else {
@@ -759,7 +759,7 @@ export const methods = [
 
                     animation: {
                         duration: 0,
-                        onComplete: function() {
+                        onComplete: function () {
                             var ctx = this.chart.ctx;
                             ctx.font = Chart.helpers.fontString(
                                 Chart.defaults.global.defaultFontSize,
@@ -770,7 +770,7 @@ export const methods = [
                             ctx.textAlign = 'center';
                             ctx.textBaseline = 'bottom';
 
-                            this.data.datasets.forEach(function(dataset) {
+                            this.data.datasets.forEach(function (dataset) {
                                 for (var i = 0; i < dataset.data.length; i++) {
                                     var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;
                                     var string = '';
@@ -802,7 +802,7 @@ export const methods = [
                                 ticks: {
                                     stepSize: 1,
                                     minRotation: 90,
-                                    callback: function(label, index, labels) {
+                                    callback: function (label, index, labels) {
                                         return label.toFixed(2);
                                     }
                                 }
@@ -1096,7 +1096,7 @@ export const methods = [
                         animationDuration: 0
                     },
 
-                    onClick: function(e) {
+                    onClick: function (e) {
                         const chartA = this.chartArea;
                         const chartO = this;
 
@@ -1126,7 +1126,7 @@ export const methods = [
 
                     animation: {
                         duration: 500,
-                        onComplete: function() {
+                        onComplete: function () {
                             var ctx = this.chart.ctx;
                             ctx.font = Chart.helpers.fontString(
                                 Chart.defaults.global.defaultFontSize,
@@ -1137,7 +1137,7 @@ export const methods = [
                             ctx.textAlign = 'center';
                             ctx.textBaseline = 'bottom';
 
-                            this.data.datasets.forEach(function(dataset, di) {
+                            this.data.datasets.forEach(function (dataset, di) {
                                 for (var i = 0; i < dataset.data.length; i++) {
                                     var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;
                                     var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;
@@ -1166,7 +1166,7 @@ export const methods = [
                                     //max: 20,
                                     stepSize: 0.05,
                                     minRotation: 90,
-                                    callback: function(label, index, labels) {
+                                    callback: function (label, index, labels) {
                                         if (label % 1 === 0) {
                                             return label.toFixed(1);
                                         } else {
@@ -1182,7 +1182,7 @@ export const methods = [
                                 type: 'linear',
                                 ticks: {
                                     stepSize: 10,
-                                    callback: function(label, index, labels) {
+                                    callback: function (label, index, labels) {
                                         if (label % 20 === 0) {
                                             return label.toFixed(1);
                                         } else {
@@ -1440,7 +1440,7 @@ export const methods = [
                         animationDuration: 0
                     },
 
-                    onClick: function(e) {
+                    onClick: function (e) {
                         const chartA = this.chartArea;
                         const chartO = this;
 
@@ -1470,7 +1470,7 @@ export const methods = [
 
                     animation: {
                         duration: 500,
-                        onComplete: function() {
+                        onComplete: function () {
                             var ctx = this.chart.ctx;
                             ctx.font = Chart.helpers.fontString(
                                 Chart.defaults.global.defaultFontSize,
@@ -1481,7 +1481,7 @@ export const methods = [
                             ctx.textAlign = 'center';
                             ctx.textBaseline = 'bottom';
 
-                            this.data.datasets.forEach(function(dataset, di) {
+                            this.data.datasets.forEach(function (dataset, di) {
                                 for (var i = 0; i < dataset.data.length; i++) {
                                     var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;
                                     var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;
@@ -1510,7 +1510,7 @@ export const methods = [
                                     //max: 20,
                                     stepSize: 0.05,
                                     minRotation: 90,
-                                    callback: function(label, index, labels) {
+                                    callback: function (label, index, labels) {
                                         if (label % 1 === 0) {
                                             return label.toFixed(1);
                                         } else {
@@ -1526,7 +1526,7 @@ export const methods = [
                                 type: 'linear',
                                 ticks: {
                                     stepSize: 10,
-                                    callback: function(label, index, labels) {
+                                    callback: function (label, index, labels) {
                                         if (label % 20 === 0) {
                                             return label.toFixed(1);
                                         } else {
@@ -2160,7 +2160,7 @@ export const methods = [
 
                     animation: {
                         duration: 0,
-                        onComplete: function() {
+                        onComplete: function () {
                             var ctx = this.chart.ctx;
                             ctx.font = Chart.helpers.fontString(
                                 Chart.defaults.global.defaultFontSize,
@@ -2171,7 +2171,7 @@ export const methods = [
                             ctx.textAlign = 'center';
                             ctx.textBaseline = 'bottom';
 
-                            this.data.datasets.forEach(function(dataset) {
+                            this.data.datasets.forEach(function (dataset) {
                                 for (var i = 0; i < dataset.data.length; i++) {
                                     var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;
                                     var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;
@@ -2197,7 +2197,7 @@ export const methods = [
                                 position: 'bottom',
                                 ticks: {
                                     minRotation: 90,
-                                    callback: function(label, index, labels) {
+                                    callback: function (label, index, labels) {
                                         return label.toFixed(2);
                                     }
                                 }
@@ -2475,7 +2475,7 @@ export const methods = [
 
                     animation: {
                         duration: 0,
-                        onComplete: function() {
+                        onComplete: function () {
                             var limitIndexes = [];
 
                             var ctx = this.chart.ctx;
@@ -2488,7 +2488,7 @@ export const methods = [
                             ctx.textAlign = 'center';
                             ctx.textBaseline = 'bottom';
 
-                            this.data.datasets.forEach(function(dataset, dIndex) {
+                            this.data.datasets.forEach(function (dataset, dIndex) {
                                 let limitY = { showLimit: 1, countLimit: 0, limit: 100, limitReached: false };
                                 for (var i = 0; i < dataset.data.length; i++) {
                                     const valY = dataset.data[i].y;
@@ -2535,7 +2535,7 @@ export const methods = [
                                 position: 'bottom',
                                 ticks: {
                                     minRotation: 90,
-                                    callback: function(label, index, labels) {
+                                    callback: function (label, index, labels) {
                                         return label.toFixed(2);
                                     }
                                 }
@@ -3050,7 +3050,7 @@ export const methods = [
 
                     animation: {
                         duration: 0,
-                        onComplete: function() {
+                        onComplete: function () {
                             var ctx = this.chart.ctx;
                             ctx.font = Chart.helpers.fontString(
                                 Chart.defaults.global.defaultFontSize,
@@ -3061,7 +3061,7 @@ export const methods = [
                             ctx.textAlign = 'center';
                             ctx.textBaseline = 'bottom';
 
-                            this.data.datasets.forEach(function(dataset) {
+                            this.data.datasets.forEach(function (dataset) {
                                 for (var i = 0; i < dataset.data.length; i++) {
                                     var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;
                                     var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;
@@ -3087,7 +3087,7 @@ export const methods = [
                                 position: 'bottom',
                                 ticks: {
                                     minRotation: 90,
-                                    callback: function(label, index, labels) {
+                                    callback: function (label, index, labels) {
                                         return label.toFixed(2);
                                     }
                                 }
@@ -3295,7 +3295,7 @@ export const methods = [
 
                     animation: {
                         duration: 0,
-                        onComplete: function() {
+                        onComplete: function () {
                             var ctx = this.chart.ctx;
                             ctx.font = Chart.helpers.fontString(
                                 Chart.defaults.global.defaultFontSize,
@@ -3306,7 +3306,7 @@ export const methods = [
                             ctx.textAlign = 'center';
                             ctx.textBaseline = 'bottom';
 
-                            this.data.datasets.forEach(function(dataset) {
+                            this.data.datasets.forEach(function (dataset) {
                                 for (var i = 0; i < dataset.data.length; i++) {
                                     var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;
                                     var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;
@@ -3332,7 +3332,7 @@ export const methods = [
                                 position: 'bottom',
                                 ticks: {
                                     minRotation: 90,
-                                    callback: function(label, index, labels) {
+                                    callback: function (label, index, labels) {
                                         return label.toFixed(2);
                                     }
                                 }
@@ -3836,7 +3836,14 @@ export const methods = [
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'cbr_ps3' }
                 ]
             },
-            { td: [{ style: STYLES.LARGE_LABEL.c, colSpan: 4, label: 'Penetration Data' }] },
+            { td: [{ style: STYLES.LARGE_LABEL.c, colSpan: 4, label: 'Penetration Data' }] }, {
+                td: [
+                    { style: STYLES.LARGE_LABEL.c },
+                    { style: STYLES.LARGE_LABEL.c, label: 'Modified AASHTO' },
+                    { style: STYLES.LARGE_LABEL.c, label: 'Intermediate' },
+                    { style: STYLES.LARGE_LABEL.c, label: 'Proctor' }
+                ]
+            },
             {
                 td: [
                     { style: STYLES.LARGE_LABEL.tr, label: '0.00 mm' },
@@ -4082,12 +4089,12 @@ export const methods = [
 
                 options: {
                     //maintainAspectRatio: false,
-                    getDatasetAtEvent: function(e) {
+                    getDatasetAtEvent: function (e) {
                         console.log(e)
                     },
-                    onClick: function(e) {
+                    onClick: function (e) {
                         let el = this.getElementAtEvent(e);
-                        if(el.length > 0) {
+                        if (el.length > 0) {
                             let line = el[0]._datasetIndex;
 
                             //line 0 -> 3
@@ -4100,7 +4107,7 @@ export const methods = [
                             console.log(line + 3, data);
                             //console.log(dataset.label, data);
                         }
-                          
+
                         // const activePoints = this.getElementsAtEvent(e);
                         // console.log(activePoints);
 
@@ -4111,11 +4118,11 @@ export const methods = [
                         //     var clickedDatasetPoint = this.data.datasets[clickedDatasetIndex];
                         //     var label = clickedDatasetPoint.label;
                         //     var value = clickedDatasetPoint.data[clickedElementIndex]["y"];  
-                     
+
                         //     alert("Clicked: " + label + " - " + value);    
                         //  }
 
-                        
+
                         // const chartA = this.chartArea;
                         // const chartO = this;
 
@@ -4151,7 +4158,7 @@ export const methods = [
                                 ticks: {
                                     stepSize: 0.635,
                                     minRotation: 90,
-                                    callback: function(label, index, labels) {
+                                    callback: function (label, index, labels) {
                                         return label.toFixed(3);
                                     }
                                 }
@@ -4163,7 +4170,7 @@ export const methods = [
                                 type: 'linear',
                                 ticks: {
                                     stepSize: 0.1,
-                                    callback: function(label) {
+                                    callback: function (label) {
                                         if (label % 0.5 === 0) {
                                             return label;
                                         } else {
@@ -4273,6 +4280,63 @@ export const methods = [
                             { sy: 'cbr_pd_20_3', x: 12.065 }
                         ]
                     },
+                    // PROCTOR
+                    {
+                        label: 'PROCTOR',
+                        showLine: true,
+                        pointRadius: 4,
+                        pointBackgroundColor: 'purple',
+                        borderColor: 'purple',
+                        isFormula: true,
+                        order: 3,
+                        regression: 'polynomial',
+                        fill: false,
+                        hidden: true,
+                        xInputs: [
+                            { scopeVal: 'cbr_pd_r1_3', x: 0 },
+                            { scopeVal: 'cbr_pd_r2_3', x: 0.635 },
+                            { scopeVal: 'cbr_pd_r3_3', x: 1.27 },
+                            { scopeVal: 'cbr_pd_r4_3', x: 1.905 },
+                            { scopeVal: 'cbr_pd_r5_3', x: 2.54 },
+                            { scopeVal: 'cbr_pd_r6_3', x: 3.175 },
+                            { scopeVal: 'cbr_pd_r7_3', x: 3.81 },
+                            { scopeVal: 'cbr_pd_r8_3', x: 4.445 },
+                            { scopeVal: 'cbr_pd_r9_3', x: 5.08 },
+                            { scopeVal: 'cbr_pd_r10_3', x: 5.715 },
+                            { scopeVal: 'cbr_pd_r11_3', x: 6.35 },
+                            { scopeVal: 'cbr_pd_r12_3', x: 6.985 },
+                            { scopeVal: 'cbr_pd_r13_3', x: 7.62 },
+                            { scopeVal: 'cbr_pd_r14_3', x: 8.255 },
+                            { scopeVal: 'cbr_pd_r15_3', x: 8.89 },
+                            { scopeVal: 'cbr_pd_r16_3', x: 9.525 },
+                            { scopeVal: 'cbr_pd_r17_3', x: 10.16 },
+                            { scopeVal: 'cbr_pd_r18_3', x: 10.795 },
+                            { scopeVal: 'cbr_pd_r19_3', x: 11.43 },
+                            { scopeVal: 'cbr_pd_r20_3', x: 12.065 }
+                        ],
+                        data: [
+                            { sy: 'cbr_pd_1_3', x: 0 },
+                            { sy: 'cbr_pd_2_3', x: 0.635 },
+                            { sy: 'cbr_pd_3_3', x: 1.27 },
+                            { sy: 'cbr_pd_4_3', x: 1.905 },
+                            { sy: 'cbr_pd_5_3', x: 2.54 },
+                            { sy: 'cbr_pd_6_3', x: 3.175 },
+                            { sy: 'cbr_pd_7_3', x: 3.81 },
+                            { sy: 'cbr_pd_8_3', x: 4.445 },
+                            { sy: 'cbr_pd_9_3', x: 5.08 },
+                            { sy: 'cbr_pd_10_3', x: 5.715 },
+                            { sy: 'cbr_pd_11_3', x: 6.35 },
+                            { sy: 'cbr_pd_12_3', x: 6.985 },
+                            { sy: 'cbr_pd_13_3', x: 7.62 },
+                            { sy: 'cbr_pd_14_3', x: 8.255 },
+                            { sy: 'cbr_pd_15_3', x: 8.89 },
+                            { sy: 'cbr_pd_16_3', x: 9.525 },
+                            { sy: 'cbr_pd_17_3', x: 10.16 },
+                            { sy: 'cbr_pd_18_3', x: 10.795 },
+                            { sy: 'cbr_pd_19_3', x: 11.43 },
+                            { sy: 'cbr_pd_20_3', x: 12.065 }
+                        ]
+                    },
                     // MOD AASHTO CORRECTION
                     {
                         // CORRECTION LINE 1
@@ -4323,7 +4387,7 @@ export const methods = [
 
                     animation: {
                         duration: 0,
-                        onComplete: function() {
+                        onComplete: function () {
                             var ctx = this.chart.ctx;
                             ctx.font = Chart.helpers.fontString(
                                 Chart.defaults.global.defaultFontSize,
@@ -4334,7 +4398,7 @@ export const methods = [
                             ctx.textAlign = 'center';
                             ctx.textBaseline = 'bottom';
 
-                            this.data.datasets.forEach(function(dataset) {
+                            this.data.datasets.forEach(function (dataset) {
                                 for (var i = 0; i < dataset.data.length; i++) {
                                     var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;
                                     var string = '';
@@ -4366,7 +4430,7 @@ export const methods = [
                                 ticks: {
                                     stepSize: 1,
                                     minRotation: 90,
-                                    callback: function(label, index, labels) {
+                                    callback: function (label, index, labels) {
                                         return label.toFixed(2);
                                     }
                                 }
@@ -4392,7 +4456,6 @@ export const methods = [
                         lineTension: 0,
                         data: [{ sx: 'cbr_mmx1', sy: 'cbr_1_d1' }, { sx: 'cbr_imx1', sy: 'cbr_2_d1' }, { sx: 'cbr_pmx1', sy: 'cbr_3_d1' }]
                     },
-
                     {
                         label: 'CBR (2.54 mm - Normalized)',
                         showLine: true,
@@ -4632,7 +4695,7 @@ export const methods = [
                         animationDuration: 0
                     },
 
-                    onClick: function(e) {
+                    onClick: function (e) {
                         const chartA = this.chartArea;
                         const chartO = this;
 
@@ -4662,7 +4725,7 @@ export const methods = [
 
                     animation: {
                         duration: 500,
-                        onComplete: function() {
+                        onComplete: function () {
                             var ctx = this.chart.ctx;
                             ctx.font = Chart.helpers.fontString(
                                 Chart.defaults.global.defaultFontSize,
@@ -4673,7 +4736,7 @@ export const methods = [
                             ctx.textAlign = 'center';
                             ctx.textBaseline = 'bottom';
 
-                            this.data.datasets.forEach(function(dataset, di) {
+                            this.data.datasets.forEach(function (dataset, di) {
                                 for (var i = 0; i < dataset.data.length; i++) {
                                     var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;
                                     var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;
@@ -4702,7 +4765,7 @@ export const methods = [
                                     //max: 20,
                                     stepSize: 0.05,
                                     minRotation: 90,
-                                    callback: function(label, index, labels) {
+                                    callback: function (label, index, labels) {
                                         if (label % 1 === 0) {
                                             return label.toFixed(1);
                                         } else {
@@ -4718,7 +4781,7 @@ export const methods = [
                                 type: 'linear',
                                 ticks: {
                                     stepSize: 10,
-                                    callback: function(label, index, labels) {
+                                    callback: function (label, index, labels) {
                                         if (label % 20 === 0) {
                                             return label.toFixed(1);
                                         } else {
@@ -5341,7 +5404,7 @@ export const methods = [
 
                     animation: {
                         duration: 0,
-                        onComplete: function() {
+                        onComplete: function () {
                             var limitIndexes = [];
                             var ctx = this.chart.ctx;
                             ctx.font = Chart.helpers.fontString(
@@ -5353,7 +5416,7 @@ export const methods = [
                             ctx.textAlign = 'center';
                             ctx.textBaseline = 'bottom';
 
-                            this.data.datasets.forEach(function(dataset, dIndex) {
+                            this.data.datasets.forEach(function (dataset, dIndex) {
                                 let limitY = { showLimit: 1, countLimit: 0, limit: 100, limitReached: false };
                                 for (var i = 0; i < dataset.data.length; i++) {
                                     const valY = dataset.data[i].y;
@@ -5400,7 +5463,7 @@ export const methods = [
                                 position: 'bottom',
                                 ticks: {
                                     minRotation: 90,
-                                    callback: function(label, index, labels) {
+                                    callback: function (label, index, labels) {
                                         return label.toFixed(2);
                                     }
                                 }

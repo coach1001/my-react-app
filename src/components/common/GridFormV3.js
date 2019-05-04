@@ -7,27 +7,35 @@ import Confirm from 'react-confirm-bootstrap';
 import Datetime from 'react-datetime';
 import sortBy from 'lodash/sortBy';
 import cloneDeep from 'lodash/cloneDeep';
-import regression from 'regression';
 import {Line} from 'react-chartjs-2';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import PolynomialRegression from './regression/PolynomialRegression';
 
-function linearRegression(d,rType){
-  let data = cloneDeep(d);
-  let dataT = [];
-  
-  data.map( (point) =>{
-    let set = [];
-    set.push(point.x);
-    set.push(point.y);
-    dataT.push(set);
-    return point;
-  })
-  
-  var result = regression(rType,dataT);  
-  return result;
+function _regression(data){
+  let rData = [];
+  let result = {};
+
+  data.forEach((d) => {
+    if(!(d.x == null) && !(d.y == null))
+    rData.push({
+      x: d.x,
+      y: d.y
+    })
+  });  
+  const dlength = rData.length;
+  const model = PolynomialRegression.read(rData, dlength);
+  const terms = model.getTerms();
+  const a = terms[dlength];
+  const b = terms[dlength - 1];
+  const nFac = math.factorial(dlength);
+  const nFacLessOne = math.factorial(dlength - 1);
+  const x = (-b*nFacLessOne)/(a*nFac);
+  const y = model.predictY(terms, x + 2.54);
+  console.log(x, x+2.54, y);
+  result.equation = terms.reverse();  
+  return  result;
 }
-
 
 class GridForm extends React.Component {
   
@@ -203,17 +211,20 @@ class GridForm extends React.Component {
       method.graph.map( (g) =>{      
         g.dataSets.map( (ds, dsi)=>{        
           if(ds.isFormula){          
-            var eq = linearRegression(ds.data,ds.regression);                    
-            eq.equation.reverse();          
-            ds.xInputs.map( (xi) =>{                                  
-              var y=0;            
-              eq.equation.map( (coff,ci)=>{                            
-                if(ci) y+= Math.pow(xi.x,ci)*coff;
-                else y+=coff;                                          
-                return coff;
-              })            
-              xi.y = y;            
-              ds.data.push({x: xi.x, y: xi.y });            
+            var eq = _regression(ds.data,ds.regression, ds.order);                    
+            eq.equation.reverse();
+            ds.data = [];     
+            ds.xInputs.map( (xi, index) =>{    
+                var y=0;            
+                eq.equation.map( (coff,ci)=>{                            
+                  if(ci) y+= Math.pow(xi.x,ci)*coff;
+                  else y+=coff;                                          
+                  return coff;
+                });            
+                xi.y = y;  
+                if(y > 0) {
+                  ds.data.push({x: xi.x, y: xi.y });              
+                }                          
               return xi;
             })          
           }

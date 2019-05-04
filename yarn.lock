@@ -4313,6 +4313,11 @@ js-base64@^2.1.9:
   version "2.1.9"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.1.9.tgz#f0e80ae039a4bd654b5f281fc93f04a914a7fcce"
 
+js-polynomial-regression@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/js-polynomial-regression/-/js-polynomial-regression-0.9.0.tgz#6fae6bc76ec579e51a722459126611628c3b2e37"
+  integrity sha1-b65rx27FeeUaciRZEmYRYow7Ljc=
+
 js-tokens@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.0.tgz#a2f2a969caae142fb3cd56228358c89366957bd1"
@@ -6259,9 +6264,10 @@ regjsparser@^0.1.4:
   dependencies:
     jsesc "~0.5.0"
 
-regression@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/regression/-/regression-1.4.0.tgz#d3468f9fbada1c70161df31f6c64301677ac5a70"
+regression@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/regression/-/regression-2.0.1.tgz#8d29c3e8224a10850c35e337e85a8b2fac3b0c87"
+  integrity sha1-jSnD6CJKEIUMNeM36FqLL6w7DIc=
 
 relateurl@0.2.x:
   version "0.2.7"
