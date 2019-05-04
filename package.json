@@ -12,6 +12,8 @@
     "chart.js": "^2.5.0",
     "chartjs": "^0.3.24",
     "classnames": "^2.2.5",
+    "global": "^4.3.2",
+    "ionic": "^4.12.0",
     "jwt-decode": "^2.1.0",
     "katex": "^0.7.1",
     "lodash": "^4.17.4",
@@ -42,5 +44,5 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }  
+  }
 }

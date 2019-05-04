@@ -4944,46 +4944,15 @@ export const methods = [
     }, //A5
 
     {
-        //A4
-        code: 'A4',
+        //A2 A3 A4
+        code: 'A2_A3_A4',
         colLayout: [{ span: 1, width: '25%' }, { span: 1, width: '25%' }, { span: 1, width: '25%' }, { span: 1, width: '25%' }],
         grid: [
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Through Number' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'ls_tn' }
-                ]
-            },
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Blows' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'ls_bl' }
-                ]
-            },
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Linear Shrinkage' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'ls_ls' }
-                ]
-            },
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage Linear Shrinkage' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'ls_pls' }
-                ]
-            }
-        ]
-    }, //A4
-
-    {
-        //A3
-        code: 'A3',
-        colLayout: [{ span: 1, width: '25%' }, { span: 1, width: '25%' }, { span: 1, width: '25%' }, { span: 1, width: '25%' }],
-        grid: [
+            { td: [{ style: STYLES.LARGE_LABEL.c, label: 'Liquid Limit', colSpan: 5 }] },
             {
                 td: [
                     { style: STYLES.LARGE_LABEL.tr, label: 'Number of Points' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'pl_nop' }
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_nop' }
                 ]
             },
 
@@ -4999,154 +4968,168 @@ export const methods = [
             {
                 td: [
                     { style: STYLES.LARGE_LABEL.tr, label: 'Pan Number' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'pl_pn1' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'pl_pn2' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'pl_pn3' }
-                ]
-            },
-
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Wet Mass' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'pl_wm1' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'pl_wm2' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'pl_wm3' }
-                ]
-            },
-
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Dry Mass' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'pl_dm1' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'pl_dm2' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'pl_dm3' }
-                ]
-            },
-
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Pan Mass' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'pl_pm1' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'pl_pm2' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'pl_pm3' }
-                ]
-            },
-
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Plasitc Limit' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'pl_pl1' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'pl_pl2' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'pl_pl3' }
-                ]
-            },
-
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Average Plastic Limit' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'pl_avg' }
-                ]
-            },
-
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Average Liquid Limit (from TMH1 A2)' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'pl_ll_avg' }
-                ]
-            },
-
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Plasticity Index' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'pl_pi' }
-                ]
-            }
-        ]
-    }, //A3
-
-    {
-        //A2
-        code: 'A2',
-        colLayout: [{ span: 1, width: '25%' }, { span: 1, width: '25%' }, { span: 1, width: '25%' }, { span: 1, width: '25%' }],
-        grid: [
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Number of Points' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'll_nop' }
-                ]
-            },
-
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: '' },
-                    { style: STYLES.LARGE_LABEL.c, label: '1' },
-                    { style: STYLES.LARGE_LABEL.c, label: '2' },
-                    { style: STYLES.LARGE_LABEL.c, label: '3' }
-                ]
-            },
-
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Pan Number' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'll_pn1' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'll_pn2' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'll_pn3' }
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_pn1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_pn2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_pn3' }
                 ]
             },
 
             {
                 td: [
                     { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Blows' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'll_bl1' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'll_bl2' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'll_bl3' }
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_bl1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_bl2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_bl3' }
                 ]
             },
 
             {
                 td: [
                     { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Wet Mass' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'll_wm1' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'll_wm2' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'll_wm3' }
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_wm1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_wm2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_wm3' }
                 ]
             },
 
             {
                 td: [
                     { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Dry Mass' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'll_dm1' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'll_dm2' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'll_dm3' }
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_dm1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_dm2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_dm3' }
                 ]
             },
 
             {
                 td: [
                     { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Pan Mass' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'll_pm1' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'll_pm2' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'll_pm3' }
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_pm1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_pm2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_pm3' }
                 ]
             },
 
             {
                 td: [
                     { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Liquid Limit' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'll_ll1' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'll_ll2' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'll_ll3' }
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_ll1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_ll2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_ll3' }
                 ]
             },
 
             {
                 td: [
                     { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Average Liquid Limit' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'll_avg' }
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_avg' }
+                ]
+            },
+            { td: [{ style: STYLES.LARGE_LABEL.c, label: 'Plastic Limit', colSpan: 5 }] },
+
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Number of Points' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pl_nop' }
+                ]
+            },
+
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: '' },
+                    { style: STYLES.LARGE_LABEL.c, label: '1' },
+                    { style: STYLES.LARGE_LABEL.c, label: '2' },
+                    { style: STYLES.LARGE_LABEL.c, label: '3' }
+                ]
+            },
+
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Pan Number' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pl_pn1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pl_pn2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pl_pn3' }
+                ]
+            },
+
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Wet Mass' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pl_wm1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pl_wm2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pl_wm3' }
+                ]
+            },
+
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Dry Mass' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pl_dm1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pl_dm2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pl_dm3' }
+                ]
+            },
+
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Pan Mass' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pl_pm1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pl_pm2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pl_pm3' }
+                ]
+            },
+
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Plasitc Limit' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pl_pl1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pl_pl2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pl_pl3' }
+                ]
+            },
+
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Average Plastic Limit' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pl_avg' }
+                ]
+            },
+            { td: [{ style: STYLES.LARGE_LABEL.c, label: 'Plasticity Index', colSpan: 5 }] },
+
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Plasticity Index' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pi' }
+                ]
+            },
+            { td: [{ style: STYLES.LARGE_LABEL.c, label: 'Linear Shrinkage', colSpan: 5 }] },
+
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Through Number' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ls_tn' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Blows' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ls_bl' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Linear Shrinkage' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ls_ls' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage Linear Shrinkage' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ls_pls' }
                 ]
             }
         ]
-    }, //A2
+    }, //A2 A3 A4
 
     {
         //A1
