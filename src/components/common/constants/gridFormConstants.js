@@ -2295,7 +2295,7 @@ export const methods = [
             },
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: '< 0.425 mm' },
+                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Total Passing < 0.425 mm' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr1_mr12' }
                 ]
             },
@@ -3593,7 +3593,7 @@ export const methods = [
                 ]
             }
         ]
-    },
+    }, //A13T
 
     {
         //A8
@@ -4913,7 +4913,6 @@ export const methods = [
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_pfm' }
                 ]
             },
-
             { td: [{ style: STYLES.LARGE_LABEL.thin, colSpan: 2, label: 'Method 5.3 (See TMH1)' }] },
 
             {
@@ -4939,7 +4938,27 @@ export const methods = [
                     { style: STYLES.LARGE_LABEL.tr, label: 'Mass retained on 0.075mm sieve ' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_sf_75' }
                 ]
-            }
+            },
+            { td: [{ style: STYLES.LARGE_LABEL.thin, colSpan: 2 }] },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage Coarse Fine Sand' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_pcfs' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage Medium Fine Sand' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_pmfs' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage Fine Fine Sand' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_pffs' }
+                ]
+            },
+
         ]
     }, //A5
 
@@ -5099,7 +5118,7 @@ export const methods = [
             {
                 td: [
                     { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Plasticity Index' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pi' }
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pl_pi' }
                 ]
             },
             { td: [{ style: STYLES.LARGE_LABEL.c, label: 'Linear Shrinkage', colSpan: 5 }] },
