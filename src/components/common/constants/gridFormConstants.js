@@ -2376,7 +2376,7 @@ export const methods = [
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr1_cpp7' }
                 ]
             },
-            { td: [{ style: STYLES.LARGE_LABEL.thin, colSpan: 4 }] },
+            { td: [{ style: STYLES.LARGE_LABEL.thin, colSpan: 5 }] },
             {
                 td: [
                     { style: STYLES.LARGE_LABEL.tr, isVal: false, label: '14 mm' },
@@ -2423,14 +2423,15 @@ export const methods = [
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr1_sm_fpp75um' }
                 ]
             },
-            { td: [{ style: STYLES.LARGE_LABEL.thin, colSpan: 4 }] },
+            { td: [{ style: STYLES.LARGE_LABEL.thin, colSpan: 5 }] },
 
             {
                 td: [
                     { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Sample Mass for Fines Determination' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr1_sm_ism' },
                     {},
-                    { style: STYLES.LARGE_LABEL.c, isVal: false, label: '% Fines in Total Sample' }
+                    { style: STYLES.LARGE_LABEL.c, isVal: false, label: '% Fines in Total Sample' },
+                    { style: STYLES.LARGE_LABEL.c, isVal: false, label: 'Grading Modulus' }
                 ]
             },
 
@@ -2439,7 +2440,8 @@ export const methods = [
                     { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Mass Retained 0.250 mm' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr1_sm_250umr' },
                     {},
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr1_sm_pr250um' }
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr1_sm_pr250um' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr1_gm' }
                 ]
             },
 
@@ -2465,7 +2467,7 @@ export const methods = [
 
         graph: [
             {
-                addMaxY: 40,
+                addMaxY: 10,
                 roundOff: 1,
 
                 options: {
@@ -2907,19 +2909,19 @@ export const methods = [
             },
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Sands Reading (10 mm)' },
+                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Sands Reading (10 minutes)' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_ag5_sr10' }
                 ]
             },
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Fines Reading (10 mm)' },
+                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Fines Reading (10 minutes)' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_ag5_fr10' }
                 ]
             },
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Sands Equivalent Value (10 mm)' },
+                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Sands Equivalent Value (10 minutes)' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_ag5_se10' }
                 ]
             },
@@ -3285,7 +3287,7 @@ export const methods = [
         hasGraph: true,
         graph: [
             {
-                addMaxY: 40,
+                addMaxY: 10,
                 roundOff: 1,
 
                 options: {
@@ -4088,7 +4090,6 @@ export const methods = [
                 roundOff: 1,
 
                 options: {
-                    //maintainAspectRatio: false,
                     getDatasetAtEvent: function (e) {
                         console.log(e)
                     },
@@ -4096,58 +4097,10 @@ export const methods = [
                         let el = this.getElementAtEvent(e);
                         if (el.length > 0) {
                             let line = el[0]._datasetIndex;
-
-                            //line 0 -> 3
-                            //line 1 -> 4
-                            //line 2 -> 5
-
                             let point = el[0]._index;
                             let dataset = el[0]._chart.data.datasets[line];
                             let data = dataset.data[point];
-                            console.log(line + 3, data);
-                            //console.log(dataset.label, data);
                         }
-
-                        // const activePoints = this.getElementsAtEvent(e);
-                        // console.log(activePoints);
-
-
-                        // if (activePoints.length > 0) {
-                        //     var clickedDatasetIndex = activePoints[0]._datasetIndex;
-                        //     var clickedElementIndex = activePoints[0]._index;
-                        //     var clickedDatasetPoint = this.data.datasets[clickedDatasetIndex];
-                        //     var label = clickedDatasetPoint.label;
-                        //     var value = clickedDatasetPoint.data[clickedElementIndex]["y"];  
-
-                        //     alert("Clicked: " + label + " - " + value);    
-                        //  }
-
-
-                        // const chartA = this.chartArea;
-                        // const chartO = this;
-
-                        // let px = e.layerX - chartA.left;
-                        // if (px < 0) {
-                        //     px = 0;
-                        // }
-
-                        // let cWidthPx = chartA.right - chartA.left;
-                        // let cHeightPx = chartA.bottom - chartA.top;
-
-                        // let cWidthDt = chartO.scales['x-axis-0'].max - chartO.scales['x-axis-0'].min;
-                        // let cHeightDt = chartO.scales['y-axis-0'].max - chartO.scales['y-axis-0'].min;
-
-                        // let py = cHeightPx - (e.layerY - chartA.top);
-                        // if (py < 0) {
-                        //     py = 0;
-                        // }
-
-                        // let dx = chartO.scales['x-axis-0'].min + px * (cWidthDt / cWidthPx);
-                        // let dy = chartO.scales['y-axis-0'].min + py * (cHeightDt / cHeightPx);
-
-                        // dx = Math.round(dx * 10) / 10;
-                        // dy = Math.round(dy * 10) / 10;
-                        // this.options.dataAddCallBack({ x: dx, y: dy, pop: true });
                     },
                     scales: {
                         xAxes: [
@@ -4192,7 +4145,7 @@ export const methods = [
                         pointBackgroundColor: 'red',
                         borderColor: 'red',
                         fill: false,
-                        hidden: true,
+                        // hidden: true,
                         data: [
                             { sy: 'cbr_pd_1_1', x: 0 },
                             { sy: 'cbr_pd_2_1', x: 0.635 },
@@ -4216,6 +4169,19 @@ export const methods = [
                             { sy: 'cbr_pd_20_1', x: 12.065 }
                         ]
                     },
+                    // {
+                    //     label: 'MOD AASHTO CORRECTION',
+                    //     showLine: true,
+                    //     pointRadius: 4,
+                    //     pointBackgroundColor: 'grey',
+                    //     borderColor: 'grey',
+                    //     fill: false,
+                    //     hidden: true,
+                    //     data: [
+                    //         { y: 0, sx: 'cbr_ckn1_d1_x0'},
+                    //         { sy: 'cbr_ckn1_d1_y1', sx: 'cbr_ckn1_d1_x1'}
+                    //     ]
+                    // },
                     // INTERMEDIATE
                     {
                         label: 'INTERMEDIATE',
@@ -4280,100 +4246,19 @@ export const methods = [
                             { sy: 'cbr_pd_20_3', x: 12.065 }
                         ]
                     },
-                    // PROCTOR
-                    {
-                        label: 'PROCTOR',
-                        showLine: true,
-                        pointRadius: 4,
-                        pointBackgroundColor: 'purple',
-                        borderColor: 'purple',
-                        isFormula: true,
-                        order: 3,
-                        regression: 'polynomial',
-                        fill: false,
-                        hidden: true,
-                        xInputs: [
-                            { scopeVal: 'cbr_pd_r1_3', x: 0 },
-                            { scopeVal: 'cbr_pd_r2_3', x: 0.635 },
-                            { scopeVal: 'cbr_pd_r3_3', x: 1.27 },
-                            { scopeVal: 'cbr_pd_r4_3', x: 1.905 },
-                            { scopeVal: 'cbr_pd_r5_3', x: 2.54 },
-                            { scopeVal: 'cbr_pd_r6_3', x: 3.175 },
-                            { scopeVal: 'cbr_pd_r7_3', x: 3.81 },
-                            { scopeVal: 'cbr_pd_r8_3', x: 4.445 },
-                            { scopeVal: 'cbr_pd_r9_3', x: 5.08 },
-                            { scopeVal: 'cbr_pd_r10_3', x: 5.715 },
-                            { scopeVal: 'cbr_pd_r11_3', x: 6.35 },
-                            { scopeVal: 'cbr_pd_r12_3', x: 6.985 },
-                            { scopeVal: 'cbr_pd_r13_3', x: 7.62 },
-                            { scopeVal: 'cbr_pd_r14_3', x: 8.255 },
-                            { scopeVal: 'cbr_pd_r15_3', x: 8.89 },
-                            { scopeVal: 'cbr_pd_r16_3', x: 9.525 },
-                            { scopeVal: 'cbr_pd_r17_3', x: 10.16 },
-                            { scopeVal: 'cbr_pd_r18_3', x: 10.795 },
-                            { scopeVal: 'cbr_pd_r19_3', x: 11.43 },
-                            { scopeVal: 'cbr_pd_r20_3', x: 12.065 }
-                        ],
-                        data: [
-                            { sy: 'cbr_pd_1_3', x: 0 },
-                            { sy: 'cbr_pd_2_3', x: 0.635 },
-                            { sy: 'cbr_pd_3_3', x: 1.27 },
-                            { sy: 'cbr_pd_4_3', x: 1.905 },
-                            { sy: 'cbr_pd_5_3', x: 2.54 },
-                            { sy: 'cbr_pd_6_3', x: 3.175 },
-                            { sy: 'cbr_pd_7_3', x: 3.81 },
-                            { sy: 'cbr_pd_8_3', x: 4.445 },
-                            { sy: 'cbr_pd_9_3', x: 5.08 },
-                            { sy: 'cbr_pd_10_3', x: 5.715 },
-                            { sy: 'cbr_pd_11_3', x: 6.35 },
-                            { sy: 'cbr_pd_12_3', x: 6.985 },
-                            { sy: 'cbr_pd_13_3', x: 7.62 },
-                            { sy: 'cbr_pd_14_3', x: 8.255 },
-                            { sy: 'cbr_pd_15_3', x: 8.89 },
-                            { sy: 'cbr_pd_16_3', x: 9.525 },
-                            { sy: 'cbr_pd_17_3', x: 10.16 },
-                            { sy: 'cbr_pd_18_3', x: 10.795 },
-                            { sy: 'cbr_pd_19_3', x: 11.43 },
-                            { sy: 'cbr_pd_20_3', x: 12.065 }
-                        ]
-                    },
-                    // MOD AASHTO CORRECTION
-                    {
-                        // CORRECTION LINE 1
-                        label: 'CORRECTION',
-                        showLine: true,
-                        pointRadius: 4,
-                        pointBackgroundColor: 'red',
-                        borderColor: 'red',
-                        fill: false,
-                        hidden: true,
-                        data: []
-                    },
-                    // NTERMEDIATE CORRECTION
-                    {
-                        // CORRECTION LINE 2
-                        label: 'CORRECTION',
-                        showLine: true,
-                        pointRadius: 4,
-                        pointBackgroundColor: 'blue',
-                        borderColor: 'blue',
-                        fill: false,
-                        hidden: true,
-                        data: []
-                    },
-                    // PROCTOR CORRECTION
-                    {
-
-                        label: 'CORRECTION',
-                        showLine: true,
-                        pointRadius: 4,
-                        pointBackgroundColor: 'green',
-                        borderColor: 'green',
-                        fill: false,
-                        hidden: true,
-                        data: []
-                    },
-
+                    // {
+                    //     label: 'PROCTOR CORRECTION',
+                    //     showLine: true,
+                    //     pointRadius: 4,
+                    //     pointBackgroundColor: 'grey',
+                    //     borderColor: 'grey',
+                    //     fill: false,
+                    //     data: [
+                    //         { y: 0, sx: 'cbr_ckn3_d1_x0'},
+                    //         { sy: 'cbr_ckn3_d1_y12', x: 12}
+                    //     ]
+                    // }, 
+                                     
                 ]
             }, //GRAPH 1
             {
@@ -4463,7 +4348,6 @@ export const methods = [
                         fill: false,
                         isFormula: true,
                         lineTension: 0,
-                        regression: 'linear',
                         xInputs: [
                             { x: 90, scopeVal: 'cbr_at_90' },
                             { x: 93, scopeVal: 'cbr_at_93' },

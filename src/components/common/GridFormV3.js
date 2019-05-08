@@ -11,34 +11,76 @@ import {Line} from 'react-chartjs-2';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import PolynomialRegression from './regression/PolynomialRegression';
+import regression from './cubicRegression/cubicRegression';
 
-function _regression(data){
+function cbr_regression(dataIn, cbr) {
+  let rData = [];
+
+  dataIn.forEach((d, index) => {
+    if(!(d.y == null) && (index  === 0 || d.y > 0)) {
+      rData.push({
+        x: d.x,
+        y: d.y
+      });  
+    }
+  });
+  let terms = regression.regress(rData);
+  const a = terms[0];
+  const b = terms[1];
+  const c = terms[2];
+  const d = terms[3];
+  //const model = PolynomialRegression.read(rData, 3);
+  //const terms = model.getTerms();
+  //const a = terms[3];
+  //const b = terms[2];
+  //const c = terms[1];
+  //const d = terms[0];
+
+  const x1 = -(2*b)/(6*a);
+  const slopeAtX1 = 3*a*Math.pow(x1,2)+2*b*x1+c;
+  const y1 = a*Math.pow(x1,3)+b*Math.pow(x1, 2)+c*x1+d; 
+  
+  let x0 = x1-(y1/slopeAtX1);
+  if(x0 <= 0) {
+    x0 = 0;
+  }
+  const cDepth = x0 + cbr;
+  const cLoad =  x0 === 0 ? rData[4].y : a*Math.pow(cDepth,3)+b*Math.pow(cDepth, 2)+c*cDepth+d;
+  const val = {
+    a: a,
+    b: b,
+    c: c,
+    d: d,
+    slope: slopeAtX1,
+    correctedDepth: cDepth,
+    correctedLoad: cLoad,
+    x0: x0,
+    y0: 0,
+    x1: x1,
+    y1: y1
+  };  
+  console.log(val);
+  return val;
+}
+
+function _regression(data) {
   let rData = [];
   let result = {};
-
   data.forEach((d) => {
     if(!(d.x == null) && !(d.y == null))
     rData.push({
       x: d.x,
       y: d.y
-    })
+    });
   });  
   const dlength = rData.length;
   const model = PolynomialRegression.read(rData, dlength);
   const terms = model.getTerms();
-  const a = terms[dlength];
-  const b = terms[dlength - 1];
-  const nFac = math.factorial(dlength);
-  const nFacLessOne = math.factorial(dlength - 1);
-  const x = (-b*nFacLessOne)/(a*nFac);
-  const y = model.predictY(terms, x + 2.54);
-  console.log(x, x+2.54, y);
   result.equation = terms.reverse();  
   return  result;
 }
 
 class GridForm extends React.Component {
-  
   constructor(props){
     super(props);
     this.dataAddCallBack = this.dataAddCallBack.bind(this);
@@ -71,14 +113,11 @@ class GridForm extends React.Component {
       redrawGraph: true,      
     })                
   }
-
   onChangeComplete(e){
     let sampleMethod = cloneDeep(this.state.sampleMethod);
     sampleMethod.completed = !sampleMethod.completed;
     this.setState({sampleMethod : sampleMethod});
   }
-  
-
   drawTable(){  
 
     let method = cloneDeep(this.state.method);
@@ -87,56 +126,14 @@ class GridForm extends React.Component {
 
     let tempMax = 0;
     let maxY = [];
-    
-    /*let i=0;
-    let j=0;  
-    let k=0;
-    let l=0;
-    let m=0;*/
-    
-    if(redrawGraph && method.hasGraph && !this.props.empty){                              
-      /*for(i=0;i<method.graph.length;i++){//Loop Graphs        
-        tempMax=0;        
-        for(j=0;j<method.graph[i].dataSets.length;j++){//Loop Datasets                  
-          for(k=0;k<method.graph[i].dataSets[j].data.length;k++){//Loop Data                                                                
-            if(method.graph[i].dataSets[j].data[k].isFormula){            
-              var scope={};
-              for(l=0;l<scopeData.length;l++){//Loop Scope Data                              
-                for(m=0;m<method.graph[i].dataSets[j].data[k].scopeVariables.length;m++){//Loop Graph Scope Variables
-                  if(method.graph[i].dataSets[j].data[k].scopeVariables[m] === scopeData[l].symbol ){
-                    scope[scopeData[l].symbol] = scopeData[l].value;
-                  }                                    
-                }//Loop Graph Scope Variables                                          
-              }//Loop Scope Data                
-              method.graph[i].dataSets[j].data[k].x = math.eval(method.graph[i].dataSets[j].data[k].sx,scope);
-              method.graph[i].dataSets[j].data[k].y = math.eval(method.graph[i].dataSets[j].data[k].sy,scope);                        
-            }else{
-              for(l=0;l<scopeData.length;l++){
-                if(scopeData[l].symbol === method.graph[i].dataSets[j].data[k].sx){
-                  if(scopeData[l].symbol === method.graph[i].dataSets[j].data[k].toggeLine) method.graph[i].dataSets[j].showLine=true; 
-                  if(method.graph[i].dataSets[j].data[k].x !== scopeData[l].value) method.graph[i].dataSets[j].data[k].x = scopeData[l].value; else  method.graph[i].dataSets[j].data[k].x = undefined;
-                }
-                else if(scopeData[l].symbol === method.graph[i].dataSets[j].data[k].sy){
-                  if(method.graph[i].dataSets[j].data[k].y !== scopeData[l].value) method.graph[i].dataSets[j].data[k].y = scopeData[l].value; else  method.graph[i].dataSets[j].data[k].y = undefined; 
-                }
-              }           
-            }
-            if(method.graph[i].dataSets[j].data[k].y > tempMax) tempMax = method.graph[i].dataSets[j].data[k].y;
-          }//Loop Data        
-        }//Loop Datasets
-        tempMax += method.graph[i].addMaxY;
-        tempMax = Math.round(tempMax/method.graph[i].roundOff)*method.graph[i].roundOff;          
-        maxY.push(tempMax);         
-      }//Loop Graphs*/
 
+    if(redrawGraph && method.hasGraph && !this.props.empty){                              
       method.graph.map((g) => {
         tempMax=0;        
         g.dataSets.map((ds) => {                
           ds.data.map((dt) => {                           
             if(dt.isFormula){
-              
               var scope={};
-              
               scopeData.map((sd)=>{
                 dt.scopeVariables.map( (sv) =>{
                   if(sv === sd.symbol){                    
@@ -146,19 +143,15 @@ class GridForm extends React.Component {
                 })
                 return sd;
               })
-              
               try{
                 dt.x = math.eval(dt.sx,scope);
                 dt.y = math.eval(dt.sy,scope);                            
               }catch(ex){
-
               }
-              
             }else{
               scopeData.map((sd) =>{                                                  
                 if(sd.symbol === dt.sx ){
                   if(sd.value){
-                    
                     if(dt.toggleLine){
                       ds.showLine = true;
                     }
@@ -169,10 +162,9 @@ class GridForm extends React.Component {
                 }
                 if(sd.symbol === dt.sy){
                   if(sd.value){
-                     if(dt.y !== sd.value){
-                        dt.y = sd.value;                      
-                     }
-                    
+                    if(dt.y !== sd.value){
+                      dt.y = sd.value;                      
+                    }
                     if(sd.value > tempMax)
                     {
                       tempMax=sd.value;
@@ -415,14 +407,14 @@ class GridForm extends React.Component {
                                 
                                 {                              
                                                                     
-                                    td.type === 'calc' || td.type === 'calc_avg_array' || td.type === 'graph' || td.arrayVal === 'index' || td.arrayVal === 'average' ?//IS CALC                                                                                                                                                      
-                                               
+                                    td.type === 'cbr_regression_tmh1' || td.type === 'cbr_regression_sans' || td.type === 'calc' || td.type === 'calc_avg_array' || td.type === 'graph' || td.arrayVal === 'index' || td.arrayVal === 'average' ?                                                                                                                                                     
+                                     //IS CALC           
                                         (td.unit === 'datetime' ? 
                                           <Datetime ref={td.scopeVariable} utc={true} id={td.scopeVariable} inputProps={{disabled: true}}  timeFormat="HH:mm:ss" dateFormat={false} value={this.props.empty ? '' : Math.floor(td.value)} />                                                                                                
                                         
                                         : 
                                           <div  className="input-group">
-                                          <input  tabIndex={-1} ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChange.bind(this)}  step={td.step} type='number' value={this.props.empty ? '' : td.value} readOnly className='form-control' style={td.style}/>                                                              
+                                          <input  tabIndex={-1} ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChange.bind(this)}  step={td.step} type='number' value={td.value} readOnly className='form-control' style={td.style}/>                                                              
                                           <span className="input-group-addon">                                                                    
                                             {
                                               td.isArrayVal ? <div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.arrUnit}} />:<div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} />
@@ -441,7 +433,7 @@ class GridForm extends React.Component {
                                             td.type === 'in_array' ? 
                                             <div className="input-group"><input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChangeArray.bind(this,{scopeVariable: tr.scopeVar, index: tr.index} )} min={td.min} max={td.max} step={td.step} value={this.props.empty ? '' : td.value} type='number' className='form-control' style={td.style}/><span className="input-group-addon"><div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.arrUnit}} /></span></div>
                                              ://NORMAL NUMBER INPUT
-                                            <div className="input-group"><input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChange.bind(this)} min={td.min} max={td.max} step={td.step} value={this.props.empty ? '' : td.value} type='number' className='form-control' style={td.style}/><span className="input-group-addon"><div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} /></span></div>
+                                            <div className="input-group"><input ref={td.scopeVariable} id={td.scopeVariable} onChange={this.onChange.bind(this)} min={td.min} max={td.max} step={td.step} value={!(td.value == null) ? td.value : '0' } type='number' className='form-control' style={td.style}/><span className="input-group-addon"><div style={{fontSize: '12px'}} dangerouslySetInnerHTML={{__html: td.unit}} /></span></div>
                                    
                                 }                        
                                                            
@@ -471,7 +463,6 @@ class GridForm extends React.Component {
             }                               
            </div>   
   }
-  
   onChangeSample(e){        
     let sampleMethod = cloneDeep(this.state.sampleMethod);    
     if(e._isAMomentObject){
@@ -514,7 +505,6 @@ class GridForm extends React.Component {
     })
     this.setState({scopeData: scopeData, redrawGraph: true});
   }
-
   onAddToArray(data,e){
     let scopeData = cloneDeep(this.state.scopeData);
     let index = data.index;
@@ -544,7 +534,6 @@ class GridForm extends React.Component {
     })
     this.setState({scopeData: scopeData, redrawGraph:true});
   }
-
   onChangeArray(data,e){
     let scopeData = cloneDeep(this.state.scopeData);
     let index = data.index;
@@ -574,11 +563,9 @@ class GridForm extends React.Component {
 
     this.setState({scopeData: scopeData});
   }
-
   resetValues(){
     this.setState({scopeData: this.state.oScopeData, redrawGraph: true});
   }
-  
   clearValues(){
     let method = cloneDeep(this.state.method.grid);      
     let scopeData = cloneDeep(this.state.scopeData);
@@ -608,7 +595,6 @@ class GridForm extends React.Component {
     
     this.parseInput(scopeData);        
   }
-
   onChangeTime(symbol,e){
     let scopeData = cloneDeep(this.state.scopeData);
 
@@ -620,11 +606,9 @@ class GridForm extends React.Component {
     });    
     this.setState({scopeData: scopeData, redrawGraph: true});
   }
-
   goBack(){
     this.context.router.goBack();
   }
-
   dataAddCallBack(data){
 
     let method = cloneDeep(this.state.method);
@@ -642,7 +626,6 @@ class GridForm extends React.Component {
     }     
     this.setState( {method: method, redrawGraph: true} );
   }
-
   saveData(scopeData){                
     let oScopeData = cloneDeep(this.state.oScopeData);    
     let index=0;
@@ -660,6 +643,11 @@ class GridForm extends React.Component {
   
     scopeData.map( (row, rI) => {          
       var request = cloneDeep(axiosConfig);
+      
+      if(row.value == null || isNaN(row.value)) {
+        row.value = 0;
+      }
+
       if(row.id && row.input_type !== 'constant'){                
         request.method = 'patch';
         if(row.unit === 'string' || row.input_type === 'in_array' ){          
@@ -713,18 +701,14 @@ class GridForm extends React.Component {
     });        
   
   }
-
   parseInput(scopeData){    
     let scope = {};        
-  
+    
     scopeData.map( (d) => {        
-        
         scope[d.symbol] = 0;
-
         if(d.unit !== 'string' && d.unit !== 'in_array'){
           let round = d.step*10000;
           if(round){}else{ round = 100; }
-          
           if(d.input_type === 'in'){
             try{        
               scope[d.symbol] = Math.round(parseFloat(d.value,10)*round)/round;
@@ -739,17 +723,29 @@ class GridForm extends React.Component {
         else{          
           scope[d.symbol] = d.value;
         }
-    
       return d;    
     });    
     
-
     scopeData.map ( (d) =>{      
-      let round = d.step*10000;
-      
+      let round = d.step*10000;  
       if(d.unit !== 'string' && d.unit !== 'in_array' ){      
-       
         if(round){}else{ round = 100; }                
+        
+        if(d.input_type === 'cbr_regression_tmh1' || d.input_type === 'cbr_regression_sans') {
+          const cbr = d.input_type === 'cbr_regression_tmh1' ? 2.54 : 2.5;
+          const variables = d.formula.split(',');
+          
+          let regArray = [];
+          variables.forEach((v, idx) => {
+            regArray.push({y: scope[v], x: idx * cbr/4});
+          });
+
+          const regression = cbr_regression(regArray, cbr);
+          scope[d.symbol] = Math.round(regression.correctedLoad*round)/round;
+          scope[d.symbol+'_x0'] = regression.x0;
+          scope[d.symbol+'_x1'] = regression.x1;
+          scope[d.symbol+'_y1'] = regression.y1;
+        }
         
         if(d.input_type === 'calc'){                          
           try{        
@@ -757,15 +753,13 @@ class GridForm extends React.Component {
             
             if(scope[d.symbol] === 0 || isNaN(scope[d.symbol])){
               this.refs[d.symbol].value = null;
-            }
-                                    
+            }                           
           }catch(err){                     
            scope[d.symbol] = ( d.default_value ? d.default_value : 0);           
             if(scope[d.symbol === 0]){
               this.refs[d.symbol].value = null;
             }             
           }
-
           if(isNaN(scope[d.symbol])){
             scope[d.symbol] = 0;
             this.refs[d.symbol].value = null;            
@@ -776,7 +770,6 @@ class GridForm extends React.Component {
           var scope2 = cloneDeep(this.state.scopeData);
           var sum = 0;
           var valArray = [];    
-         
           scope2.map( (d2) =>{
             if(d.formula === d2.symbol){
               if(d2.value_string){
@@ -795,9 +788,7 @@ class GridForm extends React.Component {
             sum+=val;
             return val;
           })
-
           scope[d.symbol]=Math.round((sum/(valArray.length))*10)/10;
-            
         }      
         
         if(!isFinite(scope[d.symbol])){
@@ -811,23 +802,18 @@ class GridForm extends React.Component {
           }             
         }
       }
-
       return d;      
     });    
-
     scopeData.map( (d,index)=>{      
       scopeData[index].value = scope[d.symbol];
       return d;
     });
-    
     this.saveData(scopeData);
   }
-  
   CalculateAndSave(){            
     var scopeData = cloneDeep(this.state.scopeData);
     this.parseInput(scopeData);        
   }
-  
   onChangeString(e){    
     e.preventDefault();
     let scopeData = cloneDeep(this.state.scopeData);
@@ -841,7 +827,6 @@ class GridForm extends React.Component {
     });     
     this.setState({scopeData: scopeData, redrawGraph: true}); 
   }
-
   onChange(e){
     e.preventDefault();    
     let scopeData = cloneDeep(this.state.scopeData);      
@@ -855,8 +840,6 @@ class GridForm extends React.Component {
     });
     this.setState({scopeData: scopeData, redrawGraph: true});    
   }
- 
-
   render() {                          
       return <div> 
       {this.state.scopeData ? this.drawTable() : null} 
