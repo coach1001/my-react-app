@@ -42,6 +42,15 @@ export function fetchSampleVariables3(sample_id,method_id){
 	}
 }
 
+export function fetchAllSampleVariables(sample_id){
+	return dispatch => {
+		dispatch(requestSampleVariables());		
+		return axios.get(`${window.configGA.API_DB}/sample_variables3?sample_id=eq.${sample_id}`).then( (res) => {
+			dispatch(receiveSampleVariables(res.data));
+		});
+	}
+}
+
 export function updateSampleVariable(data, sample_id){
 /*			
 	return dispatch => {		

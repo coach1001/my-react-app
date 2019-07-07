@@ -10,72 +10,70 @@ import { setLoader } from '../../actions/loader';
 import image1 from '../../dot.svg';
 
 class MethodEdit extends Component {
-  
-  componentWillMount(){     	        
-    
+
+  componentWillMount() {
     this.props.setLoader(true);
-    this.props.fetchSampleVariables3(this.props.params.sampleId,this.props.params.methodId);
+    this.props.fetchSampleVariables3(this.props.params.sampleId, this.props.params.methodId);
     this.props.fetchSampleMethod(this.props.params.sampleMethodId);
-    this.props.fetchSample(this.props.params.sampleId);            
+    this.props.fetchSample(this.props.params.sampleId);
   }
 
-  goBack(){
-    this.context.router.goBack();      
+  goBack() {
+    this.context.router.goBack();
   }
-  
-  printWindow(){
+
+  printWindow() {
     window.print();
   }
 
-  render() {    
-    //console.log(this.props.sampleMethod);
-    return <div className="container-print">              
-        <span style={{fontSize: '2em', cursor: 'pointer'}}>
-        <FaArrowCircleLeft  onClick={this.goBack.bind(this)}  className="text-info hidden-print" size="2em"/>      
-        </span>
-          
-        <div className="row">
-          <div className="col-md-4 pull-right visible-print"><img role="presentation" src={image1} style={{width:300}} /></div>
-          
-          <div className="col-md-8">          
-            <h3>Sample Number : {this.props.sample.sample}</h3>
-            <h5>Method: {this.props.sampleMethod.label} - {this.props.sampleMethod.description}</h5>           
-          </div>                       
+  render() {
+    return <div className="container-print">
+      <span style={{ fontSize: '2em', cursor: 'pointer' }}>
+        <FaArrowCircleLeft onClick={this.goBack.bind(this)} className="text-info hidden-print" size="2em" />
+      </span>
+
+      <div className="row">
+        <div className="col-md-4 pull-right visible-print"><img role="presentation" src={image1} style={{ width: 300 }} /></div>
+
+        <div className="col-md-8">
+          <h3>Sample Number : {this.props.sample.sample}</h3>
+          <h5>Method: {this.props.sampleMethod.label} - {this.props.sampleMethod.description}</h5>
         </div>
-        
+      </div>
+
 
       <button onClick={this.printWindow.bind(this)} className="pull-right btn btn-lg btn-primary hidden-print">Print</button>
-      {this.props.sampleVariables.length > 0 && Object.keys(this.props.sampleMethod).length > 0 && Object.keys(this.props.sample).length > 0 ?        
-        <div>                    
-          {                         
-            <GridForm methods={methods} empty={this.props.params.empty ? true : false} style={{width: '90vh'}} sampleMethod={this.props.sampleMethod} scopeData={this.props.sampleVariables} sampleId={parseInt(this.props.params.sampleId,10)} methodCode={this.props.params.methodCode}/> 
-          }          
+      {this.props.sampleVariables.length > 0 && Object.keys(this.props.sampleMethod).length > 0 && Object.keys(this.props.sample).length > 0 ?
+        <div>
+          {
+            <GridForm methods={methods} empty={this.props.params.empty ? true : false} style={{ width: '90vh' }} sampleMethod={this.props.sampleMethod} scopeData={this.props.sampleVariables} sampleId={parseInt(this.props.params.sampleId, 10)} methodCode={this.props.params.methodCode} />
+          }
         </div>
         : null}
 
-    </div>    
+    </div>
   }
 }
 
-MethodEdit.propTypes = {	
+MethodEdit.propTypes = {
   fetchSampleVariables: React.PropTypes.func.isRequired,
   fetchSampleVariables2: React.PropTypes.func.isRequired,
   fetchSampleMethod: React.PropTypes.func.isRequired,
   fetchSample: React.PropTypes.func.isRequired,
-  setLoader: React.PropTypes.func.isRequired,  
-  fetchSampleVariables3: React.PropTypes.func.isRequired,  
+  setLoader: React.PropTypes.func.isRequired,
+  fetchSampleVariables3: React.PropTypes.func.isRequired,
 }
 
 MethodEdit.contextTypes = {
   router: React.PropTypes.object.isRequired
 }
 
-function mapStateToProps(state){
-  return {    
+function mapStateToProps(state) {
+  return {
     isFetching: state.sampleVariables.isFetching,
     sampleVariables: state.sampleVariables.sampleVariables,
     sampleMethod: state.sampleMethods.sampleMethod,
-    sample: state.samples.sample,          
+    sample: state.samples.sample,
   }
 }
 

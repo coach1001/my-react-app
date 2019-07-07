@@ -34,6 +34,7 @@
     "react-notify-toast": "^0.1.5",
     "react-redux": "^5.0.3",
     "react-router": "^3.0.2",
+    "react-with-important-style": "^0.2.2",
     "redux": "^3.6.0",
     "redux-logger": "^2.8.2",
     "redux-thunk": "^2.2.0",

@@ -52,7 +52,6 @@ export const methods = [
             }
         ]
     }, //3001-GR54
-
     {
         //A14
         code: '3001-GR53',
@@ -4258,7 +4257,7 @@ export const methods = [
                     //         { sy: 'cbr_ckn3_d1_y12', x: 12}
                     //     ]
                     // }, 
-                                     
+
                 ]
             }, //GRAPH 1
             {
@@ -5275,17 +5274,17 @@ export const methods = [
             },
         ],
         hasGraph: true,
-
         graph: [
             {
                 addMaxY: 10,
                 roundOff: 1,
-
                 options: {
                     hover: {
                         animationDuration: 0
                     },
-
+                    // legend: {
+                    //     display: false
+                    // },
                     animation: {
                         duration: 0,
                         onComplete: function () {
@@ -5338,7 +5337,6 @@ export const methods = [
                             });
                         }
                     },
-
                     scales: {
                         xAxes: [
                             {
@@ -5368,7 +5366,6 @@ export const methods = [
                         ]
                     }
                 },
-
                 dataSets: [
                     {
                         label: 'Cummulative Percentage Passing',
@@ -5395,7 +5392,243 @@ export const methods = [
                 ]
             }
         ]
-    } //A1
+    }, //A1
+    {
+        code: 'REPORT-1-THM1',
+        colLayout: [
+            { span: 1, width: '12.5%' },
+            { span: 1, width: '12.5%' },
+            { span: 1, width: '12.5%' },
+            { span: 1, width: '12.5%' },
+            { span: 1, width: '12.5%' },
+            { span: 1, width: '12.5%' },
+            { span: 1, width: '12.5%' },
+            { span: 1, width: '12.5%' }
+        ],
+        hasGraph: true,
+        graph: [],
+        grid: [
+            {
+                td: [
+                    { style: {}, label: '', rowSpan: 3, colSpan: 3, isLogo: true },
+                    { style: STYLES.LARGE_LABEL.rlcb, label: 'DEPARTMENT OF ROADS AND TRANSPORT', colSpan: 5 }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rlc, label: 'DIRECTORATE CONTRUCTION QUALITY ASSURANCE', colSpan: 5 }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rlci, label: 'FINAL TEST REPORT (GRAVEL AND SOIL)', colSpan: 5 }
+                ]
+            },
+            {
+                td: [
+                    { colSpan: 4 },
+                    { style: STYLES.LARGE_LABEL.rlr, label: 'DATE', colSpan: 2 },
+                    { colSpan: 2 }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rlr, label: 'ROAD NUMBER', colSpan: 2 },
+                    { colSpan: 2 },
+                    { style: STYLES.LARGE_LABEL.rlr, label: 'JOB ASSIGNMENT NUMBER', colSpan: 2 },
+                    { colSpan: 2 }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rlr, label: 'KILOMETER', colSpan: 2 },
+                    { colSpan: 2 },
+                    { style: STYLES.LARGE_LABEL.rlr, label: 'SAMPLE NUMBER', colSpan: 2 },
+                    { colSpan: 2 }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rlr, label: 'DEPTH', colSpan: 2 },
+                    { colSpan: 2 },
+                    { style: STYLES.LARGE_LABEL.rlr, label: 'GROUPING', colSpan: 2 },
+                    { colSpan: 2 }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rlcb, label: 'CBR/DENSITY OR MOISTURE RATIO', colSpan: 4 },
+                    { style: STYLES.LARGE_LABEL.rlcb, label: 'GRADING', colSpan: 4 },
+                ]
+            },
+            {
+                style: {
+                    height: '220px'
+                },
+                td: [
+                    { isGraph: true, colSpan: 4 },
+                    { isGraph: true, colSpan: 4 },
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rll, label: 'CODE', colSpan: 4 },
+                    { colSpan: 4 },
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rll, label: 'DESCRIPTION OF MATERIAL', colSpan: 4 },
+                    { colSpan: 4 },
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rll, label: 'DATE SAMPLED', colSpan: 4 },
+                    { colSpan: 4 },
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rll, label: 'LAYER', colSpan: 4 },
+                    { colSpan: 4 },
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rllb, label: 'GRADING MODULUS', colSpan: 4 },
+                    { colSpan: 4 },
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rllb, label: 'ATTERBURG LIMITS', colSpan: 4 },
+                    { colSpan: 4 },
+                ]
+            },
+            {
+                td: [
+                    { style: { ...STYLES.LARGE_LABEL.rlls, ...STYLES.CELL_ROTATE }, colSpan: 1, rowSpan: 3, label: 'CONSTANTS' },
+                    { style: STYLES.LARGE_LABEL.rll, colSpan: 3, label: 'PLASTICITY INDEX (PI)' },
+                    { colSpan: 4 }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rll, colSpan: 3, label: 'LINEAR SHRINKAGE (LS) mm' },
+                    { colSpan: 4 }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rll, colSpan: 3, label: 'LIQUID LIMIT (LL)' },
+                    { colSpan: 4 }
+                ]
+            },
+            {
+                td: [{ style: STYLES.LARGE_LABEL.rllb, colSpan: 8, label: 'TRB CLASSIFICATION' }]
+            },
+            {
+                td: [{ style: STYLES.LARGE_LABEL.rllb, colSpan: 8, label: 'CALIFORNIA BEARING RATIO (CBR) %' }]
+            },
+            {
+                td: [
+                    { style: { ...STYLES.LARGE_LABEL.rlcb, ...STYLES.CELL_ROTATE }, colSpan: 1, rowSpan: 12, label: 'CBR DETERMINATION' },
+                    { style: STYLES.LARGE_LABEL.rll, colSpan: 3, label: 'MAXIMUM DRY DENSITY kg/m³' },
+                    { colSpan: 4 }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rll, colSpan: 3, label: 'OPTIMUM MOISTURE CONTENT (%)' },
+                    { colSpan: 4 }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rll, colSpan: 3, label: 'COMPACTION MOISTURE CONTENT (%)' },
+                    { colSpan: 4 }
+                ]
+            },
+            {
+                td: [
+                    { style: { ...STYLES.LARGE_LABEL.rlcb, ...STYLES.CELL_ROTATE }, colSpan: 1, rowSpan: 9, label: 'CBR AT' },
+                    { style: STYLES.LARGE_LABEL.rlc, colSpan: 2, label: 'MOD' },
+                    { colSpan: 4 }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rlc, colSpan: 2, label: 'NRB' },
+                    { colSpan: 4 }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rlc, colSpan: 2, label: 'PROCTOR' },
+                    { colSpan: 4 }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rlc, colSpan: 1, label: '98%' },
+                    { style: STYLES.LARGE_LABEL.rlc, colSpan: 1, rowSpan: 5, label: 'MAX. DRY DENSITY' },
+                    { colSpan: 4 }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rlc, colSpan: 1, label: '97%' },
+                    { colSpan: 4 }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rlc, colSpan: 1, label: '95%' },
+                    { colSpan: 4 }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rlc, colSpan: 1, label: '93%' },
+                    { colSpan: 4 }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rlc, colSpan: 1, label: '90%' },
+                    { colSpan: 4 }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rlc, colSpan: 1, label: '92.6%' },
+                    { style: STYLES.LARGE_LABEL.rlc, colSpan: 1, label: 'FIELD DENSITY' },
+                    { colSpan: 4 }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rll, colSpan: 4, label: 'WET/DRY DURABILITY TEST (% LOSS)' },
+                    { colSpan: 2 },
+                    { style: STYLES.LARGE_LABEL.rlr, colSpan: 1, label: '& pH' },
+                    { colSpan: 1 },
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rll, colSpan: 3, label: 'MARKED AND CHECKED BY' },
+                    { colSpan: 5 }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.rll, colSpan: 3, label: 'REMARKS' },
+                    { colSpan: 5 }
+                ]
+            }
+        ]
+    }  // REPORT-1-TMH1
 ];
 
 export const SIEVE_ANALYSIS = [
@@ -5447,7 +5680,6 @@ export const SIEVE_ANALYSIS = [
         ]
     }
 ];
-
 export const OBJECT_FALLING_UNDER_GRAVITY = [
     { style: STYLES.LARGE_SECTION_HEADER.tr, td: [{ label: 'Inputs', colSpan: 2, style: STYLES.LARGE_SECTION_HEADER.td }] },
 

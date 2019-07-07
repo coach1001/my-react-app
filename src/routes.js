@@ -17,12 +17,18 @@ import LookupPage  from './components/lookup/LookupPage';
 
 import MethodEditPage from './components/methodEdit/MethodEditPage';
 import MethodEdit from './components/methodEdit/MethodEdit';
+import GdrtReport from './GdrtReport';
 
 export default (
 	<Route path="/" component={App}>
 		<IndexRoute component={Greeting} />
 		<Route path="signup" component={SignupPage} />
 		<Route path="login" component={LoginPage} />					
+		
+		<Route path="report" component={GdrtReport} >
+			<IndexRoute component={GdrtReport} />
+			<Route path=":sampleId" component={GdrtReport}/>
+		</Route>
 
 		<Route path="lookup" component={LookupPage}>
 			<IndexRoute component={LookupPage} />

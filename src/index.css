@@ -664,3 +664,56 @@ input[type=radio], input[type=checkbox] {
     transform: rotate(360deg);
   }
 }
+
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 15mm;
+  margin: 10mm auto;
+  border: 1px #D3D3D3 solid;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+.subpage {
+  padding: 0cm;
+  height: 256mm;
+}
+
+.landscape {
+  transform: translateX(-17%) translateY(31%) rotate(-90deg);
+  height: 169.4mm;
+  width: 256mm;
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+@media print {
+  .page {
+      margin: 0;
+      border: initial;
+      border-radius: initial;
+      width: initial;
+      min-height: initial;
+      box-shadow: initial;
+      background: initial;
+      page-break-after: always;
+  }
+}
+
+* {
+  -webkit-print-color-adjust: exact !important;   /* Chrome, Safari */
+  color-adjust: exact !important;                 /*Firefox*/
+}
+
+.logo {
+  background-size: contain !important; 
+  background-repeat: no-repeat !important; 
+  background-position: center center !important; 
+  background-image: url("/static/media/dot.a9486070.svg") !important; 
+  height: auto !important; 
+  max-width: 100% !important;
+}

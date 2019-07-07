@@ -1,3 +1,5 @@
+import logo from '../../../dot.svg';
+
 export const TABLE_HEADER = { backgroundColor : 'red', color : 'white', textAlign : 'center', fontSize: '1.5em'};
 
 export const CELL_NO_ROTATE = {
@@ -34,7 +36,6 @@ export const LARGE_LABEL = {
 		color: 'white',
 		backgroundColor: '#31708f'
 	},
-	
 	tr:{
 		fontSize: '14px',
 		textAlign: 'right',	
@@ -51,6 +52,23 @@ export const LARGE_LABEL = {
 		height: '28px',
 		color: 'white',
 		backgroundColor: '#31708f'
+	},
+	logo: {
+		backgroundSize: 'contain',
+		backgroundRepeat: 'no-repeat',
+		backgroundPosition: 'center',
+		backgroundImage: `url("${logo}")`, 
+		height: 'auto',
+		maxWidth: '100%'
+	},
+	ci:{
+		textAlign: 'center',	
+		padding: '2px',
+		fontSize: '14px',
+		fontStyle: 'italic',
+		height: '28px',
+		color: 'white',
+		backgroundColor: '#31708f'
 	},	
 	td : {
 		fontSize: '14px',
@@ -63,6 +81,67 @@ export const LARGE_LABEL = {
 		padding: '2px',
 		width: '100%'	,
 		height: '28px',
+	},
+	rlcb: {
+		textAlign: 'center',	
+		padding: '2px',
+		fontSize: '10px',
+		height: '22px',
+		color: 'black',
+		fontWeight: 'bold'
+	},
+	rllb: {
+		textAlign: 'left',	
+		padding: '2px',
+		fontSize: '10px',
+		height: '22px',
+		color: 'black',
+		fontWeight: 'bold'
+	},
+	rlc: {
+		textAlign: 'center',	
+		padding: '2px',
+		fontSize: '10px',
+		height: '22px',
+		color: 'black',
+	},
+	rlr: {
+		textAlign: 'right',	
+		padding: '2px',
+		fontSize: '10px',
+		height: '22px',
+		color: 'black',
+	},
+	rll: {
+		textAlign: 'left',	
+		padding: '2px',
+		fontSize: '10px',
+		height: '22px',
+		color: 'black',
+	},
+	rlls: {
+		textAlign: 'left',	
+		padding: '2px',
+		fontSize: '8px',
+		height: '22px',
+		color: 'black',
+		fontWeight: 'bold'
+	},
+	rllb: {
+		textAlign: 'left',	
+		padding: '2px',
+		fontSize: '10px',
+		height: '22px',
+		color: 'black',
+		fontWeight: 'bold'
+	},
+	rlci: {
+		textAlign: 'center',	
+		padding: '2px',
+		fontSize: '10px',
+		height: '22px',
+		color: 'black',
+		fontStyle: 'italic'
 	}
 }
 
@@ -76,3 +155,40 @@ export const LARGE_SECTION_HEADER_NB = {
 		padding: '10px',
 	}
 }
+
+export const testData = {
+	labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+	options: {
+		legend: {
+			display: false
+		},
+		responsive: true,
+		maintainAspectRatio: false,
+		animation: {
+			duration: 0
+		}
+	},
+	datasets: [
+	  {
+		label: 'My First dataset',
+		fill: false,
+		lineTension: 0.1,
+		backgroundColor: 'rgba(75,192,192,0.4)',
+		borderColor: 'rgba(75,192,192,1)',
+		borderCapStyle: 'butt',
+		borderDash: [],
+		borderDashOffset: 0.0,
+		borderJoinStyle: 'miter',
+		pointBorderColor: 'rgba(75,192,192,1)',
+		pointBackgroundColor: '#fff',
+		pointBorderWidth: 1,
+		pointHoverRadius: 5,
+		pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+		pointHoverBorderColor: 'rgba(220,220,220,1)',
+		pointHoverBorderWidth: 2,
+		pointRadius: 1,
+		pointHitRadius: 10,
+		data: [65, 59, 80, 81, 56, 55, 40]
+	  }
+	]
+  };
