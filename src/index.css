@@ -717,3 +717,9 @@ input[type=radio], input[type=checkbox] {
   height: auto !important; 
   max-width: 100% !important;
 }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

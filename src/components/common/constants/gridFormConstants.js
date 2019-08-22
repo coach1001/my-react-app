@@ -103,25 +103,371 @@ export const methods = [
             }
         ]
     }, //A14
-
     {
         //3001-GR51
         code: '3001-GR51',
-        hasGraph: false,
-        colLayout: [],
-        grid: [],
-        graph: []
+        hasGraph: true,
+        colLayout: [
+            { span: 1, width: '30%' },
+            { span: 1, width: '14%' },
+            { span: 1, width: '14%' },
+            { span: 1, width: '14%' },
+            { span: 1, width: '14%' },
+            { span: 1, width: '14%' }
+        ],
+        grid: [
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Hygroscopic Moisture Content (SANS 3001-GR20)' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_hyggr20' }
+                ]
+            },
+
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Percentage Stabilizer to be Added' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_psa' }
+                ]
+            },
+
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.c, isVal: false, label: 'Points' },
+                    { style: STYLES.LARGE_LABEL.c, label: '1' },
+                    { style: STYLES.LARGE_LABEL.c, label: '2' },
+                    { style: STYLES.LARGE_LABEL.c, label: '3' },
+                    { style: STYLES.LARGE_LABEL.c, label: '4' },
+                    { style: STYLES.LARGE_LABEL.c, label: '5' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Sample Mass' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_sm1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_sm2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_sm3' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_sm4' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_sm5' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Mass Stabilizer to be Added' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_msa1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_msa2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_msa3' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_msa4' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_msa5' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage Water Added' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pa1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pa2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pa3' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pa4' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pa5' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Water Added' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_wa1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_wa2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_wa3' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_wa4' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_wa5' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Mould Number' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mn1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mn2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mn3' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mn4' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mn5' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Mould Mass' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mm1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mm2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mm3' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mm4' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mm5' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Mould Volume' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mv1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mv2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mv3' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mv4' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mv5' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Mould Plus Wet Mass' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mwm1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mwm2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mwm3' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mwm4' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mwm5' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Wet Density' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_wd1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_wd2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_wd3' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_wd4' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_wd5' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Estimated Dry Density' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_edd1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_edd2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_edd3' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_edd4' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_edd5' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Pan Number' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pn1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pn2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pn3' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pn4' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pn5' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Pan Wet Mass Plus Plan' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pwmp1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pwmp2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pwmp3' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pwmp4' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pwmp5' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Pan Dry Mass Plus Mass' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pdmp1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pdmp2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pdmp3' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pdmp4' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pdmp5' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Pan Mass' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pm1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pm2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pm3' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pm4' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pm5' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Actual Moisture Content' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_amc1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_amc2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_amc3' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_amc4' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_amc5' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Actual Dry Density' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_add1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_add2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_add3' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_add4' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_add5' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Hygroscopic Moisture' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_hm1' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_hm2' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_hm3' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_hm4' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_hm5' }
+                ]
+            },
+
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Maximum Dry Density (Read from Graph)' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_mdd' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Optimum Moisture Content (Read from Graph)' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_omc' }
+                ]
+            }
+        ],
+
+        graph: [
+            {
+                addMaxY: 100,
+                roundOff: 100,
+
+                options: {
+                    hover: {
+                        animationDuration: 0
+                    },
+
+                    onClick: function (e) {
+                        const chartA = this.chartArea;
+                        const chartO = this;
+
+                        let px = e.layerX - chartA.left;
+                        if (px < 0) {
+                            px = 0;
+                        }
+
+                        let cWidthPx = chartA.right - chartA.left;
+                        let cHeightPx = chartA.bottom - chartA.top;
+
+                        let cWidthDt = chartO.scales['x-axis-0'].max - chartO.scales['x-axis-0'].min;
+                        let cHeightDt = chartO.scales['y-axis-0'].max - chartO.scales['y-axis-0'].min;
+
+                        let py = cHeightPx - (e.layerY - chartA.top);
+                        if (py < 0) {
+                            py = 0;
+                        }
+
+                        let dx = chartO.scales['x-axis-0'].min + px * (cWidthDt / cWidthPx);
+                        let dy = chartO.scales['y-axis-0'].min + py * (cHeightDt / cHeightPx);
+
+                        dx = Math.round(dx * 10) / 10;
+                        dy = Math.round(dy * 10) / 10;
+                        this.options.dataAddCallBack({ x: dx, y: dy, pop: true });
+                    },
+
+                    animation: {
+                        duration: 500,
+                        onComplete: function () {
+                            var ctx = this.chart.ctx;
+                            ctx.font = Chart.helpers.fontString(
+                                Chart.defaults.global.defaultFontSize,
+                                'normal',
+                                Chart.defaults.global.defaultFontFamily
+                            );
+                            ctx.fillStyle = this.chart.config.options.defaultFontColor;
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+
+                            this.data.datasets.forEach(function (dataset, di) {
+                                for (var i = 0; i < dataset.data.length; i++) {
+                                    var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;
+                                    var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;
+
+                                    ctx.save();
+                                    ctx.translate(model.x, model.y);
+                                    ctx.rotate(-Math.PI / 2);
+
+                                    ctx.textAlign = 'left';
+                                    ctx.fillText(string, 10, 5);
+
+                                    ctx.restore();
+                                }
+                            });
+                        }
+                    },
+
+                    scales: {
+                        xAxes: [
+                            {
+                                scaleLabel: { display: true, labelString: 'Moisture Content (%)' },
+                                type: 'linear',
+                                position: 'bottom',
+                                ticks: {
+                                    stepSize: 0.05,
+                                    minRotation: 90,
+                                    callback: function (label, index, labels) {
+                                        if (label % 1 === 0) {
+                                            return label.toFixed(1);
+                                        } else {
+                                            return '';
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        yAxes: [
+                            {
+                                scaleLabel: { display: true, labelString: 'Dry Density (kg/m^3)' },
+                                type: 'linear',
+                                ticks: {
+                                    stepSize: 10,
+                                    callback: function (label, index, labels) {
+                                        if (label % 20 === 0) {
+                                            return label.toFixed(1);
+                                        } else {
+                                            return '';
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+
+                dataSets: [
+                    {
+                        label: 'Actual Dry Density and Actual Moisture Content',
+                        showLine: true,
+                        pointRadius: 3,
+                        pointBackgroundColor: 'red',
+                        borderColor: 'red',
+                        fill: false,
+                        data: [
+                            { sx: 'sans_gr51_amc1', sy: 'sans_gr51_add1' },
+                            { sx: 'sans_gr51_amc2', sy: 'sans_gr51_add2' },
+                            { sx: 'sans_gr51_amc3', sy: 'sans_gr51_add3' },
+                            { sx: 'sans_gr51_amc4', sy: 'sans_gr51_add4' },
+                            { sx: 'sans_gr51_amc5', sy: 'sans_gr51_add5' },
+                            { sx: 'sans_gr51_omc', sy: 'sans_gr51_mdd', pop: true, toggleLine: true }
+                        ]
+                    },
+                    {
+                        label: 'Estimated Dry Density and Percentage Water Added',
+                        showLine: true,
+                        pointRadius: 3,
+                        pointBackgroundColor: 'blue',
+                        borderColor: 'blue',
+                        fill: false,
+                        data: [
+                            { sx: 'sans_gr51_pa1', sy: 'sans_gr51_edd1' },
+                            { sx: 'sans_gr51_pa2', sy: 'sans_gr51_edd2' },
+                            { sx: 'sans_gr51_pa3', sy: 'sans_gr51_edd3' },
+                            { sx: 'sans_gr51_pa4', sy: 'sans_gr51_edd4' },
+                            { sx: 'sans_gr51_pa5', sy: 'sans_gr51_edd5' },                            
+                        ]
+                    }
+                ]
+            }
+        ]
     }, //3001-GR51
-
-    {
-        //3001-GR50
-        code: '3001-GR50',
-        hasGraph: false,
-        colLayout: [],
-        grid: [],
-        graph: []
-    }, //3001-GR50
-
     {
         //3001-GR40
         code: '3001-GR40',
@@ -606,8 +952,272 @@ export const methods = [
                 ]
             }
         ],
-
+        
+        
         hasGraph: true,
+        graph: [
+            //GRAPH ARRAY
+            {
+                //GRAPH 1
+                addMaxY: 1,
+                roundOff: 1,
+
+                options: {
+                    getDatasetAtEvent: function (e) {
+                        console.log(e)
+                    },
+                    onClick: function (e) {
+                        let el = this.getElementAtEvent(e);
+                        if (el.length > 0) {
+                            let line = el[0]._datasetIndex;
+                            let point = el[0]._index;
+                            let dataset = el[0]._chart.data.datasets[line];
+                            let data = dataset.data[point];
+                        }
+                    },
+                    scales: {
+                        xAxes: [
+                            {
+                                scaleLabel: { display: true, labelString: 'Depth Penetration (mm)' },
+                                type: 'linear',
+                                position: 'bottom',
+                                ticks: {
+                                    stepSize: 0.5,
+                                    minRotation: 90,
+                                    callback: function (label, index, labels) {
+                                        return label.toFixed(3);
+                                    }
+                                }
+                            }
+                        ],
+                        yAxes: [
+                            {
+                                scaleLabel: { display: true, labelString: 'Load (kN)' },
+                                type: 'linear',
+                                ticks: {
+                                    stepSize: 0.1,
+                                    callback: function (label) {
+                                        if (label % 0.5 === 0) {
+                                            return label;
+                                        } else {
+                                            return '';
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+
+                dataSets: [
+                    // MOD AASHTO
+                    {
+                        label: 'MOD AASHTO',
+                        showLine: true,
+                        pointRadius: 4,
+                        pointBackgroundColor: 'red',
+                        borderColor: 'red',
+                        fill: false,
+                        data: [
+                            { sy: 'sans_gr40_pd_1_1', x: 0 },
+                            { sy: 'sans_gr40_pd_2_1', x: 0.5 },
+                            { sy: 'sans_gr40_pd_3_1', x: 1.0 },
+                            { sy: 'sans_gr40_pd_4_1', x: 1.5 },
+                            { sy: 'sans_gr40_pd_5_1', x: 2.0 },
+                            { sy: 'sans_gr40_pd_6_1', x: 2.5 },
+                            { sy: 'sans_gr40_pd_7_1', x: 3.0 },
+                            { sy: 'sans_gr40_pd_8_1', x: 3.5 },
+                            { sy: 'sans_gr40_pd_9_1', x: 4.0 },
+                            { sy: 'sans_gr40_pd_10_1', x: 4.5 },
+                            { sy: 'sans_gr40_pd_11_1', x: 5.0 },
+                            { sy: 'sans_gr40_pd_12_1', x: 5.5 },
+                            { sy: 'sans_gr40_pd_13_1', x: 6.0 },
+                            { sy: 'sans_gr40_pd_14_1', x: 6.5 },
+                            { sy: 'sans_gr40_pd_15_1', x: 7.0 },
+                            { sy: 'sans_gr40_pd_16_1', x: 7.5 },
+                            { sy: 'sans_gr40_pd_17_1', x: 8.0 },
+                            { sy: 'sans_gr40_pd_18_1', x: 8.5 },
+                            { sy: 'sans_gr40_pd_19_1', x: 9.0 },
+                            { sy: 'sans_gr40_pd_20_1', x: 9.5 }
+                        ]
+                    },
+                    // INTERMEDIATE
+                    {
+                        label: 'INTERMEDIATE',
+                        showLine: true,
+                        pointRadius: 4,
+                        pointBackgroundColor: 'blue',
+                        borderColor: 'blue',
+                        fill: false,
+                        hidden: true,
+                        data: [
+                            { sy: 'sans_gr40_pd_1_2', x: 0 },
+                            { sy: 'sans_gr40_pd_2_2', x: 0.5 },
+                            { sy: 'sans_gr40_pd_3_2', x: 1.0},
+                            { sy: 'sans_gr40_pd_4_2', x: 1.5 },
+                            { sy: 'sans_gr40_pd_5_2', x: 2.0 },
+                            { sy: 'sans_gr40_pd_6_2', x: 2.5 },
+                            { sy: 'sans_gr40_pd_7_2', x: 3.0},
+                            { sy: 'sans_gr40_pd_8_2', x: 3.5 },
+                            { sy: 'sans_gr40_pd_9_2', x: 4.0 },
+                            { sy: 'sans_gr40_pd_10_2', x: 4.5 },
+                            { sy: 'sans_gr40_pd_11_2', x: 5.0 },
+                            { sy: 'sans_gr40_pd_12_2', x: 5.5 },
+                            { sy: 'sans_gr40_pd_13_2', x: 6.0 },
+                            { sy: 'sans_gr40_pd_14_2', x: 6.5 },
+                            { sy: 'sans_gr40_pd_15_2', x: 7.0 },
+                            { sy: 'sans_gr40_pd_16_2', x: 7.5 },
+                            { sy: 'sans_gr40_pd_17_2', x: 8.0 },
+                            { sy: 'sans_gr40_pd_18_2', x: 8.5 },
+                            { sy: 'sans_gr40_pd_19_2', x: 9.0 },
+                            { sy: 'sans_gr40_pd_20_2', x: 9.5 }
+                        ]
+                    },
+                    // PROCTOR
+                    {
+                        label: 'PROCTOR',
+                        showLine: true,
+                        pointRadius: 4,
+                        pointBackgroundColor: 'green',
+                        borderColor: 'green',
+                        fill: false,
+                        hidden: true,
+                        data: [
+                            { sy: 'sans_gr40_pd_1_3', x: 0 },
+                            { sy: 'sans_gr40_pd_2_3', x: 0.5 },
+                            { sy: 'sans_gr40_pd_3_3', x: 1.0 },
+                            { sy: 'sans_gr40_pd_4_3', x: 1.5 },
+                            { sy: 'sans_gr40_pd_5_3', x: 2.0 },
+                            { sy: 'sans_gr40_pd_6_3', x: 2.5 },
+                            { sy: 'sans_gr40_pd_7_3', x: 3.0 },
+                            { sy: 'sans_gr40_pd_8_3', x: 3.5 },
+                            { sy: 'sans_gr40_pd_9_3', x: 4.0 },
+                            { sy: 'sans_gr40_pd_10_3', x: 4.5 },
+                            { sy: 'sans_gr40_pd_11_3', x: 5.0 },
+                            { sy: 'sans_gr40_pd_12_3', x: 5.5 },
+                            { sy: 'sans_gr40_pd_13_3', x: 6.0 },
+                            { sy: 'sans_gr40_pd_14_3', x: 6.5 },
+                            { sy: 'sans_gr40_pd_15_3', x: 7.0 },
+                            { sy: 'sans_gr40_pd_16_3', x: 7.5 },
+                            { sy: 'sans_gr40_pd_17_3', x: 8.0 },
+                            { sy: 'sans_gr40_pd_18_3', x: 8.5 },
+                            { sy: 'sans_gr40_pd_19_3', x: 9.0 },
+                            { sy: 'sans_gr40_pd_20_3', x: 9.5 }
+                        ]
+                    },
+
+                ]
+            }, //GRAPH 1
+            {
+                //GRAPH2
+                addMaxY: 3,
+                roundOff: 1,
+                options: {
+                    hover: {
+                        animationDuration: 0
+                    },
+
+                    animation: {
+                        duration: 0,
+                        onComplete: function () {
+                            var ctx = this.chart.ctx;
+                            ctx.font = Chart.helpers.fontString(
+                                Chart.defaults.global.defaultFontSize,
+                                'normal',
+                                Chart.defaults.global.defaultFontFamily
+                            );
+                            ctx.fillStyle = this.chart.config.options.defaultFontColor;
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+
+                            this.data.datasets.forEach(function (dataset) {
+                                for (var i = 0; i < dataset.data.length; i++) {
+                                    var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;
+                                    var string = '';
+                                    try {
+                                        string = `(${dataset.data[i].x.toFixed(0)}, ${dataset.data[i].y.toFixed(0)})`;
+                                    } catch (e) {
+                                        string = '';
+                                    }
+
+                                    ctx.save();
+                                    ctx.translate(model.x, model.y);
+                                    ctx.rotate(-Math.PI / 1.5);
+
+                                    ctx.textAlign = 'left';
+                                    ctx.fillText(string, 10, 5);
+
+                                    ctx.restore();
+                                }
+                            });
+                        }
+                    },
+
+                    scales: {
+                        xAxes: [
+                            {
+                                scaleLabel: { display: true, labelString: '% Compaction' },
+                                type: 'linear',
+                                position: 'bottom',
+                                ticks: {
+                                    stepSize: 1,
+                                    minRotation: 90,
+                                    callback: function (label, index, labels) {
+                                        return label.toFixed(2);
+                                    }
+                                }
+                            }
+                        ],
+                        yAxes: [
+                            {
+                                scaleLabel: { display: true, labelString: 'CBR' },
+                                type: 'linear',
+                                ticks: {}
+                            }
+                        ]
+                    }
+                },
+                dataSets: [
+                    {
+                        label: 'CBR (2.5 mm)',
+                        showLine: true,
+                        pointRadius: 4,
+                        pointBackgroundColor: 'red',
+                        borderColor: 'red',
+                        fill: false,
+                        lineTension: 0,
+                        data: [{ sx: 'sans_gr40_mmx1', sy: 'sans_gr40_1_d1' }, { sx: 'sans_gr40_imx1', sy: 'sans_gr40_2_d1' }, { sx: 'sans_gr40_pmx1', sy: 'sans_gr40_3_d1' }]
+                    },
+                    {
+                        label: 'CBR (2.5 mm - Normalized)',
+                        showLine: true,
+                        pointRadius: 4,
+                        fill: false,
+                        isFormula: true,
+                        lineTension: 0,
+                        xInputs: [
+                            { x: 90, scopeVal: 'sans_gr40_at_90' },
+                            { x: 93, scopeVal: 'sans_gr40_at_93' },
+                            { x: 95, scopeVal: 'sans_gr40_at_95' },
+                            { x: 97, scopeVal: 'sans_gr40_at_97' },
+                            { x: 98, scopeVal: 'sans_gr40_at_98' },
+                            { x: 100, scopeVal: 'sans_gr40_at_100' }
+                        ],
+                        data: [
+                            { sx: 'sans_gr40_pmx1', sy: 'sans_gr40_3_d1' },
+                            {
+                                sx: '(sans_gr40_mmx1+sans_gr40_imx1)/2',
+                                sy: '(sans_gr40_1_d1+sans_gr40_2_d1)/2',
+                                isFormula: true,
+                                scopeVariables: ['sans_gr40_mmx1', 'sans_gr40_imx1', 'sans_gr40_1_d1', 'sans_gr40_2_d1']
+                            }
+                        ]
+                    }
+                ]
+            } //GRAPH2
+        ] //GRAPH ARRAY            
+                                
+        /*
         graph: [
             //GRAPH ARRAY
             {
@@ -861,8 +1471,8 @@ export const methods = [
                 ]
             } //GRAPH2
         ] //GRAPH ARRAY
+        */
     }, //3001-GR40
-
     {
         //3001-GR31
         code: '3001-GR31',
@@ -1196,34 +1806,34 @@ export const methods = [
 
                 dataSets: [
                     {
-                        label: 'Estimated Dry Density and Percentage Water Added',
-                        showLine: false,
+                        label: 'Actual Dry Density and Actual Moisture Content',
+                        showLine: true,
                         pointRadius: 3,
                         pointBackgroundColor: 'red',
                         borderColor: 'red',
-                        fill: false,
-                        data: [
-                            { sx: 'sans_gr31_pa1', sy: 'sans_gr31_edd1' },
-                            { sx: 'sans_gr31_pa2', sy: 'sans_gr31_edd2' },
-                            { sx: 'sans_gr31_pa3', sy: 'sans_gr31_edd3' },
-                            { sx: 'sans_gr31_pa4', sy: 'sans_gr31_edd4' },
-                            { sx: 'sans_gr31_pa5', sy: 'sans_gr31_edd5' },
-                            { sx: 'sans_gr31_omc', sy: 'sans_gr31_mdd', pop: true, toggleLine: true }
-                        ]
-                    },
-                    {
-                        label: 'Actual Dry Density and Actual Moisture Content',
-                        showLine: false,
-                        pointRadius: 3,
-                        pointBackgroundColor: 'blue',
-                        borderColor: 'blue',
                         fill: false,
                         data: [
                             { sx: 'sans_gr31_amc1', sy: 'sans_gr31_add1' },
                             { sx: 'sans_gr31_amc2', sy: 'sans_gr31_add2' },
                             { sx: 'sans_gr31_amc3', sy: 'sans_gr31_add3' },
                             { sx: 'sans_gr31_amc4', sy: 'sans_gr31_add4' },
-                            { sx: 'sans_gr31_amc5', sy: 'sans_gr31_add5' }
+                            { sx: 'sans_gr31_amc5', sy: 'sans_gr31_add5' },
+                            { sx: 'sans_gr31_omc', sy: 'sans_gr31_mdd', pop: true, toggleLine: true }
+                        ]
+                    },
+                    {
+                        label: 'Estimated Dry Density and Percentage Water Added',
+                        showLine: true,
+                        pointRadius: 3,
+                        pointBackgroundColor: 'blue',
+                        borderColor: 'blue',
+                        fill: false,
+                        data: [
+                            { sx: 'sans_gr31_pa1', sy: 'sans_gr31_edd1' },
+                            { sx: 'sans_gr31_pa2', sy: 'sans_gr31_edd2' },
+                            { sx: 'sans_gr31_pa3', sy: 'sans_gr31_edd3' },
+                            { sx: 'sans_gr31_pa4', sy: 'sans_gr31_edd4' },
+                            { sx: 'sans_gr31_pa5', sy: 'sans_gr31_edd5' },                            
                         ]
                     }
                 ]
@@ -1464,7 +2074,7 @@ export const methods = [
 
                         dx = Math.round(dx * 10) / 10;
                         dy = Math.round(dy * 10) / 10;
-                        this.options.dataAddCallBack({ x: dx, y: dy, pop: true });
+                        this.options.dataAddCallBack({ x: dx, y: dy, pop: true });                    
                     },
 
                     animation: {
@@ -1537,23 +2147,7 @@ export const methods = [
                         ]
                     }
                 },
-
                 dataSets: [
-                    {
-                        label: 'Estimated Dry Density and Percentage Water Added',
-                        showLine: false,
-                        pointRadius: 3,
-                        pointBackgroundColor: 'blue',
-                        borderColor: 'blue',
-                        fill: false,
-                        data: [
-                            { sx: 'sans_gr30_pa1', sy: 'sans_gr30_edd1' },
-                            { sx: 'sans_gr30_pa2', sy: 'sans_gr30_edd2' },
-                            { sx: 'sans_gr30_pa3', sy: 'sans_gr30_edd3' },
-                            { sx: 'sans_gr30_pa4', sy: 'sans_gr30_edd4' },
-                            { sx: 'sans_gr30_pa5', sy: 'sans_gr30_edd5' }
-                        ]
-                    },
                     {
                         label: 'Actual Dry Density and Actual Moisture Content',
                         showLine: false,
@@ -1568,6 +2162,21 @@ export const methods = [
                             { sx: 'sans_gr30_amc4', sy: 'sans_gr30_add4' },
                             { sx: 'sans_gr30_amc5', sy: 'sans_gr30_add5' },
                             { sx: 'sans_gr30_omc', sy: 'sans_gr30_mdd', pop: true, toggleLine: true }
+                        ]
+                    },
+                    {
+                        label: 'Estimated Dry Density and Percentage Water Added',
+                        showLine: true,
+                        pointRadius: 3,
+                        pointBackgroundColor: 'blue',
+                        borderColor: 'blue',
+                        fill: false,
+                        data: [
+                            { sx: 'sans_gr30_pa1', sy: 'sans_gr30_edd1' },
+                            { sx: 'sans_gr30_pa2', sy: 'sans_gr30_edd2' },
+                            { sx: 'sans_gr30_pa3', sy: 'sans_gr30_edd3' },
+                            { sx: 'sans_gr30_pa4', sy: 'sans_gr30_edd4' },
+                            { sx: 'sans_gr30_pa5', sy: 'sans_gr30_edd5' }
                         ]
                     }
                 ]
@@ -3343,7 +3952,13 @@ export const methods = [
                             {
                                 scaleLabel: { display: true, labelString: 'Percentage Passing (%)' },
                                 type: 'linear',
-                                ticks: {}
+                                ticks: {
+                                    beginAtZero: true,
+                                    steps: 10,
+                                    stepValue: 5,
+                                    max: 100,
+                                    min: 0
+                                }
                             }
                         ]
                     }
@@ -4368,6 +4983,7 @@ export const methods = [
                 ]
             } //GRAPH2
         ] //GRAPH ARRAY
+    
     }, //A8
 
     {
@@ -5282,9 +5898,6 @@ export const methods = [
                     hover: {
                         animationDuration: 0
                     },
-                    // legend: {
-                    //     display: false
-                    // },
                     animation: {
                         duration: 0,
                         onComplete: function () {
@@ -5302,9 +5915,8 @@ export const methods = [
                             this.data.datasets.forEach(function (dataset, dIndex) {
                                 let limitY = { showLimit: 1, countLimit: 0, limit: 100, limitReached: false };
                                 for (var i = 0; i < dataset.data.length; i++) {
-                                    const valY = dataset.data[i].y;
-
-                                    if (valY === limitY.limit) {
+                                    const valY = dataset.data[i].y;                                    
+                                    if (parseFloat(valY) === parseFloat(limitY.limit)) {
                                         limitY.countLimit += 1;
                                     }
                                     if (!limitY.limitReached) {
@@ -5462,12 +6074,9 @@ export const methods = [
                 ]
             },
             {
-                style: {
-                    height: '220px'
-                },
                 td: [
-                    { isGraph: true, colSpan: 4 },
-                    { isGraph: true, colSpan: 4 },
+                    { isGraph: true, colSpan: 4, height: 230, width: 310 },
+                    { isGraph: true, colSpan: 4, height: 230, width: 310 }
                 ]
             },
             {

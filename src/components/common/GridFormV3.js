@@ -78,19 +78,16 @@ class GridForm extends React.Component {
         super(props);
         this.dataAddCallBack = this.dataAddCallBack.bind(this);
     }
-    componentDidMount() {
+    componentDidMount() {        
         this.props.setLoader(false);
     }
     componentWillMount() {
-
         let index = 0;
-
         for (let i = 0; i < methods.length; i++) {
             if (methods[i].code === this.props.methodCode) {
                 index = i;
             }
         }
-
         let method = cloneDeep(methods[index]);
         let oScopeData = cloneDeep(this.props.scopeData);
         let scopeData = cloneDeep(this.props.scopeData);
@@ -169,16 +166,18 @@ class GridForm extends React.Component {
                         return dt;
                     });
                     return ds;
-                });
-                tempMax += g.addMaxY
+                });                
+                // tempMax = Number(tempMax)
+                tempMax += g.addMaxY;                
                 tempMax = Math.round(tempMax / g.roundOff) * g.roundOff;
+
                 maxY.push(tempMax);
                 return g;
             })
             method.graph[0].options.dataAddCallBack = this.dataAddCallBack;
         }
         if (redrawGraph && method.hasGraph) {
-            method.graph.map((g, gi) => {
+            method.graph.map((g, gi) => {                
                 g.options.scales.yAxes[0].ticks.max = maxY[gi];
                 return g;
             });
@@ -292,13 +291,18 @@ class GridForm extends React.Component {
                     if (d.symbol === col.scopeVariable) {
                         if (d.unit === 'string') {
                             col.value_string = d.value_string ? d.value_string : (d.default_value ? d.default_value : '');
-                        } else {
-                            col.value = d.value ? d.value : (d.default_value ? d.default_value : undefined);
+                        } else {                               
+                            if(d.input_type === 'in') {
+                                col.value = d.value ? d.value : (d.default_value ? d.default_value : undefined);
+                            } else {
+                                col.value = d.value ? this.formatValue(d.value, d.step, d.to_fixed, d.unit) : (d.default_value ? d.default_value : undefined);
+                            }                            
                         }
                         col.unit = d.unit ? d.unit : undefined;
                         col.min = d.minimum ? d.minimum : undefined;
                         col.max = d.maximum ? d.maximum : undefined;
                         col.step = d.step ? d.step : 0.01;
+                        col.to_fixed = d.to_fixed ? d.to_fixed : null;
                         col.type = d.input_type ? d.input_type : undefined;
                     }
                     return d;
@@ -307,7 +311,6 @@ class GridForm extends React.Component {
             })
             return row;
         })
-        console.log(method);
         return <div>
             {
                 this.props.hideTopControls === true ? null :
@@ -484,10 +487,7 @@ class GridForm extends React.Component {
     onChangeSample(e) {
         let sampleMethod = cloneDeep(this.state.sampleMethod);
         if (e._isAMomentObject) {
-
             sampleMethod.tested_on = e._d;
-            console.log(sampleMethod.tested_on);
-
         } else {
             sampleMethod[e.target.name] = e.target.value;
         }
@@ -704,10 +704,10 @@ class GridForm extends React.Component {
         promises.push(request);
 
         this.props.sendRows(promises).then((res) => {
-            res.map((r) => {
+            res.map((r) => {                
                 scopeData.map((sd) => {
                     if (r.config.headers.xScopeVariable === sd.symbol && r.config.method === 'post') {
-                        sd.id = r.data.id;
+                        sd.id = r.data[0].id;
                     }
                     return sd;
                 });
@@ -719,20 +719,33 @@ class GridForm extends React.Component {
         });
 
     }
-    parseInput(scopeData) {
-        let scope = {};
 
+    formatValue(value, step, fixed, unit) {  
+        value = Number(value);        
+        if(step == null && fixed == null) {
+            return value.toFixed(1);
+        } else if(unit === 'factor'){
+            return value.toFixed(4);
+        } else if (step === 0.01) {
+            return value.toFixed(2);
+        } else if (fixed) {
+            return value.toFixed(fixed);
+        } else {
+            return value.toFixed();
+        }                               
+    }
+
+    parseInput(scopeData, calcOnly = false) {
+        let scope = {};        
         scopeData.map((d) => {
-            scope[d.symbol] = 0;
+            scope[d.symbol] = 0;            
             if (d.unit !== 'string' && d.unit !== 'in_array') {
-                let round = d.step * 10000;
-                if (round) { } else { round = 100; }
                 if (d.input_type === 'in') {
-                    try {
-                        scope[d.symbol] = Math.round(parseFloat(d.value, 10) * round) / round;
-                        if (isNaN(scope[d.symbol])) {
-                            scope[d.symbol] = (d.default_value ? d.default_value : 0);
-                        }
+                    try {                        
+                            scope[d.symbol] = Number(d.value);    
+                            if (isNaN(scope[d.symbol])) {
+                                scope[d.symbol] = (d.default_value ? d.default_value : 0);
+                            }
                     } catch (err) {
                         scope[d.symbol] = (d.default_value ? d.default_value : 0);
                     }
@@ -749,16 +762,15 @@ class GridForm extends React.Component {
             if (d.unit !== 'string' && d.unit !== 'in_array') {
                 if (round) { } else { round = 100; }
 
-                if (d.input_type === 'cbr_regression_tmh1' || d.input_type === 'cbr_regression_sans') {
+                if (d.input_type === 'cbr_regression_tmh1' || d.input_type === 'cbr_regression_sans') {                    
                     const cbr = d.input_type === 'cbr_regression_tmh1' ? 2.54 : 2.5;
                     const variables = d.formula.split(',');
-
+                    
                     let regArray = [];
                     variables.forEach((v, idx) => {
                         regArray.push({ y: scope[v], x: idx * cbr / 4 });
-                    });
-
-                    const regression = cbr_regression(regArray, cbr);
+                    });                    
+                    const regression = cbr_regression(regArray, cbr);                    
                     scope[d.symbol] = Math.round(regression.correctedLoad * round) / round;
                     scope[d.symbol + '_x0'] = regression.x0;
                     scope[d.symbol + '_x1'] = regression.x1;
@@ -766,19 +778,21 @@ class GridForm extends React.Component {
                 }
 
                 if (d.input_type === 'calc') {
-                    try {
-                        scope[d.symbol] = Math.round(math.eval(d.formula, scope) * round) / round;
+                    try {                                                
+                        let val = math.eval(d.formula, scope);                                                
+                        scope[d.symbol] = Number(this.formatValue(val, d.step, d.to_fixed, d.unit));
 
-                        if (scope[d.symbol] === 0 || isNaN(scope[d.symbol])) {
+                        if (parseFloat(scope[d.symbol]) === 0 || isNaN(scope[d.symbol])) {                            
+                            scope[d.symbol] = 0;
                             this.refs[d.symbol].value = null;
-                        }
+                        }                        
                     } catch (err) {
                         scope[d.symbol] = (d.default_value ? d.default_value : 0);
-                        if (scope[d.symbol === 0]) {
+                        if (parseFloat(scope[d.symbol]) === 0 && this.refs[d.symbol] != null) {                            
                             this.refs[d.symbol].value = null;
                         }
                     }
-                    if (isNaN(scope[d.symbol])) {
+                    if (isNaN(scope[d.symbol]) && this.refs[d.symbol] != null) {
                         scope[d.symbol] = 0;
                         this.refs[d.symbol].value = null;
                     }
@@ -826,17 +840,17 @@ class GridForm extends React.Component {
             scopeData[index].value = scope[d.symbol];
             return d;
         });
-        this.saveData(scopeData);
+        if(!calcOnly) {
+            this.saveData(scopeData);
+        }        
     }
-    CalculateAndSave() {
+    CalculateAndSave(calcOnly) {
         var scopeData = cloneDeep(this.state.scopeData);
-        this.parseInput(scopeData);
+        this.parseInput(scopeData, calcOnly);
     }
     onChangeString(e) {
         e.preventDefault();
         let scopeData = cloneDeep(this.state.scopeData);
-
-
         scopeData.map((d) => {
             if (e.target.id === d.symbol) {
                 d.value_string = e.target.value;
@@ -850,9 +864,7 @@ class GridForm extends React.Component {
         let scopeData = cloneDeep(this.state.scopeData);
         scopeData.map((d) => {
             if (e.target.id === d.symbol) {
-                let round = d.step * 10000;
-                if (!round) round = 100;
-                d.value = Math.round(e.target.value * 100) / 100;
+                d.value = e.target.value;
             }
             return d;
         });

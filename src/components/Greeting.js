@@ -9,8 +9,8 @@ class Greetings extends Component {
         <div > 
               <div style={{height: '20vh'}}/>                     
               <div className="container" style={{height: '60vh', verticalAlign: 'middle', textAlign: 'center'}}>
-                <img role="presentation" src={image1} style={{height: '200'}}/>
-                <h1 style={{fontSize: '45'}}> Laboratory Calculation Software</h1>
+                <img role="presentation" src={image1} style={{height: '200px'}}/>
+                <h1 style={{fontSize: '45px'}}> Laboratory Calculation Software</h1>
               </div>            
         </div> 
 

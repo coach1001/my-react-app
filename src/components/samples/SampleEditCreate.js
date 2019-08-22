@@ -54,7 +54,6 @@ class SampleEditCreate extends Component {
     }
 
     goBack(e) {
-        //e.preventDefault();    
         this.context.router.push('/samples');
     }
 
@@ -90,11 +89,10 @@ class SampleEditCreate extends Component {
 
             this.props.updateCreateSample(sample).then((res) => {
                 notify.show('Sample Saved Successfully', 'success', 2000);
-                //console.log(res);
-                if (res.data.id) {
-
-                    sample.id = res.data.id;
-                    this.context.router.push(`${this.context.router.location.pathname.replace('/new', '')}/${res.data.id}`);
+                
+                if (res.data[0].id) {                    
+                    sample.id = res.data[0].id;
+                    this.context.router.push(`${this.context.router.location.pathname.replace('/new', '')}/${res.data[0].id}`);
                 }
 
                 this.props.updateSampleMethods(sampleMethods, sample.id).then((res) => {
