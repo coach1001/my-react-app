@@ -1,0 +1,8 @@
+yarn build on dev machine to update ./build foler (No CI/CD pipe line)
+push code
+log into aws
+pull repo
+docker swarm leave
+(Do any DB changes here)
+change config.js as needed
+docker swarm up
