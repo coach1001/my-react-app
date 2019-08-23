@@ -2,7 +2,9 @@ yarn build on dev machine to update ./build foler (No CI/CD pipe line)
 push code
 log into aws
 pull repo
-docker swarm leave
+docker swarm leave --force
 (Do any DB changes here)
 change config.js as needed
-docker swarm up
+docker swarm init
+docker stack deploy --compose-file docker-compose.prod.yaml gdrt
+docker stack services gdrt
