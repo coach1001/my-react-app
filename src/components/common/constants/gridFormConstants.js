@@ -1840,7 +1840,6 @@ export const methods = [
             }
         ]
     }, //3001-GR31
-
     {
         //3001-GR30
         code: '3001-GR30',
@@ -2183,7 +2182,6 @@ export const methods = [
             }
         ]
     }, //3001-GR30
-
     {
         //3001-GR20
         code: '3001-GR20',
@@ -2252,7 +2250,6 @@ export const methods = [
             }
         ]
     }, //3001-GR20
-
     {
         //3001-GR11
         code: '3001-GR11',
@@ -2405,7 +2402,6 @@ export const methods = [
             }
         ]
     }, //3001-GR11
-
     {
         //3001-GR10
         code: '3001-GR10',
@@ -2593,7 +2589,6 @@ export const methods = [
             }
         ]
     }, //3001-GR10
-
     {
         //3001-GR5
         code: '3001-GR5',
@@ -2602,7 +2597,6 @@ export const methods = [
         grid: [],
         graph: []
     }, //3001-GR5
-
     {
         //3001-GR2
         code: '3001-GR2',
@@ -2847,7 +2841,6 @@ export const methods = [
             }
         ]
     }, //3001-GR2
-
     {
         //3001-GR1
         code: '3001-GR1',
@@ -3188,7 +3181,6 @@ export const methods = [
             }
         ]
     }, //3001-GR1
-
     {
         //3001-AG22
         code: '3001-AG22',
@@ -3277,7 +3269,6 @@ export const methods = [
 
         graph: []
     }, //3001-AG22
-
     {
         //3001-AG21
         code: '3001-AG21',
@@ -3347,7 +3338,6 @@ export const methods = [
         ],
         graph: []
     }, //3001-AG21
-
     {
         //3001-AG20
         code: '3001-AG20',
@@ -3399,7 +3389,6 @@ export const methods = [
         ],
         graph: []
     }, //3001-AG20
-
     {
         //3001-AG10
         code: '3001-AG10',
@@ -3484,7 +3473,6 @@ export const methods = [
         ],
         graph: []
     }, //3001-AG10
-
     {
         //3001-AG5
         code: '3001-AG5',
@@ -3542,7 +3530,6 @@ export const methods = [
         ],
         graph: []
     }, //3001-AG5
-
     {
         //3001-AG4
         code: '3001-AG4',
@@ -3736,7 +3723,6 @@ export const methods = [
             }
         ]
     }, //3001-AG4
-
     {
         //3001-AG2
         code: '3001-AG2',
@@ -3778,7 +3764,6 @@ export const methods = [
             }
         ]
     }, //3001-AG2
-
     {
         //3001-AG1
         code: '3001-AG1',
@@ -3989,7 +3974,6 @@ export const methods = [
             }
         ]
     }, //3001-AG1
-
     {
         //A17
         code: 'A17',
@@ -4059,7 +4043,6 @@ export const methods = [
             }
         ]
     }, //A17
-
     {
         //A16T
         code: 'A16T',
@@ -4104,7 +4087,6 @@ export const methods = [
             }
         ]
     }, //A16T
-
     {
         //A14
         code: 'A14',
@@ -4149,7 +4131,6 @@ export const methods = [
             }
         ]
     }, //A14
-
     {
         //A13T
         code: 'A13T',
@@ -4210,7 +4191,6 @@ export const methods = [
             }
         ]
     }, //A13T
-
     {
         //A8
         code: 'A8',
@@ -4985,7 +4965,6 @@ export const methods = [
         ] //GRAPH ARRAY
     
     }, //A8
-
     {
         //A7
         code: 'A7',
@@ -5331,7 +5310,6 @@ export const methods = [
             }
         ]
     }, //A7
-
     {
         //A6
         code: 'A6',
@@ -5393,7 +5371,6 @@ export const methods = [
             }
         ]
     }, //A6
-
     {
         //A5
         code: 'A5',
@@ -5523,7 +5500,6 @@ export const methods = [
 
         ]
     }, //A5
-
     {
         //A2 A3 A4
         code: 'A2_A3_A4',
@@ -5711,7 +5687,6 @@ export const methods = [
             }
         ]
     }, //A2 A3 A4
-
     {
         //A1
         code: 'A1',

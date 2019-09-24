@@ -1,4 +1,4 @@
-yarn build on dev machine to update ./build foler (No CI/CD pipe line)
+yarn build on dev machine to update ./build folder (No CI/CD pipe line)
 push code
 log into aws
 pull repo
