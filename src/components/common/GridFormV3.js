@@ -15,8 +15,7 @@ import regression from './cubicRegression/cubicRegression';
 import * as STYLES from './constants/styleConstants';
 
 function cbr_regression(dataIn, cbr) {
-    let rData = [];
-
+    let rData = [];    
     dataIn.forEach((d, index) => {
         if (!(d.y == null) && (index === 0 || d.y > 0)) {
             rData.push({
@@ -77,7 +76,8 @@ class GridForm extends React.Component {
     constructor(props) {
         super(props);
         this.dataAddCallBack = this.dataAddCallBack.bind(this);
-    }
+        this.pointFromGraph = {};        
+    }    
     componentDidMount() {
         this.props.setLoader(false);
     }
@@ -118,7 +118,7 @@ class GridForm extends React.Component {
             method.graph.map((g) => {
                 tempMax = 0;
                 g.dataSets.map((ds) => {
-                    ds.data.map((dt) => {
+                    ds.data.map((dt, idx) => {
                         if (dt.isFormula) {
                             var scope = {};
                             scopeData.map((sd) => {
@@ -135,7 +135,7 @@ class GridForm extends React.Component {
                                 dt.y = math.eval(dt.sy, scope);
                             } catch (ex) {
                             }
-                        } else {
+                        } else {                            
                             scopeData.map((sd) => {
                                 if (sd.symbol === dt.sx) {
                                     if (sd.value) {
@@ -148,7 +148,9 @@ class GridForm extends React.Component {
                                     }
                                 }
                                 if (sd.symbol === dt.sy) {
-                                    if (sd.value) {
+                                    if(sd.value === 0 && idx === 0) {
+                                        dt.y = 0.000001;
+                                    } else if (sd.value) {
                                         if (dt.y !== sd.value) {
                                             dt.y = sd.value;
                                         }
@@ -198,7 +200,7 @@ class GridForm extends React.Component {
                             });
                             xi.y = y;
                             if (y > 0) {
-                                ds.data.push({ x: xi.x, y: xi.y });
+                                ds.data.push({ x: xi.x, y: xi.y });                                
                             }
                             return xi;
                         })
@@ -396,7 +398,7 @@ class GridForm extends React.Component {
                                                 }
                                             } else {
                                                 // VALUE
-                                                if (td.type === 'cbr_regression_tmh1' || td.type === 'cbr_regression_sans' || td.type === 'calc' || td.type === 'calc_avg_array' || td.type === 'graph' || td.arrayVal === 'index' || td.arrayVal === 'average') {
+                                                if (td.type === 'cbr_regression_tmh1' || td.type === 'cbr_regression_sans' || td.type === 'calc' || td.type === 'calc_avg_array' || td.type === 'graph' || td.arrayVal === 'index' || td.arrayVal === 'average' || td.type === 'read_from_graph') {
                                                     //IS CALC
                                                     if (td.unit === 'datetime') {
                                                         // DATETIME
@@ -628,9 +630,14 @@ class GridForm extends React.Component {
         this.context.router.goBack();
     }
     dataAddCallBack(data) {
-
+        if(data.xVar != null) {
+            this.pointFromGraph[data.xVar] = data.x;
+        }
+        if(data.yVar != null) {
+            this.pointFromGraph[data.yVar] = data.y;
+        }
+        
         let method = cloneDeep(this.state.method);
-
         if (this.state.dataAdded) {
             method.graph[0].dataSets[0].data = method.graph[0].dataSets[0].data.filter((d) => {
                 if (!d.pop) {
@@ -775,6 +782,10 @@ class GridForm extends React.Component {
                     scope[d.symbol + '_x0'] = regression.x0;
                     scope[d.symbol + '_x1'] = regression.x1;
                     scope[d.symbol + '_y1'] = regression.y1;
+                }     
+                
+                if(d.input_type === 'read_from_graph') {
+                    scope[d.symbol] = this.pointFromGraph[d.symbol];
                 }
 
                 if (d.input_type === 'calc') {

@@ -47,12 +47,20 @@ export const LARGE_LABEL = {
 	c:{
 		textAlign: 'center',	
 		padding: '2px',
-		fontSize: '14px',
-		//height: '39px',
+		fontSize: '14px',		
 		height: '28px',
 		color: 'white',
 		backgroundColor: '#31708f'
 	},
+	ctitle:{
+		textAlign: 'center',	
+		padding: '2px',
+		fontSize: '18px',		
+		height: '28px',
+		color: 'white',
+		fontWeight: 'bold',
+		backgroundColor: '#31708f'
+	},	
 	logo: {
 		backgroundSize: 'contain',
 		backgroundRepeat: 'no-repeat',

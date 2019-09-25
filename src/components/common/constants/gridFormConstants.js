@@ -125,7 +125,7 @@ export const methods = [
 
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Percentage Stabilizer to be Added' },
+                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: '% Stabilizer to be Added' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_psa' }
                 ]
             },
@@ -162,7 +162,7 @@ export const methods = [
             },
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage Water Added' },
+                    { style: STYLES.LARGE_LABEL.tr, label: '% Water Added' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pa1' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pa2' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pa3' },
@@ -252,7 +252,7 @@ export const methods = [
             },
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Pan Wet Mass Plus Plan' },
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Wet mass + pan' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pwmp1' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pwmp2' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pwmp3' },
@@ -262,7 +262,7 @@ export const methods = [
             },
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Pan Dry Mass Plus Mass' },
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Dry mass + pan' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pdmp1' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pdmp2' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr51_pdmp3' },
@@ -450,7 +450,7 @@ export const methods = [
                         ]
                     },
                     {
-                        label: 'Estimated Dry Density and Percentage Water Added',
+                        label: 'Estimated Dry Density and % Water Added',
                         showLine: true,
                         pointRadius: 3,
                         pointBackgroundColor: 'blue',
@@ -461,7 +461,7 @@ export const methods = [
                             { sx: 'sans_gr51_pa2', sy: 'sans_gr51_edd2' },
                             { sx: 'sans_gr51_pa3', sy: 'sans_gr51_edd3' },
                             { sx: 'sans_gr51_pa4', sy: 'sans_gr51_edd4' },
-                            { sx: 'sans_gr51_pa5', sy: 'sans_gr51_edd5' },                            
+                            { sx: 'sans_gr51_pa5', sy: 'sans_gr51_edd5' },
                         ]
                     }
                 ]
@@ -703,7 +703,7 @@ export const methods = [
             },
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage Swell' },
+                    { style: STYLES.LARGE_LABEL.tr, label: '% Swell' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr40_ps1' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr40_ps2' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr40_ps3' }
@@ -952,8 +952,8 @@ export const methods = [
                 ]
             }
         ],
-        
-        
+
+
         hasGraph: true,
         graph: [
             //GRAPH ARRAY
@@ -1053,11 +1053,11 @@ export const methods = [
                         data: [
                             { sy: 'sans_gr40_pd_1_2', x: 0 },
                             { sy: 'sans_gr40_pd_2_2', x: 0.5 },
-                            { sy: 'sans_gr40_pd_3_2', x: 1.0},
+                            { sy: 'sans_gr40_pd_3_2', x: 1.0 },
                             { sy: 'sans_gr40_pd_4_2', x: 1.5 },
                             { sy: 'sans_gr40_pd_5_2', x: 2.0 },
                             { sy: 'sans_gr40_pd_6_2', x: 2.5 },
-                            { sy: 'sans_gr40_pd_7_2', x: 3.0},
+                            { sy: 'sans_gr40_pd_7_2', x: 3.0 },
                             { sy: 'sans_gr40_pd_8_2', x: 3.5 },
                             { sy: 'sans_gr40_pd_9_2', x: 4.0 },
                             { sy: 'sans_gr40_pd_10_2', x: 4.5 },
@@ -1216,7 +1216,7 @@ export const methods = [
                 ]
             } //GRAPH2
         ] //GRAPH ARRAY            
-                                
+
         /*
         graph: [
             //GRAPH ARRAY
@@ -1495,7 +1495,7 @@ export const methods = [
 
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Percentage Stabilizer to be Added' },
+                    { style: STYLES.LARGE_LABEL.tr, isVal: false, label: '% Stabilizer to be Added' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr31_psa' }
                 ]
             },
@@ -1532,7 +1532,7 @@ export const methods = [
             },
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage Water Added' },
+                    { style: STYLES.LARGE_LABEL.tr, label: '% Water Added' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr31_pa1' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr31_pa2' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr31_pa3' },
@@ -1822,7 +1822,7 @@ export const methods = [
                         ]
                     },
                     {
-                        label: 'Estimated Dry Density and Percentage Water Added',
+                        label: 'Estimated Dry Density and % Water Added',
                         showLine: true,
                         pointRadius: 3,
                         pointBackgroundColor: 'blue',
@@ -1833,7 +1833,7 @@ export const methods = [
                             { sx: 'sans_gr31_pa2', sy: 'sans_gr31_edd2' },
                             { sx: 'sans_gr31_pa3', sy: 'sans_gr31_edd3' },
                             { sx: 'sans_gr31_pa4', sy: 'sans_gr31_edd4' },
-                            { sx: 'sans_gr31_pa5', sy: 'sans_gr31_edd5' },                            
+                            { sx: 'sans_gr31_pa5', sy: 'sans_gr31_edd5' },
                         ]
                     }
                 ]
@@ -1875,7 +1875,7 @@ export const methods = [
             },
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Water Percentage Added' },
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Water % Added' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr30_pa1' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr30_pa2' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr30_pa3' },
@@ -1965,7 +1965,7 @@ export const methods = [
             },
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Pan Wet Mass Plus Plan' },
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Wet mass + pan' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr30_pwmp1' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr30_pwmp2' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr30_pwmp3' },
@@ -1975,7 +1975,7 @@ export const methods = [
             },
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Pan Dry Mass Plus Mass' },
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Dry mass + pan' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr30_pdmp1' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr30_pdmp2' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr30_pdmp3' },
@@ -2073,7 +2073,7 @@ export const methods = [
 
                         dx = Math.round(dx * 10) / 10;
                         dy = Math.round(dy * 10) / 10;
-                        this.options.dataAddCallBack({ x: dx, y: dy, pop: true });                    
+                        this.options.dataAddCallBack({ x: dx, y: dy, pop: true });
                     },
 
                     animation: {
@@ -2164,7 +2164,7 @@ export const methods = [
                         ]
                     },
                     {
-                        label: 'Estimated Dry Density and Percentage Water Added',
+                        label: 'Estimated Dry Density and % Water Added',
                         showLine: true,
                         pointRadius: 3,
                         pointBackgroundColor: 'blue',
@@ -2396,7 +2396,7 @@ export const methods = [
             },
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage Linear Shrinkage' },
+                    { style: STYLES.LARGE_LABEL.tr, label: '% Linear Shrinkage' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr11_ls_pls' }
                 ]
             }
@@ -2583,7 +2583,7 @@ export const methods = [
             },
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage Linear Shrinkage' },
+                    { style: STYLES.LARGE_LABEL.tr, label: '% Linear Shrinkage' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sans_gr10_ls_pls' }
                 ]
             }
@@ -2637,8 +2637,8 @@ export const methods = [
                     { label: 'Sieve Arpeture Size', style: STYLES.LARGE_LABEL.c },
                     { label: 'Mass Retained', style: STYLES.LARGE_LABEL.c },
                     { label: 'Reduced Mass', style: STYLES.LARGE_LABEL.c },
-                    { label: 'Percentage Retained', style: STYLES.LARGE_LABEL.c },
-                    { label: 'Cumulative Percentage Passing', style: STYLES.LARGE_LABEL.c }
+                    { label: '% Retained', style: STYLES.LARGE_LABEL.c },
+                    { label: 'Cumulative % Passing', style: STYLES.LARGE_LABEL.c }
                 ]
             },
             {
@@ -2807,7 +2807,7 @@ export const methods = [
                         ],
                         yAxes: [
                             {
-                                scaleLabel: { display: true, labelString: 'Percentage Passing (%)' },
+                                scaleLabel: { display: true, labelString: '% Passing (%)' },
                                 type: 'linear',
                                 ticks: {}
                             }
@@ -2817,7 +2817,7 @@ export const methods = [
 
                 dataSets: [
                     {
-                        label: 'Cummulative Percentage Passing',
+                        label: 'Cummulative % Passing',
                         showLine: true,
                         pointRadius: 4,
                         pointBackgroundColor: 'red',
@@ -2905,8 +2905,8 @@ export const methods = [
                     { label: 'Sieve Arpeture Size', style: STYLES.LARGE_LABEL.c },
                     { label: 'Mass Retained', style: STYLES.LARGE_LABEL.c },
                     { label: 'Reduced Mass', style: STYLES.LARGE_LABEL.c },
-                    { label: 'Percentage Retained', style: STYLES.LARGE_LABEL.c },
-                    { label: 'Cumulative Percentage Passing', style: STYLES.LARGE_LABEL.c }
+                    { label: '% Retained', style: STYLES.LARGE_LABEL.c },
+                    { label: 'Cumulative % Passing', style: STYLES.LARGE_LABEL.c }
                 ]
             },
             {
@@ -3146,7 +3146,7 @@ export const methods = [
                         ],
                         yAxes: [
                             {
-                                scaleLabel: { display: true, labelString: 'Percentage Passing (%)' },
+                                scaleLabel: { display: true, labelString: '% Passing (%)' },
                                 type: 'linear',
                                 ticks: {}
                             }
@@ -3156,7 +3156,7 @@ export const methods = [
 
                 dataSets: [
                     {
-                        label: 'Cummulative Percentage Passing',
+                        label: 'Cummulative % Passing',
                         showLine: true,
                         pointRadius: 4,
                         pointBackgroundColor: 'red',
@@ -3702,7 +3702,7 @@ export const methods = [
 
                 dataSets: [
                     {
-                        label: 'Cummulative Percentage Passing',
+                        label: 'Cummulative % Passing',
                         showLine: true,
                         pointRadius: 4,
                         pointBackgroundColor: 'red',
@@ -3785,8 +3785,8 @@ export const methods = [
                 td: [
                     { label: 'Sieve Arpeture Size', style: STYLES.LARGE_LABEL.c },
                     { label: 'Mass Retained', style: STYLES.LARGE_LABEL.c },
-                    { label: 'Percentage Retained', style: STYLES.LARGE_LABEL.c },
-                    { label: 'Cumulative Percentage Passing', style: STYLES.LARGE_LABEL.c }
+                    { label: '% Retained', style: STYLES.LARGE_LABEL.c },
+                    { label: 'Cumulative % Passing', style: STYLES.LARGE_LABEL.c }
                 ]
             },
 
@@ -3935,7 +3935,7 @@ export const methods = [
                         ],
                         yAxes: [
                             {
-                                scaleLabel: { display: true, labelString: 'Percentage Passing (%)' },
+                                scaleLabel: { display: true, labelString: '% Passing (%)' },
                                 type: 'linear',
                                 ticks: {
                                     beginAtZero: true,
@@ -3951,7 +3951,7 @@ export const methods = [
 
                 dataSets: [
                     {
-                        label: 'Cummulative Percentage Passing',
+                        label: 'Cummulative % Passing',
                         showLine: true,
                         pointRadius: 4,
                         pointBackgroundColor: 'red',
@@ -4426,7 +4426,7 @@ export const methods = [
             },
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage Swell' },
+                    { style: STYLES.LARGE_LABEL.tr, label: '% Swell' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'cbr_ps1' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'cbr_ps2' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'cbr_ps3' }
@@ -4963,7 +4963,7 @@ export const methods = [
                 ]
             } //GRAPH2
         ] //GRAPH ARRAY
-    
+
     }, //A8
     {
         //A7
@@ -5000,7 +5000,7 @@ export const methods = [
             },
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Water Percentage Added' },
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Water % Added' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'mdd_pa1' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'mdd_pa2' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'mdd_pa3' },
@@ -5090,7 +5090,7 @@ export const methods = [
             },
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Pan Wet Mass Plus Plan' },
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Wet mass + pan' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'mdd_pwmp1' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'mdd_pwmp2' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'mdd_pwmp3' },
@@ -5100,7 +5100,7 @@ export const methods = [
             },
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Pan Dry Mass Plus Mass' },
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Dry mass + pan' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'mdd_pdmp1' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'mdd_pdmp2' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'mdd_pdmp3' },
@@ -5198,7 +5198,7 @@ export const methods = [
 
                         dx = Math.round(dx * 10) / 10;
                         dy = Math.round(dy * 10) / 10;
-                        this.options.dataAddCallBack({ x: dx, y: dy, pop: true });
+                        this.options.dataAddCallBack({ x: dx, y: dy, pop: true, xVar: 'mdd_omc', yVar: 'mdd_mdd' });
                     },
 
                     animation: {
@@ -5291,7 +5291,7 @@ export const methods = [
                         ]
                     },
                     {
-                        label: 'Estimated Dry Density and Percentage Water Added',
+                        label: 'Estimated Dry Density and % Water Added',
                         showLine: true,
                         pointRadius: 3,
                         pointBackgroundColor: 'blue',
@@ -5372,140 +5372,11 @@ export const methods = [
         ]
     }, //A6
     {
-        //A5
-        code: 'A5',
-        colLayout: [{ span: 1, width: '40%' }, { span: 1, width: '25%' }, { span: 1, width: '25%' }, { span: 1, width: '20%' }],
-        grid: [
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Soaking Time' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_sst' }
-                ]
-            },
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Commenced Time' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_cst' }
-                ]
-            },
-
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Initial Sample Mass' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_ism' }
-                ]
-            },
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Mass Retained' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_mr10' }
-                ]
-            },
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage Retained (0.075 mm)' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_pr10' }
-                ]
-            },
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage Passing (0.075 mm)' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_pp10' }
-                ]
-            },
-            { td: [{ style: STYLES.LARGE_LABEL.thin, colSpan: 2, label: 'Method 5.2 (See TMH1)' }] },
-
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Fraction Coarse Sand (2.0 mm - 0.425 mm from A1)' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_fcs' }
-                ]
-            },
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Fraction Fine Sand (0.425 mm - 0.075 mm from A1)' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_ffs' }
-                ]
-            },
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Fraction ( < 0.075 mm for Grading Modulus in A1)' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_fm' }
-                ]
-            },
-            { td: [{ style: STYLES.LARGE_LABEL.thin, colSpan: 2 }] },
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage Coarse Sand' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_pcs' }
-                ]
-            },
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage Fine Sand' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_pfs' }
-                ]
-            },
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage ( < 0.075 mm)' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_pfm' }
-                ]
-            },
-            { td: [{ style: STYLES.LARGE_LABEL.thin, colSpan: 2, label: 'Method 5.3 (See TMH1)' }] },
-
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Soil fines ' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_sf' }
-                ]
-            },
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Mass retained on 0.25 mm sieve ' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_sf_250' }
-                ]
-            },
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Mass retained on 0.15 mm sieve ' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_sf_150' }
-                ]
-            },
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Mass retained on 0.075mm sieve ' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_sf_75' }
-                ]
-            },
-            { td: [{ style: STYLES.LARGE_LABEL.thin, colSpan: 2 }] },
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage Coarse Fine Sand' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_pcfs' }
-                ]
-            },
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage Medium Fine Sand' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_pmfs' }
-                ]
-            },
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage Fine Fine Sand' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_pffs' }
-                ]
-            },
-
-        ]
-    }, //A5
-    {
         //A2 A3 A4
         code: 'A2_A3_A4',
         colLayout: [{ span: 1, width: '25%' }, { span: 1, width: '25%' }, { span: 1, width: '25%' }, { span: 1, width: '25%' }],
         grid: [
-            { td: [{ style: STYLES.LARGE_LABEL.c, label: 'Liquid Limit', colSpan: 5 }] },
+            { td: [{ style: STYLES.LARGE_LABEL.ctitle, label: 'A2 - Liquid Limit', colSpan: 5 }] },
             {
                 td: [
                     { style: STYLES.LARGE_LABEL.tr, label: 'Number of Points' },
@@ -5582,7 +5453,7 @@ export const methods = [
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ll_avg' }
                 ]
             },
-            { td: [{ style: STYLES.LARGE_LABEL.c, label: 'Plastic Limit', colSpan: 5 }] },
+            { td: [{ style: STYLES.LARGE_LABEL.ctitle, label: 'A3 - Plastic Limit', colSpan: 5 }] },
 
             {
                 td: [
@@ -5651,7 +5522,7 @@ export const methods = [
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_pl_avg' }
                 ]
             },
-            { td: [{ style: STYLES.LARGE_LABEL.c, label: 'Plasticity Index', colSpan: 5 }] },
+            { td: [{ style: STYLES.LARGE_LABEL.ctitle, label: 'A4 - Plasticity Index', colSpan: 5 }] },
 
             {
                 td: [
@@ -5681,15 +5552,15 @@ export const methods = [
             },
             {
                 td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: 'Percentage Linear Shrinkage' },
+                    { style: STYLES.LARGE_LABEL.tr, label: '% Linear Shrinkage' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'a2_3_4_ls_pls' }
                 ]
             }
         ]
-    }, //A2 A3 A4
+    }, //A2_A3_A4
     {
-        //A1
-        code: 'A1',
+        //A1_A5
+        code: 'A1_A5',
         colLayout: [
             { span: 1, width: '30%' },
             { span: 1, width: '20%' },
@@ -5698,6 +5569,11 @@ export const methods = [
             { span: 1, width: '10%' }
         ],
         grid: [
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.ctitle, isVal: false, label: 'TMH1 - A1', colSpan: 5 },
+                ]
+            },
             {
                 td: [
                     { style: STYLES.LARGE_LABEL.tr, isVal: false, label: 'Total Sample Mass' },
@@ -5745,8 +5621,8 @@ export const methods = [
                 td: [
                     { label: 'Sieve Arpeture Size', style: STYLES.LARGE_LABEL.c },
                     { label: 'Mass Retained', style: STYLES.LARGE_LABEL.c },
-                    { label: 'Percentage Retained', style: STYLES.LARGE_LABEL.c },
-                    { label: 'Cumulative Percentage Passing', style: STYLES.LARGE_LABEL.c }
+                    { label: '% Retained', style: STYLES.LARGE_LABEL.c },
+                    { label: '% Passing', style: STYLES.LARGE_LABEL.c }
                 ]
             },
 
@@ -5851,135 +5727,145 @@ export const methods = [
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'gr_pr12' }
                 ]
             },
-            {
-                td: [
-                    { style: STYLES.LARGE_LABEL.tr, label: '0.075 mm percentage passing (Fraction < 0.075 mm From A5)' },
-                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'gr_pp10' }
-                ]
-            },
+            // {
+            //     td: [
+            //         { style: STYLES.LARGE_LABEL.tr, label: '0.075 mm % passing (Fraction < 0.075 mm From A5)' },
+            //         { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'gr_pp10' }
+            //     ]
+            // },
             {
                 td: [
                     { style: STYLES.LARGE_LABEL.tr, label: 'Grading Modulus' },
                     { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'gr_gm' }
                 ]
             },
-        ],
-        hasGraph: true,
-        graph: [
             {
-                addMaxY: 10,
-                roundOff: 1,
-                options: {
-                    hover: {
-                        animationDuration: 0
-                    },
-                    animation: {
-                        duration: 0,
-                        onComplete: function () {
-                            var limitIndexes = [];
-                            var ctx = this.chart.ctx;
-                            ctx.font = Chart.helpers.fontString(
-                                Chart.defaults.global.defaultFontSize,
-                                'normal',
-                                Chart.defaults.global.defaultFontFamily
-                            );
-                            ctx.fillStyle = this.chart.config.options.defaultFontColor;
-                            ctx.textAlign = 'center';
-                            ctx.textBaseline = 'bottom';
+                td: [
+                    { style: STYLES.LARGE_LABEL.ctitle, isVal: false, label: 'TMH1 - A5', colSpan: 5 },
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Soaking Time' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_sst' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Commenced Time' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_cst' }
+                ]
+            },
 
-                            this.data.datasets.forEach(function (dataset, dIndex) {
-                                let limitY = { showLimit: 1, countLimit: 0, limit: 100, limitReached: false };
-                                for (var i = 0; i < dataset.data.length; i++) {
-                                    const valY = dataset.data[i].y;                                    
-                                    if (parseFloat(valY) === parseFloat(limitY.limit)) {
-                                        limitY.countLimit += 1;
-                                    }
-                                    if (!limitY.limitReached) {
-                                        var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;
-                                        var string = `(${dataset.data[i].x}, ${dataset.data[i].y})`;
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Initial Sample Mass' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_ism' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Mass Retained' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_mr10' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: '% Retained (0.075 mm)' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_pr10' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: '% Passing (0.075 mm)' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_pp10' }
+                ]
+            },
+            { td: [{ style: STYLES.LARGE_LABEL.thin, colSpan: 2, label: 'Method 5.2 (See TMH1)' }] },
+            // {
+            //     td: [                     
+            //          { style: STYLES.LARGE_LABEL.tr, label: 'Fraction Coarse Sand (2.0 mm - 0.425 mm from A1)' },
+            //          { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_fcs' }
+            //     ]
+            // },
+            // {
+            //     td: [
+            //          { style: STYLES.LARGE_LABEL.tr, label: 'Fraction Fine Sand (0.425 mm - 0.075 mm from A1)' },
+            //          { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_ffs' }
+            //     ]
+            // },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Fraction ( < 0.075 mm for Grading Modulus in A1)' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_fm' }
+                ]
+            },
+            { td: [{ style: STYLES.LARGE_LABEL.thin, colSpan: 2 }] },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: '% Coarse Sand' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_pcs' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: '% Fine Sand' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_pfs' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: '% ( < 0.075 mm)' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_pfm' }
+                ]
+            },
+            { td: [{ style: STYLES.LARGE_LABEL.thin, colSpan: 2, label: 'Method 5.3 (See TMH1)' }] },
 
-                                        ctx.save();
-                                        ctx.translate(model.x, model.y);
-                                        ctx.rotate(-Math.PI / 2);
-
-                                        ctx.textAlign = 'left';
-                                        ctx.fillText(string, 10, 5);
-
-                                        ctx.restore();
-                                    } else {
-                                        limitIndexes.push({
-                                            whichGraph: dIndex,
-                                            whichPoint: i
-                                        });
-                                    }
-                                    if (limitY.showLimit === limitY.countLimit) {
-                                        limitY.limitReached = true;
-                                    }
-                                }
-                            });
-
-                            limitIndexes.forEach(removePoint => {
-                                this.data.datasets[removePoint.whichGraph].data.splice(removePoint.whichPoint, 1);
-                                this.chart.update();
-                            });
-                        }
-                    },
-                    scales: {
-                        xAxes: [
-                            {
-                                scaleLabel: { display: true, labelString: 'Sieve Size (mm)' },
-                                type: 'logarithmic',
-                                position: 'bottom',
-                                ticks: {
-                                    minRotation: 90,
-                                    callback: function (label, index, labels) {
-                                        return label.toFixed(2);
-                                    }
-                                }
-                            }
-                        ],
-                        yAxes: [
-                            {
-                                scaleLabel: { display: true, labelString: 'Percentage Passing (%)' },
-                                type: 'linear',
-                                ticks: {
-                                    beginAtZero: true,
-                                    steps: 10,
-                                    stepValue: 5,
-                                    max: 100,
-                                    min: 0
-                                }
-                            }
-                        ]
-                    }
-                },
-                dataSets: [
-                    {
-                        label: 'Cummulative Percentage Passing',
-                        showLine: true,
-                        pointRadius: 4,
-                        pointBackgroundColor: 'red',
-                        borderColor: 'red',
-                        lineTension: 0.2,
-                        data: [
-                            { sy: 'gr_cpp1', x: 105 },
-                            { sy: 'gr_cpp2', x: 75 },
-                            { sy: 'gr_cpp3', x: 63 },
-                            { sy: 'gr_cpp4', x: 53 },
-                            { sy: 'gr_cpp5', x: 37.5 },
-                            { sy: 'gr_cpp6', x: 26.5 },
-                            { sy: 'gr_cpp7', x: 19 },
-                            { sy: 'gr_cpp8', x: 13.2 },
-                            { sy: 'gr_cpp9', x: 4.75 },
-                            { sy: 'gr_cpp10', x: 2.0 },
-                            { sy: 'gr_cpp11', x: 0.425 },
-                            { sy: 'gr_cpp12', x: 0.075 }
-                        ]
-                    }
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Soil fines ' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_sf' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Mass retained on 0.25 mm sieve ' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_sf_250' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Mass retained on 0.15 mm sieve ' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_sf_150' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: 'Mass retained on 0.075mm sieve ' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_sf_75' }
+                ]
+            },
+            { td: [{ style: STYLES.LARGE_LABEL.thin, colSpan: 2 }] },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: '% Coarse Fine Sand' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_pcfs' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: '% Medium Fine Sand' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_pmfs' }
+                ]
+            },
+            {
+                td: [
+                    { style: STYLES.LARGE_LABEL.tr, label: '% Fine Fine Sand' },
+                    { style: STYLES.LARGE_LABEL.input, isVal: true, scopeVariable: 'sm_pffs' }
                 ]
             }
         ]
-    }, //A1
+    }, //A1_A5
     {
         code: 'REPORT-1-THM1',
         colLayout: [
@@ -6231,7 +6117,7 @@ export const SIEVE_ANALYSIS = [
             { label: 'SAMPLE NO.', rowSpan: 3, width: '20%', style: STYLES.CELL_NO_ROTATE },
             { label: 'DISTANCE (km)', rowSpan: 3, width: '5%', style: STYLES.CELL_NO_ROTATE },
             { label: 'DEPTH (mm)', rowSpan: 3, width: '5%', style: STYLES.CELL_NO_ROTATE },
-            { label: 'PERCENTAGE BY MASS PASSING SIEVES', colSpan: 10, style: STYLES.CELL_NO_ROTATE },
+            { label: '% BY MASS PASSING SIEVES', colSpan: 10, style: STYLES.CELL_NO_ROTATE },
             { label: 'SAND', colSpan: 2, style: STYLES.CELL_NO_ROTATE },
             { label: 'MATERIAL <0.075 mm', rowSpan: 3, width: '5%', style: STYLES.CELL_ROTATE },
             { label: 'LIQUID LIMIT', rowSpan: 3, width: '5%', style: STYLES.CELL_ROTATE, height: '120px' },
@@ -6342,8 +6228,8 @@ export const TEST_2 = [
             },
             { width: '14%', label: 'SIEVE SIZE (mm)', style: STYLES.LARGE_SECTION_HEADER.tr },
             { width: '14%', label: 'MASS RETAINED (grams)', style: STYLES.LARGE_SECTION_HEADER.tr },
-            { width: '14%', label: 'PERCENTAGE RETAINED (%)', style: STYLES.LARGE_SECTION_HEADER.tr },
-            { width: '14%', label: 'PERCENTAGE PASSED (%)', style: STYLES.LARGE_SECTION_HEADER.tr }
+            { width: '14%', label: '% RETAINED (%)', style: STYLES.LARGE_SECTION_HEADER.tr },
+            { width: '14%', label: '% PASSED (%)', style: STYLES.LARGE_SECTION_HEADER.tr }
         ]
     },
 
